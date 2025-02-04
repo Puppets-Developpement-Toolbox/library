@@ -21,7 +21,8 @@ wysiwyg: |
   pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
   culpa qui officia deserunt mollit anim id est laborum.</p>
 
-image: <img src="https://f4.bcbits.com/img/a1497420590_2.jpg" alt="">
+# image: <img src="https://picsum.photos/1360/684" alt="">
+image: <img src="https://picsum.photos/2040/1026" alt="">
 image_trio: <img src="img/illustration-trio.png" alt="">
 
 picto: <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/How_to_use_icon.svg/40px-How_to_use_icon.svg.png">
@@ -30,7 +31,9 @@ url: https://puppets.fr
 
 
 # données par nom de champ -- prioritaire
-title: Innovation Factory, le booster de votre transformation digitale
+surtitle: Nous vous accompagnons pour
+title: Innover en intelligence collective, <em>et en musique !</em>
+push_cta_title: Et si on créait du neuf qui a du sens ? Ensemble, autrement.
 
 
 # données par context -- archi prio
