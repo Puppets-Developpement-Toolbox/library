@@ -1,0 +1,7 @@
+/vendor/
+/web/wp/
+/node_modules/
+.pnpm-store
+
+# Ignore MacOS stuff
+.DS_Store

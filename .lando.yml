@@ -1,0 +1,21 @@
+name: library
+recipe: lamp
+config:
+  webroot: .
+
+services:
+  front:
+    type: node:20
+    build:
+      - npm install -g pnpm
+    command: pnpm run dev
+    ssl: true
+
+tooling:
+  pnpm:
+    service: front
+
+proxy:
+  front:
+    - front.library.lndo.site
+    
