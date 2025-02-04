@@ -1,5 +1,22 @@
-@import "tailwindcss";
 
-body {
-    @apply bg-black;
-}
+
+
+/* ------------------------------ Init */
+
+@import 'tailwindcss';
+@source './../templates/';
+
+
+
+/* ------------------------------ Setup */
+
+@import './config/webfonts.css';
+@import './config/theme.css';
+
+
+
+/* ------------------------------ Overrides */
+
+@import './layers/base.css';
+@import './layers/components.css';
+@import './layers/utilities.css';
