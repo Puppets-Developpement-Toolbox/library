@@ -5,7 +5,8 @@
 
   .section {
     @apply my-20 mx-6 bg-white;
-    @apply laptop:my-[120px];
+    @apply laptop:mx-auto laptop:my-[120px] laptop:max-w-[1200px];
+    @apply wide:max-w-[1440px];
   }
 
 }
