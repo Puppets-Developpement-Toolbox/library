@@ -4,7 +4,8 @@
 @layer components {
 
   .section {
-    @apply my-20 bg-white laptop:my-[120px];
+    @apply my-20 mx-6 bg-white;
+    @apply laptop:my-[120px];
   }
 
 }

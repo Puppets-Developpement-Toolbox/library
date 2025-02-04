@@ -27,8 +27,6 @@ components:
     type: text_short
     label: Titre
 
-  titlepillar: *title
-
   subtitle: &subtitle
     type: text_short
     label: SousTitre
@@ -60,10 +58,10 @@ components:
     description: *description
     image: picto
   
-  text_image: &text_image
-    title: *title
-    description: *description
-    image: image
+  # text_image: &text_image
+  #   title: *title
+  #   description: *description
+  #   image: image
 
   card: &card
     title: *title
@@ -80,18 +78,43 @@ components:
     description: *description
     sujet: *subtitle
 
+  # -------------------- BEGIN Blocs Puppets Library
+  surtitle: &surtitle
+    title: *title
+    label: SurTitre
+
+  cta_link: &cta_link
+    <<: *cta
+  cta_push: &cta_push
+    <<: *cta
+
+  text_image: &text_image
+    title: *title
+    description: *description
+    image: image
+    cta_push: *cta_push
+  # -------------------- END Blocs Puppets Library
+
+
+
+
+
 #FIELDS COMPONENTS \\\\\
 blocs:
-  # BEGIN Blocs Puppets Library
+  # -------------------- BEGIN Blocs Puppets Library
   hero_banner:
     image: image
     surtitle: text_short
-    title: text_short
+    title: *title
     push_cta_title: text_short
     cta_push: *cta
     cta_contact: *cta
 
-  # END Blocs Puppets Library
+  text_image:
+    surtitle: text_short
+    <<: *text_image
+
+  # -------------------- END Blocs Puppets Library
 
   push: 
     <<: *text_image

@@ -2,11 +2,12 @@
 
 
 <header class="[ section__hero ]
+              group/hero
               laptop:relative laptop:mt-0 laptop:px-10">
 
   <figure class="[ img__cover ]
-                aspect-[375/450]
-                laptop:aspect-[1840/940]">
+                aspect-[var(--ratio-img-mobile)]
+                laptop:aspect-[var(--ratio-img-laptop)]">
     <?= carlo_get('image') ?>
   </figure>
   
@@ -50,39 +51,11 @@
         <ul class="flex flex-col gap-3
                   laptop:flex-row">
           <?php if (carlo_get('cta_push')): ?>
-          <li>
-            <a href="<?= carlo_get('cta_push')['link'] ?>">
-              <button type="button"
-                      class="group/btn
-                            flex justify-center items-center gap-1 w-full px-6 py-3
-                            rounded-full bg-gradient-to-r from-white from-50% to-primary to-50% border-[1px] bg-right bg-[size:_200%] border-primary
-                            text-white
-                            transition-all duration-300
-                            hover:bg-left hover:text-primary">
-                <span class="shrink-0 size-6 text-accent
-                            transition-transform duration-300
-                            group-hover/btn:rotate-180">
-                  <svg viewBox="0 0 24 24"><use xlink:href="#svg__more"></use></svg>
-                </span>
-                <span><?= carlo_get('cta_push')['label'] ?></span>
-              </button>
-            </a>
-          </li>
+          <li><?php carlo_render('components/cta_push', ['link' => '#', 'label' => 'En savoir plus']) ?></li>
           <?php endif ?>
 
           <?php if (carlo_get('cta_contact')): ?>
-          <li>
-            <a href="<?= carlo_get('cta_contact')['link'] ?>">
-              <button type="button"
-                      class="group/btn
-                            flex justify-center items-center gap-1 w-full px-6 py-3
-                            rounded-full bg-gradient-to-r from-primary from-50% to-white to-50% border-[1px] bg-right bg-[size:_200%] border-primary
-                            transition-all duration-300
-                            hover:bg-left hover:text-white">
-                <span><?= carlo_get('cta_contact')['label'] ?></span>
-              </button>
-            </a>
-          </li>
+          <li><?php carlo_render('components/cta_link', ['link' => '#', 'label' => 'Contactez-nous']) ?></li>
           <?php endif ?>
         </ul>
         <?php endif ?>

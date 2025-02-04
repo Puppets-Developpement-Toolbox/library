@@ -3,6 +3,17 @@
 
 @theme {
 
+
+
+  /* ---------- Custom vars */
+
+  --ratio-img-mobile: 5 / 6;
+  --ratio-img-laptop: 1840 / 940;
+
+
+
+  /* ---------- TailWind vars */
+
   --breakpoint-laptop: 1280px;
   --breakpoint-desktop: 1440px;
   --breakpoint-wide: 1920px;

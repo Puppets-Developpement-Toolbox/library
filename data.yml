@@ -13,13 +13,10 @@ text: |
   pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
   culpa qui officia deserunt mollit anim id est laborum.
 wysiwyg: |
-  <p><strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit</strong></p>
-  <p>Sed do eiusmod tempor incididunt ut labore et dolore magna <em>aliqua</em>.
-  Ut enim ad minim veniam, <a href="#" target="_blank">quis nostrud exercitation ullamco laboris </a>
-  nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
-  reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
-  pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
-  culpa qui officia deserunt mollit anim id est laborum.</p>
+  <p>Vingt ans d’expérience en entreprise dans les métiers de l’innovation nous donnent une connaissance intime des conditions d’émergence et de réussite des idées nouvelles. Selon nous l’intelligence collective est une ressource très pertinente pour répondre à tous les besoins d’innovation.</p>
+  <p class="large"><strong>Pourquoi intelligence collective et innovation vont-elles de pair ?</strong></p>
+  <p>Une innovation est une idée qui <strong>se concrétise</strong> et qui a un <strong>impact</strong>, même à petite échelle. Dès lors que l’idée aboutit, l’innovation est partout : un nouveau produit, une nouvelle stratégie, une nouvelle façon de faire ensemble, etc.</p>
+  <p>Or ce passage de l’idée à l’innovation <strong>ne peut se faire que collectivement</strong>. Travailler en intelligence collective - construire ensemble à partir de la singularité de chacun - rend cela possible.</p>
 
 # image: <img src="https://picsum.photos/1360/684" alt="">
 image: <img src="https://picsum.photos/2040/1026" alt="">
@@ -69,7 +66,7 @@ actualites--image: '<picture><source srcset="img/actus-list_visu_mobile.jpg" med
 actualites--title: Nos dernières actualités et projets menés au sein de l’association
 actualites--deco_color: green
 
-text_image--image: <img src="img/text-image_visu.jpg" alt="">
+text_image--image: <img src="https://picsum.photos/1072/1287" alt="">
 
 image_full_width--image: '<picture><source srcset="img/full-width-visu_mobile.jpg" media="(max-width: 500px)"><source srcset="img/full-width-visu_tablet.jpg" media="(min-width: 501px) and (max-width:1056px)"><source srcset="img/full-width-visu_desktop.jpg" media="(min-width: 1024px)"><img src="img/full-width-visu_mobile.jpg" alt=""></picture>'
 

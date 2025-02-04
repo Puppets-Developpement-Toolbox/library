@@ -5,11 +5,15 @@
   
   body { @apply font-texte font-light text-base; }
 
-  strong { @apply font-semibold; }
+  strong { @apply font-semibold text-primary; }
   small { @apply font-normal text-[14px] leading-[1.5] uppercase; }
 
-  p { @apply text-balance hyphens-auto [hyphenate-limit-chars:10]; }
+  p { @apply mb-4 text-balance hyphens-auto [hyphenate-limit-chars:10]; }
   button { @apply cursor-pointer; }
+  
+
+
+
   
   .h1 { @apply font-semibold text-[38px] leading-[1] text-primary laptop:text-[56px]; }
   .h2 { @apply font-semibold text-[34px] leading-[1.1] text-primary laptop:text-[48px]; }
@@ -35,7 +39,7 @@
   /* -------------------------------------------------- COMMONS */
 
   .kicker-subtitle { @apply block font-normal text-base leading-[1.2] text-black uppercase; }
-  .large { @apply font-light text-[18px] leading-[1.4] }
+  .large { @apply font-light text-[18px] text-primary leading-[1.4] }
   .button { @apply font-normal text-base; }
 
 
