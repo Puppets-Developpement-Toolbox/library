@@ -8,7 +8,7 @@
   strong { @apply font-semibold text-primary; }
   small { @apply font-normal text-[14px] leading-[1.5] uppercase; }
 
-  p { @apply mb-4 text-balance hyphens-auto [hyphenate-limit-chars:10] laptop:mb-8; }
+  p { @apply mb-6 text-balance hyphens-auto [hyphenate-limit-chars:10]; }
   button { @apply cursor-pointer; }
   
 
@@ -41,6 +41,8 @@
   .kicker-subtitle { @apply block font-normal text-base leading-[1.2] text-black uppercase; }
   .large { @apply font-light text-[18px] text-primary leading-[1.4] }
   .button { @apply font-normal text-base; }
+
+  .bg-primary strong { @apply text-white; }
 
 
 }
