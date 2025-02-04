@@ -1,7 +1,7 @@
 
 
 
-<header class="[ section ]
+<header class="[ section__hero ]
               laptop:relative laptop:mt-0 laptop:px-10">
 
   <figure class="[ img__cover ]
@@ -29,7 +29,7 @@
                     group-hover/btn:-translate-x-1/2">
           <svg viewBox="0 0 24 24"><use xlink:href="#svg__arrow"></use></svg>
         </span>
-        <small>Nos réalisations</span>
+        <small>Nos réalisations</small>
       </button>
     </aside>
     
