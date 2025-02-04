@@ -3,5 +3,9 @@
 
 @layer components {
 
+  .section {
+    @apply my-20 bg-white laptop:my-[120px];
+  }
+
 }
 

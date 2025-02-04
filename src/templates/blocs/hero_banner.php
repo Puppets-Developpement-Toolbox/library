@@ -2,7 +2,7 @@
 
 
 <header class="[ section ]
-              laptop:relative">
+              laptop:relative laptop:mt-0 laptop:px-10">
 
   <figure class="[ img__cover ]
                 aspect-[375/450]
@@ -14,7 +14,8 @@
 
   <section class="m-6 mt-12
                   bg-white
-                  laptop:absolute laptop:right-0 laptop:top-1/2 laptop:-translate-y-1/2 laptop:w-1/2 laptop:m-0 laptop:px-[100px] py-[64px]">
+                  laptop:absolute laptop:right-0 laptop:top-1/2 laptop:-translate-y-1/2 laptop:w-[65%] laptop:m-0 laptop:px-[100px] laptop:py-[64px]
+                  wide:w-1/2 wide:px-[120px]">
 
     <aside class="my-6
                   border-b-[1px] border-b-black">

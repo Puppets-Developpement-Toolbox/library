@@ -5,6 +5,7 @@
 
   --breakpoint-laptop: 1280px;
   --breakpoint-desktop: 1440px;
+  --breakpoint-wide: 1920px;
 
   --color-accent: var(--accent);
   --color-primary: var(--primary);
