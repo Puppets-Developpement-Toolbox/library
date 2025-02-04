@@ -82,7 +82,7 @@ function carlo_load_data($structure) {
   if(!isset($data)) {
     $data = Yaml::parseFile(__DIR__.'/data.yml');
   }
-
+  
   return array_map(function($fieldname) use($data, $structure) {
     global $CARLO_TPL_PATH;
 
@@ -114,13 +114,13 @@ function carlo_load_data($structure) {
  * include the given file
  */
 function carlo_load_file($path) {
-  $abspath = __DIR__."/{$path}";
+  $abspath = __DIR__."/src/{$path}";
   // par sécurité en interdit de charger un fichier hors du projet
   if(strpos($abspath, __DIR__) === false) {
     throw new Exception("Le chemin {$path} est hors du projet");
   }
-  if(!file_exists($path)) {
-    throw new Exception("Le fichier {$path} n'est pas présent");
+  if(!file_exists($abspath)) {
+    throw new Exception("Le fichier {$abspath} n'est pas présent");
   }
   include $abspath;
 }

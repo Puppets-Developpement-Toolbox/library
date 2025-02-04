@@ -1,1 +1,4 @@
-alert("hello 2");
+
+
+
+import './modules/Navigation';
