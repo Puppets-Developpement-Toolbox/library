@@ -11,45 +11,50 @@
     <h2 class="[ h3 ]
               mt-10 mb-5">Primary brand</h2>
     <ul class="grid grid-cols-5 gap-5">
-      <li class="overflow-clip pt-[90px]
-                rounded-lg border-[1px] border-[#9747FF] bg-white">
-        <p class="p-5 bg-white text-sm">
+      <li class="overflow-clip
+                rounded-lg border-[1px] border-[#9747FF]">
+        <div class="m-0 h-[100px] bg-white"></div>
+        <p class="m-0 p-5 bg-white text-sm">
           <strong>White</strong><br>
           #FFFFFF<br>
           rgb(255, 255, 255)<br>
           hsl(0, 0, 100)
         </p>
       </li>
-      <li class="overflow-clip pt-[90px]
-                rounded-lg border-[1px] border-[#9747FF] bg-black">
-        <p class="p-5 bg-white text-sm">
+      <li class="overflow-clip
+                rounded-lg border-[1px] border-[#9747FF]">
+        <div class="m-0 h-[100px] bg-black"></div>
+        <p class="m-0 p-5 bg-white text-sm">
           <strong>Black</strong><br>
           #121212<br>
           rgb(18, 18, 18)<br>
           hsl(0, 0, 7)
         </p>
       </li>
-      <li class="overflow-clip pt-[90px]
-                rounded-lg border-[1px] border-[#9747FF] bg-accent">
-        <p class="p-5 bg-white text-sm">
+      <li class="overflow-clip
+                rounded-lg border-[1px] border-[#9747FF]">
+        <div class="m-0 h-[100px] bg-accent"></div>
+        <p class="m-0 p-5 bg-white text-sm">
           <strong>Accent</strong><br>
           #F9B943<br>
           rgb(249, 185, 67)<br>
           hsl(39, 94, 62)
         </p>
       </li>
-      <li class="overflow-clip pt-[90px]
-                rounded-lg border-[1px] border-[#9747FF] bg-primary-light">
-        <p class="p-5 bg-white text-sm">
+      <li class="overflow-clip
+                rounded-lg border-[1px] border-[#9747FF]">
+        <div class="m-0 h-[100px] bg-primary-light"></div>
+        <p class="m-0 p-5 bg-white text-sm">
           <strong>Primary light</strong><br>
           #45C0EB<br>
           rgb(69, 192, 235)<br>
           hsl(196, 81, 60)
         </p>
       </li>
-      <li class="overflow-clip pt-[90px]
-                rounded-lg border-[1px] border-[#9747FF] bg-primary">
-        <p class="p-5 bg-white text-sm">
+      <li class="overflow-clip
+                rounded-lg border-[1px] border-[#9747FF]">
+        <div class="m-0 h-[100px] bg-primary"></div>
+        <p class="m-0 p-5 bg-white text-sm">
           <strong>Primary</strong><br>
           #232660<br>
           rgb(35, 38, 96)<br>
@@ -61,27 +66,30 @@
     <h2 class="[ h3 ]
               mt-10 mb-5">Secondary brand</h2>
     <ul class="grid grid-cols-5 gap-5">
-      <li class="overflow-clip pt-[90px]
-                rounded-lg border-[1px] border-[#9747FF] bg-secondary-light">
-        <p class="p-5 bg-white text-sm">
+      <li class="overflow-clip
+                rounded-lg border-[1px] border-[#9747FF]">
+        <div class="m-0 h-[100px] bg-secondary-light"></div>
+        <p class="m-0 p-5 bg-white text-sm">
           <strong>Secondary Light</strong><br>
           #8C8EAB<br>
           rgb(140, 142, 171)<br>
           hsl(236, 16, 61)
         </p>
       </li>
-      <li class="overflow-clip pt-[90px]
-                rounded-lg border-[1px] border-[#9747FF] bg-secondary">
-        <p class="p-5 bg-white text-sm">
+      <li class="overflow-clip
+                rounded-lg border-[1px] border-[#9747FF]">
+        <div class="m-0 h-[100px] bg-secondary"></div>
+        <p class="m-0 p-5 bg-white text-sm">
           <strong>Secondary light</strong><br>
           #585A86<br>
           rgb(88, 90, 134)<br>
           hsl(237, 21, 44)
         </p>
       </li>
-      <li class="overflow-clip pt-[90px]
-                rounded-lg border-[1px] border-[#9747FF] bg-secondary-dark">
-        <p class="p-5 bg-white text-sm">
+      <li class="overflow-clip
+                rounded-lg border-[1px] border-[#9747FF]">
+        <div class="m-0 h-[100px] bg-secondary-dark"></div>
+        <p class="m-0 p-5 bg-white text-sm">
           <strong>Secondary Dark</strong><br>
           #393C70<br>
           rgb(57, 60, 112)<br>
@@ -93,18 +101,20 @@
     <h2 class="[ h3 ]
               mt-10 mb-5">Gray</h2>
     <ul class="grid grid-cols-5 gap-5">
-      <li class="overflow-clip pt-[90px]
-                rounded-lg border-[1px] border-[#9747FF] bg-gray-light">
-        <p class="p-5 bg-white text-sm">
+      <li class="overflow-clip
+                rounded-lg border-[1px] border-[#9747FF]">
+        <div class="m-0 h-[100px] bg-gray-light"></div>
+        <p class="m-0 p-5 bg-white text-sm">
           <strong>Gray Light</strong><br>
           #F6F6F6<br>
           rgb(246, 246, 246)<br>
           hsl(0, 0, 96)
         </p>
       </li>
-      <li class="overflow-clip pt-[90px]
-                rounded-lg border-[1px] border-[#9747FF] bg-gray-dark">
-        <p class="p-5 bg-white text-sm">
+      <li class="overflow-clip
+                rounded-lg border-[1px] border-[#9747FF]">
+        <div class="m-0 h-[100px] bg-gray-dark"></div>
+        <p class="m-0 p-5 bg-white text-sm">
           <strong>Gray Dark</strong><br>
           #9C9C9C<br>
           rgb(156, 156, 156)<br>
@@ -256,7 +266,7 @@
           Desk : 16px / 1 / 0 / normalcase<br>
           Mob : 20px / 1.5 / 0 / normalcase
         </p>
-        <p class="nav emphase">Lorem ipsum</p>
+        <p class="nav"><strong>Lorem ipsum</strong></p>
       </li>
     </ul>
 
@@ -278,11 +288,11 @@
         <p class="large">Lorem ipsum</p>
       </li>
       <li class="grid grid-cols-3 gap-5">
-        <p class="text-[#9747FF]"><strong>body large emphase</strong></p>
+        <p class="text-[#9747FF]">body large emphase</p>
         <p>SemiBold<br>
           18px / 1.4 / 0 / normalcase
         </p>
-        <p class="large">Lorem ipsum</p>
+        <p class="large"><strong>Lorem ipsum</strong></p>
       </li>
       <li class="grid grid-cols-3 gap-5">
         <p class="text-[#9747FF]">body medium</p>
@@ -310,7 +320,7 @@
         <p>Bold<br>
           16px / 1.5 / 0 / normalcase
         </p>
-        <p class="button emphase"><strong>Lorem ipsum</strong></p>
+        <p class="button"><strong>Lorem ipsum</strong></p>
       </li>
       <li class="grid grid-cols-3 gap-5">
         <p class="text-[#9747FF]">body small</p>
