@@ -12,11 +12,12 @@ menus:
 
 templates:
   home: {}
-  edito: {}
-  actus-list: {}
-  actu-detail: {}
-  actus-list-ajax: {}
-  contact: {}
+  # edito: {}
+  # actus-list: {}
+  # actu-detail: {}
+  # actus-list-ajax: {}
+  # contact: {}
+  ppts-chart: {}
 
 
 #COMPONENTS /////
@@ -26,7 +27,6 @@ components:
     type: text_short
     label: Titre
 
-  #there can't be two titles in this town...
   titlepillar: *title
 
   subtitle: &subtitle
@@ -39,7 +39,7 @@ components:
 
   slide: &slide
     image: image
-    content: text_long_title
+    content: wysiwyg
     cta: *cta
   
   description: &description
@@ -82,8 +82,16 @@ components:
 
 #FIELDS COMPONENTS \\\\\
 blocs:
-  text_image:
-    <<: *text_image
+  # BEGIN Blocs Puppets Library
+  hero_banner:
+    image: image
+    surtitle: text_short
+    title: text_short
+    push_cta_title: text_short
+    cta_push: *cta
+    cta_contact: *cta
+
+  # END Blocs Puppets Library
 
   push: 
     <<: *text_image

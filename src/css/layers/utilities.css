@@ -1,0 +1,16 @@
+
+
+
+
+@layer utilities {
+  
+  .debug ,
+  .debug > * {
+    @apply bg-[#ff00ff]/25 border-[#ff00ff];
+  }
+
+  .img__cover img { @apply size-full object-cover; }
+  .img__contain img { @apply size-full object-contain; }
+
+}
+
