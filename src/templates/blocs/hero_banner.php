@@ -47,11 +47,11 @@
         <p class="[ large ]
                   my-6"><?= carlo_get('push_cta_title') ?></p>
 
-        <?php if (carlo_get('cta_push') || carlo_get('cta_contact')): ?>
+        <?php if (carlo_get('cta') || carlo_get('cta_contact')): ?>
         <ul class="flex flex-col gap-3
                   laptop:flex-row">
-          <?php if (carlo_get('cta_push')): ?>
-          <li><?php carlo_render('components/cta_push', ['link' => '#', 'label' => 'En savoir plus']) ?></li>
+          <?php if (carlo_get('cta')): ?>
+          <li><?php carlo_render('components/cta', ['link' => '#', 'label' => 'En savoir plus']) ?></li>
           <?php endif ?>
 
           <?php if (carlo_get('cta_contact')): ?>

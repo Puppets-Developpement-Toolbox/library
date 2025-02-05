@@ -85,14 +85,7 @@ components:
 
   cta_link: &cta_link
     <<: *cta
-  cta_push: &cta_push
-    <<: *cta
 
-  text_image: &text_image
-    title: *title
-    description: *description
-    image: image
-    cta_push: *cta_push
   # -------------------- END Blocs Puppets Library
 
 
@@ -107,177 +100,184 @@ blocs:
     surtitle: text_short
     title: *title
     push_cta_title: text_short
-    cta_push: *cta
+    cta: *cta
     cta_contact: *cta
 
   text_image:
     surtitle: text_short
-    <<: *text_image
+    title: *title
+    description: *description
+    cta: *cta
+    slides:
+      type: repeater
+      repeat:
+        image: image
+      times: 4
 
   # -------------------- END Blocs Puppets Library
 
-  push: 
-    <<: *text_image
-    cta: *cta
-    deco_color: deco_color
+  # push: 
+  #   <<: *text_image
+  #   cta: *cta
+  #   deco_color: deco_color
 
-  slider:
+  slider: &slider
     slides:
       type: repeater
       repeat: *slide
-      times: 4  #repeat the thing x times (it smells like a flower!)
+      times: 4  #repeat n times
 
-  columns:
-    title: *title
-    columns:
-      type: repeater
-      repeat: *column
-      times: 3
+  # columns:
+  #   title: *title
+  #   columns:
+  #     type: repeater
+  #     repeat: *column
+  #     times: 3
     
 
-  columns_four:
-    title: *title
-    columns:
-      type: repeater
-      repeat: *column_picto
-      times: 4
+  # columns_four:
+  #   title: *title
+  #   columns:
+  #     type: repeater
+  #     repeat: *column_picto
+  #     times: 4
 
-  columns_three_picto:
-    title: *title
-    subtitle: *subtitle
-    columns:
-      type: repeater
-      repeat: *column_picto
-      times: 3
+  # columns_three_picto:
+  #   title: *title
+  #   subtitle: *subtitle
+  #   columns:
+  #     type: repeater
+  #     repeat: *column_picto
+  #     times: 3
 
-  pictos_texte:
-    title: *title
-    pictos:
-      type: repeater
-      repeat : *picto
-      min: 2
-    cta: *cta
+  # pictos_texte:
+  #   title: *title
+  #   pictos:
+  #     type: repeater
+  #     repeat : *picto
+  #     min: 2
+  #   cta: *cta
   
-  actualites:
-    title: *title
-    deco_color: deco_color
-    cards:
-      type: repeater
-      repeat : *card
-      min: 4 
+  # actualites:
+  #   title: *title
+  #   deco_color: deco_color
+  #   cards:
+  #     type: repeater
+  #     repeat : *card
+  #     min: 4 
 
-  tabs:
-    title: *title
-    partners:
-      type: repeater
-      repeat : *partner
-      min: 4
-    cta: *cta
+  # tabs:
+  #   title: *title
+  #   partners:
+  #     type: repeater
+  #     repeat : *partner
+  #     min: 4
+  #   cta: *cta
 
-  slider_texte:
-    title: *title
-    subtitle: *subtitle
+  # slider_texte:
+  #   title: *title
+  #   subtitle: *subtitle
 
-  intro: 
-    <<: *text_image
-    deco_color: deco_color
+  # intro: 
+  #   <<: *text_image
+  #   deco_color: deco_color
     
-  title_description:
-    title: *title
-    description: *description
-    deco_color: deco_color
+  # title_description:
+  #   title: *title
+  #   description: *description
+  #   deco_color: deco_color
 
   # clone de pillar @todo refactor => supprimé
   #line_column:
   #  title: *title
 
 # Bloc ligne/colonne
-  slider_pillar:
-    title: *title
-    subtitle: *subtitle
-    pillars:
-      type: repeater
-      times: 3
-      repeat:
-        title: *title
-        pillar_texts:
-          type: repeater
-          times: 4 # groupés par 2 
-          repeat:
-            title: *title
-            subtitle: *subtitle
-            description: *description
+  # slider_pillar:
+  #   title: *title
+  #   subtitle: *subtitle
+  #   pillars:
+  #     type: repeater
+  #     times: 3
+  #     repeat:
+  #       title: *title
+  #       pillar_texts:
+  #         type: repeater
+  #         times: 4 # groupés par 2 
+  #         repeat:
+  #           title: *title
+  #           subtitle: *subtitle
+  #           description: *description
 
   
-  chiffre_cle:
-    title: *title
-    subtitle: *subtitle
-    chiffre:
-      type: repeater
-      times: 4 
-      repeat:
-        title: *title
-        subtitle: *subtitle
+  # chiffre_cle:
+  #   title: *title
+  #   subtitle: *subtitle
+  #   chiffre:
+  #     type: repeater
+  #     times: 4 
+  #     repeat:
+  #       title: *title
+  #       subtitle: *subtitle
 
 
   # partenariat: [@components.image]
 
-  key_figures:
-    title: *title
+  # key_figures:
+  #   title: *title
   
-  workflow:
-    title: *title
+  # workflow:
+  #   title: *title
 
-  text_bullet:
-    title: *title
+  # text_bullet:
+  #   title: *title
     
-  image_full_width:
-    image: image
+  # image_full_width:
+  #   image: image
  
-  actus_filters:
-    title: *title
+  # actus_filters:
+  #   title: *title
   
-  actus_list:
-    title: *title   
-    cards:
-      type: repeater
-      repeat : *card
-      min: 8
+  # actus_list:
+  #   title: *title   
+  #   cards:
+  #     type: repeater
+  #     repeat : *card
+  #     min: 8
 
-  actus-list-for-ajax:
-    title: *title   
-    cards:
-      type: repeater
-      repeat : *card
-      min: 9
+  # actus-list-for-ajax:
+  #   title: *title   
+  #   cards:
+  #     type: repeater
+  #     repeat : *card
+  #     min: 9
       
-  contact_form:
-    title: *title
-    description: *description
-    deco_color: deco_color
+  # contact_form:
+  #   title: *title
+  #   description: *description
+  #   deco_color: deco_color
     
-  contact_map:
-    title: *title
-    description: *description
-    image: image
-    link: link
+  # contact_map:
+  #   title: *title
+  #   description: *description
+  #   image: image
+  #   link: link
   
-  actu_title:
-    title: title
-    theme: theme
-    deco_color: deco_color
+  # actu_title:
+  #   title: title
+  #   theme: theme
+  #   deco_color: deco_color
     
-  actu_detail:
-    title: title
-    image: image
-    image_legend: image_legend
+  # actu_detail:
+  #   title: title
+  #   image: image
+  #   image_legend: image_legend
     
-  actus_last:
-    title: title
-    cards:
-      type: repeater
-      repeat : *card
-      min: 0
+  # actus_last:
+  #   title: title
+  #   cards:
+  #     type: repeater
+  #     repeat : *card
+  #     min: 0
       
-  breadcrumb:
-    title: title
+  # breadcrumb:
+  #   title: title

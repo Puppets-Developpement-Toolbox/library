@@ -1,13 +1,17 @@
 
 
 
-<?php
+<pre>
+    <?php var_dump(carlo_get()) ?>
+</pre>
 
+<?php
+  
   // Inversion distribution image/texte
   $revert = false;
 
   // Blocs carrés
-  $bgprimary = true;
+  $bgprimary = false;
 
   // Setup
   $header = ($bgprimary) ? 'pb-6 border-b-[1px] border-b-white' : '';
@@ -19,7 +23,7 @@
 
 ?>
 
-<section class="[ section ]">
+<section class="[ section section__text-image ]">
   <div class="group/section
               laptop:grid laptop:grid-cols-12
               <?php if ($bgprimary): ?> laptop:aspect-[2/1] laptop:overflow-hidden <?php endif ?>
@@ -33,7 +37,22 @@
                 <?php endif ?>">
       <figure class="[ img__cover ]
                     <?= $ratio ?>">
-        <?= carlo_get('image') ?>
+                    
+        <div class="swiper">
+          
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+          </div>
+          
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+
+        </div>
+
+        <!-- <?= carlo_get('image') ?> -->
       </figure>
     </div>
     
@@ -67,7 +86,7 @@
           </h2>
         </header>
         <div><?= carlo_get('description') ?></div>
-        <?php if (carlo_get('cta_push')) carlo_render('components/cta_push', ['link' => '#', 'label' => 'En savoir plus']) ?>
+        <?php if (carlo_get('cta')) carlo_render('components/cta', ['link' => '#', 'label' => 'En savoir plus']) ?>
       </div>
     </section>
   

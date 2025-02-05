@@ -4,8 +4,8 @@
 
 <main class="page-content" id="main">
   <?php carlo_render('blocs/hero_banner') ?>
-  <?php // carlo_render('blocs/slider') ?>
   <?php carlo_render('blocs/text_image') ?>
+  <?php // carlo_render('blocs/slider') ?>
   <?php // carlo_render('blocs/push') ?>
 </main>
 
