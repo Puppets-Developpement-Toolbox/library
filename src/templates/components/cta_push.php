@@ -10,8 +10,7 @@
                 transition-all duration-300
                 group-[.bg-primary]/section:border-white
                 group-[&]/hero:w-full group-[&]/hero:laptop:w-auto
-                hover:bg-left hover:text-primary
-                group-[&]/section:laptop:mt-8">
+                hover:bg-left hover:text-primary">
     <span class="shrink-0 size-6 text-accent
                 transition-transform duration-300
                 group-hover/btn:rotate-180">

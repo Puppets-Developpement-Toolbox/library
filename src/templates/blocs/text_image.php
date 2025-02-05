@@ -12,7 +12,7 @@
   // Setup
   $header = ($bgprimary) ? 'pb-6 border-b-[1px] border-b-white' : '';
   $text = ($bgprimary) ? 'laptop:w-2/3 laptop:max-w-2/3 laptop:mx-auto' : 'laptop:w-5/6 laptop:max-w-5/6';
-  $padding = ($bgprimary) ? 'px-8 py-10 laptop:px-0' : 'pt-12 laptop:p-0';
+  $padding = ($bgprimary) ? 'px-8 py-10 laptop:px-0 laptop:py-14' : 'pt-12 laptop:p-0';
   $ratio = ($bgprimary) ? 'aspect-square' : 'aspect-[var(--ratio-img-mobile)]';
   $bg = ($bgprimary) ? 'bg-primary' : '';
   $text = ($bgprimary) ? 'text-white' : '';
@@ -57,7 +57,7 @@
                     <?php endif ?>
                     <?= $padding ?>
                     <?= $text ?>">
-      <div class="flex flex-col
+      <div class="flex flex-col gap-6 laptop:gap-8
                   <?= $text ?>">
         <header class="<?= $header ?>">
           <?= carlo_get('surtitle') ?>
