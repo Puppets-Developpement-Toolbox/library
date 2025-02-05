@@ -2,6 +2,8 @@
 
 
 @layer base {
+
+  * { scrollbar-width: thin; }
   
   body { @apply font-texte font-light text-base; }
 
