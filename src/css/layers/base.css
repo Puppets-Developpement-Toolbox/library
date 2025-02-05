@@ -10,7 +10,7 @@
   strong { @apply font-semibold text-primary; }
   small { @apply font-normal text-[14px] leading-[1.5] uppercase; }
 
-  p { @apply mb-6 text-balance hyphens-auto [hyphenate-limit-chars:10]; }
+  p { @apply mb-6 last:mb-0 text-balance hyphens-auto [hyphenate-limit-chars:10]; }
   button { @apply cursor-pointer; }
   
 
