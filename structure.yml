@@ -32,11 +32,11 @@ components:
     label: text_short
     link: url
 
-  # slide: &slide
-  #   image: image
-  #   content: wysiwyg
-  #   cta: *cta
-  
+  slide: &slide
+    image: image
+    content: wysiwyg
+    cta: !components cta
+
   description: &description
     label: Description
     type: wysiwyg
@@ -127,11 +127,12 @@ blocs:
   #   cta: *cta
   #   deco_color: deco_color
 
-  # slider: &slider
-  #   slides:
-  #     type: repeater
-  #     repeat: *slide
-  #     times: 4  #repeat n times
+  slider: &slider
+    slides:
+      type: repeater
+      repeat: *slide
+      times: 4 #repeat n times
+
 
   # columns:
   #   title: *title
