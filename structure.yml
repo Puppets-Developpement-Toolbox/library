@@ -88,12 +88,11 @@ blocs:
   #   cta: *cta
   #   deco_color: deco_color
 
-  slider: &slider
-    slides:
-      type: repeater
-      repeat: *slide
-      times: 4 #repeat n times
-
+  # slider: &slider
+  #   slides:
+  #     type: repeater
+  #     repeat: *slide
+  #     times: 4  #repeat n times
 
   # columns:
   #   title: *title
