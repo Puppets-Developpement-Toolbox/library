@@ -111,8 +111,11 @@
                     <?= $text ?>">
       <div class="flex flex-col gap-6 laptop:gap-8
                   <?= $text ?>">
-        <header class="<?= $header ?>">
-          <?= carlo_get('surtitle') ?>
+        <header class="[ kicker-subtitle ]
+                      <?= $header ?>">
+          <?php if (carlo_get('surtitle')): ?>
+          <p class="mb-2"><?= carlo_get('surtitle') ?></p>
+          <?php endif ?>
           <h2 class="[ h2 ]
                     <?= $text ?>">
             <?= carlo_get('title') ?>

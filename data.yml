@@ -1,9 +1,7 @@
 
 
 # données par type
-text_short: hello world
-text_long_title:
-    INNOVATION FACTORY<br>Déjà 10 ans au service de l’innovation, de la formation et de la transformation digitale
+text_short: Lorem ipsum
 text: |
   Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
   sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -18,9 +16,7 @@ wysiwyg: |
   <p>Une innovation est une idée qui <strong>se concrétise</strong> et qui a un <strong>impact</strong>, même à petite échelle. Dès lors que l’idée aboutit, l’innovation est partout : un nouveau produit, une nouvelle stratégie, une nouvelle façon de faire ensemble, etc.</p>
   <p>Or ce passage de l’idée à l’innovation <strong>ne peut se faire que collectivement</strong>. Travailler en intelligence collective - construire ensemble à partir de la singularité de chacun - rend cela possible.</p>
 
-# image: <img src="https://picsum.photos/1360/684" alt="">
 image: <img src="https://picsum.photos/2040/1026" alt="">
-image_trio: <img src="img/illustration-trio.png" alt="">
 
 picto: <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/How_to_use_icon.svg/40px-How_to_use_icon.svg.png">
 
@@ -28,78 +24,23 @@ url: https://puppets.fr
 
 
 # données par nom de champ -- prioritaire
-surtitle: Nous vous accompagnons pour
-title: Innover en intelligence collective, <em>et en musique !</em>
-push_cta_title: Et si on créait du neuf qui a du sens ? Ensemble, autrement.
+surtitle: Lorem ipsum dolor sit amet
+title: Lorem ipsum, <em>les amis !</em>
 
 
 # données par context -- archi prio
-pictos_texte--title: Titre du bloc pictos
-pictos_texte--image: <img src="img/picto-small.png" alt="">
 
-slider--image: <img src="https://picsum.photos/3000/1500" alt="">
+hero_banner--surtitle: Nous vous accompagnons pour
+hero_banner--title: Innover en intelligence collective, <em>et en musique !</em>
 
-edito--intro--image: <img src="https://picsum.photos/2000/1500" alt="">
-#intro--image: <img src="https://picsum.photos/2000/1500" alt="">
-
-columns_four--title: Les grands sujets du moment
-columns_four--image: <img src="img/picto-metaverse.svg" alt="">
-columns_three_picto--title: 3 niveaux de partenariat à votre disposition
-columns_three_picto--image: <img src="img/picto-metaverse.svg" alt="">
-
-push--title: Innovation Factory, le booster de votre transformation digitale
-push--image: <img src="img/illustration-trio.png" alt="">
-push--description: |
-    <p><strong>Depuis 2013, l’Innovation Factory accompagne les entreprises dans leur transformation digitale</strong></p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam imperdiet ipsum tristique nibh vulputate mattis. Sed efficitur elit metus, ut feugiat nulla efficitur ac. Sed feugiat, velit eu posuere cursus, nisi augue condimentum mauris, non sodales dui mi non massa.</p>
-push--deco_color: green
-
-intro--image: <img src="img/intro-full-width_desktop.png" alt="">
-intro--title: Qui sommes-nous&nbsp;?
-intro--description: <!-- Pas de description pour les blocs intro ! -->
-intro--deco_color: green
-
-tabs--brand_logo: <img src="img/partners-logo-fdj.png" alt="">
-tabs--image: <img src="img/partners-visu-01.png" alt="">
-tabs--title: Ils nous ont fait confiance
-
-actualites--image: '<picture><source srcset="img/actus-list_visu_mobile.jpg" media="(max-width: 500px)"><source srcset="img/actus-list_visu_mobile.jpg" media="(min-width: 501px) and (max-width:1056px)"><source srcset="img/actus-list_visu.jpg" media="(min-width: 1024px)"><img src="img/actus-list_visu_mobile.jpg" alt=""></picture>'
-actualites--title: Nos dernières actualités et projets menés au sein de l’association
-actualites--deco_color: green
-
+text_image--surtitle: Notre différence pour répondre à vos besoins
+text_image--title: <em>Unir</em> innovation et intelligence collective
+text_image--description: Vingt ans d’expérience en entreprise dans les métiers de l’innovation nous donnent une connaissance intime des conditions d’émergence et de réussite des idées nouvelles. Selon nous l’intelligence collective est une ressource très pertinente pour répondre à tous les besoins d’innovation.
 text_image--image: <img src="https://picsum.photos/1072/1287" alt="">
 
-image_full_width--image: '<picture><source srcset="img/full-width-visu_mobile.jpg" media="(max-width: 500px)"><source srcset="img/full-width-visu_tablet.jpg" media="(min-width: 501px) and (max-width:1056px)"><source srcset="img/full-width-visu_desktop.jpg" media="(min-width: 1024px)"><img src="img/full-width-visu_mobile.jpg" alt=""></picture>'
+push--title: <em>Nos</em> outils
+push--description: Nous cherchons à solliciter toutes les formes d’intelligence et à faire vivre une expérience différente au groupe tout en ayant constamment à l’esprit l’ancrage dans le concret.
+push--image: <img src="https://picsum.photos/550/345" alt="">
+push--wysiwyg: Le but de la Théorie U est d’<strong>inventer le futur en intelligence collective</strong>. Elle cherche à s’affranchir des schémas du passé.
+# push--slides--repeat--title: La Théorie U
 
-actus_list--image: '<picture><source srcset="img/actu-list-results-visu.jpg" media="(max-width: 500px)"><source srcset="img/actu-list-results-visu.jpg" media="(min-width: 501px) and (max-width:1056px)"><source srcset="img/actu-list-results-visu.jpg" media="(min-width: 1024px)"><img src="img/actu-list-results-visu.jpg" alt=""></picture>'
-actus_list--description: L’agence Inclusive by Etape Design, une agence éphémère qui prône le numérique par tout.e.s et pour tout.e.s. Etape Design, est une formation labellisée Grande Ecole du numérique.
-actus_list--title: Nulla fermentum, nulla quis hendrerit pellentesque
-
-actus-list-for-ajax--image: '<picture><source srcset="img/actu-list-results-visu.jpg" media="(max-width: 500px)"><source srcset="img/actu-list-results-visu.jpg" media="(min-width: 501px) and (max-width:1056px)"><source srcset="img/actu-list-results-visu.jpg" media="(min-width: 1024px)"><img src="img/actu-list-results-visu.jpg" alt=""></picture>'
-actus-list-for-ajax--title: Has ut ancillae dignissim delicatissimi
-
-contact_form--title: N’hésitez pas à nous écrire
-contact_form--description: |
-    <p><strong>Lorem ipsum dolor sit met connecter lolitorus elin. Etiam imprima ipsum tristique.</strong></p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam imperdiet ipsum tristique nibh vulputate mattis. Sed efficitur elit metus, ut feugiat nulla efficitur ac.</p>
-contact_form--deco_color: green
-
-contact_map--title: Où nous trouver
-contact_map--description: Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-contact_map--image: '<picture><source srcset="img/contact-map_mobile.jpg" media="(max-width: 500px)"><source srcset="img/contact-map_mobile.jpg" media="(min-width: 501px) and (max-width:1056px)"><source srcset="img/contact-map.jpg" media="(min-width: 1024px)"><img src="img/contact-map.jpg" alt="96, rue Didot 75014 Paris"></picture>'
-contact_map--link: https://goo.gl/maps/cUyuMnUHuRWtZNwo8
-
-title_description--deco_color: red
-
-actu_title--title: Titre de l'actualité avec un texte un peu long pour voir le résultat
-actu_title--theme: Thématique
-actu_title--deco_color: blue
-
-actu_detail--title: Ad eos saepe lucilius, noster postulant
-actu_detail--image: '<picture><source srcset="img/actu-detail-visu_mobile.jpg" media="(max-width: 500px)"><source srcset="img/actu-detail-visu.jpg" media="(min-width: 501px) and (max-width:1056px)"><source srcset="img/actu-detail-visu.jpg" media="(min-width: 1024px)"><img src="img/actu-detail-visu_mobile.jpg" alt=""></picture>'
-actu_detail--image_legend: Légende de la photo
-
-actus_last--title: Nos dernières actualités
-actus_last--description: Depuis plus de 10 ans, Innovation Factory a accompagné de nombreuses marques et mené de nombreux projets dans le cadre de ses partenariats. Découvrez toutes nos actualités et des extraits de nos projets récents.
-actus_last--image: <img src="img/actu-last-visu.jpg" alt="">
-
-slider_pillar--title: Notre approche d’innovation
-slider_pillar--subtitle: Pour assurer ses missions d’innovation, Innovation Factory s’appuie sur 3 piliers essentiels :
