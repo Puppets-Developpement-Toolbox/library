@@ -32,11 +32,11 @@ components:
     label: text_short
     link: url
 
-  slide: &slide
-    image: image
-    content: wysiwyg
-    cta: !components cta
-
+  # slide: &slide
+  #   image: image
+  #   content: wysiwyg
+  #   cta: *cta
+  
   description: &description
     label: Description
     type: wysiwyg
@@ -105,6 +105,20 @@ blocs:
       repeat:
         image: image
       times: 4
+  
+  push:
+    title: *title
+    description: *description
+    cta: *cta
+    slides: 
+      type: repeater
+      repeat:
+        image: image
+        title: *title
+        subtitle: *subtitle
+        content: wysiwyg
+        cta: *cta
+      times: 3  #repeat n times
 
   # -------------------- END Blocs Puppets Library
 
@@ -113,12 +127,11 @@ blocs:
   #   cta: *cta
   #   deco_color: deco_color
 
-  slider: &slider
-    slides:
-      type: repeater
-      repeat: *slide
-      times: 4 #repeat n times
-
+  # slider: &slider
+  #   slides:
+  #     type: repeater
+  #     repeat: *slide
+  #     times: 4  #repeat n times
 
   # columns:
   #   title: *title
