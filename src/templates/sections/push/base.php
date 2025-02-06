@@ -9,7 +9,7 @@
 
   $type = 'cards';
 
-  $slides = carlo_get('slides');
+  $slides = carlo_get('cards');
 
 ?>
 
