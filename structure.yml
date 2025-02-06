@@ -83,7 +83,6 @@ components:
 
 #FIELDS COMPONENTS \\\\\
 blocs:
-
   # push:
   #   <<: *text_image
   #   cta: *cta
