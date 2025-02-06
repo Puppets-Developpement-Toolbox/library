@@ -1,0 +1,6 @@
+image: image
+surtitle: text_short
+title: text_short
+push_cta_title: text_short
+cta: !components cta
+cta_contact: !components cta
