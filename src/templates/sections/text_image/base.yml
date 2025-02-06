@@ -1,8 +1,6 @@
 surtitle: text_short
 title: text_short
-description:
-  label: Description
-  type: wysiwyg
+description: wysiwyg
 cta: !components cta
 slides:
   type: repeater
