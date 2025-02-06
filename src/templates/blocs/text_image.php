@@ -1,9 +1,9 @@
 
 
 
-<pre>
-    <?php var_dump(carlo_get()) ?>
-</pre>
+<!-- <pre>
+  <?php var_dump(carlo_get()) ?>
+</pre> -->
 
 <?php
   
@@ -21,6 +21,9 @@
   $bg = ($bgprimary) ? 'bg-primary' : '';
   $text = ($bgprimary) ? 'text-white' : '';
 
+
+  $slides = carlo_get('slides');
+
 ?>
 
 <section class="[ section section__text-image ]">
@@ -35,25 +38,55 @@
                 <?php else: ?>
                   laptop:col-start-7 laptop:order-2
                 <?php endif ?>">
-      <figure class="[ img__cover ]
-                    <?= $ratio ?>">
-                    
+
+      <?php if ($slides): ?>
+      <section class="relative">
         <div class="swiper">
-          
           <div class="swiper-wrapper">
-            <div class="swiper-slide">Slide 1</div>
-            <div class="swiper-slide">Slide 2</div>
-            <div class="swiper-slide">Slide 3</div>
+            <?php foreach ($slides as $slide): ?>
+            <div class="swiper-slide">
+              <figure class="[ img__cover ]
+                            <?= $ratio ?>">
+                <?= $slide['image'] ?>
+              </figure>
+            </div>
+            <?php endforeach ?>
           </div>
-          
-          <div class="swiper-pagination"></div>
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>
-
         </div>
+        
+        <aside class="swiper__dashboard">
+          <button type="button"
+                  class="[ swiper-button-prev ]
+                        group/btn
+                        !size-12 !-left-4
+                        rounded-full bg-primary
+                        !text-white
+                        after:!content-none
+                        laptop:!size-16 laptop:!left-6">
+            <svg viewBox="0 0 24 24"
+                  class="!size-6
+                        transition-transform duration-300
+                        group-hover/btn:-translate-x-1/2"><use xlink:href="#svg__arrow"></use></svg>
+          </button>
+          <button type="button"
+                  class="[ swiper-button-next ]
+                        group/btn
+                        !size-12 !-right-4
+                        rounded-full bg-primary
+                        !text-white
+                        after:!content-none
+                        laptop:!size-16 laptop:!right-6">
+            <svg viewBox="0 0 24 24"
+                  class="!size-6 rotate-180
+                        transition-transform duration-300
+                        group-hover/btn:translate-x-1/2"><use xlink:href="#svg__arrow"></use></svg>
+          </button>
+          <div class="[ swiper-pagination ]
+                      !bottom-0 translate-y-full"></div>
+        </aside>
+      </section>
+      <?php endif ?>
 
-        <!-- <?= carlo_get('image') ?> -->
-      </figure>
     </div>
     
     <section class="laptop:col-span-6 laptop:flex laptop:gap-5

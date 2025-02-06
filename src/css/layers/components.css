@@ -9,5 +9,9 @@
     @apply wide:max-w-[1440px];
   }
 
+  .swiper-pagination-bullet-active {
+    @apply !bg-accent !border-accent !border-5;
+  }
+
 }
 

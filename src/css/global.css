@@ -4,7 +4,8 @@
 /* ------------------------------ Init */
 
 @import 'tailwindcss';
-@source './../templates/';
+/* @source './../templates/'; */
+@source './../../src/**/*';
 
 
 

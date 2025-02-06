@@ -83,7 +83,7 @@ components:
     title: *title
     label: SurTitre
 
-  cta_link: &cta_link
+  cta_secondary: &cta_secondary
     <<: *cta
 
   # -------------------- END Blocs Puppets Library

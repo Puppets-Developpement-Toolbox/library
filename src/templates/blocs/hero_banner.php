@@ -55,7 +55,7 @@
           <?php endif ?>
 
           <?php if (carlo_get('cta_contact')): ?>
-          <li><?php carlo_render('components/cta_link', ['link' => '#', 'label' => 'Contactez-nous']) ?></li>
+          <li><?php carlo_render('components/cta_secondary', ['link' => '#', 'label' => 'Contactez-nous']) ?></li>
           <?php endif ?>
         </ul>
         <?php endif ?>
