@@ -1,6 +1,4 @@
 
-
-
 <header class="[ section__hero ]
               group/hero
               laptop:relative laptop:mt-0 laptop:px-10">
@@ -8,9 +6,9 @@
   <figure class="[ img__cover ]
                 aspect-[var(--ratio-img-mobile)]
                 laptop:aspect-[var(--ratio-img-laptop)]">
-    <?= carlo_get('image') ?>
+    <?= carlo_get("image") ?>
   </figure>
-  
+
 
 
   <section class="m-6 mt-12
@@ -34,11 +32,11 @@
         <small>Nos réalisations</small>
       </button>
     </aside>
-    
+
     <h1 class="[ h1 ]">
       <span class="[ kicker-subtitle ]
-                  mb-2"><?= carlo_get('surtitle') ?></span>
-      <?= carlo_get('title') ?>
+                  mb-2"><?= carlo_get("surtitle") ?></span>
+      <?= carlo_get("title") ?>
     </h1>
 
     <aside class="my-6
@@ -46,20 +44,26 @@
                   laptop:grid laptop:grid-cols-7">
       <div class="laptop:col-span-6 laptop:col-start-2">
         <p class="[ large ]
-                  my-6"><?= carlo_get('push_cta_title') ?></p>
+                  my-6"><?= carlo_get("push_cta_title") ?></p>
 
-        <?php if (carlo_get('cta') || carlo_get('cta_contact')): ?>
+        <?php if (carlo_get("cta") || carlo_get("cta_contact")): ?>
         <ul class="flex flex-col gap-3
                   laptop:flex-row">
-          <?php if (carlo_get('cta')): ?>
-          <li><?php carlo_render('components/cta', ['link' => '#', 'label' => 'En savoir plus']) ?></li>
-          <?php endif ?>
+          <?php if (carlo_get("cta")): ?>
+            <li><?php carlo_render("components/cta", [
+                "link" => "#",
+                "label" => "En savoir plus",
+            ]); ?></li>
+          <?php endif; ?>
 
-          <?php if (carlo_get('cta_contact')): ?>
-          <li><?php carlo_render('components/cta_secondary', ['link' => '#', 'label' => 'Contactez-nous']) ?></li>
-          <?php endif ?>
+          <?php if (carlo_get("cta_contact")): ?>
+            <li><?php carlo_render("components/cta:secondary", [
+                "link" => "#",
+                "label" => "Contactez-nous",
+            ]); ?></li>
+          <?php endif; ?>
         </ul>
-        <?php endif ?>
+        <?php endif; ?>
       </div>
 
     </aside>

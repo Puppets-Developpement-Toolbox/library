@@ -4,5 +4,9 @@
     },
     "scripts": {
         "start": "php -S 0.0.0.0:8001 -t ."
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^5.4",
+        "symfony/error-handler": "^5.4"
     }
 }

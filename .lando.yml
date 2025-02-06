@@ -8,6 +8,7 @@ services:
     type: node:20
     build:
       - npm install -g pnpm
+      - pnpm install
     command: pnpm run dev
     ssl: true
 
@@ -18,4 +19,3 @@ tooling:
 proxy:
   front:
     - front.library.lndo.site
-    

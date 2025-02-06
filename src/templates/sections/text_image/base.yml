@@ -1,0 +1,11 @@
+surtitle: text_short
+title: text_short
+description:
+  label: Description
+  type: wysiwyg
+cta: !components cta
+slides:
+  type: repeater
+  repeat:
+    image: image
+  times: 4

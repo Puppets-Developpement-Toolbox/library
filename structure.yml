@@ -1,5 +1,4 @@
-
-#Root 
+#Root
 global:
   html_start:
   header:
@@ -19,10 +18,8 @@ templates:
   # contact: {}
   ppts-chart: {}
 
-
 #COMPONENTS /////
 components:
-
   title: &title
     type: text_short
     label: Titre
@@ -35,11 +32,11 @@ components:
     label: text_short
     link: url
 
-  # slide: &slide
-  #   image: image
-  #   content: wysiwyg
-  #   cta: *cta
-  
+  slide: &slide
+    image: image
+    content: wysiwyg
+    cta: !components cta
+
   description: &description
     label: Description
     type: wysiwyg
@@ -48,16 +45,16 @@ components:
     title: *title
     subtitle: *subtitle
     description: *description
-  
+
   column_picto: &column_picto
-    << : *column
+    <<: *column
     image: image
 
   picto: &picto
     title: *title
     description: *description
     image: picto
-  
+
   # text_image: &text_image
   #   title: *title
   #   description: *description
@@ -69,7 +66,6 @@ components:
     description: *description
     cta: *cta
     image: image
-
 
   partner: &partner
     brand_logo: image
@@ -88,10 +84,6 @@ components:
 
   # -------------------- END Blocs Puppets Library
 
-
-
-
-
 #FIELDS COMPONENTS \\\\\
 blocs:
   # -------------------- BEGIN Blocs Puppets Library
@@ -100,8 +92,8 @@ blocs:
     surtitle: text_short
     title: *title
     push_cta_title: text_short
-    cta: *cta
-    cta_contact: *cta
+    cta: !components cta
+    cta_contact: !components cta
 
   text_image:
     surtitle: text_short
@@ -130,16 +122,17 @@ blocs:
 
   # -------------------- END Blocs Puppets Library
 
-  # push: 
+  # push:
   #   <<: *text_image
   #   cta: *cta
   #   deco_color: deco_color
 
-  # slider: &slider
-  #   slides:
-  #     type: repeater
-  #     repeat: *slide
-  #     times: 4  #repeat n times
+  slider: &slider
+    slides:
+      type: repeater
+      repeat: *slide
+      times: 4 #repeat n times
+
 
   # columns:
   #   title: *title
@@ -147,7 +140,6 @@ blocs:
   #     type: repeater
   #     repeat: *column
   #     times: 3
-    
 
   # columns_four:
   #   title: *title
@@ -171,14 +163,14 @@ blocs:
   #     repeat : *picto
   #     min: 2
   #   cta: *cta
-  
+
   # actualites:
   #   title: *title
   #   deco_color: deco_color
   #   cards:
   #     type: repeater
   #     repeat : *card
-  #     min: 4 
+  #     min: 4
 
   # tabs:
   #   title: *title
@@ -192,10 +184,10 @@ blocs:
   #   title: *title
   #   subtitle: *subtitle
 
-  # intro: 
+  # intro:
   #   <<: *text_image
   #   deco_color: deco_color
-    
+
   # title_description:
   #   title: *title
   #   description: *description
@@ -204,94 +196,91 @@ blocs:
   # clone de pillar @todo refactor => supprimé
   #line_column:
   #  title: *title
-
 # Bloc ligne/colonne
-  # slider_pillar:
-  #   title: *title
-  #   subtitle: *subtitle
-  #   pillars:
-  #     type: repeater
-  #     times: 3
-  #     repeat:
-  #       title: *title
-  #       pillar_texts:
-  #         type: repeater
-  #         times: 4 # groupés par 2 
-  #         repeat:
-  #           title: *title
-  #           subtitle: *subtitle
-  #           description: *description
+# slider_pillar:
+#   title: *title
+#   subtitle: *subtitle
+#   pillars:
+#     type: repeater
+#     times: 3
+#     repeat:
+#       title: *title
+#       pillar_texts:
+#         type: repeater
+#         times: 4 # groupés par 2
+#         repeat:
+#           title: *title
+#           subtitle: *subtitle
+#           description: *description
 
-  
-  # chiffre_cle:
-  #   title: *title
-  #   subtitle: *subtitle
-  #   chiffre:
-  #     type: repeater
-  #     times: 4 
-  #     repeat:
-  #       title: *title
-  #       subtitle: *subtitle
+# chiffre_cle:
+#   title: *title
+#   subtitle: *subtitle
+#   chiffre:
+#     type: repeater
+#     times: 4
+#     repeat:
+#       title: *title
+#       subtitle: *subtitle
 
+# partenariat: [@components.image]
 
-  # partenariat: [@components.image]
+# key_figures:
+#   title: *title
 
-  # key_figures:
-  #   title: *title
-  
-  # workflow:
-  #   title: *title
+# workflow:
+#   title: *title
 
-  # text_bullet:
-  #   title: *title
-    
-  # image_full_width:
-  #   image: image
- 
-  # actus_filters:
-  #   title: *title
-  
-  # actus_list:
-  #   title: *title   
-  #   cards:
-  #     type: repeater
-  #     repeat : *card
-  #     min: 8
+# text_bullet:
+#   title: *title
 
-  # actus-list-for-ajax:
-  #   title: *title   
-  #   cards:
-  #     type: repeater
-  #     repeat : *card
-  #     min: 9
-      
-  # contact_form:
-  #   title: *title
-  #   description: *description
-  #   deco_color: deco_color
-    
-  # contact_map:
-  #   title: *title
-  #   description: *description
-  #   image: image
-  #   link: link
-  
-  # actu_title:
-  #   title: title
-  #   theme: theme
-  #   deco_color: deco_color
-    
-  # actu_detail:
-  #   title: title
-  #   image: image
-  #   image_legend: image_legend
-    
-  # actus_last:
-  #   title: title
-  #   cards:
-  #     type: repeater
-  #     repeat : *card
-  #     min: 0
-      
-  # breadcrumb:
-  #   title: title
+# image_full_width:
+#   image: image
+
+# actus_filters:
+#   title: *title
+
+# actus_list:
+#   title: *title
+#   cards:
+#     type: repeater
+#     repeat : *card
+#     min: 8
+
+# actus-list-for-ajax:
+#   title: *title
+#   cards:
+#     type: repeater
+#     repeat : *card
+#     min: 9
+
+# contact_form:
+#   title: *title
+#   description: *description
+#   deco_color: deco_color
+
+# contact_map:
+#   title: *title
+#   description: *description
+#   image: image
+#   link: link
+
+# actu_title:
+#   title: title
+#   theme: theme
+#   deco_color: deco_color
+
+# actu_detail:
+#   title: title
+#   image: image
+#   image_legend: image_legend
+
+# actus_last:
+#   title: title
+#   cards:
+#     type: repeater
+#     repeat : *card
+#     min: 0
+
+# breadcrumb:
+#   title: title

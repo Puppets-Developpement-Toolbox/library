@@ -1,15 +1,25 @@
 
 
 <?php
-  include_once __DIR__ . "/carlo.php";
-  use Symfony\Component\Yaml\Yaml;
-  $structure = Yaml::parseFile(__DIR__ . "/structure.yml");
-  $template = $_GET["template"] ?? null;
+include_once __DIR__ . "/carlo.php";
+use Symfony\Component\Yaml\Yaml;
+$structure = Yaml::parseFile(
+    __DIR__ . "/structure.yml",
+    Yaml::PARSE_CUSTOM_TAGS
+);
+$template = $_GET["template"] ?? null;
 
-  if (!empty($template) && isset($structure["templates"][$template])) {
-      echo carlo_render($template);
-  } else {
-?>
+if (!empty($template) && isset($structure["templates"][$template])) {
+    ob_start();
+    try {
+        carlo_render($template);
+    } catch (Throwable $e) {
+        ob_end_clean();
+        throw $e;
+    }
+    ob_end_flush();
+} else {
+     ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -63,3 +73,4 @@
 </html>
 <?php
 }
+
