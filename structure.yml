@@ -79,48 +79,10 @@ components:
     title: *title
     label: SurTitre
 
-  cta_secondary: &cta_secondary
-    <<: *cta
-
   # -------------------- END Blocs Puppets Library
 
 #FIELDS COMPONENTS \\\\\
 blocs:
-  # -------------------- BEGIN Blocs Puppets Library
-  hero_banner:
-    image: image
-    surtitle: text_short
-    title: *title
-    push_cta_title: text_short
-    cta: !components cta
-    cta_contact: !components cta
-
-  text_image:
-    surtitle: text_short
-    title: *title
-    description: *description
-    cta: *cta
-    slides:
-      type: repeater
-      repeat:
-        image: image
-      times: 4
-  
-  push:
-    title: *title
-    description: *description
-    cta: *cta
-    slides: 
-      type: repeater
-      repeat:
-        image: image
-        title: *title
-        subtitle: *subtitle
-        content: wysiwyg
-        cta: *cta
-      times: 3  #repeat n times
-
-  # -------------------- END Blocs Puppets Library
 
   # push:
   #   <<: *text_image
