@@ -17,23 +17,28 @@
                 flex flex-col gap-8">
   
   <header>
-    <div>
-      <h2 class="[ h2 ]
-                mb-6"><?= carlo_get('title') ?></h2>
-      <?= carlo_get('description') ?>
+    <h2 class="[ h2 ]
+                mb-6
+                laptop:col-span-12"><?= carlo_get('title') ?></h2>
+    <div class="laptop:flex laptop:justify-between">
+      <div class="laptop:shrink-0 laptop:w-2/3">
+        <?= carlo_get('description') ?>
+      </div>
+      <aside class="hidden
+                    laptop:block">
+        <?php if (carlo_get('cta')) carlo_render('components/cta', ['link' => '#', 'label' => 'En savoir plus sur nos méthodes']) ?>
+      </aside>
     </div>
-    <aside class="hidden laptop:block">
-      <?php if (carlo_get('cta')) carlo_render('components/cta', ['link' => '#', 'label' => 'En savoir plus sur nos méthodes']) ?>
-    </aside>
   </header>
   
   <?php if ($slides): ?>
-  <ul class="flex flex-col gap-12">
+  <ul class="flex flex-col gap-12
+            laptop:grid laptop:grid-cols-3">
     <?php foreach ($slides as $slide): ?>
     <li class="group/card">
       <figure class="[ img__cover ]
                     aspect-[8/5] overflow-clip">
-        <div class="scale-[115%]
+        <div class="scale-115
                     transition-transform duration-500
                     group-hover/card:scale-100">
           <?= $slide['image'] ?>
@@ -44,7 +49,7 @@
         <header class="flex flex-col gap-2
                       after:transition-transform after:duration-500
                       after:block after:origin-left after:w-full after:h-[1px] after:mt-4 after:bg-black
-                      group-hover/card:after:scale-x-90">
+                      group-hover/card:after:scale-x-85">
           <h3 class="[ h3 ]"><?= $slide['title'] ?></h3>
           <span class="[ kicker-subtitle ]"><?= $slide['subtitle'] ?></span>
         </header>
@@ -56,7 +61,8 @@
   </ul>
   <?php endif ?>
 
-  <aside class="laptop:hidden">
+  <aside class="flex justify-center
+                laptop:hidden">
     <?php if (carlo_get('cta')) carlo_render('components/cta', ['link' => '#', 'label' => 'En savoir plus sur nos méthodes']) ?>
   </aside>
   
