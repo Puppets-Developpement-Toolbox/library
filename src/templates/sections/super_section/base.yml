@@ -1,0 +1,9 @@
+child:
+  - !sections text_image
+  - !sections hero_banner
+
+elements:
+  type: repeater
+  repeat:
+    child: !sections text_image
+  times: 4
