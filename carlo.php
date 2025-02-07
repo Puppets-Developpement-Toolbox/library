@@ -39,6 +39,7 @@ function carlo_structure($type, $name)
             $file,
             Yaml::PARSE_CUSTOM_TAGS
         );
+        $structure[$type][$name]["_id"] = "{$type}/{$name}";
     } catch (Exception $e) {
     }
     return $structure[$type][$name];
@@ -115,8 +116,11 @@ function carlo_load_data($structure)
     if (!isset($data)) {
         $data = Yaml::parseFile(__DIR__ . "/data.yml");
     }
-
-    return array_map(function ($fieldname) use ($data, $structure) {
+    $fields = array_filter(
+        array_keys($structure),
+        fn($key) => substr($key, 0, 1) !== "_"
+    );
+    $structure_data = array_map(function ($fieldname) use ($data, $structure) {
         global $CARLO_TPL_PATH;
 
         $field = $structure[$fieldname];
@@ -159,10 +163,17 @@ function carlo_load_data($structure)
         $context = $CARLO_TPL_PATH;
         $context[] = $fieldname;
         $fieldpath = implode(" > ", $context);
+
         throw new Exception(
             "Impossible de trouver du contenu pour le champ {$fieldpath} de type {$type}"
         );
-    }, array_combine(array_keys($structure), array_keys($structure)));
+    }, array_combine($fields, $fields));
+
+    if (isset($structure["_id"])) {
+        $structure_data["_id"] = $structure["_id"];
+    }
+
+    return $structure_data;
 }
 
 /**
@@ -232,4 +243,9 @@ function carlo_img($key, $dimensions)
     return '<img src="https://picsum.photos/' .
         str_replace("x", "/", $dimensions) .
         '" > ';
+}
+
+function carlo_component($component)
+{
+    return carlo_render($component["_id"], $component);
 }

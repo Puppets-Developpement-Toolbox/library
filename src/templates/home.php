@@ -7,6 +7,7 @@
 <main class="page-content" id="main">
   <?php carlo_render("sections/hero_banner"); ?>
   <?php carlo_render("sections/text_image"); ?>
+  <?php carlo_render("sections/super_section"); ?>
   <?php
 /* carlo_render("blocs/text_image"); */
 ?>
