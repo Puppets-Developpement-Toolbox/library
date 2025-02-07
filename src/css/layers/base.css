@@ -7,7 +7,10 @@
   
   body { @apply font-texte font-light text-base; }
 
-  strong { @apply font-semibold text-primary; }
+  strong {
+    @apply font-semibold text-primary;
+    @apply group-[&]/on-primary:text-inherit;
+  }
   small { @apply font-normal text-[14px] leading-[1.5] uppercase; }
 
   p { @apply mb-6 last:mb-0 text-balance hyphens-auto [hyphenate-limit-chars:10]; }
@@ -44,7 +47,6 @@
   .large { @apply font-light text-[18px] text-primary leading-[1.4] }
   .button { @apply font-normal text-base; }
 
-  .bg-primary strong { @apply text-white; }
 
 
 }
