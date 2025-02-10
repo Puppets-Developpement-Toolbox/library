@@ -2,21 +2,22 @@
 
 
 <!-- <pre>
-  <?php var_dump(carlo_get()) ?>
+  <?php // var_dump(carlo_get()) ?>
 </pre> -->
 
 <?php
 
-  $type = null;
-  // $type = 'cards';
+  // $type = null;
+  $type = 'picto';
 
+  $gap = ($type === 'picto') ? 'gap-6': 'gap-12';
   $slides = carlo_get('cards');
 
 ?>
 
 
 
-<?php if ($type !== 'cards'): ?>
+<?php if ($type === 'picto'): ?>
   <div class="bg-primary text-white
             group/on-primary">
 <?php endif ?>
@@ -44,11 +45,15 @@
       </header>
       
       <?php if ($slides): ?>
-      <ul class="flex flex-col gap-12
+      <ul class="flex flex-col <?= $gap ?>
                 laptop:grid laptop:grid-cols-3">
         <?php foreach ($slides as $slide): ?>
         <li>
-          <?php carlo_render('components/card', $slide) ?>
+          <?php if ($type === 'picto'): ?>
+            <?php carlo_render('components/card:picto', $slide) ?>
+          <?php else: ?>
+            <?php carlo_render('components/card', $slide) ?>
+          <?php endif ?>
         </li>
         <?php endforeach ?>
       </ul>
