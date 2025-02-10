@@ -26,7 +26,9 @@
 
 ?>
 
-<section class="[ section section__text-image ]">
+<section class="[ section section__text-image ]
+                group-[&]/super-section:first-of-type:mt-0
+                group-[&]/super-section:last-of-type:mb-0">
   <div class="group/section
               laptop:grid laptop:grid-cols-12
               <?php if ($bgprimary): ?> laptop:aspect-[2/1] laptop:overflow-hidden <?php endif ?>

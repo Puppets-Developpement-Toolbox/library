@@ -8,15 +8,6 @@
   <?php carlo_render("sections/hero_banner"); ?>
   <?php carlo_render("sections/text_image"); ?>
   <?php carlo_render("sections/super_section"); ?>
-  <?php
-/* carlo_render("blocs/text_image"); */
-?>
-  <?php
-// carlo_render('blocs/slider')
-?>
-  <?php
-// carlo_render('blocs/push')
-?>
   <?php carlo_render('sections/push'); ?>
 </main>
 
