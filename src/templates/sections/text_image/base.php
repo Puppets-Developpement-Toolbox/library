@@ -25,8 +25,8 @@
   $slides = carlo_get('slides');
 
 ?>
-
-<section class="[ section section__text-image ]
+<!-- TODO: revert even -->
+<section class="[ section has-slider ]
                 group-[&]/super-section:first-of-type:mt-0
                 group-[&]/super-section:last-of-type:mb-0">
   <div class="group/section

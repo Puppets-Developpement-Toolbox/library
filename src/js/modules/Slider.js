@@ -47,4 +47,4 @@ const CreateSlider = (wrapper) => {
 
 
 
-CreateSlider('.section__text-image');
+CreateSlider('.has-slider');
