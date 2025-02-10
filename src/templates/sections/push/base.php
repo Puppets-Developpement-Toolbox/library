@@ -2,70 +2,72 @@
 
 
 <!-- <pre>
-  <?php var_dump(carlo_get()) ?>
+  <?php // var_dump(carlo_get()) ?>
 </pre> -->
 
 <?php
 
-  $type = 'cards';
+  // $type = null;
+  $type = 'picto';
 
+  $gap = ($type === 'picto') ? 'gap-6': 'gap-12';
   $slides = carlo_get('cards');
 
 ?>
 
-<section class="[ section section__push ]
-                flex flex-col gap-8">
-  
-  <header>
-    <h2 class="[ h2 ]
-                mb-6
-                laptop:col-span-12"><?= carlo_get('title') ?></h2>
-    <div class="laptop:flex laptop:justify-between">
-      <div class="laptop:shrink-0 laptop:w-2/3">
-        <?= carlo_get('description') ?>
-      </div>
-      <aside class="hidden
-                    laptop:block">
+
+
+<?php if ($type === 'picto'): ?>
+  <div class="bg-primary text-white
+            group/on-primary">
+<?php endif ?>
+
+
+
+    <section class="[ section section__push ]
+                    flex flex-col gap-8
+                    group-[&]/on-primary:py-16 group-[&]/on-primary:bg-transparent group-[&]/on-primary:laptop:py-30">
+      
+      <header>
+        <h2 class="[ h2 ]
+                    mb-6
+                    group-[&]/on-primary:text-white
+                    laptop:col-span-12"><?= carlo_get('title') ?></h2>
+        <div class="laptop:flex laptop:justify-between">
+          <div class="laptop:shrink-0 laptop:w-2/3">
+            <?= carlo_get('description') ?>
+          </div>
+          <aside class="hidden
+                        laptop:block">
+            <?php if (carlo_get('cta')) carlo_render('components/cta', ['link' => '#', 'label' => 'En savoir plus sur nos méthodes']) ?>
+          </aside>
+        </div>
+      </header>
+      
+      <?php if ($slides): ?>
+      <ul class="flex flex-col <?= $gap ?>
+                laptop:grid laptop:grid-cols-3">
+        <?php foreach ($slides as $slide): ?>
+        <li>
+          <?php if ($type === 'picto'): ?>
+            <?php carlo_render('components/card:picto', $slide) ?>
+          <?php else: ?>
+            <?php carlo_render('components/card', $slide) ?>
+          <?php endif ?>
+        </li>
+        <?php endforeach ?>
+      </ul>
+      <?php endif ?>
+
+      <aside class="flex justify-center
+                    laptop:hidden">
         <?php if (carlo_get('cta')) carlo_render('components/cta', ['link' => '#', 'label' => 'En savoir plus sur nos méthodes']) ?>
       </aside>
-    </div>
-  </header>
-  
-  <?php if ($slides): ?>
-  <ul class="flex flex-col gap-12
-            laptop:grid laptop:grid-cols-3">
-    <?php foreach ($slides as $slide): ?>
-    <li class="group/card">
-      <div class="flex flex-col h-full">
-        <figure class="[ img__cover ]
-                      shrink-0 aspect-[8/5] overflow-clip">
-          <div class="scale-115
-                      transition-transform duration-500
-                      group-hover/card:scale-100">
-            <?= $slide['image'] ?>
-          </div>
-        </figure>
-        <div class="flex-1 flex flex-col gap-6 p-8
-                    border-1 border-t-0 border-black">
-          <header class="flex flex-col gap-2
-                        after:transition-transform after:duration-500
-                        after:block after:origin-left after:w-full after:h-[1px] after:mt-4 after:bg-black
-                        group-hover/card:after:scale-x-85">
-            <h3 class="[ h3 ]"><?= $slide['title'] ?></h3>
-            <span class="[ kicker-subtitle ]"><?= $slide['subtitle'] ?></span>
-          </header>
-          <div class="flex-1"><?= $slide['content'] ?></div>
-          <?php carlo_render('components/cta:tertiary', ['link' => $slide['cta']['link'], 'label' => $slide['cta']['label']]) ?>
-        </div>
-      </div>
-    </li>
-    <?php endforeach ?>
-  </ul>
-  <?php endif ?>
+      
+    </section>
 
-  <aside class="flex justify-center
-                laptop:hidden">
-    <?php if (carlo_get('cta')) carlo_render('components/cta', ['link' => '#', 'label' => 'En savoir plus sur nos méthodes']) ?>
-  </aside>
-  
-</section>
+
+
+<?php if ($type !== 'cards'): ?>
+  </div>
+<?php endif ?>

@@ -18,7 +18,7 @@ wysiwyg: |
 
 image: <img src="https://picsum.photos/2040/1026" alt="">
 
-picto: <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/How_to_use_icon.svg/40px-How_to_use_icon.svg.png">
+picto: broadcast
 
 url: https://puppets.fr
 
@@ -43,4 +43,3 @@ push--description: Nous cherchons à solliciter toutes les formes d’intelligen
 push--image: <img src="https://picsum.photos/630/393" alt="">
 push--wysiwyg: Le but de la Théorie U est d’<strong>inventer le futur en intelligence collective</strong>. Elle cherche à s’affranchir des schémas du passé.
 # push--slides--repeat--title: La Théorie U
-

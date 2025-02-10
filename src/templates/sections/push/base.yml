@@ -5,8 +5,9 @@ cards:
   type: repeater
   repeat:
     image: image
+    picto: picto
     title: text_short
     subtitle: text_short
     content: wysiwyg
     cta: !components cta
-  times: 3  #repeat n times
+  times: 6  #repeat n times

@@ -17,6 +17,7 @@
   <?php
 // carlo_render('blocs/push')
 ?>
+  <?php carlo_render('sections/push'); ?>
 </main>
 
 <?php
