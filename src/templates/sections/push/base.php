@@ -7,8 +7,8 @@
 
 <?php
 
-  // $type = null;
-  $type = 'picto';
+  $type = null;
+  // $type = 'picto';
 
   $gap = ($type === 'picto') ? 'gap-6': 'gap-12';
   $slides = carlo_get('cards');
@@ -45,8 +45,9 @@
       </header>
       
       <?php if ($slides): ?>
+        <?php $cols = (count($slides) === 2 || count($slides) === 4) ? 'laptop:grid-cols-2' : 'laptop:grid-cols-3'; ?>
       <ul class="flex flex-col <?= $gap ?>
-                laptop:grid laptop:grid-cols-3">
+                laptop:grid <?= $cols ?>">
         <?php foreach ($slides as $slide): ?>
         <li>
           <?php if ($type === 'picto'): ?>

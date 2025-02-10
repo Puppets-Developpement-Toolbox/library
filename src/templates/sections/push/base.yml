@@ -10,4 +10,4 @@ cards:
     subtitle: text_short
     content: wysiwyg
     cta: !components cta
-  times: 6  #repeat n times
+  times: 3  #repeat n times
