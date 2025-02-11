@@ -10,13 +10,10 @@ menus:
   main:
 
 templates:
-  home: {}
-  # edito: {}
-  # actus-list: {}
-  # actu-detail: {}
-  # actus-list-ajax: {}
-  # contact: {}
-  ppts-chart: {}
+  home:
+    - !load sections/hero_banner
+    - !load sections/text_image
+    # - !load sections/super_section
 
 #COMPONENTS /////
 components:
