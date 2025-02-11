@@ -1,0 +1,13 @@
+title: text_short
+description: wysiwyg
+cta: !load components/cta
+cards:
+  _type: repeater
+  _repeat:
+    image: image
+    picto: picto
+    title: text_short
+    subtitle: text_short
+    content: wysiwyg
+    cta: !load components/cta
+  _times: 3 #repeat n times

@@ -14,7 +14,7 @@ const CreateSlider = (wrapper) => {
 
   if (hasSwiper.length > 0) {
     hasSwiper.forEach((slider) => {
-console.log(slider)
+// console.log(slider)
       const swiper = new Swiper(slider.querySelector('.swiper'), {
         loop: true,
         lazy: true,
@@ -47,4 +47,4 @@ console.log(slider)
 
 
 
-CreateSlider('.section__text-image');
+CreateSlider('.has-slider');

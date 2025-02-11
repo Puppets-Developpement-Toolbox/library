@@ -28,6 +28,7 @@
                     group-hover/btn:-translate-x-1/2">
           <svg viewBox="0 0 24 24"><use xlink:href="#svg__arrow"></use></svg>
         </span>
+        <!-- TODO: retour en arrière à dynamiser -->
         <small>Nos réalisations</small>
       </button>
     </aside>

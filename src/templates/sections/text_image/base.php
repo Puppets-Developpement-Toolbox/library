@@ -1,4 +1,10 @@
 
+
+
+<!-- <pre>
+  <?php var_dump(carlo_get()); ?>
+</pre> -->
+
 <?php
 // Inversion distribution image/texte
 $revert = false;
@@ -20,8 +26,8 @@ $text = $bgprimary ? "text-white" : "";
 
 $slides = carlo_get("slides");
 ?>
-
-<section class="[ section section__text-image ]">
+<!-- TODO: revert even -->
+<section class="[ section has-slider ]">
   <div class="group/section
               laptop:grid laptop:grid-cols-12
               <?php if (
@@ -107,17 +113,21 @@ $slides = carlo_get("slides");
                       <?php endif; ?>
                     <?php endif; ?>
                     <?= $padding ?>
-                    <?= $text ?>">
+                    <?= $text ?>
+                    group-[&]/super-section:debug">
       <div class="flex flex-col gap-6 laptop:gap-8
                   <?= $text ?>">
-        <header class="<?= $header ?>">
-          <?= carlo_get("surtitle") ?>
+        <header class="[ kicker-subtitle ]
+                      <?= $header ?>">
+          <?php if (carlo_get("surtitle")): ?>
+          <p class="mb-2"><?= carlo_get("surtitle") ?></p>
+          <?php endif; ?>
           <h2 class="[ h2 ]
                     <?= $text ?>">
             <?= carlo_get("title") ?>
           </h2>
         </header>
-        <div><?= carlo_get("description") ?></div>
+        <div class="[ text ]"><?= carlo_get("description") ?></div>
         <?php if (carlo_get("cta")) {
             carlo_render("components/cta", [
                 "link" => "#",

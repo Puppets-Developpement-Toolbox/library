@@ -34,9 +34,10 @@ class YmlDriver extends BaseDriver implements DriverInterface
             }
 
             if ($type == "repeater") {
+                $n_times = $field["_times"] ?? ($field["_min"] ?? 2) + 3;
                 return array_fill(
                     0,
-                    $field["_times"] ?? $field["_min"] + 3,
+                    $n_times,
                     $this->loadData($field["_repeat"])
                 );
             }
@@ -92,9 +93,10 @@ HTML;
         $default_size = empty($default_size) ? "200x200" : $default_size;
         list($w, $h) = explode("x", $default_size);
 
-        $attrs_html = implode(' ', array_map(fn($n, $v) {
-        return "{$n}={$v}";
-        }, $attrs);
+        $attrs_html = implode(
+            " ",
+            array_map(fn($n, $v) => "{$n}={$v}", array_keys($attrs), $attrs)
+        );
         return <<<HTML
     <picture>
         {$sources_html}

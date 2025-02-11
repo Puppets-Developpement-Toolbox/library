@@ -1,11 +1,5 @@
-child:
-  _type: container
-  _children:
-    - !load sections/text_image
-    - !load sections/hero_banner
-
 elements:
   _type: repeater
   _repeat:
     child: !load sections/text_image
-  _times: 4
+  _times: 2
