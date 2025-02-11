@@ -13,4 +13,13 @@ interface DriverInterface
     public function register(string $file);
 
     public function get(string $key = null);
+
+    public function img(
+        string $key,
+        string $default_size,
+        array $source_sizes,
+        $mobile_key, // string|null
+        array $mobile_source_sizes,
+        array $attrs
+    );
 }

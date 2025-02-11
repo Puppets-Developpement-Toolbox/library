@@ -136,14 +136,54 @@ function carlo_get_value($key, $values)
 }
 
 /**
- * returns an html image, sized width length
+ * returns html image
+ *
+ * exemple :
+ * - carlo_img(1) => return img tag for img with id 1 in its original format
+ * - carlo_img(1, '70x70') => return same img in 70x70 format
+ * - carlo_img(1, ['70x70', '(min-width: 1024px)' => '1600x900']) => return same image with an other dimension for big screen
+ * - carlo_img(1, ['70x70', '(min-width: 1024px)' => '1600x900'], 2, [(min-width: 2024px)' => '1600x900']) => return same image and image with id 2 for really big screen
+ * - carlo_img(1, ['class' => 'mr-16']) => in any case, if the last argument is an array with class key this is added as img attributes
  */
-function carlo_img($key, $dimensions)
+function carlo_img($key)
 {
-    //https://picsum.photos/3000/1500
-    return '<img src="https://picsum.photos/' .
-        str_replace("x", "/", $dimensions) .
-        '" > ';
+    $source_sizes = [];
+    $args = func_get_args();
+
+    // remove first arg, it's the id
+    array_shift($args);
+
+    $imgAttrs = [];
+    $lastArg = end($args);
+    if (is_array($lastArg) && array_key_exists("class", $lastArg)) {
+        // last arg is img attrs
+        $imgAttrs = $lastArg;
+        array_pop($args);
+    }
+
+    $dimensions = array_shift($args);
+    $default_size = null;
+    $source_sizes = [];
+    if (is_string($dimensions) && !empty($dimensions)) {
+        $dimensions = [$dimensions];
+    }
+    if (is_array($dimensions)) {
+        $default_size = $dimensions[0];
+        unset($dimensions[0]);
+        $source_sizes = $dimensions;
+    }
+
+    $mobile_key = array_shift($args);
+    $mobile_source_sizes = array_shift($args) ?? [];
+
+    return carlo_driver()->img(
+        $key,
+        $default_size,
+        $source_sizes,
+        $mobile_key,
+        $mobile_source_sizes,
+        $imgAttrs
+    );
 }
 
 function carlo_component($component)

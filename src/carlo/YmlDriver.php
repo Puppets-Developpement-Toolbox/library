@@ -70,4 +70,33 @@ class YmlDriver extends BaseDriver implements DriverInterface
 
         return $structure_data;
     }
+
+    public function img(
+        string $key,
+        string $default_size,
+        array $dimensions,
+        $mobile_key,
+        array $mobile_dimensions,
+        array $attrs
+    ) {
+        $dimensions = array_merge($dimensions, $mobile_dimensions);
+        $sources = [];
+        foreach ($dimensions as $source => $size) {
+            list($w, $h) = explode("x", $size);
+            $sources[] = <<<HTML
+    <source srcset="https://picsum.photos/{$w}/{$h}" media="{$source}">
+HTML;
+        }
+        $sources_html = implode("/n", $sources);
+
+        $default_size = empty($default_size) ? "200x200" : $default_size;
+        list($w, $h) = explode("x", $default_size);
+
+        return <<<HTML
+    <picture>
+        {$sources_html}
+        <img src="https://picsum.photos/{$w}/{$h}" />
+    </picture>
+HTML;
+    }
 }
