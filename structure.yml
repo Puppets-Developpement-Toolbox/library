@@ -13,7 +13,7 @@ templates:
   home:
     - !load sections/hero_banner
     - !load sections/text_image
-    # - !load sections/super_section
+    - !load sections/super_section
 
 #COMPONENTS /////
 components:

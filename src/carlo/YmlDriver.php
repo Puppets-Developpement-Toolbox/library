@@ -92,10 +92,13 @@ HTML;
         $default_size = empty($default_size) ? "200x200" : $default_size;
         list($w, $h) = explode("x", $default_size);
 
+        $attrs_html = implode(' ', array_map(fn($n, $v) {
+        return "{$n}={$v}";
+        }, $attrs);
         return <<<HTML
     <picture>
         {$sources_html}
-        <img src="https://picsum.photos/{$w}/{$h}" />
+        <img src="https://picsum.photos/{$w}/{$h}" {$attrs_html} />
     </picture>
 HTML;
     }
