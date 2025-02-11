@@ -3,6 +3,7 @@
 
 <figure class="relative flex flex-col gap-4 p-6
               bg-gray-light
+              group-[&]/super-section:bg-white group-[&]/super-section:border-1 group-[&]/super-section:border-black
               laptop:col-span-10 laptop:col-start-2 laptop:flex-row laptop:flex-wrap laptop:gap-6">
 
   <span class="block size-8
@@ -19,7 +20,8 @@
               rounded-full bg-accent"></span> -->
   <figcaption class="before:block before:size-2 before:mb-4 before:rounded-full before:bg-accent
                     laptop:w-full laptop:mx-10 laptop:before:mb-6">
-    <small><strong class="block"><?= carlo_get('author') ?></strong><?= carlo_get('charge') ?></small>
+    <small><strong class="block
+                          laptop:inline-block laptop:mr-2"><?= carlo_get('author') ?></strong><?= carlo_get('charge') ?></small>
   </figcaption>
   <?php endif ?>
 
