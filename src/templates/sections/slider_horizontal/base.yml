@@ -1,0 +1,6 @@
+title: wysiwyg
+slides:
+  type: repeater
+  repeat:
+    text: wysiwyg
+  times: 6

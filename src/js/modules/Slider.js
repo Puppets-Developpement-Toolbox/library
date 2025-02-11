@@ -8,16 +8,23 @@ import 'swiper/css/bundle';
 
 const CreateSlider = (wrapper) => {
 
-// console.log(wrapper)
-// console.log(document.querySelector(`${ wrapper } .swiper`));
   const hasSwiper = document.querySelectorAll(wrapper);
 
   if (hasSwiper.length > 0) {
     hasSwiper.forEach((slider) => {
 // console.log(slider)
+// if (slider.classList.contains('slider-horizontal')) console.log(slider)
+
+      const loop = (slider.classList.contains('slider-horizontal')) ? false : true;
+      const slidesPerView = (slider.classList.contains('slider-horizontal')) ? 'auto' : 1;
+      const spaceBetween = (slider.classList.contains('slider-horizontal')) ? 24 : 0;
       const swiper = new Swiper(slider.querySelector('.swiper'), {
-        loop: true,
+        
+        // Init
+        loop: false,
         lazy: true,
+        slidesPerView: slidesPerView,
+        spaceBetween: spaceBetween,
         
         // Contrôles
         grabCursor: true,
@@ -26,7 +33,8 @@ const CreateSlider = (wrapper) => {
           el: slider.querySelector('.swiper-pagination'),
           clickable: true,
           renderBullet: (index, className) => {
-            return `<button class="${ className }
+            return `<button type="button"
+                            class="${ className }
                                   size-2
                                   rounded-full !bg-transparent !border-1 !border-gray-dark !opacity-100
                                   transition duration-300"></button>`;
@@ -37,6 +45,7 @@ const CreateSlider = (wrapper) => {
           prevEl: slider.querySelector('.swiper-button-prev'),
         },
       });
+
 
     });
   }

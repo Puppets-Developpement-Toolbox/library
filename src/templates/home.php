@@ -1,18 +1,15 @@
 <?php carlo_render("global/html_start"); ?>
 <?php carlo_context_add("current_page", "home"); ?>
-<?php
-// carlo_render('global/header')
-?>
+<?php // carlo_render('global/header') ?>
 
 <main class="page-content" id="main">
   <?php carlo_render("sections/hero_banner"); ?>
+  <?php carlo_render('sections/slider_horizontal'); ?>
   <?php carlo_render("sections/text_image"); ?>
   <?php carlo_render("sections/super_section"); ?>
   <?php carlo_render('sections/push'); ?>
   <?php carlo_render('sections/quote'); ?>
 </main>
 
-<?php
-//carlo_render('global/footer')
-?>
+<?php //carlo_render('global/footer') ?>
 <?php carlo_render("global/html_end"); ?>
