@@ -6,7 +6,7 @@
   <figure class="[ img__cover ]
                 aspect-[var(--ratio-img-mobile)]
                 laptop:aspect-[var(--ratio-img-laptop)]">
-    <?= carlo_get("image") ?>
+    <?= carlo_img("image", "2040x1024") ?>
   </figure>
 
 

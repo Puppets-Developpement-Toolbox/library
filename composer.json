@@ -1,5 +1,13 @@
 {
   "name": "puppets/library",
+  "autoload": {
+    "files": [
+      "src/carlo/carlo.php"
+    ],
+    "psr-4": {
+      "carlo\\": "src/carlo"
+    }
+  },
   "require": {
     "symfony/yaml": "^5.4"
   },

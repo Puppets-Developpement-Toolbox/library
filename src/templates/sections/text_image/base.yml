@@ -1,9 +1,9 @@
 surtitle: text_short
 title: text_short
 description: wysiwyg
-cta: !components cta
+cta: !load components/cta
 slides:
-  type: repeater
-  repeat:
+  _type: repeater
+  _repeat:
     image: image
-  times: 4
+  _times: 4

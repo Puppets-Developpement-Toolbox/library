@@ -1,9 +1,5 @@
-child:
-  # - !sections text_image
-  - !sections quote
-
 elements:
-  type: repeater
-  repeat:
-    child: !sections text_image
-  times: 2
+  _type: repeater
+  _repeat:
+    child: !load sections/text_image
+  _times: 2
