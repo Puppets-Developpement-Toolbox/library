@@ -6,15 +6,17 @@
   * { scrollbar-width: thin; }
   
   body { @apply font-texte font-light text-base; }
-
+  
+  p { @apply mb-6 last:mb-0 text-balance hyphens-auto [hyphenate-limit-chars:10]; }
+  button { @apply cursor-pointer; }
+  
   strong {
     @apply font-semibold text-primary;
     @apply group-[&]/on-primary:text-inherit;
   }
   small { @apply font-normal text-[14px] leading-[1.5] uppercase; }
 
-  p { @apply mb-6 last:mb-0 text-balance hyphens-auto [hyphenate-limit-chars:10]; }
-  button { @apply cursor-pointer; }
+  
   
 
 
@@ -38,6 +40,12 @@
   :is(.nav).phone-number { @apply font-bold text-[18px]; }
 
   .nav strong { @apply font-bold; }
+  
+  .text ul { @apply flex flex-col gap-3 m-0; }
+  .text li {
+    @apply relative ml-12;
+    @apply before:block before:absolute before:top-3 before:left-0 before:-translate-x-12 before:w-8 before:h-0.25 before:bg-primary-light;
+  }
 
 
 

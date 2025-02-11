@@ -247,5 +247,8 @@ function carlo_img($key, $dimensions)
 
 function carlo_component($component)
 {
+    if(is_string($component)) {
+        $component = carlo_get($component);
+    }
     return carlo_render($component["_id"], $component);
 }

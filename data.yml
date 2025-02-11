@@ -33,9 +33,18 @@ title: Lorem ipsum, <em>les amis !</em>
 hero_banner--surtitle: Nous vous accompagnons pour
 hero_banner--title: Innover en intelligence collective, <em>et en musique !</em>
 
-text_image--surtitle: Notre différence pour répondre à vos besoins
-text_image--title: <em>Unir</em> innovation et intelligence collective
-text_image--description: Vingt ans d’expérience en entreprise dans les métiers de l’innovation nous donnent une connaissance intime des conditions d’émergence et de réussite des idées nouvelles. Selon nous l’intelligence collective est une ressource très pertinente pour répondre à tous les besoins d’innovation.
+text_image--surtitle: Un processus de changement
+text_image--title: La Théorie <em>U</em>
+text_image--description: |
+  <p>La Théorie U a été développée au MIT par Otto Scharmer. Pendant dix ans il a étudié les raisons du succès des <strong>grands innovateurs et leaders</strong>, la Théorie U cherche à <strong>reproduire les conditions de ces réussites</strong>.</p>
+  <p>La Théorie U est un <strong>processus de transformation</strong> dont le but <strong>créer du neuf</strong> qui a de l’impact et de la valeur. Elle cherche à s’affranchir des schémas de pensée et des façons de faire habituels et à solliciter toutes les formes d’intelligence.</p>
+  <p class="large"><strong>Que permet la Théorie U ?</strong></p>
+  <ul>
+    <li>Aller chercher des sources de créativité méconnues.</li>
+    <li>Aborder la complexité.</li>
+    <li>Créer du lien et de la confiance.</li>
+    <li>Construire une conviction collective forte pour faire aboutir les projets.</li>
+  </ul>
 text_image--image: <img src="https://picsum.photos/1072/1287" alt="">
 
 push--title: <em>Nos</em> outils
@@ -43,3 +52,7 @@ push--description: Nous cherchons à solliciter toutes les formes d’intelligen
 push--image: <img src="https://picsum.photos/630/393" alt="">
 push--wysiwyg: Le but de la Théorie U est d’<strong>inventer le futur en intelligence collective</strong>. Elle cherche à s’affranchir des schémas du passé.
 # push--slides--repeat--title: La Théorie U
+
+quote--quote: Aucun de nous ne sait ce que nous savons tous ensemble.
+quote--author: Euripide
+quote--charge: Directeur, Crédit Agricole

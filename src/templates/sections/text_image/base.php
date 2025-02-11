@@ -110,7 +110,8 @@
                       <?php endif ?>
                     <?php endif ?>
                     <?= $padding ?>
-                    <?= $text ?>">
+                    <?= $text ?>
+                    group-[&]/super-section:debug">
       <div class="flex flex-col gap-6 laptop:gap-8
                   <?= $text ?>">
         <header class="[ kicker-subtitle ]
@@ -123,7 +124,7 @@
             <?= carlo_get('title') ?>
           </h2>
         </header>
-        <div><?= carlo_get('description') ?></div>
+        <div class="[ text ]"><?= carlo_get('description') ?></div>
         <?php if (carlo_get('cta')) carlo_render('components/cta', ['link' => '#', 'label' => 'En savoir plus']) ?>
       </div>
     </section>

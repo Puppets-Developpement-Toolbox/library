@@ -9,6 +9,7 @@
   <?php carlo_render("sections/text_image"); ?>
   <?php carlo_render("sections/super_section"); ?>
   <?php carlo_render('sections/push'); ?>
+  <?php carlo_render('sections/quote'); ?>
 </main>
 
 <?php
