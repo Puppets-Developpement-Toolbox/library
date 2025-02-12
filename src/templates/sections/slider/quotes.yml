@@ -1,0 +1,9 @@
+title: wysiwyg
+subtitle: text_short
+slides:
+  _type: repeater
+  _repeat:
+    quote: text_short
+    author: text_short
+    charge: text_short
+  _times: 3

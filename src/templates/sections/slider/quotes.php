@@ -6,19 +6,20 @@
   $slides = carlo_get('slides');
 
 ?>
-
 <div class="laptop:relative laptop:overflow-x-clip
             laptop:before:block laptop:before:absolute laptop:before:z-10 laptop:before:top-0 laptop:before:left-0 laptop:before:w-1/3 laptop:before:h-full laptop:before:bg-white">
-
   <section class="[ section has-slider slider-horizontal ]">
 
     <div class="laptop:grid laptop:grid-cols-12">
-    
-      <header class="relative z-10 mb-10
-                    laptop:col-span-5 laptop:mb-0 laptop:bg-white">
-        <div class="laptop:flex laptop:justify-between laptop:gap-6 laptop:mr-10 laptop:pt-10 laptop:w-5/6 laptop:border-t-1 laptop:border-t-black">
 
-          <h2 class="[ h2 ]"><?= carlo_get('title') ?></h2>
+      <header class="relative z-10 mb-10
+                    laptop:col-span-6 laptop:mb-0 laptop:bg-white">
+        <div class="laptop:flex laptop:justify-between laptop:gap-6 laptop:w-2/3 laptop:mx-auto laptop:pt-10 laptop:border-t-1 laptop:border-t-black">
+
+          <div class="flex flex-col gap-6">
+            <h2 class="[ h2 ]"><?= carlo_get('title') ?></h2>
+            <div><?= carlo_get('subtitle') ?></div>
+          </div>
           
           <aside class="[ swiper__dashboard ]
                         flex justify-end gap-2
@@ -56,22 +57,22 @@
 
       <?php if ($slides): ?>
       <section class="relative z-0
-                      laptop:col-span-7 laptop:col-start-6">
+                      laptop:col-span-6">
 
         <div class="swiper
                     !overflow-visible">
           <ul class="swiper-wrapper">
-            <?php $num = 0 ?>
             <?php foreach ($slides as $slide): ?>
-              <?php $style = ($num % 2 === 0) ? 'bg-gray-light' : 'border-1 border-black' ?>
-              <li class="swiper-slide
-                        !size-auto">
-                <div class="select-none w-61 h-full px-10 py-12
-                            <?= $style ?>">
-                  <?= $slide['text'] ?>
-                </div>
-              </li>
-              <?php $num++ ?>
+            <li class="swiper-slide">
+              <div class="select-none">
+                <?php carlo_render("components/quote", [
+                      "quote" => $slide['quote'],
+                      "author" => $slide['author'],
+                      "charge" => $slide['charge'],
+                  ]);
+                ?>
+              </div>
+            </li>
             <?php endforeach ?>
             </ul>
         </div>
@@ -81,6 +82,4 @@
 
     </div>
   </section>
-
 </div>
-
