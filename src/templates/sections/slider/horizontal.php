@@ -65,7 +65,7 @@
             <?php foreach ($slides as $slide): ?>
               <?php $style = ($num % 2 === 0) ? 'bg-gray-light' : 'border-1 border-black' ?>
               <li class="swiper-slide
-                        !w-auto h-full">
+                        !size-auto">
                 <div class="w-61 h-full px-10 py-12
                             <?= $style ?>">
                   <?= $slide['text'] ?>
@@ -83,3 +83,4 @@
   </section>
 
 </div>
+
