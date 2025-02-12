@@ -45,16 +45,16 @@ $slides = carlo_get("slides");
       <?php if ($slides): ?>
       <section class="relative">
         <div class="swiper">
-          <div class="swiper-wrapper">
+          <ul class="swiper-wrapper">
             <?php foreach ($slides as $slide): ?>
-            <div class="swiper-slide">
+            <li class="swiper-slide">
               <figure class="[ img__cover ]
                             <?= $ratio ?>">
                 <?= $slide["image"] ?>
               </figure>
-            </div>
-            <?php endforeach; ?>
-          </div>
+            </li>
+            <?php endforeach ?>
+            </ul>
         </div>
 
         <aside class="swiper__dashboard">

@@ -16,7 +16,7 @@ wysiwyg: |
   <p>Une innovation est une idée qui <strong>se concrétise</strong> et qui a un <strong>impact</strong>, même à petite échelle. Dès lors que l’idée aboutit, l’innovation est partout : un nouveau produit, une nouvelle stratégie, une nouvelle façon de faire ensemble, etc.</p>
   <p>Or ce passage de l’idée à l’innovation <strong>ne peut se faire que collectivement</strong>. Travailler en intelligence collective - construire ensemble à partir de la singularité de chacun - rend cela possible.</p>
 
-image: <img src="https://picsum.photos/2040/1026" alt="">
+image: <img src="https://picsum.photos/2040/1026" alt="" loading="lazy">
 
 picto: broadcast
 
@@ -45,14 +45,17 @@ text_image--description: |
     <li>Créer du lien et de la confiance.</li>
     <li>Construire une conviction collective forte pour faire aboutir les projets.</li>
   </ul>
-text_image--image: <img src="https://picsum.photos/1072/1287" alt="">
+text_image--image: <img src="https://picsum.photos/1072/1287" alt="" loading="lazy">
 
 push--title: <em>Nos</em> outils
 push--description: Nous cherchons à solliciter toutes les formes d’intelligence et à faire vivre une expérience différente au groupe tout en ayant constamment à l’esprit l’ancrage dans le concret.
-push--image: <img src="https://picsum.photos/630/393" alt="">
+push--image: <img src="https://picsum.photos/630/393" alt="" loading="lazy">
 push--wysiwyg: Le but de la Théorie U est d’<strong>inventer le futur en intelligence collective</strong>. Elle cherche à s’affranchir des schémas du passé.
 # push--slides--repeat--title: La Théorie U
 
-quote--quote: Oui mais je alors là bon tu euh je non ou bah comment aah parce que mais sinon pendant non que je foulàlà
+quote--quote: Oui mais je alors là bon tu euh je non ou bah comment aah parce que mais sinon pendant non que je foulàlààà
 quote--author: Jean-Pierre Tricard
 quote--charge: Éleveur de poutres
+
+slider_horizontal--title: Est-ce que <em>ces besoins</em> vous parlent ?
+slider_horizontal--text: <strong>Fédérer</strong> des équipes aux intérêts divergents pour faire avancer vos projets.

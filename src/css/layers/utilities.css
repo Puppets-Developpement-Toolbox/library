@@ -8,6 +8,11 @@
   .debug > * {
     @apply bg-[#ff00ff]/25 border-[#ff00ff];
   }
+  
+  .debug-alt ,
+  .debug-alt > * {
+    @apply bg-[limegreen]/25 border-[limegreen];
+  }
 
   .img__cover img { @apply size-full object-cover; }
   .img__contain img { @apply size-full object-contain; }
