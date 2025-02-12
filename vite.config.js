@@ -12,6 +12,18 @@ export default defineConfig({
       `${root}/templates/**/*`,
     ]),
   ],
+  build: {
+    manifest: true,
+    outDir: `${root}/dist/`,
+    rollupOptions: {
+      input: {
+        main: `${root}/src/css/global.css`,
+        global: `${root}/src/js/main.js`,
+      },
+    },
+    target: "es2018",
+    write: true,
+  },
   server: {
     port: 80,
     host: true,
