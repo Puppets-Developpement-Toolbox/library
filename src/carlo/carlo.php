@@ -48,7 +48,7 @@ function carlo_explode_id($element_id)
 
     list($template_name, $template_variant) = explode(
         ":",
-        $template_name . ":"
+        $template_name . ":base"
     );
     return [$template_type, $template_name, $template_variant];
 }

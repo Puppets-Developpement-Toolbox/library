@@ -50,8 +50,11 @@ abstract class BaseDriver implements DriverInterface
         array_pop($this->context);
     }
 
-    public function structure(string $type, string $name = null)
-    {
+    public function structure(
+        string $type,
+        string $name = null,
+        string $variant = "base"
+    ) {
         $no_tag = null;
         $no_tag = function ($definition) use (&$no_tag) {
             if (is_array($definition)) {
@@ -61,12 +64,18 @@ abstract class BaseDriver implements DriverInterface
                 $definition instanceof TaggedValue &&
                 $definition->getTag() === "load"
             ) {
-                list($template_type, $template_name) = carlo_explode_id(
-                    $definition->getValue()
-                );
+                list(
+                    $template_type,
+                    $template_name,
+                    $template_variant,
+                ) = carlo_explode_id($definition->getValue());
 
                 return $no_tag(
-                    $this->structure($template_type, $template_name)
+                    $this->structure(
+                        $template_type,
+                        $template_name,
+                        $template_variant
+                    )
                 );
             }
             return $definition;
@@ -86,11 +95,17 @@ abstract class BaseDriver implements DriverInterface
         if (!empty($name) && !isset($this->loaded[$type][$name])) {
             $this->loaded[$type][$name] = true;
             try {
-                $file = carlo_get_file("structure", "{$type}/{$name}");
+                $file = carlo_get_file(
+                    "structure",
+                    "{$type}/{$name}",
+                    $variant
+                );
                 $this->structure[$type][$name] = $no_tag(
                     Yaml::parseFile($file, Yaml::PARSE_CUSTOM_TAGS)
                 );
-                $this->structure[$type][$name]["_id"] = "{$type}/{$name}";
+                $this->structure[$type][$name][
+                    "_id"
+                ] = "{$type}/{$name}:{$variant}";
             } catch (Exception $e) {
             }
         }
