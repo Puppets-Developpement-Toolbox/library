@@ -1,0 +1,16 @@
+:root {
+    --accent: #f9b943;
+    --primary: #232660;
+    --primary-light: #45c0eb;
+    --secondary: #585a86;
+    --secondary-light: #8c8eab;
+    --secondary-dark: #393c70;
+
+    --black: #121212;
+    --white: #ffffff;
+
+    --gray-light: #f6f6f6;
+    --gray-dark: #9c9c9c;
+}
+
+@import "./src/css/global.css";
