@@ -21,7 +21,7 @@ const CreateSlider = (wrapper) => {
       const swiper = new Swiper(slider.querySelector('.swiper'), {
         
         // Init
-        loop: false,
+        loop: loop,
         lazy: true,
         slidesPerView: slidesPerView,
         spaceBetween: spaceBetween,
