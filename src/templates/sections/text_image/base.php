@@ -1,10 +1,6 @@
 
 
 
-<!-- <pre>
-  <?php var_dump(carlo_get()); ?>
-</pre> -->
-
 <?php
 // Inversion distribution image/texte
 $revert = false;
