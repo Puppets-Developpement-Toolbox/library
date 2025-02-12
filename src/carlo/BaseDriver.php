@@ -25,7 +25,8 @@ abstract class BaseDriver implements DriverInterface
 
         $structure = $this->structure(
             $template_type ?: "templates",
-            $template_name
+            $template_name,
+            $template_variant
         );
 
         $this->tplPaths[] = $template_name;
@@ -69,7 +70,7 @@ abstract class BaseDriver implements DriverInterface
                     $template_name,
                     $template_variant,
                 ) = carlo_explode_id($definition->getValue());
-
+                
                 return $no_tag(
                     $this->structure(
                         $template_type,
@@ -93,7 +94,7 @@ abstract class BaseDriver implements DriverInterface
         }
 
         if (!empty($name) && !isset($this->loaded[$type][$name])) {
-            $this->loaded[$type][$name] = true;
+            $this->loaded[$type][$name][$variant] = true;
             try {
                 $file = carlo_get_file(
                     "structure",
@@ -103,7 +104,7 @@ abstract class BaseDriver implements DriverInterface
                 $this->structure[$type][$name] = $no_tag(
                     Yaml::parseFile($file, Yaml::PARSE_CUSTOM_TAGS)
                 );
-                $this->structure[$type][$name][
+                $this->structure[$type][$name][$variant][
                     "_id"
                 ] = "{$type}/{$name}:{$variant}";
             } catch (Exception $e) {
@@ -115,7 +116,7 @@ abstract class BaseDriver implements DriverInterface
         }
 
         // certains templates peuvent ne pas avoir de structure associée
-        return $this->structure[$type][$name] ?? null;
+        return $this->structure[$type][$name][$variant] ?? null;
     }
 
     public function register(string $file)
