@@ -32,8 +32,13 @@ abstract class BaseDriver implements DriverInterface
         $this->tplPaths[] = $template_name;
         $this->context[] = [];
 
-        $defaultArgs =
-            $template_type === "sections" ? $this->loadData($structure) : [];
+        $defaultArgs = [];
+        if ($structure) {
+            $defaultArgs =
+                $template_type === "sections"
+                    ? $this->loadData($structure)
+                    : [];
+        }
 
         $this->tplArgs[] = array_merge($defaultArgs, $args);
 
@@ -70,7 +75,7 @@ abstract class BaseDriver implements DriverInterface
                     $template_name,
                     $template_variant,
                 ) = carlo_explode_id($definition->getValue());
-                
+
                 return $no_tag(
                     $this->structure(
                         $template_type,
@@ -93,7 +98,7 @@ abstract class BaseDriver implements DriverInterface
             }
         }
 
-        if (!empty($name) && !isset($this->loaded[$type][$name])) {
+        if (!empty($name) && !isset($this->loaded[$type][$name][$variant])) {
             $this->loaded[$type][$name][$variant] = true;
             try {
                 $file = carlo_get_file(
@@ -101,7 +106,7 @@ abstract class BaseDriver implements DriverInterface
                     "{$type}/{$name}",
                     $variant
                 );
-                $this->structure[$type][$name] = $no_tag(
+                $this->structure[$type][$name][$variant] = $no_tag(
                     Yaml::parseFile($file, Yaml::PARSE_CUSTOM_TAGS)
                 );
                 $this->structure[$type][$name][$variant][
