@@ -1,6 +1,6 @@
 title: wysiwyg
 slides:
-  type: repeater
-  repeat:
+  _type: repeater
+  _repeat:
     text: wysiwyg
-  times: 8
+  _times: 8
