@@ -8,13 +8,18 @@
 ?>
 <div class="overflow-x-clip
             laptop:relative
-            laptop:before:block laptop:before:absolute laptop:before:z-10 laptop:before:top-0 laptop:before:left-0 laptop:before:w-1/3 laptop:before:h-full laptop:before:bg-white">
+            laptop:before:block laptop:before:absolute laptop:before:z-10 laptop:before:top-0 laptop:before:left-0 laptop:before:w-1/3 laptop:before:h-full laptop:before:bg-white
+            group-[&]/super-section:laptop:before:bg-gray-light">
   <section class="[ section has-slider slider-horizontal slider-quotes ]">
-
     <div class="laptop:grid laptop:grid-cols-12">
 
+
+
+
+
       <header class="relative z-10 mb-10
-                    laptop:col-span-6 laptop:mb-0 laptop:bg-white">
+                    laptop:col-span-6 laptop:mb-0 laptop:bg-white
+                    group-[&]/super-section:laptop:bg-gray-light">
         <div class="laptop:flex laptop:justify-between laptop:gap-6 laptop:w-2/3 laptop:mx-auto laptop:pt-10 laptop:border-t-1 laptop:border-t-black">
 
           <div class="flex flex-col gap-6">
@@ -56,10 +61,13 @@
         </div>
       </header>
 
+
+
+
+
       <?php if ($slides): ?>
       <section class="relative z-0
                       laptop:col-span-6">
-
         <div class="swiper
                     !overflow-visible">
           <ul class="swiper-wrapper">
@@ -77,9 +85,12 @@
             <?php endforeach ?>
             </ul>
         </div>
-
       </section>
       <?php endif ?>
+
+
+
+
 
     </div>
   </section>

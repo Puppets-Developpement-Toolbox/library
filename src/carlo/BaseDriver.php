@@ -2,7 +2,6 @@
 
 namespace carlo;
 
-use Exception;
 use Symfony\Component\Yaml\Tag\TaggedValue;
 use Symfony\Component\Yaml\Yaml;
 
@@ -112,8 +111,7 @@ abstract class BaseDriver implements DriverInterface
                 $this->structure[$type][$name][$variant][
                     "_id"
                 ] = "{$type}/{$name}:{$variant}";
-            } catch (Exception $e) {
-            }
+            } catch (FileNotFoundException $e) {            }
         }
 
         if (empty($name) && isset($this->structure[$type])) {

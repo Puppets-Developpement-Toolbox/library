@@ -18,5 +18,7 @@ templates:
     - !load sections/push:pictos
     - !load sections/quote
     - !load sections/push:cards
+    - !load sections/text_image:square
     - !load sections/super_section
-    - !load sections/slider:quotes 
+    - !load sections/slider:quotes
+    # - !load sections/partners

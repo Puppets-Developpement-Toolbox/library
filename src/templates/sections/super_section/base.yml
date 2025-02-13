@@ -1,5 +1,6 @@
 elements:
-  _type: repeater
-  _repeat:
-    child: !load sections/text_image
-  _times: 2
+  - !load sections/text_image
+  - !load sections/slider:quotes
+  - !load sections/quote
+  
+  
