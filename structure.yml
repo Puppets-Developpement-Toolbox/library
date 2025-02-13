@@ -17,7 +17,7 @@ templates:
     - !load sections/text_image:square
     - !load sections/push:pictos
     - !load sections/quote
-    - !load sections/push:cards
+    - !load sections/push:triptych
     - !load sections/text_image:square
     - !load sections/super_section
     - !load sections/slider:quotes
