@@ -6,15 +6,10 @@
 // Inversion distribution image/texte
 $revert = false;
 
-
-// Setup
-// $text = $bgprimary
-//     ? "laptop:w-2/3 laptop:max-w-2/3 laptop:mx-auto"
-//     : "laptop:w-5/6 laptop:max-w-5/6";
-
 $slides = carlo_get("slides");
+
 ?>
-<!-- TODO: revert even -->
+
 <section class="[ section has-slider ]">
   <div class="group/section
               laptop:grid laptop:grid-cols-12">
@@ -76,7 +71,8 @@ $slides = carlo_get("slides");
 
     </div>
 
-    <section class="pt-12
+    <section class="group-[&]/super-section:px-8 group-[&]/super-section:py-10
+                    pt-12
                     laptop:col-span-6 laptop:flex laptop:gap-5 laptop:items-center laptop:p-0
                     <?php if (!$revert): ?>
                       laptop:col-start-8 laptop:order-2
