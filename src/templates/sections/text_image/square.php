@@ -76,15 +76,15 @@ $slides = carlo_get("slides");
     </div>
 
     <section class="group/on-primary
-                    laptop:overflow-hidden laptop:col-span-6 laptop:flex laptop:gap-5 laptop:overflow-y-auto laptop:items-start
+                    px-8 py-10
+                    text-white
+                    laptop:col-span-6 laptop:flex laptop:gap-5 laptop:overflow-y-auto laptop:items-start laptop:px-0 laptop:py-14
                     <?php if (!$revert): ?>
                       laptop:col-start-8 laptop:col-end-12 laptop:order-2
                     <?php else: ?>
                       laptop:col-start-2 laptop:col-end-6
                     <?php endif; ?>
-                    px-8 py-10 laptop:px-0 laptop:py-14
-                    text-white
-                    group-[&]/super-section:debug">
+                    [scrollbar-width:none]">
       <div class="flex flex-col gap-6 laptop:gap-8
                   text-white">
         <header class="[ kicker-subtitle ]

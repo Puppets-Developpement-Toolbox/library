@@ -76,14 +76,13 @@ $slides = carlo_get("slides");
 
     </div>
 
-    <section class="laptop:col-span-6 laptop:flex laptop:gap-5 laptop:items-center
+    <section class="pt-12
+                    laptop:col-span-6 laptop:flex laptop:gap-5 laptop:items-center laptop:p-0
                     <?php if (!$revert): ?>
                       laptop:col-start-8 laptop:order-2
                     <?php else: ?>
                       laptop:order-1 laptop:col-start-1 laptop:col-end-6
-                    <?php endif; ?>
-                    pt-12 laptop:p-0
-                    group-[&]/super-section:debug">
+                    <?php endif; ?>">
       <div class="flex flex-col gap-6 laptop:gap-8">
         <header class="[ kicker-subtitle ]">
           <?php if (carlo_get("surtitle")): ?>
