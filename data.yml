@@ -36,11 +36,13 @@ title: Lorem ipsum, <em>les gars !</em>
 hero_banner--surtitle: Nous vous accompagnons pour
 hero_banner--title: Innover en intelligence collective, <em>et en musique !</em>
 
+
+
 text_image--surtitle: Un processus de changement
 text_image--title: La Théorie <em>U</em>
 text_image--description: |
-  <p>La Théorie U a été développée au MIT par Otto Scharmer. Pendant dix ans il a étudié les raisons du succès des <strong>grands innovateurs et leaders</strong>, la Théorie U cherche à <strong>reproduire les conditions de ces réussites</strong>.</p>
-  <p>La Théorie U est un <strong>processus de transformation</strong> dont le but <strong>créer du neuf</strong> qui a de l’impact et de la valeur. Elle cherche à s’affranchir des schémas de pensée et des façons de faire habituels et à solliciter toutes les formes d’intelligence.</p>
+  <p>La Théorie U a été développée au MIT par Otto Scharmer. Pendant dix ans il a étudié les raisons du succès des <strong>grands innovateurs et leaders</strong>, la Théorie U cherche à <strong>reproduire les conditions de ces réussites</strong>.<br>
+    La Théorie U est un <strong>processus de transformation</strong> dont le but <strong>créer du neuf</strong> qui a de l’impact et de la valeur. Elle cherche à s’affranchir des schémas de pensée et des façons de faire habituels et à solliciter toutes les formes d’intelligence.</p>
   <p class="large"><strong>Que permet la Théorie U ?</strong></p>
   <ul>
     <li>Aller chercher des sources de créativité méconnues.</li>
@@ -50,10 +52,14 @@ text_image--description: |
   </ul>
 text_image--image: <img src="https://picsum.photos/1072/1287" alt="" loading="lazy">
 
+
+
 push--title: <em>Nos</em> outils
 push--description: Nous cherchons à solliciter toutes les formes d’intelligence et à faire vivre une expérience différente au groupe tout en ayant constamment à l’esprit l’ancrage dans le concret.
 push--image: <img src="https://picsum.photos/630/393" alt="" loading="lazy">
 push--wysiwyg: Le but de la Théorie U est d’<strong>inventer le futur en intelligence collective</strong>. Elle cherche à s’affranchir des schémas du passé.
+
+
 
 slider--title: Ils nous font <em>confiance</em>
 slider--subtitle: Lorem ipsum dolor sit amet consectetu lectus feugiat massa dignissim purus posuere.

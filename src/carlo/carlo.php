@@ -1,7 +1,10 @@
 <?php
+
+
 use Symfony\Component\Yaml\Tag\TaggedValue;
 use Symfony\Component\Yaml\Yaml;
 use carlo\DriverInterface;
+use carlo\FileNotFoundException;
 
 // une pile stockant les variables contextuelles ajoutées
 // par un parent et accessible à dans les enfants
@@ -101,7 +104,7 @@ function carlo_get_file($type, $element, $variant = "base")
         }
     }
 
-    throw new Exception(
+    throw new FileNotFoundException(
         "Aucun fichier ne correspond à ce que l'on cherche : {$type} - {$element} - {$variant}"
     );
 }
