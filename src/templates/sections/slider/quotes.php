@@ -95,3 +95,12 @@
     </div>
   </section>
 </div>
+
+
+
+
+
+
+<?php
+  carlo_render("components/partners", ['logos' => carlo_get('partners')['logos']]);
+?>

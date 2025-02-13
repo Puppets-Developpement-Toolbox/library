@@ -1,0 +1,6 @@
+logos:
+  _type: repeater
+  _repeat:
+    brand: partner-brand
+    logo: partner-logo
+  _times: 1

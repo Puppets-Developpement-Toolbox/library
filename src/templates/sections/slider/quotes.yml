@@ -1,5 +1,6 @@
 title: wysiwyg
 subtitle: text_short
+partners: !load components/partners
 slides:
   _type: repeater
   _repeat:
