@@ -18,6 +18,8 @@ const CreateSlider = (wrapper) => {
       const loop = (slider.classList.contains('slider-horizontal')) ? false : true;
       const slidesPerView = (slider.classList.contains('slider-horizontal')) ? 'auto' : 1;
       const spaceBetween = (slider.classList.contains('slider-horizontal')) ? 24 : 0;
+      const initialSlide = (slider.classList.contains('slider-quotes')) ? (slider.querySelectorAll('.swiper-slide').length - 1) : 0;
+
       const swiper = new Swiper(slider.querySelector('.swiper'), {
         
         // Init
@@ -25,6 +27,7 @@ const CreateSlider = (wrapper) => {
         lazy: true,
         slidesPerView: slidesPerView,
         spaceBetween: spaceBetween,
+        initialSlide: initialSlide,
         
         // Contrôles
         grabCursor: true,

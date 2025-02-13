@@ -9,7 +9,7 @@
 <div class="overflow-x-clip
             laptop:relative
             laptop:before:block laptop:before:absolute laptop:before:z-10 laptop:before:top-0 laptop:before:left-0 laptop:before:w-1/3 laptop:before:h-full laptop:before:bg-white">
-  <section class="[ section has-slider slider-horizontal ]">
+  <section class="[ section has-slider slider-horizontal slider-quotes ]">
 
     <div class="laptop:grid laptop:grid-cols-12">
 
