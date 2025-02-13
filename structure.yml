@@ -14,6 +14,7 @@ templates:
     - !load sections/hero_banner
     - !load sections/slider:horizontal
     - !load sections/text_image
+    - !load sections/text_image:square
     - !load sections/push:pictos
     - !load sections/quote
     - !load sections/push:cards

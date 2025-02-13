@@ -1,0 +1,9 @@
+surtitle: text_short
+title: text_short
+description: wysiwyg
+cta: !load components/cta
+slides:
+  _type: repeater
+  _repeat:
+    image: image
+  _times: 4

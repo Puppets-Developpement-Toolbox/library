@@ -52,7 +52,7 @@
   /* -------------------------------------------------- COMMONS */
 
   .kicker-subtitle { @apply block font-normal text-base leading-[1.2] text-black uppercase; }
-  .large { @apply font-light text-[18px] text-primary leading-[1.4] }
+  .large { @apply font-light text-[18px] text-primary leading-[1.4] group-[&]/on-primary:text-inherit; }
   .button { @apply font-normal text-base; }
 
 

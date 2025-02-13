@@ -2,10 +2,8 @@
 
 
 <?php
-
 // Inversion distribution image/texte
 $revert = false;
-
 
 // Setup
 // $text = $bgprimary
@@ -17,7 +15,8 @@ $slides = carlo_get("slides");
 <!-- TODO: revert even -->
 <section class="[ section has-slider ]">
   <div class="group/section
-              laptop:grid laptop:grid-cols-12">
+              bg-primary
+              laptop:grid laptop:grid-cols-12 laptop:aspect-[2/1]">
 
     <div class="laptop:col-span-6
                 <?php if (!$revert): ?>
@@ -33,7 +32,7 @@ $slides = carlo_get("slides");
             <?php foreach ($slides as $slide): ?>
             <li class="swiper-slide">
               <figure class="[ img__cover ]
-                            aspect-[var(--ratio-img-mobile)]">
+                            aspect-square">
                 <?= $slide["image"] ?>
               </figure>
             </li>
@@ -76,20 +75,27 @@ $slides = carlo_get("slides");
 
     </div>
 
-    <section class="laptop:col-span-6 laptop:flex laptop:gap-5 laptop:items-center
+    <section class="group/on-primary
+                    laptop:overflow-hidden laptop:col-span-6 laptop:flex laptop:gap-5 laptop:overflow-y-auto laptop:items-start
                     <?php if (!$revert): ?>
-                      laptop:col-start-8 laptop:order-2
+                      laptop:col-start-8 laptop:col-end-12 laptop:order-2
                     <?php else: ?>
-                      laptop:order-1 laptop:col-start-1 laptop:col-end-6
+                      laptop:col-start-2 laptop:col-end-6
                     <?php endif; ?>
-                    pt-12 laptop:p-0
+                    px-8 py-10 laptop:px-0 laptop:py-14
+                    text-white
                     group-[&]/super-section:debug">
-      <div class="flex flex-col gap-6 laptop:gap-8">
-        <header class="[ kicker-subtitle ]">
+      <div class="flex flex-col gap-6 laptop:gap-8
+                  text-white">
+        <header class="[ kicker-subtitle ]
+                      pb-6
+                      border-b-[1px] border-b-white
+                      text-white">
           <?php if (carlo_get("surtitle")): ?>
           <p class="mb-2"><?= carlo_get("surtitle") ?></p>
           <?php endif; ?>
-          <h2 class="[ h2 ]">
+          <h2 class="[ h2 ]
+                    text-white">
             <?= carlo_get("title") ?>
           </h2>
         </header>
