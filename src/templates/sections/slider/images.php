@@ -3,15 +3,12 @@
 
 <?php
 
-  $bg_primary = false;
   $slides = carlo_get('slides');
 
 ?>
 
-<?php if ($bg_primary): ?>
 <div class="bg-primary text-white
             group/on-primary">
-<?php endif; ?>
   <div class="overflow-x-clip">
     <section class="[ section has-slider slider-cards ]
                     flex flex-col gap-8
@@ -59,7 +56,7 @@
                             transition-transform duration-300
                             group-hover/btn:translate-x-1/2"><use xlink:href="#svg__arrow"></use></svg>
               </button>
-            </div
+            </div>
             <?php if (carlo_get("cta")) {
                 carlo_render("components/cta", [
                     "link" => "#",
@@ -82,8 +79,12 @@
             <?php foreach ($slides as $slide): ?>
             <li class="swiper-slide
                       !w-72.5 !h-auto
-                      laptop:!w-92">
-              <?php carlo_render('components/card', $slide); ?>
+                      laptop:!w-175
+debug">
+              <figure class="[ img__cover ]
+                            aspect-[6/5]">
+                <?= $slide['image'] ?>
+              </figure>
             </li>
             <?php endforeach ?>
             </ul>
@@ -103,6 +104,4 @@
 
     </section>
   </div>
-<?php if ($bg_primary): ?>
 </div>
-<?php endif; ?>
