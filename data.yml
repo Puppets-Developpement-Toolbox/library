@@ -47,6 +47,8 @@ text_image--description: |
     <li>Créer du lien et de la confiance.</li>
     <li>Construire une conviction collective forte pour faire aboutir les projets.</li>
   </ul>
+text_image--highlight: |
+  <p>Nous avons en commun plus de 30 ans de <strong>pratiques artistiques</strong> qui apportent une <strong>couleur particulière à notre travail</strong>. L’importance de l’écoute, du silence, des émotions, du corps, autant de thèmes que nous avons à cœur de partager.</p>
 text_image--image: <img src="https://picsum.photos/1072/1287" alt="" loading="lazy">
 
 
@@ -55,6 +57,8 @@ text_insights--image: <img src="https://picsum.photos/750/322" alt="" loading="l
 text_insights--title: Ateliers thématiques
 text_insights--subtitle: Innover dans nos façons de faire ensemble pour une performance durable
 text_insights--text: Nous avons construit tous nos ateliers en intelligence collective pour permettre aux participants d’en faire l’expérience. L’objectif est de favoriser une compréhension profonde des notions abordées et la production d’idées concrètes.
+
+
 
 insight--title: Oser <strong>la confiance</strong>
 insight--details: ½ journée
@@ -90,3 +94,16 @@ partner-brand: Talan
 # partner-brand: Crédit Agricole
 # partner-logo: _GAB_images/Leroy-Merlin.svg
 # partner-brand: Leroy-Merlin
+
+
+
+text--content: |
+  <p>Lorem ipsum dolor sit amet consectetur. Curabitur et scelerisque odio arcu sed. Viverra non neque in aliquam sagittis velit sit. Enim cursus malesuada quis integer. Potenti lectus eleifend pulvinar in. Pellentesque pellentesque sed viverra dui phasellus sed. Lectus velit risus nec egestas nec sem. Quis mollis mattis sed feugiat odio ut congue. Egestas pulvinar massa commodo purus enim. Ut faucibus auctor metus vehicula ultrices suspendisse.</p>
+  <ul>
+    <li>Aller chercher des sources de créativité méconnues.</li>
+    <li>Aborder la complexité.</li>
+    <li>Créer du lien et de la confiance.</li>
+    <li>Construire une conviction collective forte pour faire aboutir les projets.</li>
+  </ul>
+  <p>Lorem ipsum dolor sit amet consectetur. Curabitur et scelerisque odio arcu sed. Viverra non neque in aliquam sagittis velit sit. Enim cursus malesuada quis integer. Potenti lectus eleifend pulvinar in. Pellentesque pellentesque sed viverra dui phasellus sed. Lectus velit risus nec egestas nec sem. Quis mollis mattis sed feugiat odio ut congue. Egestas pulvinar massa commodo purus enim. Ut faucibus auctor metus vehicula ultrices suspendisse.</p>
+  

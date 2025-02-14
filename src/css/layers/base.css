@@ -42,7 +42,7 @@
 
   .nav strong { @apply font-bold; }
   
-  .text ul { @apply flex flex-col gap-3 m-0; }
+  .text ul { @apply flex flex-col gap-3 mx-0 mb-6; }
   .text li {
     @apply relative ml-12;
     @apply before:block before:absolute before:top-3 before:left-0 before:-translate-x-12 before:w-8 before:h-0.25 before:bg-primary-light;

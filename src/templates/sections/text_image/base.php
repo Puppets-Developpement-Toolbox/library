@@ -89,6 +89,11 @@ $slides = carlo_get("slides");
           </h2>
         </header>
         <div class="[ text ]"><?= carlo_get("description") ?></div>
+        <?php if (carlo_get('highlight')): ?>
+        <div class="p-10 bg-gray-light">
+          <?= carlo_get('highlight') ?>
+        </div>
+        <?php endif ?>
         <?php if (carlo_get("cta")) {
             carlo_render("components/cta", [
                 "link" => "#",

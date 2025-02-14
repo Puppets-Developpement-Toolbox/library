@@ -25,4 +25,5 @@ templates:
     - !load sections/slider:cards
     - !load sections/text_insights
     - !load sections/text
+    - !load sections/image
     
