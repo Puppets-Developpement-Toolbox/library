@@ -3,7 +3,7 @@
 
 <?php
 
-  $bg_primary = true;
+  $bg_primary = false;
   $slides = carlo_get('slides');
 
 ?>
@@ -59,7 +59,7 @@
                             transition-transform duration-300
                             group-hover/btn:translate-x-1/2"><use xlink:href="#svg__arrow"></use></svg>
               </button>
-            </div
+            </div>
             <?php if (carlo_get("cta")) {
                 carlo_render("components/cta", [
                     "link" => "#",
