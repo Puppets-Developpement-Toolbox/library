@@ -2,16 +2,18 @@
 
 
 <?php
-$bg_primary = carlo_get("bg_primary");
-$gap_class = carlo_get("gap_class");
-$slides = carlo_get("slides");
-$slide_template = carlo_get("slide_template");
+
+  $bg_primary = carlo_get("bg_primary");
+  $gap_class = carlo_get("gap_class");
+  $slides = carlo_get("slides");
+  $slide_template = carlo_get("slide_template");
+
 ?>
 
 
 <?php if ($bg_primary): ?>
-    <div class="bg-primary text-white
-                group/on-primary">
+<div class="bg-primary text-white
+              group/on-primary">
 <?php endif; ?>
 
 
@@ -23,7 +25,9 @@ $slide_template = carlo_get("slide_template");
       <h2 class="[ h2 ]
                   mb-6
                   group-[&]/on-primary:text-white
-                  laptop:col-span-12"><?= carlo_get("title") ?></h2>
+                  laptop:col-span-12">
+        <?= carlo_get("title") ?>
+      </h2>
       <div class="laptop:flex laptop:justify-between">
         <div class="laptop:shrink-0 laptop:w-2/3">
           <?= carlo_get("description") ?>
@@ -69,5 +73,5 @@ $slide_template = carlo_get("slide_template");
 
 
 <?php if ($bg_primary): ?>
-    </div>
+</div>
 <?php endif; ?>
