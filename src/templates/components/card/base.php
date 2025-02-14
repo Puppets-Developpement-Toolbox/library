@@ -22,7 +22,8 @@
       <h3 class="[ h3 ]"><?= carlo_get('title') ?></h3>
       <span class="[ kicker-subtitle ]"><?= carlo_get('subtitle') ?></span>
     </header>
-    <div class="flex-1
+    <div class="[ text ]
+                flex-1
                 group-[&]/on-primary:text-primary">
       <?= carlo_get('content') ?>
     </div>
