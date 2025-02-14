@@ -3,7 +3,7 @@
 
 <?php
 
-  $bg_primary = false;
+  $bg_primary = true;
   $slides = carlo_get('slides');
 
 ?>
@@ -39,6 +39,7 @@
                             inline-block !static !left-6 !size-12 !m-0
                             rounded-full border-1 border-primary bg-transparent
                             !text-primary
+                            group-[&]/on-primary:!text-white group-[&]/on-primary:border-white
                             after:!content-none">
                 <svg viewBox="0 0 24 24"
                       class="!size-6
@@ -51,6 +52,7 @@
                             inline-block !static !right-6 !size-12 !m-0
                             rounded-full border-1 border-primary bg-transparent
                             !text-primary
+                            group-[&]/on-primary:!text-white group-[&]/on-primary:border-white
                             after:!content-none">
                 <svg viewBox="0 0 24 24"
                       class="!size-6 rotate-180
