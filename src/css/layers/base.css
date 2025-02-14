@@ -20,14 +20,15 @@
   
 
 
-
-  .h1, .h2, .h3, .h4, .h5, .h6 { @apply supports-[text-wrap:pretty]:text-pretty not-supports-[text-wrap:pretty]:text-balance; }
   .h1 { @apply font-semibold text-[38px] leading-[1] text-primary laptop:text-[56px]; }
   .h2 { @apply font-semibold text-[34px] leading-[1.1] text-primary laptop:text-[48px]; }
   .h3 { @apply font-bold text-[28px] leading-[1.1] text-primary laptop:text-[32px]; }
   .h4 { @apply font-bold text-[20px] leading-[1.2] text-primary laptop:text-[24px]; }
   .h5 { @apply font-light text-[18px] leading-[1.3] text-primary laptop:text-[20px]; }
   /* .h6 {} */
+
+  .h1, .h2, .h3, .h4, .h5, .h6 { @apply supports-[text-wrap:pretty]:text-pretty not-supports-[text-wrap:pretty]:text-balance; }
+  :is(.h1, .h2, .h3, .h4, .h5, .h6) strong { @apply group-[&]/on-primary:text-inherit }
 
   :is(.h1, .h2, .h3) em { @apply font-extralight; }
   :is(.h4, .h5) em { @apply font-light; }

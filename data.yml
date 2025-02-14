@@ -51,6 +51,22 @@ text_image--image: <img src="https://picsum.photos/1072/1287" alt="" loading="la
 
 
 
+text_insights--image: <img src="https://picsum.photos/750/322" alt="" loading="lazy">
+text_insights--title: Ateliers thématiques
+text_insights--subtitle: Innover dans nos façons de faire ensemble pour une performance durable
+text_insights--text: Nous avons construit tous nos ateliers en intelligence collective pour permettre aux participants d’en faire l’expérience. L’objectif est de favoriser une compréhension profonde des notions abordées et la production d’idées concrètes.
+
+insight--title: Oser <strong>la confiance</strong>
+insight--details: ½ journée
+insight--content: |
+  <ul>
+    <li>Réaliser en quoi la confiance est un pilier pour la réussite individuelle et collective.</li>
+    <li>Apprendre à déchiffrer ses mécanismes.</li>
+    <li>Trouver comment agir pour la faire grandir.</li>
+  </ul>
+
+
+
 push--title: <em>Nos</em> outils
 push--description: Nous cherchons à solliciter toutes les formes d’intelligence et à faire vivre une expérience différente au groupe tout en ayant constamment à l’esprit l’ancrage dans le concret.
 push--image: <img src="https://picsum.photos/630/393" alt="" loading="lazy">

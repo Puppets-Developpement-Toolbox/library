@@ -12,7 +12,8 @@
   <div class="overflow-x-clip">
     <section class="[ section has-slider slider-cards ]
                     flex flex-col gap-8
-                    group-[&]/on-primary:py-16 group-[&]/on-primary:bg-transparent group-[&]/on-primary:laptop:py-30">
+                    group-[&]/on-primary:py-16 group-[&]/on-primary:bg-transparent group-[&]/on-primary:laptop:py-30
+                    laptop:">
 
       <header>
         <h2 class="[ h2 ]
@@ -79,8 +80,7 @@
             <?php foreach ($slides as $slide): ?>
             <li class="swiper-slide
                       !w-72.5 !h-auto
-                      laptop:!w-175
-debug">
+                      laptop:!w-175">
               <figure class="[ img__cover ]
                             aspect-[6/5]">
                 <?= $slide['image'] ?>
