@@ -24,3 +24,5 @@ templates:
     - !load sections/slider:images
     - !load sections/slider:cards
     - !load sections/text_insights
+    - !load sections/text
+    
