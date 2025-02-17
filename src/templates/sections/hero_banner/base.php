@@ -1,6 +1,5 @@
 
-<header class="[ section__hero ]
-              group/hero
+<header class="group/hero
               laptop:relative laptop:mt-0 laptop:px-10">
 
   <figure class="[ img__cover ]

@@ -1,8 +1,7 @@
 
 
 
-<section class="[ section ]
-                group/on-primary
+<section class="group/on-primary
                 mx-0 px-6 py-16 max-w-none
                 bg-primary
                 text-white
