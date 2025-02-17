@@ -12,6 +12,7 @@ menus:
 templates:
   home:
     - !load sections/hero_banner
+    - !load sections/hero_banner:text
     - !load sections/slider:horizontal
     - !load sections/text_image
     - !load sections/text_image:square
