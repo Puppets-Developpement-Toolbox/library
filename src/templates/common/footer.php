@@ -27,16 +27,17 @@
                       group/block
                       py-8 px-10
                       bg-secondary-dark
-                      transition-color duration-300
+                      transition-color duration-500
                       laptop:col-span-4 laptop:hover:bg-white">
         
         <span class="block mb-4 pb-4
                     border-b-1 border-b-secondary-light
                     font-semibold uppercase
-                    transition duration-300
+                    transition duration-500
                     group-hover/block:border-b-primary group-hover/block:text-primary">Nous contacter</span>
         
         <div class="flex gap-4
+                    transition duration-500
                     group-hover/block:text-primary">
           <span class="shrink-0 size-6">
             <svg viewBox="0 0 20 20"><use xlink:href="#svg__social-linkedin"></use></svg>
