@@ -3,6 +3,16 @@
 
 @layer components {
 
+  .fade-not-hovered li a:is(:active, :link, :visited) {
+    @apply block ml-0;
+    @apply opacity-100;
+    @apply transition-all duration-300;
+  }
+  .fade-not-hovered:hover li a { @apply ml-0 opacity-50; }
+  .fade-not-hovered li:hover a { @apply ml-2 opacity-100; }
+
+
+
   .section {
     @apply my-20 mx-6 bg-white;
     @apply laptop:mx-auto laptop:my-[120px] laptop:max-w-[1200px];

@@ -23,6 +23,15 @@ picto: broadcast
 url: https://puppets.fr
 
 
+footer--contact: |
+      <li>
+        <a href="https://www.linkedin.com/in/tiphaine-vapaille-6a39281/" target="_blank">Tiphaine Vapaille</a>
+      </li>
+      <li>
+        <a href="https://www.linkedin.com/in/sophie-beignon-02a60b1/" target="_blank">Sophie Beignon</a>
+      </li>
+
+
 # données par nom de champ -- prioritaire
 surtitle: Lorem ipsum dolor sit amet
 title: Lorem ipsum, <em>les gars !</em>

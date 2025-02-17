@@ -28,4 +28,5 @@ templates:
     - !load sections/text
     - !load sections/image
     - !load sections/cards_2_columns
+    - !load common/footer
     
