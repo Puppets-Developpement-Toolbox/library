@@ -4,11 +4,13 @@
 <?php $rub = carlo_get('current_page') ?>
 
 <header class="flex justify-between items-center sticky z-20 top-0 py-5 px-6 h-18
-              bg-white">
+              bg-white
+              laptop:px-10 laptop:py-0 laptop:h-auto">
 
 
 
-  <a href="/">
+  <a href="/"
+    class="laptop:hidden">
     <figure class="w-43 h-8">
       <svg viewBox="0 0 224 42"
           class="size-full object-contain"><use xlink:href="#svg__logo"></use></svg>
@@ -21,36 +23,71 @@
       class="[ nav ]
             overflow-y-auto hidden fixed z-30 inset-0
             bg-primary
-            text-white">
-    <div class="flex flex-col gap-16 mt-14">
+            text-white
+            laptop:block laptop:static laptop:w-full laptop:bg-transparent laptop:text-primary">
+    <div class="flex flex-col gap-16 mt-14
+                laptop:flex-row laptop:justify-between laptop:h-24 laptop:mt-0">
     
 
 
-      <figure class="h-20">
-        <svg viewBox="0 0 163 79"
-            class="size-full object-contain"><use xlink:href="#svg__logo-white--vertical"></use></svg>
+      <figure class="h-20
+                    laptop:flex laptop:justify-center laptop:items-center laptop:w-56 laptop:h-auto">
+        <span class="laptop:hidden">
+          <svg viewBox="0 0 163 79"
+              class="size-full object-contain"><use xlink:href="#svg__logo-white--vertical"></use></svg>
+        </span>
+        <span class="hidden
+                    laptop:block">
+          <svg viewBox="0 0 224 42"
+              class="size-full object-contain"><use xlink:href="#svg__logo"></use></svg>
+        </span>
       </figure>
 
 
 
-<?php // TODO: carlo_get('linkedin'); ?>
+<?php // TODO: carlo_get('menu'); ?>
       <ul class="flex flex-col gap-4
-                text-center">
+                text-center
+                laptop:flex-row laptop:items-center laptop:gap-8">
         <li class="<?php if( $rub === 'partner') echo ' active-trail' ?>
-                  not-first:before:block not-first:before:mb-4 not-first:before:size-1.25 not-first:before:mx-auto not-first:before:rounded-full not-first:before:bg-accent">
-          <a href="#">Nos outils</a>
+                  before:block before:mb-4 before:size-1.25 before:mx-auto before:rounded-full before:bg-accent
+                  first:before:content-none
+                  laptop:flex laptop:items-center laptop:relative laptop:h-full laptop:transition-all
+                  laptop:before:content-none">
+          <a href="#"
+            class="laptop:flex laptop:items-center laptop:relative laptop:h-full
+                  laptop:after:transition-transform laptop:after:duration-500 laptop:hover:after:scale-100
+                  laptop:after:block laptop:after:origin-left laptop:after:absolute laptop:after:bottom-0 laptop:after:w-full laptop:after:scale-0 laptop:after:h-1 laptop:after:bg-accent"><span>Nos outils</span></a>
         </li>
         <li class="<?php if( $rub === 'actus') echo ' active-trail' ?>
-                  not-first:before:block not-first:before:mb-4 not-first:before:size-1.25 not-first:before:mx-auto not-first:before:rounded-full not-first:before:bg-accent">
-          <a href="#">Nos offres</a>
+                  before:block before:mb-4 before:size-1.25 before:mx-auto before:rounded-full before:bg-accent
+                  first:before:content-none
+                  laptop:flex laptop:items-center laptop:relative laptop:h-full laptop:transition-all
+                  laptop:before:content-none">
+          <a href="#"
+            class="laptop:flex laptop:items-center laptop:relative laptop:h-full
+                  laptop:after:transition-transform laptop:after:duration-500 laptop:hover:after:scale-100
+                  laptop:after:block laptop:after:origin-left laptop:after:absolute laptop:after:bottom-0 laptop:after:w-full laptop:after:scale-0 laptop:after:h-1 laptop:after:bg-accent"><span>Nos offres</span></a>
         </li>
         <li class="<?php if( $rub === 'contact') echo ' active-trail' ?>
-                  not-first:before:block not-first:before:mb-4 not-first:before:size-1.25 not-first:before:mx-auto not-first:before:rounded-full not-first:before:bg-accent">
-          <a href="#">Nos réalisations</a>
+                  before:block before:mb-4 before:size-1.25 before:mx-auto before:rounded-full before:bg-accent
+                  first:before:content-none
+                  laptop:flex laptop:items-center laptop:relative laptop:h-full laptop:transition-all
+                  laptop:before:content-none">
+          <a href="#"
+            class="laptop:flex laptop:items-center laptop:relative laptop:h-full
+                  laptop:after:transition-transform laptop:after:duration-500 laptop:hover:after:scale-100
+                  laptop:after:block laptop:after:origin-left laptop:after:absolute laptop:after:bottom-0 laptop:after:w-full laptop:after:scale-0 laptop:after:h-1 laptop:after:bg-accent"><span>Nos réalisations</span></a>
         </li>
         <li class="<?php if( $rub === 'who') echo ' active-trail' ?>
-                  not-first:before:block not-first:before:mb-4 not-first:before:size-1.25 not-first:before:mx-auto not-first:before:rounded-full not-first:before:bg-accent">
-          <a href="#">Qui sommes-nous</a>
+                  before:block before:mb-4 before:size-1.25 before:mx-auto before:rounded-full before:bg-accent
+                  first:before:content-none
+                  laptop:flex laptop:items-center laptop:relative laptop:h-full laptop:transition-all
+                  laptop:before:content-none">
+          <a href="#"
+            class="laptop:flex laptop:items-center laptop:relative laptop:h-full
+                  laptop:after:transition-transform laptop:after:duration-500 laptop:hover:after:scale-100
+                  laptop:after:block laptop:after:origin-left laptop:after:absolute laptop:after:bottom-0 laptop:after:w-full laptop:after:scale-0 laptop:after:h-1 laptop:after:bg-accent"><span>Qui sommes-nous</span></a>
         </li>
       </ul>
 
@@ -59,7 +96,8 @@
 <?php // TODO: carlo_get('linkedin'); ?>
       <div class="px-6 py-13.5
                   bg-secondary
-                  text-base">
+                  text-base
+                  laptop:hidden">
         <div class="flex flex-col gap-0.25 py-0.25
                   bg-secondary-light">
 
@@ -86,6 +124,17 @@
                   font-semibold text-center underline underline-offset-3">diapsodie@gmail.com</a>
         
         </div>
+      </div>
+      
+      <div class="hidden
+                  laptop:flex laptop:items-center">
+        <?php
+          // TODO: dynamic URL
+          carlo_render("components/cta", [
+              "link" => "#",
+              "label" => "Contact",
+          ]);
+        ?>
       </div>
 
 
@@ -119,6 +168,8 @@
                 transition-all duration-500
                 group-[.is-opened]/btn:translate-y-0 group-[.is-opened]/btn:-rotate-45 group-[.is-opened]/btn:bg-white"></span>
   </button>
+
+
   
 </header>
 

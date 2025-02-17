@@ -15,7 +15,7 @@
 
   .section {
     @apply my-20 mx-6 bg-white;
-    @apply laptop:mx-auto laptop:my-[120px] laptop:max-w-[1200px];
+    @apply laptop:max-w-[1200px] laptop:mx-auto laptop:my-[120px];
     @apply wide:max-w-[1440px];
     @apply group-[&]/super-section:first-of-type:mt-0 group-[&]/super-section:last-of-type:mb-0
   }
