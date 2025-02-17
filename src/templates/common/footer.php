@@ -4,7 +4,7 @@
 <?php // dump(carlo_get()) ?>
 
 <footer class="group/on-primary
-              flex flex-col gap-8 mt-17.5 py-8 px-6
+              shrink-0 flex flex-col gap-8 mt-17.5 py-8 px-6
               bg-primary
               text-white
               laptop:pb-16">
@@ -12,7 +12,7 @@
     
 
 
-    <figure class="laptop:pb-4 laptop:mb-10 laptop:border-b-1 laptop:border-b-secondary-light">
+    <figure class="mb-8 laptop:pb-4 laptop:mb-10 laptop:border-b-1 laptop:border-b-secondary-light">
       <span class="block w-48
                   laptop:w-56">
         <svg viewBox="0 0 224 42"><use xlink:href="#svg__logo-white"></use></svg>
@@ -21,7 +21,8 @@
 
 
 
-    <div class="laptop:grid laptop:grid-cols-12">
+    <div class="flex flex-col gap-8
+                laptop:grid laptop:grid-cols-12 laptop:gap-0">
 
       <section class="[ contact ]
                       group/block
@@ -34,11 +35,11 @@
                     border-b-1 border-b-secondary-light
                     font-semibold uppercase
                     transition duration-500
-                    group-hover/block:border-b-primary group-hover/block:text-primary">Nous contacter</span>
+                    group-hover/block:laptop:border-b-primary group-hover/block:laptop:text-primary">Nous contacter</span>
         
         <div class="flex gap-4
                     transition duration-500
-                    group-hover/block:text-primary">
+                    group-hover/block:laptop:text-primary">
           <span class="shrink-0 size-6">
             <svg viewBox="0 0 20 20"><use xlink:href="#svg__social-linkedin"></use></svg>
           </span>
@@ -68,7 +69,8 @@
 
 
 
-      <div class="laptop:col-span-6 laptop:col-start-7 laptop:grid laptop:grid-cols-3 laptop:gap-[10%]">
+      <div class="flex flex-col gap-8
+                  laptop:col-span-6 laptop:col-start-7 laptop:grid laptop:grid-cols-3 laptop:gap-[10%]">
           
         <section class="[ main-links ]
                         flex flex-col gap-4">
