@@ -6,7 +6,7 @@ interface DriverInterface
 {
     public function render(string $tpl, array $args = []);
 
-    public function loadData(array $structure);
+    public function loadData(array $structure, array $args);
 
     public function structure(string $type, string $name = null);
 

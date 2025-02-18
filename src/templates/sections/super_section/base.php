@@ -1,6 +1,4 @@
 
-
-
 <section class="group/super-section
                 py-30
                 bg-gray-light">

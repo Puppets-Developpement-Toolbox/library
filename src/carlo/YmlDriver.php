@@ -14,7 +14,7 @@ class YmlDriver extends BaseDriver implements DriverInterface
         $this->data = Yaml::parseFile($file);
     }
 
-    public function loadData(array $structure)
+    public function loadData(array $structure, array $args)
     {
         $fields = array_filter(
             array_keys($structure),
@@ -69,7 +69,7 @@ class YmlDriver extends BaseDriver implements DriverInterface
             $structure_data["_id"] = $structure["_id"];
         }
 
-        return $structure_data;
+        return array_merge($structure_data, $args);
     }
 
     public function img(
