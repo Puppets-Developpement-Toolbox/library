@@ -102,12 +102,12 @@ abstract class BaseDriver implements DriverInterface
             }
         }
 
-        if (empty($name) && isset($this->structure[$type][$variant])) {
-            return $this->structure[$type][$variant];
+        if (empty($name) && isset($this->structure[$type])) {
+            return $this->structure[$type];
         }
 
         // certains templates peuvent ne pas avoir de structure associée
-        return $this->structure[$type][$name] ?? null;
+        return $this->structure[$type][$name][$variant] ?? null;
     }
 
     public function register(string $file)
