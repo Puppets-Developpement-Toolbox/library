@@ -25,7 +25,8 @@ abstract class BaseDriver implements DriverInterface
 
         $structure = $this->structure(
             $template_type ?: "templates",
-            $template_name
+            $template_name,
+            $template_variant
         );
 
         $this->tplPaths[] = $template_name;
@@ -51,7 +52,7 @@ abstract class BaseDriver implements DriverInterface
         array_pop($this->context);
     }
 
-    public function structure(string $type, string $name = null)
+    public function structure(string $type, string $name = null, string $variant = "base")
     {
         $no_tag = null;
         $no_tag = function ($definition) use (&$no_tag) {
@@ -62,12 +63,12 @@ abstract class BaseDriver implements DriverInterface
                 $definition instanceof TaggedValue &&
                 $definition->getTag() === "load"
             ) {
-                list($template_type, $template_name) = carlo_explode_id(
+                list($template_type, $template_name, $template_variant) = carlo_explode_id(
                     $definition->getValue()
                 );
 
                 return $no_tag(
-                    $this->structure($template_type, $template_name)
+                    $this->structure($template_type, $template_name, $template_variant)
                 );
             }
             return $definition;
@@ -84,20 +85,25 @@ abstract class BaseDriver implements DriverInterface
             }
         }
 
-        if (!empty($name) && !isset($this->loaded[$type][$name])) {
-            $this->loaded[$type][$name] = true;
+        if (!empty($name) && !isset($this->loaded[$type][$name][$variant])) {
+            $this->loaded[$type][$name][$variant] = true;
             try {
-                $file = carlo_get_file("structure", "{$type}/{$name}");
-                $this->structure[$type][$name] = $no_tag(
+                $file = carlo_get_file(
+                    "structure",
+                    "{$type}/{$name}",
+                    $variant
+                );
+
+                $this->structure[$type][$name][$variant] = $no_tag(
                     Yaml::parseFile($file, Yaml::PARSE_CUSTOM_TAGS)
                 );
-                $this->structure[$type][$name]["_id"] = "{$type}/{$name}";
+                $this->structure[$type][$name][$variant]["_id"] = "{$type}/{$name}:{$variant}";
             } catch (Exception $e) {
             }
         }
 
-        if (empty($name) && isset($this->structure[$type])) {
-            return $this->structure[$type];
+        if (empty($name) && isset($this->structure[$type][$variant])) {
+            return $this->structure[$type][$variant];
         }
 
         // certains templates peuvent ne pas avoir de structure associée
