@@ -29,7 +29,7 @@ $slides = carlo_get("slides");
             <li class="swiper-slide">
               <figure class="[ img__cover ]
                             aspect-[var(--ratio-img-mobile)]">
-                <?= $slide["image"] ?>
+                <?= carlo_img($slide["image"], 'full') ?>
               </figure>
             </li>
             <?php endforeach ?>

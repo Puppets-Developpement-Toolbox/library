@@ -12,6 +12,8 @@ interface DriverInterface
 
     public function register(string $file);
 
+    public function getFile(string $type, string $element, string $variant = 'base' );
+
     public function get(string $key = null);
 
     public function img(

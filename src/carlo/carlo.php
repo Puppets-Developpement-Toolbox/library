@@ -11,6 +11,7 @@ use carlo\FileNotFoundException;
 global $CARLO_CONTEXT;
 $CARLO_CONTEXT = [];
 
+//const WP_BASEPATH = "/web/app/themes/";
 const CARLO_BASEPATH = __DIR__ . "/../";
 
 function carlo_register($structure_path)
@@ -84,29 +85,7 @@ function carlo_load_data($structure)
  */
 function carlo_get_file($type, $element, $variant = "base")
 {
-    $variant = $variant ?: "base";
-    $abspath = CARLO_BASEPATH . "templates/{$element}";
-    $ext = $type === "structure" ? "yml" : "php";
-
-    $paths = [
-        "{$abspath}/{$variant}.{$ext}",
-        "{$abspath}/base.{$ext}",
-        "{$abspath}.{$ext}",
-    ];
-    foreach ($paths as $path) {
-        if (file_exists($path)) {
-            if (strpos(realpath($path), realpath(CARLO_BASEPATH)) === false) {
-                // par sécurité en interdit de charger un fichier hors du projet
-                throw new Exception("Le chemin {$element} est hors du projet");
-            }
-
-            return $path;
-        }
-    }
-
-    throw new FileNotFoundException(
-        "Aucun fichier ne correspond à ce que l'on cherche : {$type} - {$element} - {$variant}"
-    );
+    return carlo_driver()->getFile($type, $element, $variant);
 }
 
 /**

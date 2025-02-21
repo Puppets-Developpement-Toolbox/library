@@ -1,6 +1,5 @@
 
 
-
 <div class="[ card ]
             group/card
             flex flex-col h-full">
@@ -27,6 +26,6 @@
                 group-[&]/on-primary:text-primary">
       <?= carlo_get('content') ?>
     </div>
-    <?php carlo_render('components/cta:tertiary', ['link' => 'https://www.apple.com/fr', 'label' => 'Test']) ?>
+    <?php carlo_render('components/cta:tertiary', ['link' => carlo_get('link'), 'label' => carlo_get('name')]) ?>
   </div>
 </div>

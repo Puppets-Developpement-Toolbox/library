@@ -131,4 +131,55 @@ abstract class BaseDriver implements DriverInterface
 
         return $values;
     }
+
+    public function loadData(array $structure, array $args) {
+
+        foreach($structure as $key => $substruct) {
+            if(str_starts_with($key, '_')) continue;
+            if(is_string($substruct)) continue;
+
+
+            if ( isset($substruct['_type']) && $substruct['_type'] == "repeater" ) {
+                foreach($args[$key] as $arg_key => $arg_value){
+                    $args[$key][$arg_key] = $this->loadData($substruct['_repeat'], $arg_value);
+                }
+            } else {
+                $args[$key] = $this->loadData($substruct, $args);
+            }
+
+        }
+
+
+
+        if(!isset($args['_id']) && isset($structure['_id'])) $args['_id'] = $structure['_id'];
+
+        return $args;
+    }
+
+    public function getFile(string $type, string $element, string $variant = 'base'){
+        $variant = $variant ?: "base";
+        $abspath = CARLO_BASEPATH . "templates/{$element}";
+
+        $ext = $type === "structure" ? "yml" : "php";
+
+        $paths = [
+            "{$abspath}/{$variant}.{$ext}",
+            "{$abspath}/base.{$ext}",
+            "{$abspath}.{$ext}",
+        ];
+        foreach ($paths as $path) {
+            if (file_exists($path)) {
+                if (strpos(realpath($path), realpath(CARLO_BASEPATH)) === false) {
+                    // par sécurité en interdit de charger un fichier hors du projet
+                    throw new Exception("Le chemin {$element} est hors du projet");
+                }
+
+                return $path;
+            }
+        }
+
+        throw new FileNotFoundException(
+            "Aucun fichier ne correspond à ce que l'on cherche : {$type} - {$element} - {$variant}"
+        );
+    }
 }

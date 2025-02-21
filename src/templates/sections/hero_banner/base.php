@@ -1,4 +1,3 @@
-
 <header class="group/hero
               laptop:relative laptop:mt-0 laptop:px-10">
 
@@ -9,28 +8,29 @@
   </figure>
 
 
-
   <section class="m-6 mt-12
                   bg-white
                   laptop:absolute laptop:right-0 laptop:top-1/2 laptop:-translate-y-1/2 laptop:w-[65%] laptop:m-0 laptop:px-[100px] laptop:py-[64px]
                   wide:w-1/2 wide:px-[120px]">
 
-    <aside class="my-6
-                  border-b-[1px] border-b-black">
-      <button type="button"
-              class="group/btn
-                    flex items-center gap-2 relative p-3
-                    transition-colors duration-300
-                    hover:text-primary">
-        <span class="size-6
+      <?php $back_link = carlo_get('back_link');
+      if(isset($back_link) && is_array($back_link)):  ?>
+      <aside class="my-6
+                    border-b-[1px] border-b-black">
+        <a href="<?=$back_link['href'] ?>" title="<?=$back_link['label'] ?>" class="group/btn
+              flex items-center gap-2 relative p-3
+              transition-colors duration-300
+              hover:text-primary">
+            <span class="size-6
                     transition-transform duration-300
                     group-hover/btn:-translate-x-1/2">
           <svg viewBox="0 0 24 24"><use href="#svg__arrow"></use></svg>
         </span>
         <!-- TODO: retour en arrière à dynamiser -->
-        <small>Nos réalisations</small>
-      </button>
+        <small><?=$back_link['label']; ?></small>
+        </a>
     </aside>
+    <?php endif; ?>
 
     <h1 class="[ h1 ]">
       <span class="[ kicker-subtitle ]
