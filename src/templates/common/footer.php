@@ -15,7 +15,7 @@
     <figure class="mb-8 laptop:pb-4 laptop:mb-10 laptop:border-b-1 laptop:border-b-secondary-light">
       <span class="block w-48
                   laptop:w-56">
-        <svg viewBox="0 0 224 42"><use xlink:href="#svg__logo-white"></use></svg>
+        <svg viewBox="0 0 224 42"><use href="#svg__logo-white"></use></svg>
       </span>
     </figure>
 
@@ -41,7 +41,7 @@
                     transition duration-500
                     group-hover/block:laptop:text-primary">
           <span class="shrink-0 size-6">
-            <svg viewBox="0 0 20 20"><use xlink:href="#svg__social-linkedin"></use></svg>
+            <svg viewBox="0 0 20 20"><use href="#svg__social-linkedin"></use></svg>
           </span>
 
           <ul class="[ fade-not-hovered ]

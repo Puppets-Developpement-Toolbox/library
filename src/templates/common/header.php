@@ -13,7 +13,7 @@
     class="laptop:hidden">
     <figure class="w-43 h-8">
       <svg viewBox="0 0 224 42"
-          class="size-full object-contain"><use xlink:href="#svg__logo"></use></svg>
+          class="size-full object-contain"><use href="#svg__logo"></use></svg>
     </figure>
   </a>
 
@@ -34,12 +34,12 @@
                     laptop:flex laptop:justify-center laptop:items-center laptop:w-56 laptop:h-auto">
         <span class="laptop:hidden">
           <svg viewBox="0 0 163 79"
-              class="size-full object-contain"><use xlink:href="#svg__logo-white--vertical"></use></svg>
+              class="size-full object-contain"><use href="#svg__logo-white--vertical"></use></svg>
         </span>
         <span class="hidden
                     laptop:block">
           <svg viewBox="0 0 224 42"
-              class="size-full object-contain"><use xlink:href="#svg__logo"></use></svg>
+              class="size-full object-contain"><use href="#svg__logo"></use></svg>
         </span>
       </figure>
 
@@ -104,7 +104,7 @@
           <ul class="flex justify-center items-center gap-4
                     bg-secondary">
             <li class="shrink-0 size-6">
-              <svg viewBox="0 0 20 20"><use xlink:href="#svg__social-linkedin"></use></svg>
+              <svg viewBox="0 0 20 20"><use href="#svg__social-linkedin"></use></svg>
             </li>
             <li class="relative ml-2 my-4
                       before:block before:absolute before:top-3 before:-left-2 before:mr-2 before:size-1 before:rounded-full before:bg-accent">

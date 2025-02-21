@@ -44,7 +44,7 @@
                 <svg viewBox="0 0 24 24"
                       class="!size-6
                             transition-transform duration-300
-                            group-hover/btn:-translate-x-1/2"><use xlink:href="#svg__arrow"></use></svg>
+                            group-hover/btn:-translate-x-1/2"><use href="#svg__arrow"></use></svg>
               </button>
               <button type="button"
                       class="[ swiper-button-next ]
@@ -57,7 +57,7 @@
                 <svg viewBox="0 0 24 24"
                       class="!size-6 rotate-180
                             transition-transform duration-300
-                            group-hover/btn:translate-x-1/2"><use xlink:href="#svg__arrow"></use></svg>
+                            group-hover/btn:translate-x-1/2"><use href="#svg__arrow"></use></svg>
               </button>
             </div>
             <?php if (carlo_get("cta")) {

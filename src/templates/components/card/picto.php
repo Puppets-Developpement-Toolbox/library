@@ -11,7 +11,7 @@
   <figure class="shrink-0 size-10.5
                 text-accent
                 laptop:size-14">
-    <svg viewBox="0 0 56 56"><use xlink:href="#svg__<?= carlo_get('picto') ?>"></use></svg>
+    <svg viewBox="0 0 56 56"><use href="#svg__<?= carlo_get('picto') ?>"></use></svg>
   </figure>
   <div class="[ h4 ]
               m-0 text-white

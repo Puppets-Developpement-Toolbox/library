@@ -8,7 +8,7 @@
 
   <span class="block size-8
               text-primary-light
-              laptop:size-10"><svg viewBox="0 0 56 56"><use xlink:href="#svg__quote"></use></svg></span>
+              laptop:size-10"><svg viewBox="0 0 56 56"><use href="#svg__quote"></use></svg></span>
 
   <blockquote class="[ quote ]
                     laptop:w-full laptop:mx-10">
@@ -27,6 +27,6 @@
 
   <span class="block size-8 rotate-180 ml-auto
               text-primary-light
-              laptop:size-10"><svg viewBox="0 0 56 56"><use xlink:href="#svg__quote"></use></svg></span>
+              laptop:size-10"><svg viewBox="0 0 56 56"><use href="#svg__quote"></use></svg></span>
 
 </figure>

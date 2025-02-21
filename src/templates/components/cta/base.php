@@ -15,7 +15,7 @@
     <span class="shrink-0 size-6 text-accent
                 transition-transform duration-300
                 group-hover/btn:rotate-180">
-      <svg viewBox="0 0 24 24"><use xlink:href="#svg__more"></use></svg>
+      <svg viewBox="0 0 24 24"><use href="#svg__more"></use></svg>
     </span>
     <span><?= carlo_get('label') ?></span>
   </button>
