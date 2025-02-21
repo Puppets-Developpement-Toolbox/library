@@ -24,7 +24,7 @@ class YmlDriver extends BaseDriver implements DriverInterface
         $structure_data = array_map(function ($fieldname) use ($structure) {
             $field = $structure[$fieldname];
             if (is_array($field) && !isset($field["_type"])) {
-                return $this->loadData($field);
+                return $this->loadData($field, []);
             }
 
             if (is_string($field)) {
@@ -38,7 +38,7 @@ class YmlDriver extends BaseDriver implements DriverInterface
                 return array_fill(
                     0,
                     $n_times,
-                    $this->loadData($field["_repeat"])
+                    $this->loadData($field["_repeat"], [])
                 );
             }
 
