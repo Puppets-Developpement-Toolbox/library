@@ -75,9 +75,9 @@ function carlo_get($key = null)
 /**
  * load data for the current template
  */
-function carlo_load_data($structure)
+function carlo_load_data($structure, $args)
 {
-    carlo_driver()->loadData($structure);
+    carlo_driver()->loadData($structure, $args);
 }
 
 /**

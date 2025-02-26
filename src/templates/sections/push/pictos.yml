@@ -4,6 +4,6 @@ cta: !load components/cta
 cards:
   _type: repeater
   _repeat:
-    picto: picto
+    picto: image
     content: wysiwyg
   _times: 6 #repeat n times

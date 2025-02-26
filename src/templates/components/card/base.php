@@ -1,6 +1,6 @@
 
 
-<div class="[ card ]
+<a href="<?=carlo_get('link')?>" ><div class="[ card ]
             group/card
             flex flex-col h-full">
   <figure class="[ img__cover ]
@@ -24,8 +24,8 @@
     <div class="[ text ]
                 flex-1
                 group-[&]/on-primary:text-primary">
-      <?= carlo_get('content') ?>
+                    <?= carlo_get('content') ?>
     </div>
     <?php carlo_render('components/cta:tertiary', ['link' => carlo_get('link'), 'label' => carlo_get('name')]) ?>
   </div>
-</div>
+</div></a>

@@ -48,17 +48,17 @@
         <?php if (carlo_get("cta") || carlo_get("cta_contact")): ?>
         <ul class="flex flex-col gap-3
                   laptop:flex-row">
-          <?php if (carlo_get("cta")): ?>
+          <?php if (carlo_get("cta")): $cta = carlo_get("cta"); ?>
             <li><?php carlo_render("components/cta", [
-                "link" => "#",
-                "label" => "En savoir plus",
+                "link" => $cta['cta']["link"],
+                "label" => $cta['cta']["label"],
             ]); ?></li>
           <?php endif; ?>
 
-          <?php if (carlo_get("cta_contact")): ?>
+          <?php if (carlo_get("cta_contact")): $cta_contact = carlo_get("cta_contact"); ?>
             <li><?php carlo_render("components/cta:secondary", [
-                "link" => "#",
-                "label" => "Contactez-nous",
+                "link" => $cta_contact['cta_contact']["link"],
+                "label" => $cta_contact['cta_contact']["label"],
             ]); ?></li>
           <?php endif; ?>
         </ul>

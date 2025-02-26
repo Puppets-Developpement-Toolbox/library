@@ -36,7 +36,7 @@
                       laptop:block">
           <?php if (carlo_get("cta")) {
               carlo_render("components/cta", [
-                  "link" => "#",
+                  "link" => carlo_get('link'),
                   "label" => "En savoir plus sur nos méthodes",
               ]);
           } ?>
@@ -63,7 +63,7 @@
                   laptop:hidden">
       <?php if (carlo_get("cta")) {
           carlo_render("components/cta", [
-              "link" => "#",
+              "link" => carlo_get('link'),
               "label" => "En savoir plus sur nos méthodes",
           ]);
       } ?>
