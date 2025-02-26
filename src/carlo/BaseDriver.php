@@ -144,7 +144,10 @@ abstract class BaseDriver implements DriverInterface
                     $args[$key][$arg_key] = $this->loadData($substruct['_repeat'], $arg_value);
                 }
             } else {
-                $args[$key] = $this->loadData($substruct, $args);
+                if(is_array($args[$key]) && !empty($substruct['_id'])){
+                    $args[$key] = $this->loadData($substruct, $args[$key]);
+                }
+
             }
 
         }

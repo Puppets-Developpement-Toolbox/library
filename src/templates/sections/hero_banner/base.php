@@ -52,15 +52,15 @@
                   laptop:flex-row">
           <?php if (carlo_get("cta")): $cta = carlo_get("cta"); ?>
             <li><?php carlo_render("components/cta", [
-                "link" => $cta['cta']["link"],
-                "label" => $cta['cta']["label"],
+                "link" => !empty($cta['cta']["link"])? $cta['cta']['link'] : '',
+                "label" => !empty($cta['cta']["label"])? $cta['cta']["label"] : '',
             ]); ?></li>
           <?php endif; ?>
 
           <?php if (carlo_get("cta_contact")): $cta_contact = carlo_get("cta_contact"); ?>
             <li><?php carlo_render("components/cta:secondary", [
-                "link" => $cta_contact['cta_contact']["link"],
-                "label" => $cta_contact['cta_contact']["label"],
+                "link" => !empty($cta_contact['cta_contact']["link"])? $cta_contact['cta_contact']["link"] : '',
+                "label" => !empty($cta_contact['cta_contact']["label"])? $cta_contact['cta_contact']["label"] : '',
             ]); ?></li>
           <?php endif; ?>
         </ul>
