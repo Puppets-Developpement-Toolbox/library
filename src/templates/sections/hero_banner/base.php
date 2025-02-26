@@ -60,7 +60,7 @@
           <?php if (carlo_get("cta_contact")): $cta_contact = carlo_get("cta_contact"); ?>
             <li><?php carlo_render("components/cta:secondary", [
                 "link" => !empty($cta_contact['cta_contact']["link"])? $cta_contact['cta_contact']["link"] : '',
-                "label" => !empty($cta_contact['cta_contact']["label"])? $cta_contact['cta_contact']["label"] : '',
+                "label" => !empty($cta_contact['cta_contact']["label"])? $cta_contact['cta_contact']["link"] : '',
             ]); ?></li>
           <?php endif; ?>
         </ul>
