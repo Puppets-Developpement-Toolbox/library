@@ -35,7 +35,9 @@
     <h1 class="[ h1 ]">
       <span class="[ kicker-subtitle ]
                   mb-2"><?= carlo_get("surtitle") ?></span>
-      <?= carlo_get("title") ?>
+      <?php if(isset(carlo_get("title")['title'])): ?>
+      <?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("title")['title'])); ?>
+      <?php endif; ?>
     </h1>
 
     <aside class="my-6

@@ -1,7 +1,7 @@
 
 
 
-<?php 
+<?php
 
   $slides = carlo_get('slides');
 
@@ -14,13 +14,13 @@
   <section class="[ section has-slider slider-horizontal ]">
 
     <div class="laptop:grid laptop:grid-cols-12">
-    
+
       <header class="relative z-10 mb-10
                     laptop:col-span-5 laptop:mb-0 laptop:bg-white">
         <div class="laptop:flex laptop:justify-between laptop:gap-6 laptop:mr-10 laptop:pt-10 laptop:w-5/6 laptop:border-t-1 laptop:border-t-black">
 
           <h2 class="[ h2 ]"><?= carlo_get('title') ?></h2>
-          
+
           <aside class="[ swiper__dashboard ]
                         flex justify-end gap-2
                         laptop:flex-col laptop:justify-start">
@@ -51,7 +51,7 @@
                           group-hover/btn:translate-x-1/2"><use href="#svg__arrow"></use></svg>
             </button>
           </aside>
-        
+
         </div>
       </header>
 
@@ -64,15 +64,17 @@
           <ul class="swiper-wrapper">
             <?php $num = 0 ?>
             <?php foreach ($slides as $slide): ?>
-              <?php $style = ($num % 2 === 0) ? 'bg-gray-light' : 'border-1 border-black' ?>
-              <li class="swiper-slide
-                        !size-auto">
-                <div class="select-none w-61 h-full px-10 py-12
-                            <?= $style ?>">
-                  <?= $slide['text'] ?>
-                </div>
-              </li>
-              <?php $num++ ?>
+                <?php if(!empty($slide['text'])): ?>
+                    <?php $style = ($num % 2 === 0) ? 'bg-gray-light' : 'border-1 border-black' ?>
+                    <li class="swiper-slide
+                                !size-auto">
+                        <div class="select-none w-61 h-full px-10 py-12
+                                    <?= $style ?>">
+                        <?= $slide['text'] ?>
+                        </div>
+                    </li>
+                    <?php $num++ ?>
+                <?php endif ?>
             <?php endforeach ?>
             </ul>
         </div>
@@ -84,4 +86,3 @@
   </section>
 
 </div>
-
