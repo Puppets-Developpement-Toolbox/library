@@ -63,10 +63,7 @@
               </button>
             </div>
             <?php if (carlo_get("cta")) {
-                carlo_render("components/cta", [
-                    "link" => carlo_get('cta')['link'],
-                    "label" => carlo_get('cta')['label'],
-                ]);
+                carlo_render("components/cta", carlo_get('cta'));
             } ?>
           </aside>
         </div>
