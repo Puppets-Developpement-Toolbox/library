@@ -11,7 +11,7 @@
       <?= carlo_get('image') ?>
     </div>
   </figure>
-  <div class="flex-1 flex flex-col gap-6 p-8
+  <div class="flex-1 flex flex-col gap-6 mb-[1px] p-8
               border-1 border-t-0 border-black
               group-[&]/on-primary:bg-white group-[&]/on-primary:border-none
               laptop:px-12">
