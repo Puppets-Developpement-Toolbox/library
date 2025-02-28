@@ -80,9 +80,9 @@ $slides = carlo_get("slides");
                       laptop:order-1 laptop:col-start-1 laptop:col-end-6
                     <?php endif; ?>">
       <div class="flex flex-col gap-6 laptop:gap-8">
-        <header class="[ kicker-subtitle ]">
+        <header class="">
           <?php if (carlo_get("surtitle")): ?>
-          <p class="mb-2"><?= carlo_get("surtitle") ?></p>
+          <p class="[ kicker-subtitle ] mb-2"><?= carlo_get("surtitle") ?></p>
           <?php endif; ?>
           <h2 class="[ h2 ]">
             <?= carlo_get("title") ?>
