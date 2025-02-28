@@ -8,11 +8,12 @@
                 flex flex-col gap-2 pb-4
                 border-b-1 border-b-white
                 text-white uppercase
-                group-even/insight:border-primary group-even/insight:text-primary">
+                group-even/insight:border-primary group-even/insight:text-primary
+                laptop:flex-row laptop:justify-between laptop:gap-4">
     <span><?= carlo_get('title') ?></span>
     <small class="text-primary-light"><?= carlo_get('details') ?></small>
   </header>
-  <div class="[ texte ]">
+  <div class="[ text ]">
     <?= carlo_get('content') ?>
   </div>
 </div>
