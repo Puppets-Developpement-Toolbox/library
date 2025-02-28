@@ -1,7 +1,7 @@
 
 
 
-<figure class="relative flex flex-col gap-4 p-6
+<figure class="relative flex flex-col gap-4 mb-[1px] p-6
               bg-gray-light
               group-[&]/super-section:bg-white group-[&]/super-section:border-1 group-[&]/super-section:border-black
               laptop:col-span-10 laptop:col-start-2 laptop:flex-row laptop:flex-wrap laptop:gap-6">
