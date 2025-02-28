@@ -7,7 +7,7 @@
   
   body { @apply font-texte font-light text-base; }
   
-  p { @apply mb-6 last:mb-0 text-balance hyphens-auto [hyphenate-limit-chars:10]; }
+  p { @apply mb-6 last:mb-0 hyphens-auto [hyphenate-limit-chars:10]; }
   button { @apply cursor-pointer; }
   
   strong {
