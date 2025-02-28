@@ -12,7 +12,8 @@ $slides = array_filter($slides, function($slide){
 });
 ?>
 
-<section class="[ section has-slider ]">
+<section class="[ section has-slider ]
+                group-[&]/super-section:bg-transparent">
   <div class="group/section
               laptop:grid laptop:grid-cols-12">
 
