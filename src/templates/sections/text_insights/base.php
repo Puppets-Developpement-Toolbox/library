@@ -2,7 +2,7 @@
 
 
 <?php
-  
+
   $insights = carlo_get('insights');
 
 ?>
@@ -13,30 +13,30 @@
                   flex flex-col gap-12 py-20
                   bg-primary
                   laptop:grid laptop:grid-cols-12 laptop:gap-0 laptop:py-30">
-    
 
-                  
+
+
     <header class="text-white
                   laptop:col-span-5">
-      <div class="laptop:sticky laptop:top-34">
-          
-        <figure class="[ img__cover ]
-                      aspect-[100/43]">
-          <?= carlo_get('image') ?>
-        </figure>
+        <div class="laptop:sticky laptop:top-34">
 
-        <div class="flex flex-col gap-4 my-6 pb-6
-                    border-b-1 border-b-white">
-          <h2 class="[ h2 ] text-white">
-            <?= carlo_get('title') ?>
-          </h2>
-          <p class="[ kicker-subtitle ] text-white">
-            <?= carlo_get('subtitle') ?>
-          </p>
+            <figure class="[ img__cover ]
+                        aspect-[100/43]">
+            <?= carlo_img('image', '750x322') ?>
+            </figure>
+
+            <div class="flex flex-col gap-4 my-6 pb-6
+                        border-b-1 border-b-white">
+            <h2 class="[ h2 ] text-white">
+                <?= carlo_get('title') ?>
+            </h2>
+            <p class="[ kicker-subtitle ] text-white">
+                <?= carlo_get('subtitle') ?>
+            </p>
+            </div>
+
+            <?= carlo_get('text') ?>
         </div>
-      
-      <?= carlo_get('text') ?>
-      </div>
     </header>
 
 

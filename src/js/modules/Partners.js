@@ -9,7 +9,7 @@ const speed = 0.5;
 const Partners = () => {
 
   const hasPartners = document.querySelectorAll('.section__partners');
-  
+
 
   if (hasPartners) {
     hasPartners.forEach((strip) => {
@@ -17,7 +17,7 @@ const Partners = () => {
       const partnersTrain = strip.querySelector('.partners');
       const originals = Array.from(strip.querySelectorAll('.partner'));
       let partners = [...originals];
-      
+
       const partnerDims = originals.map((partner) => ({
         width: (partner.getBoundingClientRect().width !== 0) ? partner.getBoundingClientRect().width : 200,
         height: (partner.getBoundingClientRect().height !== 0) ? partner.getBoundingClientRect().height : 'auto'
@@ -26,7 +26,7 @@ const Partners = () => {
       const partnersFill = () => {
         const windowWidth = window.innerWidth;
         let stripWidth = partners.reduce((sum, partner) => sum + partner.getBoundingClientRect().width + padd, 0);
-        
+
         while (stripWidth < windowWidth) {
           originals.forEach((originalPartner) => {
             const clonedPartner = originalPartner.cloneNode(true);
@@ -39,10 +39,10 @@ const Partners = () => {
       };
 
       partnersFill();
-      
+
       const partnersOrder = Array.from(partners);
       let stripWidth = 0;
-      
+
       partners.forEach((partner, index) => {
         const originalIndex = index % originals.length;
         partner.style.width = `${ partnerDims[originalIndex].width }px`;
@@ -58,7 +58,7 @@ const Partners = () => {
 
         partners.forEach((partner, index) => {
           let currentLeft = parseFloat(partner.style.left);
-          
+
           currentLeft -= speed;
           partner.style.left = `${currentLeft}px`;
 
@@ -67,9 +67,9 @@ const Partners = () => {
             const lastPartner = partnersOrder[partnersOrder.length - 1];
             const lastPartnerRect = lastPartner.getBoundingClientRect();
             const newLeft = lastPartnerRect.right + padd;
-            
+
             partner.style.left = `${newLeft - trainRect.left}px`;
-            
+
             partnersOrder.push(partnersOrder.shift());
           }
         });
