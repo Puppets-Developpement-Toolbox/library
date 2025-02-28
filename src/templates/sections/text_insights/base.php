@@ -18,7 +18,7 @@
                   
     <header class="text-white
                   laptop:col-span-5">
-      <div class="laptop:sticky laptop:top-6">
+      <div class="laptop:sticky laptop:top-34">
           
         <figure class="[ img__cover ]
                       aspect-[100/43]">
