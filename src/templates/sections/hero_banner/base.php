@@ -41,9 +41,9 @@
     </h1>
 
     <aside class="my-6
-                  border-t-[1px] border-t-black
                   laptop:grid laptop:grid-cols-7">
-      <div class="laptop:col-span-6 laptop:col-start-2">
+      <div class="border-t-[1px] border-t-black
+                  laptop:col-span-6 laptop:col-start-2">
         <p class="[ large ]
                   my-6"><?= carlo_get("push_cta_title") ?></p>
 
