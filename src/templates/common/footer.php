@@ -14,8 +14,8 @@
 
     <div class="flex flex-col gap-8
                 laptop:grid laptop:grid-cols-12 laptop:gap-0">
-        <?php carlo_menu('contact'); ?>
-        <?php carlo_menu('footer'); ?>
+        <?php //carlo_menu('contact'); ?>
+        <?php //carlo_menu('footer'); ?>
     </div>
 
   </div>

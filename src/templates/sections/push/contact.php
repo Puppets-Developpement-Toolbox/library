@@ -6,7 +6,7 @@
                 bg-gray-light
                 laptop:grid laptop:grid-cols-12">
 
-  <div class="flex flex-col gap-6 relative px-8 py-12
+  <div class="flex flex-col gap-6 relative z-10 px-8 py-12
               text-center
               laptop:col-span-8 laptop:col-start-3 laptop:px-0 laptop:py-14">
     <h2 class="[ h2 ]"><?= carlo_get('title') ?></h2>
