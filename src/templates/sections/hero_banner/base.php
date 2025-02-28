@@ -41,7 +41,7 @@
     </h1>
 
     <aside class="my-6
-                  laptop:grid laptop:grid-cols-7">
+                  laptop:grid laptop:grid-cols-7 laptop:mb-0">
       <div class="border-t-[1px] border-t-black
                   laptop:col-span-6 laptop:col-start-2">
         <p class="[ large ]
