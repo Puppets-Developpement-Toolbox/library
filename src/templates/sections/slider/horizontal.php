@@ -22,8 +22,8 @@
           <h2 class="[ h2 ]"><?= carlo_get('title') ?></h2>
 
           <aside class="[ swiper__dashboard ]
-                        flex justify-end gap-2
-                        laptop:flex-col laptop:justify-start">
+                        hidden
+                        laptop:flex laptop:flex-col laptop:justify-start laptop:gap-2">
             <button type="button"
                     class="[ swiper-button-prev ]
                           group/btn
