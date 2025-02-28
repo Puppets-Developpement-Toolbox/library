@@ -64,7 +64,7 @@ $slides = carlo_get("slides");
                         group-hover/btn:translate-x-1/2"><use href="#svg__arrow"></use></svg>
           </button>
           <div class="[ swiper-pagination ]
-                      !bottom-0 translate-y-full"></div>
+                      flex justify-center items-center !-bottom-2 translate-y-full"></div>
         </aside>
       </section>
       <?php endif; ?>
