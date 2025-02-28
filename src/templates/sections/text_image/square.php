@@ -28,7 +28,7 @@ $slides = carlo_get("slides");
             <?php foreach ($slides as $slide): ?>
             <li class="swiper-slide">
               <figure class="[ img__cover ]
-                            aspect-square">
+                            aspect-square !m-0">
                 <?= $slide["image"] ?>
               </figure>
             </li>

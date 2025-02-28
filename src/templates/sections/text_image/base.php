@@ -28,7 +28,7 @@ $slides = carlo_get("slides");
             <?php foreach ($slides as $slide): ?>
             <li class="swiper-slide">
               <figure class="[ img__cover ]
-                            aspect-[var(--ratio-img-mobile)]">
+                            aspect-[var(--ratio-img-mobile)] !m-0">
                 <?= carlo_img($slide["image"], '1072x1287') ?>
               </figure>
             </li>
