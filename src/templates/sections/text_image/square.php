@@ -76,7 +76,7 @@ $slides = array_filter($slides, function($slide){
     <section class="group/on-primary
                     px-8 py-10 pt-12
                     text-white
-                    laptop:col-span-6 laptop:flex laptop:items-center laptop:gap-5 laptop:overflow-y-auto laptop:items-start laptop:px-0 laptop:py-14
+                    laptop:col-span-6 laptop:flex laptop:items-center laptop:gap-5 laptop:overflow-hidden laptop:px-0 laptop:py-14
                     <?php if (!$revert): ?>
                       laptop:col-start-8 laptop:col-end-12 laptop:order-2
                     <?php else: ?>
