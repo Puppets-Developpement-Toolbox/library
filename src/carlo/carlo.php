@@ -173,5 +173,11 @@ function carlo_component($component)
     if (is_string($component)) {
         $component = carlo_get($component);
     }
+
+    //Règle le problème de super_section
+    if(isset($component['acf_fc_layout'])){
+        $component["_id"] = $component['acf_fc_layout'];
+    }
+
     return carlo_render($component["_id"], $component);
 }

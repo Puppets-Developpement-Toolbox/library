@@ -23,7 +23,7 @@
       </div>
     </header>
 
-    <?php if ($cards): ?>
+    <?php if (!empty($cards)): ?>
     <ul class="flex flex-col gap-8
               laptop:col-span-10 laptop:col-start-2 laptop:grid laptop:grid-cols-2">
       <?php foreach ($cards as $card): ?>

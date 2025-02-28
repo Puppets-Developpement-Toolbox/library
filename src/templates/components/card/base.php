@@ -1,6 +1,6 @@
 
 
-<a href="<?=carlo_get('link')?>" ><div class="[ card ]
+<div class="[ card ]
             group/card
             flex flex-col h-full">
   <figure class="[ img__cover ]
@@ -8,7 +8,7 @@
     <div class="scale-115 h-full
                 transition-transform duration-500
                 group-hover/card:scale-100">
-      <?= carlo_get('image') ?>
+      <?= carlo_img('image', '630x394') ?>
     </div>
   </figure>
   <div class="flex-1 flex flex-col gap-6 mb-[1px] p-8
@@ -19,7 +19,7 @@
                   after:transition-transform after:duration-500
                   after:block after:origin-left after:w-full after:h-[1px] after:mt-4 after:bg-black
                   group-hover/card:after:scale-x-85">
-      <h3 class="[ h3 ]"><?= carlo_get('title') ?></h3>
+      <h3 class="[ h3 ]"><?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("title"))); ?></h3>
       <span class="[ kicker-subtitle ]"><?= carlo_get('subtitle') ?></span>
     </header>
     <div class="[ text ]
@@ -27,6 +27,8 @@
                 group-[&]/on-primary:text-primary">
                     <?= carlo_get('content') ?>
     </div>
-    <?php carlo_render('components/cta:tertiary', ['link' => carlo_get('link'), 'label' => carlo_get('name')]) ?>
+    <?php if(carlo_get('cta')):?>
+    <?php carlo_render('components/cta:tertiary', carlo_get('cta')) ?>
+    <?php endif; ?>
   </div>
-</div></a>
+</div>

@@ -6,6 +6,9 @@
   $bg_primary = false;
   $slides = carlo_get('slides');
 
+  $slides = array_filter($slides, function($slide){
+      return $slide['image'] !== false;
+  });
 ?>
 
 <?php if ($bg_primary): ?>
@@ -16,15 +19,14 @@
     <section class="[ section has-slider slider-cards ]
                     flex flex-col gap-8
                     group-[&]/on-primary:py-16 group-[&]/on-primary:bg-transparent group-[&]/on-primary:laptop:py-30">
-
-      <header>
+    <header>
         <h2 class="[ h2 ]
                   mb-6
                   group-[&]/on-primary:text-white
                   laptop:col-span-12">
-          <?= carlo_get("title") ?>
+        <?=str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("title"))); ?>
         </h2>
-            
+
         <div class="laptop:grid laptop:grid-cols-12">
           <div class="laptop:col-span-8">
             <?= carlo_get("description") ?>
@@ -62,8 +64,8 @@
             </div>
             <?php if (carlo_get("cta")) {
                 carlo_render("components/cta", [
-                    "link" => "#",
-                    "label" => "Voir tout",
+                    "link" => carlo_get('cta')['link'],
+                    "label" => carlo_get('cta')['label'],
                 ]);
             } ?>
           </aside>
@@ -74,17 +76,19 @@
 
 
 
-      <?php if ($slides): ?>
+      <?php if (!empty($slides)): ?>
       <div>
         <section class="swiper
                     !overflow-visible">
           <ul class="swiper-wrapper">
             <?php foreach ($slides as $slide): ?>
-            <li class="swiper-slide
-                      !w-72.5 !h-auto
-                      laptop:!w-92">
-              <?php carlo_render('components/card', $slide); ?>
-            </li>
+                <?php if(!empty($slide['title'])): ?>
+                    <li class="swiper-slide
+                            !w-72.5 !h-auto
+                            laptop:!w-92">
+                    <?php carlo_render('components/card', $slide); ?>
+                    </li>
+                <?php endif ?>
             <?php endforeach ?>
             </ul>
         </section>
@@ -95,8 +99,8 @@
                     laptop:hidden">
         <?php if (carlo_get("cta")) {
             carlo_render("components/cta", [
-                "link" => "#",
-                "label" => "Voir tout",
+                "link" => carlo_get('cta')['link'],
+                "label" => carlo_get('cta')['label'],
             ]);
         } ?>
       </aside>

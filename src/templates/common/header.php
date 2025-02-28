@@ -27,7 +27,7 @@
             laptop:block laptop:static laptop:w-full laptop:bg-transparent laptop:text-primary">
     <div class="flex flex-col gap-16 mt-14
                 laptop:flex-row laptop:justify-between laptop:h-24 laptop:mt-0">
-    
+
 
 
       <figure class="h-20
@@ -117,15 +117,15 @@
                 target="_blank">Sophie Beignon</a>
             </li>
           </ul>
-          
+
           <a href="mailto:diapsodie@gmail.com"
             class="block py-3.5
                   bg-secondary
                   font-semibold text-center underline underline-offset-3">diapsodie@gmail.com</a>
-        
+
         </div>
       </div>
-      
+
       <div class="hidden
                   laptop:flex laptop:items-center">
         <?php
@@ -144,14 +144,14 @@
 
 
 
-  
+
   <button type="button"
           class="[ hamburger ]
                 group/btn
                 relative z-30 size-10 p-2
                 laptop:hidden"
           aria-controls="primary-navigation"
-          aria-expanded="false">		
+          aria-expanded="false">
     <span class="[ top ]
                 block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1.5 w-6 h-0.25
                 bg-primary
@@ -170,6 +170,5 @@
   </button>
 
 
-  
-</header>
 
+</header>

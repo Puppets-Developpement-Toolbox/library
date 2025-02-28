@@ -16,10 +16,7 @@
     <div class="flex justify-center">
       <?php
         // TODO: Proposer dans l'admin un CTA Primary ou Secondary
-        carlo_render("components/cta:secondary", [
-          "link" => "#",
-          "label" => "En savoir plus sur nos méthodes",
-        ]);
+        carlo_render("components/cta:secondary", carlo_get('cta'));
       ?>
     </div>
   </div>

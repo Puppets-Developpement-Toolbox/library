@@ -1,6 +1,6 @@
 
 
-
+<?php if(carlo_get('details') || carlo_get('content')): ?>
 <div class="flex flex-col gap-6 p-8
             border-1 border-white
             group-even/insight:bg-white group-even/insight:text-primary">
@@ -17,3 +17,4 @@
     <?= carlo_get('content') ?>
   </div>
 </div>
+<?php endif; ?>

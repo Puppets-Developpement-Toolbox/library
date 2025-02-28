@@ -1,11 +1,7 @@
 
 
 
-<?php
-
-  $slides = carlo_get('slides');
-
-?>
+<?php $slides = carlo_get('slides'); ?>
 
 <div class="overflow-x-clip
             laptop:relative

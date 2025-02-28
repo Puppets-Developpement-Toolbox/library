@@ -1,6 +1,7 @@
 
 
 
+<?php if (carlo_get('quote')): ?>
 <figure class="relative flex flex-col gap-4 mb-[1px] p-6
               bg-gray-light
               group-[&]/super-section:bg-white group-[&]/super-section:border-1 group-[&]/super-section:border-black
@@ -30,3 +31,4 @@
               laptop:size-10"><svg viewBox="0 0 56 56"><use href="#svg__quote"></use></svg></span>
 
 </figure>
+<?php endif ?>

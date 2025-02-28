@@ -7,7 +7,9 @@
 $revert = false;
 
 $slides = carlo_get("slides");
-
+$slides = array_filter($slides, function($slide){
+    return $slide['image'] !== false;
+});
 ?>
 
 <section class="[ section has-slider ]">
@@ -85,7 +87,7 @@ $slides = carlo_get("slides");
           <p class="[ kicker-subtitle ] mb-2"><?= carlo_get("surtitle") ?></p>
           <?php endif; ?>
           <h2 class="[ h2 ]">
-            <?= carlo_get("title") ?>
+            <?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("title"))); ?>
           </h2>
         </header>
         <div class="[ text ]"><?= carlo_get("description") ?></div>
@@ -95,10 +97,7 @@ $slides = carlo_get("slides");
         </div>
         <?php endif ?>
         <?php if (carlo_get("cta")) {
-            carlo_render("components/cta", [
-                "link" => "#",
-                "label" => "En savoir plus",
-            ]);
+            carlo_render("components/cta", carlo_get("cta"));
         } ?>
       </div>
     </section>

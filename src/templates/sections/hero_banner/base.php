@@ -35,40 +35,34 @@
     <h1 class="[ h1 ]">
       <span class="[ kicker-subtitle ]
                   mb-2"><?= carlo_get("surtitle") ?></span>
-      <?php if(isset(carlo_get("title")['title'])): ?>
-      <?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("title")['title'])); ?>
+      <?php if(carlo_get("title")): ?>
+      <?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("title"))); ?>
       <?php endif; ?>
     </h1>
 
     <aside class="my-6
-                  laptop:grid laptop:grid-cols-7 laptop:mb-0">
-      <div class="border-t-[1px] border-t-black
-                  laptop:col-span-6 laptop:col-start-2">
-        <p class="[ large ]
+        laptop:grid laptop:grid-cols-7 laptop:mb-0">
+        <div class="border-t-[1px] border-t-black
+            laptop:col-span-6 laptop:col-start-2">
+        <?php if(carlo_get("push_cta_title")): ?>
+          <p class="[ large ]
                   my-6"><?= carlo_get("push_cta_title") ?></p>
-
+        <?php endif; ?>
         <?php if (carlo_get("cta") || carlo_get("cta_contact")): ?>
         <ul class="flex flex-col gap-3
                   laptop:flex-row">
-          <?php if (carlo_get("cta")): $cta = carlo_get("cta"); ?>
-            <li><?php carlo_render("components/cta", [
-                "link" => !empty($cta['cta']["link"])? $cta['cta']['link'] : '',
-                "label" => !empty($cta['cta']["label"])? $cta['cta']["label"] : '',
-            ]); ?></li>
+          <?php if (carlo_get("cta")): ?>
+            <li><?php carlo_render("components/cta", carlo_get("cta")); ?></li>
           <?php endif; ?>
 
-          <?php if (carlo_get("cta_contact")): $cta_contact = carlo_get("cta_contact"); ?>
-            <li><?php carlo_render("components/cta:secondary", [
-                "link" => !empty($cta_contact['cta_contact']["link"])? $cta_contact['cta_contact']["link"] : '',
-                "label" => !empty($cta_contact['cta_contact']["label"])? $cta_contact['cta_contact']["link"] : '',
-            ]); ?></li>
+          <?php if (carlo_get("cta_contact")): ?>
+            <li><?php carlo_render("components/cta:secondary", carlo_get("cta_contact")); ?></li>
           <?php endif; ?>
         </ul>
         <?php endif; ?>
       </div>
 
     </aside>
-
   </section>
 
 </header>

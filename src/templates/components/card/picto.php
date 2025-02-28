@@ -1,6 +1,6 @@
 
 
-
+<?php if(carlo_get('picto')): ?>
 <div class="[ card ]
             group/card
             flex items-center gap-4 h-full px-10 py-8
@@ -20,3 +20,4 @@
     <?= carlo_get('content') ?>
   </div>
 </div>
+<?php endif; ?>

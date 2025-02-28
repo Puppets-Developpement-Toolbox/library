@@ -35,16 +35,13 @@
         <aside class="hidden
                       laptop:block">
           <?php if (carlo_get("cta")) {
-              carlo_render("components/cta", [
-                  "link" => carlo_get('link'),
-                  "label" => "En savoir plus sur nos méthodes",
-              ]);
+              carlo_render("components/cta", carlo_get('cta'));
           } ?>
         </aside>
       </div>
     </header>
 
-    <?php if ($slides): ?>
+    <?php if (!empty($slides)): ?>
       <?php $cols =
           count($slides) === 2 || count($slides) === 4
               ? "laptop:grid-cols-2"
@@ -62,10 +59,7 @@
     <aside class="flex justify-center
                   laptop:hidden">
       <?php if (carlo_get("cta")) {
-          carlo_render("components/cta", [
-              "link" => carlo_get('link'),
-              "label" => "En savoir plus sur nos méthodes",
-          ]);
+          carlo_render("components/cta", carlo_get('cta'));
       } ?>
     </aside>
 

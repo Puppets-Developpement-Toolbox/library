@@ -4,7 +4,9 @@
 <?php
 
   $slides = carlo_get('slides');
-
+  $slides = array_filter($slides, function($slide){
+      return $slide['image'] !== false;
+  });
 ?>
 
 <div class="bg-primary text-white
@@ -22,7 +24,7 @@
                   laptop:col-span-12">
           <?= carlo_get("title") ?>
         </h2>
-            
+
         <div class="laptop:grid laptop:grid-cols-12">
           <div class="laptop:col-span-8">
             <?= carlo_get("description") ?>
@@ -59,10 +61,7 @@
               </button>
             </div>
             <?php if (carlo_get("cta")) {
-                carlo_render("components/cta", [
-                    "link" => "#",
-                    "label" => "Voir tout",
-                ]);
+                carlo_render("components/cta", carlo_get("cta"));
             } ?>
           </aside>
         </div>
@@ -72,7 +71,7 @@
 
 
 
-      <?php if ($slides): ?>
+      <?php if (!empty($slides)): ?>
       <div>
         <section class="swiper
                     !overflow-visible">
@@ -83,7 +82,7 @@
                       laptop:!w-175">
               <figure class="[ img__cover ]
                             aspect-[6/5]">
-                <?= $slide['image'] ?>
+                <?= carlo_img($slide['image'], '435x363', ['1050x876']) ?>
               </figure>
             </li>
             <?php endforeach ?>
@@ -95,10 +94,7 @@
       <aside class="flex justify-center
                     laptop:hidden">
         <?php if (carlo_get("cta")) {
-            carlo_render("components/cta", [
-                "link" => "#",
-                "label" => "Voir tout",
-            ]);
+            carlo_render("components/cta", carlo_get('cta'));
         } ?>
       </aside>
 

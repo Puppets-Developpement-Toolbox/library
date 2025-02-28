@@ -1,6 +1,6 @@
 
 
-
+<?php if(carlo_get('link') || carlo_get('label')): ?>
 <a href="<?= carlo_get('link') ?>">
   <button type="button"
           class="group/btn
@@ -15,3 +15,4 @@
     <span><?= carlo_get('label') ?></span>
   </button>
 </a>
+<?php endif; ?>

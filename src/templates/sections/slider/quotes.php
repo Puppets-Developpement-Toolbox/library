@@ -1,9 +1,12 @@
 
 
 
-<?php 
+<?php
 
   $slides = carlo_get('slides');
+  $slides = array_filter($slides, function($slide){
+      return $slide['quote'] !== '';
+  });
 
 ?>
 <div class="overflow-x-clip
@@ -27,7 +30,8 @@
             <h2 class="[ h2 ]"><?= carlo_get('title') ?></h2>
             <div><?= carlo_get('subtitle') ?></div>
           </div>
-          
+
+          <?php if(count($slides) > 1): ?>
           <aside class="[ swiper__dashboard ]
                         flex justify-end gap-2
                         laptop:flex-col laptop:justify-start">
@@ -58,7 +62,8 @@
                           group-hover/btn:translate-x-1/2"><use href="#svg__arrow"></use></svg>
             </button>
           </aside>
-        
+          <?php endif; ?>
+
         </div>
       </header>
 
@@ -103,5 +108,5 @@
 
 
 <?php
-  carlo_render("components/partners", ['logos' => carlo_get('partners')['logos']]);
+  carlo_render("components/partners", carlo_get('partners'));
 ?>

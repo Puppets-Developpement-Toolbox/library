@@ -2,11 +2,12 @@
 
 
 <?php $logos = carlo_get('logos'); ?>
-
+<?php if(!empty($logos)): ?>
 <section class="[ section__partners ]">
   <ul class="[ partners ]
             overflow-x-clip relative my-14 h-25">
     <?php foreach ($logos as $logo): ?>
+    <?php if(!empty($logo['logo'])): ?>
     <li data-xmin="0"
         class="[ partner ]
               flex justify-center items-center aspect-[19/10] w-47.5
@@ -16,6 +17,8 @@
           alt="<?= $logo['brand'] ?>"
           class="size-full object-contain">
     </li>
+    <?php endif; ?>
     <?php endforeach ?>
   </ul>
 </section>
+<?php endif; ?>

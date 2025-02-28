@@ -6,7 +6,9 @@
 $revert = false;
 
 $slides = carlo_get("slides");
-
+$slides = array_filter($slides, function($slide){
+    return $slide['image'] !== false;
+});
 ?>
 
 <section class="[ section has-slider ]">
@@ -29,7 +31,7 @@ $slides = carlo_get("slides");
             <li class="swiper-slide">
               <figure class="[ img__cover ]
                             aspect-square !m-0">
-                <?= $slide["image"] ?>
+                <?= carlo_img($slide["image"], '1072x1072') ?>
               </figure>
             </li>
             <?php endforeach ?>
@@ -97,10 +99,7 @@ $slides = carlo_get("slides");
         </header>
         <div class="[ text ]"><?= carlo_get("description") ?></div>
         <?php if (carlo_get("cta")) {
-            carlo_render("components/cta", [
-                "link" => "#",
-                "label" => "En savoir plus",
-            ]);
+            carlo_render("components/cta", carlo_get("cta"));
         } ?>
       </div>
     </section>
