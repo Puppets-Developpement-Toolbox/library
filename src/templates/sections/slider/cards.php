@@ -82,7 +82,7 @@
                 <?php if(!empty($slide['title'])): ?>
                     <li class="swiper-slide
                             !w-72.5 !h-auto
-                            laptop:!w-92">
+                            laptop:!w-[31%]">
                     <?php carlo_render('components/card', $slide); ?>
                     </li>
                 <?php endif ?>

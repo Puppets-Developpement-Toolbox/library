@@ -5,7 +5,7 @@
             flex flex-col h-full">
   <figure class="[ img__cover ]
                 shrink-0 aspect-[8/5] overflow-clip !m-0">
-    <div class="scale-115 h-full
+    <div class="aspect-[8/5] scale-115 h-full
                 transition-transform duration-500
                 group-hover/card:scale-100">
       <?= carlo_img('image', '630x394') ?>
