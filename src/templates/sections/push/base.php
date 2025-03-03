@@ -13,7 +13,7 @@
 
 <?php if ($bg_primary): ?>
 <div class="bg-primary text-white
-              group/on-primary">
+            group/on-primary">
 <?php endif; ?>
 
 
@@ -49,9 +49,10 @@
     <ul class="flex flex-col <?= $gap_class ?>
               laptop:grid <?= $cols ?>">
       <?php foreach ($slides as $slide): ?>
-      <li>
-        <?php carlo_render($slide_template, $slide); ?>
-      </li>
+        <?php if ($bg_primary) $slide['style'] = 'card__primary'; ?>
+        <li class="[ slide__primary ]">
+          <?php carlo_render($slide_template, $slide); ?>
+        </li>
       <?php endforeach; ?>
     </ul>
     <?php endif; ?>
