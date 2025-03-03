@@ -83,7 +83,7 @@ $slides = array_filter($slides, function($slide){
                       laptop:order-1 laptop:col-start-1 laptop:col-end-6
                     <?php endif; ?>">
       <div class="flex flex-col gap-6 laptop:gap-8">
-        <header class="">
+        <header>
           <?php if (carlo_get("surtitle")): ?>
           <p class="[ kicker-subtitle ] mb-2"><?= carlo_get("surtitle") ?></p>
           <?php endif; ?>
@@ -93,7 +93,9 @@ $slides = array_filter($slides, function($slide){
         </header>
         <div class="[ text ]"><?= carlo_get("description") ?></div>
         <?php if (carlo_get('highlight')): ?>
-        <div class="p-10 bg-gray-light">
+        <div class="p-10
+                    bg-gray-light
+                    group-[&]/super-section:bg-white">
           <?= carlo_get('highlight') ?>
         </div>
         <?php endif ?>
