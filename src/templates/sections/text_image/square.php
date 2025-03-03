@@ -85,12 +85,11 @@ $slides = array_filter($slides, function($slide){
                     [scrollbar-width:none]">
       <div class="flex flex-col gap-6 laptop:gap-8
                   text-white">
-        <header class="[ kicker-subtitle ]
-                      pb-6
+        <header class="pb-6
                       border-b-[1px] border-b-white
                       text-white">
           <?php if (carlo_get("surtitle")): ?>
-          <p class="mb-2"><?= carlo_get("surtitle") ?></p>
+          <p class="[ kicker-subtitle ] mb-2 text-white"><?= carlo_get("surtitle") ?></p>
           <?php endif; ?>
           <h2 class="[ h2 ]
                     text-white">
