@@ -10,7 +10,7 @@
                 transition-all duration-300
                 hover:bg-left hover:text-primary
                 group-[.bg-primary]/section:border-white
-                group-[&]/on-primary:bg-gradient-to-l group-[&]/on-primary:border-white group-[&]/on-primary:text-primary group-[&]/on-primary:hover:text-white
+                group-[&]/on-primary:border-white group-[&]/on-primary:text-white group-[&]/on-primary:hover:text-primary
                 group-[&]/hero:w-full group-[&]/hero:laptop:w-fit">
     <span class="shrink-0 size-6 text-accent
                 transition-transform duration-300
