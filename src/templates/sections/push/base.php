@@ -26,7 +26,7 @@
       <h2 class="[ h2 ]
                   group-[&]/on-primary:text-white
                   laptop:col-span-12">
-        <?= carlo_get("title") ?>
+        <?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("title"))); ?>
       </h2>
       <?php endif; ?>
 
