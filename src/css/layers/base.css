@@ -45,7 +45,15 @@
     strong { @apply font-bold; }
   }
   :is(.nav).phone-number { @apply font-bold text-[18px]; }
-  
+
+
+
+  /* -------------------------------------------------- COMMONS */
+
+  .kicker-subtitle { @apply block font-normal text-base leading-[1.2] text-black uppercase; }
+  .large { @apply font-light text-[18px] text-primary leading-[1.4] group-[&]/on-primary:text-inherit; }
+  .button { @apply font-normal text-base; }
+
   .text {
     > ul {
       @apply flex flex-col gap-6 my-6;
@@ -64,14 +72,11 @@
     }
   }
 
-
-
-  /* -------------------------------------------------- COMMONS */
-
-  .kicker-subtitle { @apply block font-normal text-base leading-[1.2] text-black uppercase; }
-  .large { @apply font-light text-[18px] text-primary leading-[1.4] group-[&]/on-primary:text-inherit; }
-  .button { @apply font-normal text-base; }
-
+  .active-trail {
+    @apply relative;
+    @apply font-bold;
+    @apply after:content-[''] after:block after:absolute after:bottom-0 after:w-full after:h-1 after:bg-accent;
+  }
 
 
 }
