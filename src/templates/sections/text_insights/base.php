@@ -29,7 +29,7 @@
             <div class="flex flex-col gap-4 pb-6
                         border-b-1 border-b-white">
             <h2 class="[ h2 ] text-white">
-                <?= carlo_get('title') ?>
+                <?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("title"))); ?>
             </h2>
             <p class="[ kicker-subtitle ] text-white">
                 <?= carlo_get('subtitle') ?>
