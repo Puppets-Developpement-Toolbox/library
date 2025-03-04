@@ -1,7 +1,7 @@
 title:
-  _type: text_short
+  _type: text
   _label: Titre
-  _help: Encadrer du texte entre &lt; et &gt; pour le mettre en forme, par exemple &lt; mon texte en italique &gt;.
+  _help: Encadrer du texte entre &lt; et &gt; pour le mettre en forme, par exemple &lt; mon texte en italique &gt;. Et shift+enter pour aller à la ligne.
 description: wysiwyg
 cta: !load components/cta
 slides:
