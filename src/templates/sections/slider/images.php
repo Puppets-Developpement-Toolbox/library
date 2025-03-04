@@ -81,7 +81,7 @@
             <?php foreach ($slides as $slide): ?>
             <li class="swiper-slide
                       !w-72.5 !h-auto
-                      laptop:!w-175">
+                      laptop:!w-7/12">
               <figure class="[ img__cover ]
                             aspect-[6/5]">
                 <?= carlo_img($slide['image'], '435x363', ['1050x876']) ?>
