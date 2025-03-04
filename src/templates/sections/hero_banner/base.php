@@ -46,7 +46,7 @@
             laptop:col-span-6 laptop:col-start-2">
         <?php if(carlo_get("description")): ?>
           <p class="[ large ]
-                  my-6 text-black"><?= carlo_get("description") ?></p>
+                    my-6 !text-black"><?= carlo_get("description") ?></p>
         <?php endif; ?>
         <?php if (carlo_get("cta") || carlo_get("cta_contact")): ?>
         <ul class="flex flex-col gap-3
