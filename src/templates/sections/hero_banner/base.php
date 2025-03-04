@@ -43,27 +43,31 @@
 
     <aside class="mb-6
                   laptop:grid laptop:grid-cols-7 laptop:mb-0">
+    <?php if(carlo_get("description")
+            || ((carlo_get("cta")['link'] && carlo_get("cta")['label'])
+                || (carlo_get("cta_contact")['link'] && carlo_get("cta_contact")['label']))): ?>
         <div class="border-t-[1px] border-t-black
             laptop:col-span-6 laptop:col-start-2">
-        <?php if(carlo_get("description")): ?>
-          <p class="[ large ]
-                    mt-6 !text-black"><?= carlo_get("description") ?></p>
-        <?php endif; ?>
-        <?php if (carlo_get("cta") || carlo_get("cta_contact")): ?>
-        <ul class="flex flex-col gap-3 mt-6
-                  laptop:flex-row">
-          <?php if (carlo_get("cta")): ?>
-            <li><?php carlo_render("components/cta", carlo_get("cta")); ?></li>
-          <?php endif; ?>
+            <?php if(carlo_get("description")): ?>
+            <p class="[ large ]
+                        my-6 !text-black"><?= carlo_get("description") ?></p>
+            <?php endif; ?>
+            <?php if (carlo_get("cta") || carlo_get("cta_contact")): ?>
+            <ul class="flex flex-col gap-3 mt-6
+                    laptop:flex-row">
+            <?php if (carlo_get("cta")): ?>
+                <li><?php carlo_render("components/cta", carlo_get("cta")); ?></li>
+            <?php endif; ?>
 
-          <?php if (carlo_get("cta_contact")): ?>
-            <li><?php carlo_render("components/cta:secondary", carlo_get("cta_contact")); ?></li>
-          <?php endif; ?>
-        </ul>
-        <?php endif; ?>
-      </div>
-
+            <?php if (carlo_get("cta_contact")): ?>
+                <li><?php carlo_render("components/cta:secondary", carlo_get("cta_contact")); ?></li>
+            <?php endif; ?>
+            </ul>
+            <?php endif; ?>
+        </div>
+      <?php endif; ?>
     </aside>
+
   </section>
 
 </header>
