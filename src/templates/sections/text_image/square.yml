@@ -1,3 +1,7 @@
+revert:
+  _type: boolean
+  _label: Inverser la disposition du block
+  _help: Par défaut le texte est à droite et l'image est à gauche
 surtitle: text_short
 title: text_short
 description: wysiwyg
@@ -6,4 +10,3 @@ slides:
   _type: repeater
   _repeat:
     image: image
-  _times: 4

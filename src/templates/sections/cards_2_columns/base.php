@@ -10,7 +10,7 @@
 <section class="[ section section__push ]
                 flex flex-col gap-8
                 laptop:grid laptop:grid-cols-12">
-
+<?php if(carlo_get("title") || carlo_get('description')): ?>
     <header class="laptop:col-span-10 laptop:col-start-2">
       <h2 class="[ h2 ]
                   mb-6">
@@ -22,15 +22,18 @@
         </div>
       </div>
     </header>
+<?php endif; ?>
 
     <?php if (!empty($cards)): ?>
     <ul class="flex flex-col gap-8
               laptop:col-span-10 laptop:col-start-2 laptop:grid laptop:grid-cols-2">
-      <?php foreach ($cards as $card): ?>
+      <?php foreach ($cards as $card):
+        if(!empty($card['title'])): $card['border'] = true; ?>
       <li>
         <?php carlo_render('components/card', $card); ?>
       </li>
-      <?php endforeach; ?>
+      <?php endif;
+      endforeach; ?>
     </ul>
     <?php endif; ?>
 

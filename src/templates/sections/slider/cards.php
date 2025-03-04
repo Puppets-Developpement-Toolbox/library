@@ -6,9 +6,6 @@
   $bg_primary = false;
   $slides = carlo_get('slides');
 
-  $slides = array_filter($slides, function($slide){
-      return $slide['image'] !== false;
-  });
 ?>
 
 <?php if ($bg_primary): ?>
@@ -95,10 +92,7 @@
       <aside class="flex justify-center
                     laptop:hidden">
         <?php if (carlo_get("cta")) {
-            carlo_render("components/cta", [
-                "link" => carlo_get('cta')['link'],
-                "label" => carlo_get('cta')['label'],
-            ]);
+            carlo_render("components/cta", carlo_get('cta'));
         } ?>
       </aside>
 

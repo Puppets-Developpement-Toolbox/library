@@ -139,7 +139,7 @@ abstract class BaseDriver implements DriverInterface
             if(is_string($substruct)) continue;
 
 
-            if ( isset($substruct['_type']) && $substruct['_type'] == "repeater" ) {
+            if (is_array($args[$key]) && isset($substruct['_type']) && $substruct['_type'] == "repeater" ) {
                 foreach($args[$key] as $arg_key => $arg_value){
                     $args[$key][$arg_key] = $this->loadData($substruct['_repeat'], $arg_value);
                 }

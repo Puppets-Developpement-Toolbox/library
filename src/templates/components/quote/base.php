@@ -6,7 +6,6 @@
               bg-gray-light
               group-[&]/super-section:bg-white group-[&]/super-section:border-1 group-[&]/super-section:border-black
               laptop:col-span-10 laptop:col-start-2 laptop:flex-row laptop:flex-wrap laptop:gap-6">
-
   <span class="block size-8
               text-primary-light
               laptop:size-10"><svg viewBox="0 0 56 56"><use href="#svg__quote"></use></svg></span>
@@ -22,7 +21,8 @@
   <figcaption class="before:block before:size-2 before:mb-4 before:rounded-full before:bg-accent
                     laptop:w-full laptop:mx-10 laptop:before:mb-6">
     <small><strong class="block
-                          laptop:inline-block laptop:mr-2"><?= carlo_get('author') ?></strong><?= carlo_get('charge') ?></small>
+                          laptop:inline-block laptop:mr-2"><?= carlo_get('author') ?></strong>
+                          <?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("charge"))); ?></small>
   </figcaption>
   <?php endif ?>
 

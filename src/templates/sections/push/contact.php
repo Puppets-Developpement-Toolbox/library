@@ -9,14 +9,14 @@
   <div class="flex flex-col gap-6 relative z-10 px-8 py-12
               text-center
               laptop:col-span-8 laptop:col-start-3 laptop:px-0 laptop:py-14">
-    <h2 class="[ h2 ]"><?= carlo_get('title') ?></h2>
+    <h2 class="[ h2 ]"><?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("title"))); ?></h2>
     <div class="text-primary">
       <?= carlo_get('description') ?>
     </div>
     <div class="flex justify-center">
       <?php
         // TODO: Proposer dans l'admin un CTA Primary ou Secondary
-        carlo_render("components/cta:secondary", carlo_get('cta'));
+        carlo_render("components/cta", carlo_get('cta'));
       ?>
     </div>
   </div>

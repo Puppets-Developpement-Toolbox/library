@@ -14,10 +14,11 @@ const CreateSlider = (wrapper) => {
     hasSwiper.forEach((slider) => {
 // console.log(slider)
 if (slider.classList.contains('slider-cards')) console.log(slider)
-
+      console.log(slider);
       const dashboard = slider.querySelector('.swiper__dashboard');
+
       const initialSlide = (slider.classList.contains('slider-quotes')) ? (slider.querySelectorAll('.swiper-slide').length - 1) : 0;
-      
+
       let loop = true;
       if (slider.classList.contains('slider-horizontal') || slider.classList.contains('slider-cards')) {
         loop = false;
@@ -27,7 +28,7 @@ if (slider.classList.contains('slider-cards')) console.log(slider)
       if (slider.classList.contains('slider-horizontal') || slider.classList.contains('slider-cards')) {
         slidesPerView = 'auto';
       }
-      
+
       let spaceBetween = 0;
       if (slider.classList.contains('slider-horizontal')) {
         spaceBetween = 24;
@@ -36,14 +37,14 @@ if (slider.classList.contains('slider-cards')) console.log(slider)
       }
 
       const swiper = new Swiper(slider.querySelector('.swiper'), {
-        
+
         // Init
         loop: loop,
         lazy: true,
         slidesPerView: slidesPerView,
         spaceBetween: spaceBetween,
         initialSlide: initialSlide,
-        
+
         // Contrôles
         grabCursor: true,
         mousewheel: false,

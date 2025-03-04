@@ -15,12 +15,19 @@
                 laptop:size-14">
     <svg viewBox="0 0 56 56"><use href="#svg__<?= carlo_get('picto') ?>"></use></svg>
   </figure>
-  <div class="[ h4 ]
-              m-0 
-              transition duration-300
-              <?php if (carlo_get('style') === 'card__primary'): ?> text-white group-hover/card:text-primary
-              <?php else: ?> text-primary group-hover/card:text-white
-              <?php endif ?>">
+  <?php if (carlo_get('style') === 'card__primary'): ?>
+    <div class="[ h4 ]
+                m-0
+                transition duration-300
+                text-white group-hover/card:text-primary
+                ">
+    <?php else: ?>
+    <div class="[ h4 ]
+                m-0
+                transition duration-300
+                text-primary group-hover/card:text-white
+                ">
+    <?php endif ?>
     <?= carlo_get('content') ?>
   </div>
 </div>

@@ -6,8 +6,6 @@
 @import 'tailwindcss';
 @source './../../src/**/*';
 
-
-
 /* ------------------------------ Setup */
 
 @import './config/webfonts.css';

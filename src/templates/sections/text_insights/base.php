@@ -36,6 +36,9 @@
             </div>
 
             <?= carlo_get('text') ?>
+            <?php if (carlo_get("cta")) {
+                carlo_render("components/cta", carlo_get("cta"));
+            } ?>
         </div>
     </header>
 

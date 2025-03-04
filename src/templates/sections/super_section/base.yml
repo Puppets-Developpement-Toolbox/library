@@ -2,5 +2,5 @@ elements:
   - !load sections/text_image
   - !load sections/slider:quotes
   - !load sections/quote
-  
-  
+  - !load sections/post:realisation
+  - !load sections/cards_2_columns

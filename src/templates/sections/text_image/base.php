@@ -4,7 +4,7 @@
 <?php
 
 // Inversion distribution image/texte
-$revert = false;
+$revert = carlo_get('revert');
 
 $slides = carlo_get("slides");
 $slides = array_filter($slides, function($slide){
@@ -87,9 +87,10 @@ $slides = array_filter($slides, function($slide){
           <?php if (carlo_get("surtitle")): ?>
           <p class="[ kicker-subtitle ] mb-2"><?= carlo_get("surtitle") ?></p>
           <?php endif; ?>
-          <h2 class="[ h2 ]">
+          <h2 class="[ h2 ] mb-2">
             <?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("title"))); ?>
           </h2>
+          <span><?= carlo_get('subtitle'); ?></span>
         </header>
         <div class="[ text ]"><?= carlo_get("description") ?></div>
         <?php if (carlo_get('highlight')): ?>
@@ -99,9 +100,9 @@ $slides = array_filter($slides, function($slide){
           <?= carlo_get('highlight') ?>
         </div>
         <?php endif ?>
-        <?php if (carlo_get("cta")) {
-            carlo_render("components/cta", carlo_get("cta"));
-        } ?>
+        <?php if (carlo_get("cta")) : ?>
+            <div ><?=carlo_render("components/cta", carlo_get("cta")); ?></div>
+        <?php endif; ?>
       </div>
     </section>
 

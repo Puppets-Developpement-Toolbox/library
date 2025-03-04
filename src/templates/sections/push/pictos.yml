@@ -1,3 +1,4 @@
+bg_primary: boolean
 title: text_short
 description: wysiwyg
 cta: !load components/cta
@@ -15,4 +16,3 @@ cards:
         broadcast: broadcast
         key: key
     content: wysiwyg
-  _times: 6 #repeat n times
