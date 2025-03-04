@@ -63,7 +63,7 @@
                 <?php if(!empty($slide['text'])): ?>
                     <?php $style = ($num % 2 === 0) ? 'bg-gray-light' : 'border-1 border-black' ?>
                     <li class="swiper-slide
-                                !size-auto">
+                                !size-auto <?= ($num % 2 !== 0) ? 'mb-[1px]' : '' ?>">
                         <div class="[ h5 ]
                                     select-none w-61 h-full px-10 py-12
                                     laptop:w-75

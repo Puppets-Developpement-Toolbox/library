@@ -15,7 +15,7 @@ $slides = array_filter($slides, function($slide){
 <section class="[ section has-slider ]
                 group-[&]/super-section:bg-transparent">
   <div class="group/section
-              laptop:grid laptop:grid-cols-12">
+              laptop:grid laptop:grid-cols-12 laptop:items-center">
 
     <div class="laptop:col-span-6
                 <?php if (!$revert): ?>
