@@ -2,7 +2,8 @@
 
 
 <?php if(carlo_get('link') || carlo_get('label')): ?>
-  <button href="<?= carlo_get('link') ?>" type="button"
+<?php if(carlo_get('link')): ?><a href="<?= carlo_get('link') ?>" ><?php endif; ?>
+<button type="button"
           class="group/btn
                 flex justify-center items-center gap-1.5 w-auto px-6 py-3 w-fit
                 rounded-full bg-gradient-to-r from-white from-50% to-primary to-50% bg-right bg-[size:202%] bg-no-repeat border-[1px] border-primary
@@ -19,4 +20,5 @@
     </span>
     <span><?= carlo_get('label') ?></span>
   </button>
+<?php if(carlo_get('link')): ?></a><?php endif; ?>
 <?php endif; ?>

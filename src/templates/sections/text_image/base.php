@@ -24,18 +24,20 @@ $slides = array_filter($slides, function($slide){
                   laptop:col-start-7 laptop:order-2
                 <?php endif; ?>">
 
-      <?php if ($slides): ?>
+
       <section class="relative">
         <div class="swiper">
           <ul class="swiper-wrapper">
-            <?php foreach ($slides as $slide): ?>
-            <li class="swiper-slide">
-              <figure class="[ img__cover ]
-                            aspect-[var(--ratio-img-mobile)] !m-0">
-                <?= carlo_img($slide["image"], '1072x1287') ?>
-              </figure>
-            </li>
-            <?php endforeach ?>
+            <?php if ($slides): ?>
+                <?php foreach ($slides as $slide): ?>
+                <li class="swiper-slide">
+                <figure class="[ img__cover ]
+                                aspect-[var(--ratio-img-mobile)] !m-0">
+                    <?= carlo_img($slide["image"], '1072x1287') ?>
+                </figure>
+                </li>
+                <?php endforeach ?>
+            <?php endif ?>
             </ul>
         </div>
 
@@ -70,7 +72,6 @@ $slides = array_filter($slides, function($slide){
                       flex justify-center items-center !-bottom-2 translate-y-full"></div>
         </aside>
       </section>
-      <?php endif; ?>
 
     </div>
 
