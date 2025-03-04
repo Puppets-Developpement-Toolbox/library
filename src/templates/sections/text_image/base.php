@@ -85,12 +85,12 @@ $slides = array_filter($slides, function($slide){
       <div class="flex flex-col gap-6 laptop:gap-8">
         <header>
           <?php if (carlo_get("surtitle")): ?>
-          <p class="[ kicker-subtitle ] mb-2"><?= carlo_get("surtitle") ?></p>
+          <span class="[ kicker-subtitle ] mb-2"><?= carlo_get("surtitle") ?></span>
           <?php endif; ?>
-          <h2 class="[ h2 ] mb-2">
+          <h2 class="[ h2 ]">
             <?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("title"))); ?>
           </h2>
-          <span><?= carlo_get('subtitle'); ?></span>
+          <span class="[ kicker-subtitle ] mt-4"><?= carlo_get('subtitle'); ?></span>
         </header>
         <div class="[ text ]"><?= carlo_get("description") ?></div>
         <?php if (carlo_get('highlight')): ?>
