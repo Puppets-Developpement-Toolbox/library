@@ -21,15 +21,16 @@
                   flex flex-col gap-8
                   group-[&]/on-primary:py-16 group-[&]/on-primary:bg-transparent group-[&]/on-primary:laptop:py-30">
 
-    <header>
+    <header class="flex flex-col gap-6">
       <h2 class="[ h2 ]
-                  mb-6
                   group-[&]/on-primary:text-white
                   laptop:col-span-12">
         <?= carlo_get("title") ?>
       </h2>
       <div class="laptop:flex laptop:justify-between">
-        <div class="laptop:shrink-0 laptop:w-2/3">
+        <div class="[ large ]
+                    text-black
+                    laptop:shrink-0 laptop:w-2/3">
           <?= carlo_get("description") ?>
         </div>
         <aside class="hidden

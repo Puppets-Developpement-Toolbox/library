@@ -20,7 +20,7 @@
               border-1 <?=!carlo_get('border')? 'border-t-0' : '' ?> border-black
               group-[&]/on-primary:bg-white group-[&]/on-primary:border-none
               laptop:px-12">
-    <header class="flex flex-col gap-2 mb-6
+    <header class="flex flex-col gap-2
                   after:transition-transform after:duration-500
                   after:block after:origin-left after:w-full after:h-[1px] after:mt-4 after:bg-black
                   group-hover/card:after:scale-x-85">
