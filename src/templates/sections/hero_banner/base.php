@@ -26,7 +26,6 @@
                     group-hover/btn:-translate-x-1/2">
           <svg viewBox="0 0 24 24"><use href="#svg__arrow"></use></svg>
         </span>
-        <!-- TODO: retour en arrière à dynamiser -->
         <small><?=$back_link['label']; ?></small>
         </a>
     </aside>
@@ -46,7 +45,7 @@
             laptop:col-span-6 laptop:col-start-2">
         <?php if(carlo_get("description")): ?>
           <p class="[ large ]
-                    my-6 !text-black"><?= carlo_get("description") ?></p>
+                    mt-6 !text-black"><?= carlo_get("description") ?></p>
         <?php endif; ?>
         <?php if (carlo_get("cta") || carlo_get("cta_contact")): ?>
         <ul class="flex flex-col gap-3
