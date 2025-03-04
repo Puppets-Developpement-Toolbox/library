@@ -48,7 +48,7 @@
                     mt-6 !text-black"><?= carlo_get("description") ?></p>
         <?php endif; ?>
         <?php if (carlo_get("cta") || carlo_get("cta_contact")): ?>
-        <ul class="flex flex-col gap-3
+        <ul class="flex flex-col gap-3 mt-6
                   laptop:flex-row">
           <?php if (carlo_get("cta")): ?>
             <li><?php carlo_render("components/cta", carlo_get("cta")); ?></li>
