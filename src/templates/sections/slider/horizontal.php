@@ -66,6 +66,7 @@
                                 !size-auto <?= ($num % 2 !== 0) ? 'mb-[1px]' : '' ?>">
                         <div class="[ h5 ]
                                     select-none w-61 h-full px-10 py-12
+                                    text-black
                                     laptop:w-75
                                     <?= $style ?>">
                         <?= $slide['text'] ?>
