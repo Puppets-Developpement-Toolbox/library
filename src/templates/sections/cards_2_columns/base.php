@@ -9,15 +9,18 @@
 
 <section class="[ section section__push ]
                 flex flex-col gap-8
+                group-[&]/super-section:bg-transparent
                 laptop:grid laptop:grid-cols-12">
 <?php if(carlo_get("title") || carlo_get('description')): ?>
-    <header class="laptop:col-span-10 laptop:col-start-2">
+    <header class="laptop:col-span-8 laptop:col-start-2">
       <h2 class="[ h2 ]
                   mb-6">
         <?= carlo_get("title") ?>
       </h2>
       <div class="laptop:flex laptop:justify-between">
-        <div class="laptop:shrink-0 laptop:w-2/3">
+        <div class="[ large ]
+                    text-black
+                    laptop:shrink-0 laptop:w-full">
           <?= carlo_get("description") ?>
         </div>
       </div>

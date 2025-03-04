@@ -2,7 +2,8 @@
 
 <div class="[ card ]
             group/card
-            flex flex-col h-full">
+            flex flex-col h-full
+            bg-white">
 <?php $link = carlo_get('link'); if(!empty($link)): ?>
     <a href="<?=$link?>">
 <?php endif; ?>

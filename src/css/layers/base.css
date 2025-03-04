@@ -14,7 +14,10 @@
     @apply font-semibold text-primary;
     @apply group-[&]/on-primary:text-inherit;
   }
-  small { @apply font-normal text-[14px] leading-[1.5] uppercase; }
+  small {
+    @apply font-normal text-[14px] leading-[1.5] uppercase;
+    strong { @apply font-bold; }
+  }
 
   
   
@@ -37,10 +40,11 @@
   .quotation-mark { @apply font-bold text-[56px] leading-[1] laptop:text-[64px]; }
   .quote { @apply font-light italic text-[24px] leading-[1.2] laptop:text-[32px]; }
 
-  .nav { @apply font-light text-[20px] leading-[1.5] laptop:text-[16px] laptop:leading-[1]; }
+  .nav {
+    @apply font-light text-[20px] leading-[1.5] laptop:text-[16px] laptop:leading-[1];
+    strong { @apply font-bold; }
+  }
   :is(.nav).phone-number { @apply font-bold text-[18px]; }
-
-  .nav strong { @apply font-bold; }
   
   .text ul { @apply flex flex-col gap-3 mx-0 mb-6; }
   .text li {
