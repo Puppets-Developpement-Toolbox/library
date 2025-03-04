@@ -13,7 +13,15 @@
               flex justify-center items-center aspect-[19/10] w-47.5
               absolute top-0 px-7.5 py-6
               border-1 border-black">
-<?= carlo_img($logo['logo'], 'size-full', 'object-contain'); ?>
+    <?php
+      if (is_int($logo['logo'])) {
+        carlo_img($logo['logo'], 'size-full', 'object-contain');
+      } else {
+        echo '<img src="' . $logo['logo'] . '"
+            alt="' . $logo['brand'] . '"
+            class="size-full object-contain">';
+      }
+    ?>
     </li>
     <?php endif; ?>
     <?php endforeach ?>

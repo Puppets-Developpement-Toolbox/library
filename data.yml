@@ -44,6 +44,10 @@ hero_banner--title: Innover en intelligence collective, <em>et en musique !</em>
 
 
 
+super_section--revert: false
+
+
+
 text_image--surtitle: Un processus de changement
 text_image--title: La Théorie <em>U</em>
 text_image--description: |
@@ -57,6 +61,7 @@ text_image--description: |
 text_image--highlight: |
   <p>Nous avons en commun plus de 30 ans de <strong>pratiques artistiques</strong> qui apportent une <strong>couleur particulière à notre travail</strong>. L’importance de l’écoute, du silence, des émotions, du corps, autant de thèmes que nous avons à cœur de partager.</p>
 text_image--image: <img src="https://picsum.photos/1072/1287" alt="" loading="lazy">
+text_image--revert: false
 
 
 
@@ -82,6 +87,7 @@ push--title: Vous avez un <em>besoin</em> ?
 push--description: Accompagnement sur mesure, ateliers thématiques, conférences,formation innovation, signaux faibles, coaching...
 push--image: <img src="https://picsum.photos/630/393" alt="" loading="lazy">
 push--wysiwyg: Le but de la Théorie U est d'inventer le futur en intelligence collective.
+push--bg_primary: false
 
 
 

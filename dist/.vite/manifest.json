@@ -1,0 +1,144 @@
+{
+  "src/css/global.css": {
+    "file": "assets/main-BEBjPuSo.css",
+    "src": "src/css/global.css",
+    "isEntry": true
+  },
+  "src/js/main.js": {
+    "file": "assets/global-hZjylei0.js",
+    "name": "global",
+    "src": "src/js/main.js",
+    "isEntry": true,
+    "css": [
+      "assets/global-BH4JZYC6.css"
+    ]
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_black_az-webfont.woff": {
+    "file": "assets/sofia_pro_black_az-webfont-BQjA2vCR.woff",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_black_az-webfont.woff"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_black_az-webfont.woff2": {
+    "file": "assets/sofia_pro_black_az-webfont-BsEdDgkK.woff2",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_black_az-webfont.woff2"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_black_italic_az-webfont.woff": {
+    "file": "assets/sofia_pro_black_italic_az-webfont-C78T-yDw.woff",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_black_italic_az-webfont.woff"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_black_italic_az-webfont.woff2": {
+    "file": "assets/sofia_pro_black_italic_az-webfont-BEjzQrfp.woff2",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_black_italic_az-webfont.woff2"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_bold_az-webfont.woff": {
+    "file": "assets/sofia_pro_bold_az-webfont-B1No9QCy.woff",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_bold_az-webfont.woff"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_bold_az-webfont.woff2": {
+    "file": "assets/sofia_pro_bold_az-webfont-zMF87DBg.woff2",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_bold_az-webfont.woff2"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_bold_italic_az-webfont.woff": {
+    "file": "assets/sofia_pro_bold_italic_az-webfont-B4J_Jrk5.woff",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_bold_italic_az-webfont.woff"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_bold_italic_az-webfont.woff2": {
+    "file": "assets/sofia_pro_bold_italic_az-webfont-4ZQUlfO2.woff2",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_bold_italic_az-webfont.woff2"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_extralight_az-webfont.woff": {
+    "file": "assets/sofia_pro_extralight_az-webfont-Cymgzwef.woff",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_extralight_az-webfont.woff"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_extralight_az-webfont.woff2": {
+    "file": "assets/sofia_pro_extralight_az-webfont-BpG8B7-P.woff2",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_extralight_az-webfont.woff2"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_extralight_italic_az-webfont.woff": {
+    "file": "assets/sofia_pro_extralight_italic_az-webfont-5k9Obu0u.woff",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_extralight_italic_az-webfont.woff"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_extralight_italic_az-webfont.woff2": {
+    "file": "assets/sofia_pro_extralight_italic_az-webfont-Ckp7GHRv.woff2",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_extralight_italic_az-webfont.woff2"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_light_az-webfont.woff": {
+    "file": "assets/sofia_pro_light_az-webfont-Du2E5PwT.woff",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_light_az-webfont.woff"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_light_az-webfont.woff2": {
+    "file": "assets/sofia_pro_light_az-webfont-BugQQt7Y.woff2",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_light_az-webfont.woff2"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_light_italic_az-webfont.woff": {
+    "file": "assets/sofia_pro_light_italic_az-webfont-CG8XOqls.woff",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_light_italic_az-webfont.woff"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_light_italic_az-webfont.woff2": {
+    "file": "assets/sofia_pro_light_italic_az-webfont-DoHZo9Sk.woff2",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_light_italic_az-webfont.woff2"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_medium_az-webfont.woff": {
+    "file": "assets/sofia_pro_medium_az-webfont-D5uVxPoz.woff",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_medium_az-webfont.woff"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_medium_az-webfont.woff2": {
+    "file": "assets/sofia_pro_medium_az-webfont-COebxKAT.woff2",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_medium_az-webfont.woff2"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_medium_italic_az-webfont.woff": {
+    "file": "assets/sofia_pro_medium_italic_az-webfont-D6vtWZkj.woff",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_medium_italic_az-webfont.woff"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_medium_italic_az-webfont.woff2": {
+    "file": "assets/sofia_pro_medium_italic_az-webfont-DS5TMEnH.woff2",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_medium_italic_az-webfont.woff2"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_regular_az-webfont.woff": {
+    "file": "assets/sofia_pro_regular_az-webfont-C3nHMuz4.woff",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_regular_az-webfont.woff"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_regular_az-webfont.woff2": {
+    "file": "assets/sofia_pro_regular_az-webfont-CBhZxQLi.woff2",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_regular_az-webfont.woff2"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_regular_italic_az-webfont.woff": {
+    "file": "assets/sofia_pro_regular_italic_az-webfont-BdI5scFk.woff",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_regular_italic_az-webfont.woff"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_regular_italic_az-webfont.woff2": {
+    "file": "assets/sofia_pro_regular_italic_az-webfont-C8Ot24wG.woff2",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_regular_italic_az-webfont.woff2"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_semi_bold_az-webfont.woff": {
+    "file": "assets/sofia_pro_semi_bold_az-webfont-CJHlvrMu.woff",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_semi_bold_az-webfont.woff"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_semi_bold_az-webfont.woff2": {
+    "file": "assets/sofia_pro_semi_bold_az-webfont-DcXk9HR8.woff2",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_semi_bold_az-webfont.woff2"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_semi_bold_italic_az-webfont.woff": {
+    "file": "assets/sofia_pro_semi_bold_italic_az-webfont-f43JBQvd.woff",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_semi_bold_italic_az-webfont.woff"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_semi_bold_italic_az-webfont.woff2": {
+    "file": "assets/sofia_pro_semi_bold_italic_az-webfont-B0mRKwyU.woff2",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_semi_bold_italic_az-webfont.woff2"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_ultralight_az-webfont.woff": {
+    "file": "assets/sofia_pro_ultralight_az-webfont-CPmXtroP.woff",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_ultralight_az-webfont.woff"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_ultralight_az-webfont.woff2": {
+    "file": "assets/sofia_pro_ultralight_az-webfont-CjmWArS1.woff2",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_ultralight_az-webfont.woff2"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_ultralight_italic_az-webfont.woff": {
+    "file": "assets/sofia_pro_ultralight_italic_az-webfont-BCSsNHmO.woff",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_ultralight_italic_az-webfont.woff"
+  },
+  "src/webfonts/sofia-pro-webfont/sofia_pro_ultralight_italic_az-webfont.woff2": {
+    "file": "assets/sofia_pro_ultralight_italic_az-webfont-B6TOLvVw.woff2",
+    "src": "src/webfonts/sofia-pro-webfont/sofia_pro_ultralight_italic_az-webfont.woff2"
+  }
+}

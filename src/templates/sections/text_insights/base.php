@@ -18,14 +18,15 @@
 
     <header class="text-white
                   laptop:col-span-5">
-        <div class="laptop:sticky laptop:top-34">
+        <div class="flex flex-col gap-4
+                    laptop:sticky laptop:top-34">
 
             <figure class="[ img__cover ]
                         aspect-[100/43]">
             <?= carlo_img('image', '750x322') ?>
             </figure>
 
-            <div class="flex flex-col gap-4 my-6 pb-6
+            <div class="flex flex-col gap-4 pb-6
                         border-b-1 border-b-white">
             <h2 class="[ h2 ] text-white">
                 <?= carlo_get('title') ?>
@@ -33,13 +34,13 @@
             <p class="[ kicker-subtitle ] text-white">
                 <?= carlo_get('subtitle') ?>
             </p>
-            </div>
-
-            <?= carlo_get('text') ?>
-            <?php if (carlo_get("cta")) {
-                carlo_render("components/cta", carlo_get("cta"));
-            } ?>
         </div>
+        <div class="[ texte ]">
+            <?= carlo_get('text') ?>
+        </div>
+        <?php if (carlo_get("cta")) {
+            carlo_render("components/cta", carlo_get("cta"));
+        } ?>
     </header>
 
 

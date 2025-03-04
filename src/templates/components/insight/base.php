@@ -11,10 +11,8 @@
                 text-white uppercase
                 group-even/insight:border-primary group-even/insight:text-primary
                 laptop:flex-row laptop:justify-between laptop:gap-4">
-    <span>
     <span class="mb-0"><?= carlo_get('title') ?></span>
     <small class="text-primary-light"><?= carlo_get('details') ?></small>
-    </span>
   </header>
 <?php endif; ?>
   <div class="[ text ]">
