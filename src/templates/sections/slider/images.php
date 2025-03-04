@@ -13,7 +13,7 @@
             group/on-primary">
   <div class="overflow-x-clip">
     <section class="[ section has-slider slider-cards ]
-                    flex flex-col gap-8
+                    flex flex-col gap-8 relative
                     group-[&]/on-primary:py-16 group-[&]/on-primary:bg-transparent group-[&]/on-primary:laptop:py-30
                     laptop:">
 
@@ -59,6 +59,8 @@
                             transition-transform duration-300
                             group-hover/btn:translate-x-1/2"><use href="#svg__arrow"></use></svg>
               </button>
+              <div class="[ swiper-pagination ]
+                          flex justify-center items-center !bottom-20 translate-y-full"></div>
             </div>
             <?php if (carlo_get("cta")) {
                 carlo_render("components/cta", carlo_get("cta"));
