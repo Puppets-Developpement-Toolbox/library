@@ -31,7 +31,9 @@
     </aside>
     <?php endif; ?>
 
-    <h1 class="[ h1 ]">
+    <h1 class="[ h1 ]
+              mb-6
+              laptop:mb-8">
       <span class="[ kicker-subtitle ]
                   mb-2"><?= carlo_get("surtitle") ?></span>
       <?php if(carlo_get("title")): ?>
@@ -39,8 +41,8 @@
       <?php endif; ?>
     </h1>
 
-    <aside class="my-6
-        laptop:grid laptop:grid-cols-7 laptop:mb-0">
+    <aside class="mb-6
+                  laptop:grid laptop:grid-cols-7 laptop:mb-0">
         <div class="border-t-[1px] border-t-black
             laptop:col-span-6 laptop:col-start-2">
         <?php if(carlo_get("description")): ?>
