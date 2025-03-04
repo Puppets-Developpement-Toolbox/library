@@ -10,8 +10,8 @@
                 border-b-1 border-b-white
                 text-white uppercase
                 group-even/insight:border-primary group-even/insight:text-primary
-                laptop:flex-row laptop:justify-between laptop:gap-4">
-    <span class="mb-0"><?= carlo_get('title') ?></span>
+                laptop:flex-row laptop:justify-between laptop:items-center laptop:gap-4">
+    <span class="mb-0 laptop:flex-1 laptop:max-w-[70%]"><?= carlo_get('title') ?></span>
     <small class="text-primary-light"><?= carlo_get('details') ?></small>
   </header>
 <?php endif; ?>
