@@ -11,7 +11,7 @@
                 text-white uppercase
                 group-odd/insight:border-primary group-odd/insight:text-primary
                 laptop:flex-row laptop:justify-between laptop:items-center laptop:gap-4">
-    <span class="mb-0 laptop:flex-1 laptop:max-w-[70%]"><?= carlo_get('title') ?></span>
+    <span class="mb-0 laptop:flex-1 laptop:max-w-[70%]"><?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("title"))); ?></span>
     <small class="text-primary-light"><?= carlo_get('details') ?></small>
   </header>
 <?php endif; ?>

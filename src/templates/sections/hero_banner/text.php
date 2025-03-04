@@ -9,7 +9,7 @@
   <div class="flex flex-col gap-6 pl-6 max-w-156 mx-auto
               border-l-1 border-l-white">
     <h1 class="[ h1 ] text-white">
-      <?= carlo_get('title') ?>
+        <?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("title"))); ?>
     </h1>
     <div class="[ large ] text-white">
       <?= carlo_get('subtitle') ?>
