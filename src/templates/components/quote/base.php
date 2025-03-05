@@ -4,7 +4,7 @@
 <?php if (carlo_get('quote')): ?>
 <figure class="relative flex flex-col gap-4 mb-[1px] p-6
               bg-gray-light
-              group-[&]/super-section:bg-white group-[&]/super-section:border-1 group-[&]/super-section:border-black
+              group-[&]/super-section:bg-white
               laptop:col-span-10 laptop:col-start-2 laptop:flex-row laptop:flex-wrap laptop:gap-6">
   <span class="block size-8
               text-primary-light
