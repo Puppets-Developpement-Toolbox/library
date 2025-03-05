@@ -21,7 +21,7 @@
         <div class="laptop:flex laptop:justify-between laptop:gap-6 laptop:w-2/3 laptop:mx-auto laptop:pt-10 laptop:border-t-1 laptop:border-t-black">
 
           <div class="flex flex-col gap-6">
-            <h2 class="[ h2 ]"><?= carlo_get('title') ?></h2>
+            <h2 class="[ h2 ]"><?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("title"))); ?></h2>
             <div><?= carlo_get('subtitle') ?></div>
           </div>
 
