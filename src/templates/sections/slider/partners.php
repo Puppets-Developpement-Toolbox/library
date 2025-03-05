@@ -63,7 +63,7 @@
       </header>
       <div class="laptop:col-span-6">
         <?php carlo_render("components/quote", [
-            "quote" => carlo_get('quote'),
+            "quote" => str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("quote"))),
             "author" => carlo_get('author'),
             "charge" => carlo_get('charge'),
           ]);
@@ -85,7 +85,15 @@
                        !w-47.5">
               <figure class="flex justify-center items-center aspect-[19/10] px-7.5 py-6
                             border-1 border-black">
-                <?= $partner['logo'] ?>
+                <?php
+                if (is_int($partner['logo'])) {
+                    echo carlo_img($partner['logo'], 'size-full', 'object-contain');
+                } else {
+                    echo '<img src="' . $partner['logo'] . '"
+                        alt="' . $partner['brand'] . '"
+                        class="size-full object-contain">';
+                }
+                ?>
               </figure>
             </li>
             <?php endforeach ?>
