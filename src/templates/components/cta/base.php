@@ -18,7 +18,7 @@
                 group-hover/btn:rotate-180">
       <svg viewBox="0 0 24 24"><use href="#svg__more"></use></svg>
     </span>
-    <span><?= carlo_get('label') ?></span>
+    <span class="-mt-0.5"><?= carlo_get('label') ?></span>
   </button>
 <?php if(carlo_get('link')): ?></a><?php endif; ?>
 <?php endif; ?>

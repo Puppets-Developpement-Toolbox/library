@@ -10,7 +10,7 @@
                 transition-all duration-300
                 group-[&]/hero:laptop:w-auto
                 hover:bg-left hover:text-white">
-    <span><?= carlo_get('label') ?></span>
+    <span class="-mt-0.5"><?= carlo_get('label') ?></span>
   </button>
 </a>
 <?php endif; ?>
