@@ -67,7 +67,7 @@
         @apply relative ml-12;
         @apply before:block before:absolute before:top-3 before:left-0 before:-translate-x-12 before:w-8 before:h-0.25 before:bg-primary-light;
         em { @apply font-bold text-primary-light; }
-        strong { @apply text-black group-[&]/on-primary:text-white; }
+        strong { @apply group-[&]/on-primary:text-white; }
         p { @apply mb-4; }
         ul {
           @apply list-disc;
