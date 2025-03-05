@@ -38,7 +38,7 @@ const CreateSlider = (wrapper) => {
         spaceBetween = 32;
       }
 
-      const settings = {
+      const swiper = new Swiper(slider.querySelector('.swiper'), {
 
         // Init
         loop: loop,
@@ -65,11 +65,7 @@ const CreateSlider = (wrapper) => {
           nextEl: dashboard.querySelector('.swiper-button-next'),
           prevEl: dashboard.querySelector('.swiper-button-prev'),
         },
-      };
-
-      const swiper = new Swiper(slider.querySelector('.swiper'), settings);
-
-if (slider.classList.contains('slider-partners')) console.log(settings)
+      });
 
     });
   }

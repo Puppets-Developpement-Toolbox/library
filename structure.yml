@@ -21,7 +21,7 @@ templates:
     - !load sections/push:triptych
     - !load sections/text_image:square
     - !load sections/super_section
-    - !load sections/slider:quotes
+    - !load sections/slider:partners
     - !load sections/slider:images
     - !load sections/slider:cards
     - !load sections/text_insights
