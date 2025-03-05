@@ -3,17 +3,11 @@
 
 <?php
 
-  $slides = carlo_get('slides');
-  $slides = array_filter($slides, function($slide){
-      return $slide['quote'] !== '';
-  });
+  $partners = carlo_get('partners');
 
 ?>
-<div class="overflow-x-clip
-            laptop:relative
-            laptop:before:block laptop:before:absolute laptop:before:z-10 laptop:before:top-0 laptop:before:left-0 laptop:before:w-1/3 laptop:before:h-full laptop:before:bg-white
-            group-[&]/super-section:laptop:before:bg-gray-light">
-  <section class="[ section has-slider slider-horizontal slider-quotes ]
+<div class="laptop:relative">
+  <section class="[ section has-slider slider-partners ]
                   group-[&]/super-section:bg-gray-light">
     <div class="laptop:grid laptop:grid-cols-12">
 
@@ -30,6 +24,7 @@
             <h2 class="[ h2 ]"><?= carlo_get('title') ?></h2>
             <div><?= carlo_get('subtitle') ?></div>
           </div>
+
 
 
           <aside class="[ swiper__dashboard ]
@@ -66,32 +61,37 @@
 
         </div>
       </header>
+      <div class="laptop:col-span-6">
+        <?php carlo_render("components/quote", [
+            "quote" => carlo_get('quote'),
+            "author" => carlo_get('author'),
+            "charge" => carlo_get('charge'),
+          ]);
+        ?>
+      </div>
 
 
 
 
 
-      <?php if ($slides): ?>
-      <section class="relative z-0
-                      laptop:col-span-6">
-        <div class="swiper
-                    !overflow-visible">
-          <ul class="swiper-wrapper">
-            <?php foreach ($slides as $slide): ?>
-            <li class="swiper-slide">
-              <div class="select-none">
-                <?php carlo_render("components/quote", [
-                      "quote" => $slide['quote'],
-                      "author" => $slide['author'],
-                      "charge" => $slide['charge'],
-                  ]);
-                ?>
-              </div>
+      <?php if ($partners): ?>
+      <div class="my-12
+                  laptop:col-span-12">
+        <section class="[ swiper ]
+                      !overflow-visible">
+          <ul class="[ swiper-wrapper ]">
+            <?php foreach ($partners as $partner): ?>
+            <li class="[ swiper-slide ]
+                       !w-47.5">
+              <figure class="flex justify-center items-center aspect-[19/10] px-7.5 py-6
+                            border-1 border-black">
+                <?= $partner['logo'] ?>
+              </figure>
             </li>
             <?php endforeach ?>
             </ul>
-        </div>
-      </section>
+        </section>
+      </div>
       <?php endif ?>
 
 
@@ -101,12 +101,3 @@
     </div>
   </section>
 </div>
-
-
-
-
-
-
-<?php
-  carlo_render("components/partners", carlo_get('partners'));
-?>

@@ -24,12 +24,8 @@ url: https://puppets.fr
 
 
 footer--contact: |
-      <li>
-        <a href="https://www.linkedin.com/in/tiphaine-vapaille-6a39281/" target="_blank">Tiphaine Vapaille</a>
-      </li>
-      <li>
-        <a href="https://www.linkedin.com/in/sophie-beignon-02a60b1/" target="_blank">Sophie Beignon</a>
-      </li>
+  <li><a href="https://www.linkedin.com/in/tiphaine-vapaille-6a39281/" target="_blank">Tiphaine Vapaille</a></li>
+  <li><a href="https://www.linkedin.com/in/sophie-beignon-02a60b1/" target="_blank">Sophie Beignon</a></li>
 
 
 # données par nom de champ -- prioritaire
@@ -50,10 +46,19 @@ super_section--revert: false
 
 text_image--surtitle: Un processus de changement
 text_image--title: La Théorie <em>U</em>
+# text_image--description: |
+#   <p>Cette formation est le fruit de nos 20 ans d’expérience dans les métiers de l’innovation. Elle se compose de 2 parties :</p>
+#   <h3>Lorem ipsum</h3>
+#   <p>Cette formation peut être adaptée en fonction de vos besoins.</p>
+
 text_image--description: |
   <p>Cette formation est le fruit de nos 20 ans d’expérience dans les métiers de l’innovation. Elle se compose de 2 parties :</p>
-  <h3>Lorem ipsum</h3>
-  <p>Cette formation peut être adaptée en fonction de vos besoins.</p>
+  <ul>
+    <li>Réaliser en quoi la confiance est un pilier pour la réussite individuelle et collective.</li>
+    <li>Apprendre à déchiffrer ses mécanismes.</li>
+    <li>Trouver comment agir pour la faire grandir.</li>
+  </ul>
+
 # text_image--description: |
 #   <p>Cette formation est le fruit de nos 20 ans d’expérience dans les métiers de l’innovation. Elle se compose de 2 parties :</p>
 #   <ul>
@@ -113,15 +118,6 @@ slider--quote: L'accompagnement de Diaspodie a transformé notre manière de tra
 slider--author: Bernard Brochant
 slider--charge: Directeur, Crédit agricole
 slider--image: <img src="https://picsum.photos/1980/876" alt="" loading="lazy">
-
-
-
-partner-logo: _GAB_images/Talan.svg
-partner-brand: Talan
-# partner-logo: _GAB_images/Credit-Agricole.png
-# partner-brand: Crédit Agricole
-# partner-logo: _GAB_images/Leroy-Merlin.svg
-# partner-brand: Leroy-Merlin
 
 
 

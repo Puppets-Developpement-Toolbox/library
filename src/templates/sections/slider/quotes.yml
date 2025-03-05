@@ -1,10 +1,11 @@
 title: wysiwyg
 subtitle: text_short
-partners: !load components/partners
-slides:
+quote: text_short
+author: text_short
+charge: text_short
+partners:
   _type: repeater
   _repeat:
-    quote: text_short
-    author: text_short
-    charge: text_short
-  _times: 3
+    brand: text_short
+    logo: image
+  _times: 10

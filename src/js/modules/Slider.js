@@ -13,30 +13,32 @@ const CreateSlider = (wrapper) => {
   if (hasSwiper.length > 0) {
     hasSwiper.forEach((slider) => {
 // console.log(slider)
-if (slider.classList.contains('slider-cards')) console.log(slider)
-      console.log(slider);
+// if (slider.classList.contains('slider-partners')) console.log(slider)
+  
       const dashboard = slider.querySelector('.swiper__dashboard');
 
       const initialSlide = (slider.classList.contains('slider-quotes')) ? (slider.querySelectorAll('.swiper-slide').length - 1) : 0;
 
       let loop = true;
-      if (slider.classList.contains('slider-horizontal') || slider.classList.contains('slider-cards')) {
+      if (slider.classList.contains('slider-horizontal') || slider.classList.contains('slider-cards') || slider.classList.contains('slider-partners')) {
         loop = false;
       }
 
       let slidesPerView = 1;
-      if (slider.classList.contains('slider-horizontal') || slider.classList.contains('slider-cards')) {
+      if (slider.classList.contains('slider-horizontal') || slider.classList.contains('slider-cards') || slider.classList.contains('slider-partners')) {
         slidesPerView = 'auto';
       }
 
       let spaceBetween = 0;
-      if (slider.classList.contains('slider-horizontal')) {
+      if (slider.classList.contains('slider-partners')) {
+        spaceBetween = 16;
+      } else if (slider.classList.contains('slider-horizontal')) {
         spaceBetween = 24;
       } else if (slider.classList.contains('slider-cards')) {
         spaceBetween = 32;
       }
 
-      const swiper = new Swiper(slider.querySelector('.swiper'), {
+      const settings = {
 
         // Init
         loop: loop,
@@ -63,7 +65,11 @@ if (slider.classList.contains('slider-cards')) console.log(slider)
           nextEl: dashboard.querySelector('.swiper-button-next'),
           prevEl: dashboard.querySelector('.swiper-button-prev'),
         },
-      });
+      };
+
+      const swiper = new Swiper(slider.querySelector('.swiper'), settings);
+
+if (slider.classList.contains('slider-partners')) console.log(settings)
 
     });
   }
