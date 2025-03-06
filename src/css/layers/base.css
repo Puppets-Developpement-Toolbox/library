@@ -81,7 +81,7 @@
   .active-trail {
     @apply relative;
     @apply font-bold;
-    @apply after:content-[''] after:block after:absolute after:bottom-0 after:w-full after:h-1 after:bg-accent;
+    @apply laptop:after:content-[''] laptop:after:block laptop:after:absolute laptop:after:bottom-0 laptop:after:w-full laptop:after:h-1 laptop:after:bg-accent;
   }
 
 

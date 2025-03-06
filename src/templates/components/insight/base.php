@@ -1,7 +1,7 @@
 
 
 <?php if(carlo_get('details') || carlo_get('content')): ?>
-<div class="flex flex-col gap-6 p-8
+<div class="flex flex-col gap-4 p-8
             border-1 border-white
             group-odd/insight:bg-white group-odd/insight:text-primary">
 <?php if(!empty(carlo_get('title')) || !empty(carlo_get('details'))): ?>
