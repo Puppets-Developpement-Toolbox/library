@@ -32,10 +32,10 @@
                 flex-1
                 group-[&]/on-primary:text-primary">
         <?= carlo_get('content') ?>
-        <?php if(carlo_get('cta')):?>
-        <?php carlo_render('components/cta:tertiary', carlo_get('cta')) ?>
-        <?php endif; ?>
     </div>
+    <?php if(carlo_get('cta')):?>
+    <?php carlo_render('components/cta:tertiary', carlo_get('cta')) ?>
+    <?php endif; ?>
   </div>
 <?php if(!empty($link)): ?>
 </a>
