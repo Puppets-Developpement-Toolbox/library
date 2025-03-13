@@ -6,7 +6,7 @@
   $partners = carlo_get('partners');
 
 ?>
-<div class="laptop:relative">
+<div class="overflow-x-clip laptop:relative">
   <section class="[ section has-slider slider-partners ]
                   group-[&]/super-section:bg-gray-light">
     <div class="laptop:grid laptop:grid-cols-12">

@@ -7,6 +7,7 @@ carlo_render(
         "gap_class" => "gap-6",
         "bg_primary" => carlo_get('bg_primary'),
         "slide_template" => "components/card:picto",
-        "cta_template" => ':secondary'
+        "cta_template" => ':secondary',
+        "cta_hover" => false,
     ])
 ); ?>
