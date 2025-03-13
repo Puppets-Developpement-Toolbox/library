@@ -3,4 +3,3 @@ slides:
   _type: repeater
   _repeat:
     text: wysiwyg
-  _times: 8

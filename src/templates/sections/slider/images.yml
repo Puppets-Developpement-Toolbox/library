@@ -1,8 +1,10 @@
-title: text_short
+title:
+  _type: text
+  _label: Titre
+  _help: Encadrer du texte entre &lt; et &gt; pour le mettre en forme, par exemple &lt; mon texte en italique &gt;. Pour faire des sauts de ligne faire shift+entrer.
 description: wysiwyg
 cta: !load components/cta
 slides:
   _type: repeater
   _repeat:
     image: image
-  _times: 5

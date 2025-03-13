@@ -1,10 +1,12 @@
-
+<?php
+$elements = carlo_get('elements');
+if(!empty($elements)): ?>
 <section class="group/super-section
                 py-30
                 bg-gray-light">
     <?php
-    $elements = carlo_get('elements');
-    foreach ($elements as $element): ?>
-        <?= carlo_component($element) ?>
-    <?php endforeach; ?>
+        foreach ($elements as $element): ?>
+            <?= carlo_component($element) ?>
+        <?php endforeach; ?>
 </section>
+<?php endif; ?>

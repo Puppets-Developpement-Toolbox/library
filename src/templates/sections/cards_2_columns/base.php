@@ -15,7 +15,7 @@
     <header class="laptop:col-span-8 laptop:col-start-2">
       <h2 class="[ h2 ]
                   mb-6">
-        <?= carlo_get("title") ?>
+        <?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("title")));?>
       </h2>
       <div class="laptop:flex laptop:justify-between">
         <div class="[ large ]
