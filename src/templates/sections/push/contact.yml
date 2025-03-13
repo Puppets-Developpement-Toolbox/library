@@ -3,4 +3,11 @@ title:
   _label: Titre
   _help: Encadrer du texte entre &lt; et &gt; pour le mettre en forme, par exemple &lt; mon texte en italique &gt;. Pour faire des sauts de ligne faire shift+entrer.
 description: wysiwyg
+cta_template:
+  _label: Template de CTA
+  _type: select
+  _help: Sélectionnez le template de CTA à utiliser. Par défaut secondary est utilisé.
+  _choices:
+    secondary: secondary
+    base: primary
 cta: !load components/cta

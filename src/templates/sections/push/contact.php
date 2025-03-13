@@ -15,8 +15,8 @@
     </div>
     <div class="flex justify-center">
       <?php
-        // TODO: Proposer dans l'admin un CTA Primary ou Secondary
-        carlo_render("components/cta", carlo_get('cta'));
+        $template = carlo_get('cta_template') ?? 'secondary';
+        carlo_render("components/cta:$template", array_merge(carlo_get('cta'), ['cta_hover'=> true]));
       ?>
     </div>
   </div>
