@@ -32,18 +32,17 @@
 
       <?php if(!empty(carlo_get("cta")) || !empty(carlo_get("description"))): ?>
       <div class="laptop:flex laptop:justify-between">
-        <?php if (!empty(carlo_get('description'))): ?>
         <div class="[ large ]
                     text-black
                     laptop:shrink-0 laptop:w-2/3">
-          <?= carlo_get("description") ?>
+            <?php if (!empty(carlo_get('description'))): ?><?= carlo_get("description") ?><?php endif; ?>
         </div>
-        <?php endif; ?>
         <?php if(!empty(carlo_get('cta')['link']) && !empty(carlo_get('cta')['label'])): ?>
         <aside class="hidden
                       laptop:block">
           <?php if (carlo_get("cta")) {
-              carlo_render("components/cta", carlo_get('cta'));
+              $template = carlo_get("cta_template") ?? '';
+              carlo_render("components/cta".$template, carlo_get('cta'));
           } ?>
         </aside>
         <?php endif; ?>
