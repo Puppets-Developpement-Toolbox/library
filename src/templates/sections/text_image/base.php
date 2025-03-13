@@ -12,7 +12,7 @@ $slides = array_filter($slides, function($slide){
 });
 ?>
 
-<section class="[ section has-slider ]
+<section <?= !empty(carlo_get('ancre')) ? 'id="' . carlo_get('ancre') . '"' : '' ?> class="[ section has-slider ]
                 group-[&]/super-section:bg-transparent">
   <div class="group/section
               laptop:grid laptop:grid-cols-12 laptop:items-center">

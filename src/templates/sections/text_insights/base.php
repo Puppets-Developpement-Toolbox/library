@@ -7,7 +7,7 @@
 
 ?>
 
-<div class="bg-primary text-white
+<div <?= !empty(carlo_get('ancre')) ? 'id="' . carlo_get('ancre') . '"' : '' ?> class="bg-primary text-white
             group/on-primary">
   <section class="[ section ]
                   flex flex-col gap-12 py-20

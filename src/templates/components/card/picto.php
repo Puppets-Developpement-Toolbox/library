@@ -2,6 +2,9 @@
 
 
 <?php if(carlo_get('picto')): ?>
+<?php if(carlo_get('link')): ?>
+    <a href="<?= carlo_get('link') ?>/<?= !empty(carlo_get('ancre')) ? '#' . carlo_get('ancre') : '' ?>" class="group/card-link">
+<?php endif; ?>
 <div class="[ card ]
             group/card
             flex items-center gap-4 h-full px-10 py-8
@@ -31,4 +34,7 @@
     <?= carlo_get('content') ?>
   </div>
 </div>
+<?php if(carlo_get('link')): ?>
+    </a>
+<?php endif; ?>
 <?php endif; ?>

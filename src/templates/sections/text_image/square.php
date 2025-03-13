@@ -11,7 +11,7 @@ $slides = array_filter($slides, function($slide){
 });
 ?>
 
-<section class="[ section has-slider ]">
+<section <?php !empty(carlo_get('ancre')) ? 'id="' . carlo_get('ancre') . '"' : '' ?> class="[ section has-slider ]">
   <div class="group/section
               bg-primary
               laptop:grid laptop:grid-cols-12 laptop:aspect-[2/1]">
