@@ -2,4 +2,4 @@ content: wysiwyg
 ancre:
   _label: Ancre
   _type: text_short
-  _help: Identifiant de l'ancre. Par exemple \"mon_identifiant\". Attention, l'ancre doit être unique sur la page. Si vous utilisez plusieurs blocs de ce type sur la même page, vous devez utiliser des identifiants différents pour chaque bloc.
+  _help: Identifiant de l'ancre. Par exemple "mon_identifiant". Attention, l'ancre doit être unique sur la page. Si vous utilisez plusieurs blocs de ce type sur la même page, vous devez utiliser des identifiants différents pour chaque bloc.

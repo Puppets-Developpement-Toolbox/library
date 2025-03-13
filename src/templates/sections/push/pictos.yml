@@ -21,9 +21,9 @@ cards:
     link:
       _label: Lien
       _type: url
-      _help: Lien de la page vers laquelle l'ancre suivra.
+      _help: Lien de la page sans l'ancre.
     ancre:
       _label: Ancre
       _type: text_short
-      _help: Identifiant de l'ancre. Par exemple \"mon_identifiant\". Le \# est automatique
+      _help: Identifiant de l'ancre. Par exemple "mon_identifiant". Le \# est automatique
     content: wysiwyg
