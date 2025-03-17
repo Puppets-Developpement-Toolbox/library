@@ -22,6 +22,8 @@ picto: broadcast
 
 url: https://puppets.fr
 
+cta_template: primary
+
 
 footer--contact: |
   <li><a href="https://www.linkedin.com/in/tiphaine-vapaille-6a39281/" target="_blank">Tiphaine Vapaille</a></li>
@@ -51,33 +53,38 @@ text_image--title: La Théorie <em>U</em>
 #   <h3>Lorem ipsum</h3>
 #   <p>Cette formation peut être adaptée en fonction de vos besoins.</p>
 
-text_image--description: |
-  <p>Cette formation est le fruit de nos 20 ans d’expérience dans les métiers de l’innovation. Elle se compose de 2 parties :</p>
-  <ul>
-    <li>Réaliser en quoi la confiance est un pilier pour la réussite individuelle et collective.</li>
-    <li>Apprendre à déchiffrer ses mécanismes.</li>
-    <li>Trouver comment agir pour la faire grandir.</li>
-  </ul>
-
 # text_image--description: |
 #   <p>Cette formation est le fruit de nos 20 ans d’expérience dans les métiers de l’innovation. Elle se compose de 2 parties :</p>
 #   <ul>
-#     <li>
-#       <em>Partie 1</em>
-#       <p><strong>Apport théorique transmis en intelligence collective</strong></p>
-#       <p>Objectifs pédagogiques :</p>
-#       <ul>
-#         <li>Comprendre ce qu’est l’innovation et à quoi elle sert.</li>
-#         <li>Connaître les étapes d’un processus d’innovation et comment les mettre en place.</li>
-#         <li>S’approprier les postures managériales et les soft skills qui favorisent son émergence.</li>
-#       </ul>
-#     </li>
-#     <li>
-#       <em>Partie 2</em>
-#       <p><strong>Expérimentation sur un cas concret</strong></p>
-#       <p>Cette formation peut être adaptée en fonction de vos besoins.</p>
-#     </li>
+#     <li>Réaliser en quoi la confiance est un pilier pour la réussite individuelle et collective.</li>
+#     <li>Apprendre à déchiffrer ses mécanismes.</li>
+#     <li>Trouver comment agir pour la faire grandir.</li>
 #   </ul>
+
+text_image--description: |
+  Cette formation est le fruit de nos 20 ans d'expérience dans les métiers de l'innovation. Elle se compose de 2 parties :
+  <ul>
+    <li><em>PARTIE 1</em>
+  <b>Apport théorique transmis en intelligence collective</b>Objectifs pédagogiques :
+  <ul>
+    <li style="list-style-type: none;">
+  <ul>
+    <li>Comprendre ce qu'est l'innovation et à quoi elle sert.</li>
+    <li>Connaître les étapes d'un processus d'innovation et comment les mettre en place.</li>
+    <li>S'approprier les postures managériales et les soft skills qui favorisent son émergence.</li>
+  </ul>
+  &nbsp;</li>
+  </ul>
+  </li>
+    <li><em>PARTIE 2</em>
+  <b>Expérimentation sur un cas concret</b>Cette formation peut être adaptée en fonction de vos besoins.</li>
+  </ul>
+
+
+
+
+
+
 text_image--highlight: |
   <p>Nous avons en commun plus de 30 ans de <strong>pratiques artistiques</strong> qui apportent une <strong>couleur particulière à notre travail</strong>. L’importance de l’écoute, du silence, des émotions, du corps, autant de thèmes que nous avons à cœur de partager.</p>
 text_image--image: <img src="https://picsum.photos/1072/1287" alt="" loading="lazy">
@@ -107,7 +114,7 @@ push--title: Vous avez un <em>besoin</em> ?
 push--description: Accompagnement sur mesure, ateliers thématiques, conférences,formation innovation, signaux faibles, coaching...
 push--image: <img src="https://picsum.photos/630/393" alt="" loading="lazy">
 push--wysiwyg: Le but de la Théorie U est d'inventer le futur en intelligence collective.
-push--bg_primary: false
+push--bg_primary: true
 
 
 
