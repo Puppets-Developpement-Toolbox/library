@@ -10,7 +10,7 @@
 <div <?= !empty(carlo_get('ancre')) ? 'id="' . carlo_get('ancre') . '"' : '' ?> class="bg-primary text-white
             group/on-primary">
   <section class="[ section ]
-                  flex flex-col gap-12 py-20
+                  flex flex-col gap-12 my-0 py-20
                   bg-primary
                   laptop:grid laptop:grid-cols-12 laptop:gap-0 laptop:py-30">
 
