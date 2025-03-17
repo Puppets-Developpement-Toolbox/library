@@ -30,6 +30,7 @@
     </header>
     <div class="[ text ]
                 flex-1
+                line-clamp-4
                 group-[&]/on-primary:text-primary">
         <?= carlo_get('content') ?>
     </div>
