@@ -57,7 +57,7 @@
   .text {
     @apply flex flex-col gap-6;
 
-    h2, h3, h4, h5 { @apply mb-2; }
+    h2, h3, h4, h5 { @apply m-0; }
     h2 { @apply font-semibold text-[34px] leading-[1.1] text-primary laptop:text-[48px] group-[&]/on-primary:text-white; }
     h3 { @apply font-bold text-[28px] leading-[1.1] text-primary laptop:text-[32px] group-[&]/on-primary:text-white; }
     h4 { @apply font-bold text-[20px] leading-[1.2] text-primary laptop:text-[24px] group-[&]/on-primary:text-white; }
