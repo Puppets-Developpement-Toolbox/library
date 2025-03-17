@@ -21,6 +21,7 @@
 
   <section class="[ section section__push ]
                   flex flex-col gap-8
+                  group/cards-limit-lines
                   group-[&]/on-primary:py-16 group-[&]/on-primary:bg-transparent group-[&]/on-primary:laptop:py-30">
   <?php if(!empty(carlo_get("title")) || !empty(carlo_get("description")) || (!empty(carlo_get('cta')['link']) && !empty(carlo_get('cta')['label']))): ?>
     <header class="flex flex-col gap-6

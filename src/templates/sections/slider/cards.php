@@ -14,6 +14,7 @@
 <?php endif; ?>
   <div class="overflow-x-clip">
     <section class="[ section has-slider slider-cards ]
+                    group/cards-limit-lines
                     flex flex-col gap-8
                     group-[&]/on-primary:py-16 group-[&]/on-primary:bg-transparent group-[&]/on-primary:laptop:py-30">
     <header class="laptop:grid laptop:grid-cols-12 laptop:gap-6">
