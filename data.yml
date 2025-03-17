@@ -10,8 +10,26 @@ text: |
   reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
   pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
   culpa qui officia deserunt mollit anim id est laborum.
+# wysiwyg: <strong>La confiance</strong> comme le fondement de la sécurité et de l’autonomie.
 wysiwyg: |
-  <p>Lorem ipsum dolor sit amet consectetur. Ac neque pharetra adipiscing nunc lectus sed amet egestas nam. Risus sollicitudin amet semper et quam cursus volutpat pretium viverra. Enim mollis.</p>
+  <p>Pierre est coach, formateur et facilitateur en intelligence collective depuis plus de 15 ans. Il accompagne les transformations dans le milieu associatif, le secteur public et les grandes entreprises. Avant cela il s’est engagé pendant 20 ans dans l’appui aux PME et aux associations professionnelles dans une vingtaine de pays émergents.</p>
+# wysiwyg: |
+#   <h5><strong>Formations</strong></h5>
+#   <ul>
+#     <li>HEC Paris Grande École</li>
+#     <li>Duke University</li>
+#     <li>1<sup>er</sup> prix de conservatoire en piano et musique de chambre</li>
+#     <li>Formée à l’intelligence collective, Théorie U, Social Presencing Theater avec Dialogue-IC</li>
+#     <li>Systémique avec J.A Malarewicz</li>
+#     <li>Coaching avec International Mozaïk.</li>
+#   </ul>
+#   <h5><strong>Derniers postes en entreprise&nbsp;</strong></h5>
+#   <p><strong>Groupe L’Oréal :</strong></p>
+#   <ul>
+#     <li>Directrice Innovation Corée du Sud</li>
+#     <li>Directrice de la Direction de l’Innovation Asie</li>
+#     <li>Directrice du Foresight mondial</li>
+#   </ul>
 
 quote: Oui mais je alors là bon tu euh je non ou bah comment aah parce que mais sinon pendant non que je foulàlààà
 author: Jean-Pierre Tricard
@@ -48,23 +66,10 @@ super_section--revert: false
 
 text_image--surtitle: Un processus de changement
 text_image--title: La Théorie <em>U</em>
-# text_image--description: |
-#   <p>Cette formation est le fruit de nos 20 ans d’expérience dans les métiers de l’innovation. Elle se compose de 2 parties :</p>
-#   <h3>Lorem ipsum</h3>
-#   <p>Cette formation peut être adaptée en fonction de vos besoins.</p>
-
-# text_image--description: |
-#   <p>Cette formation est le fruit de nos 20 ans d’expérience dans les métiers de l’innovation. Elle se compose de 2 parties :</p>
-#   <ul>
-#     <li>Réaliser en quoi la confiance est un pilier pour la réussite individuelle et collective.</li>
-#     <li>Apprendre à déchiffrer ses mécanismes.</li>
-#     <li>Trouver comment agir pour la faire grandir.</li>
-#   </ul>
-
 text_image--description: |
   Cette formation est le fruit de nos 20 ans d'expérience dans les métiers de l'innovation. Elle se compose de 2 parties :
   <ul>
-    <li><em>PARTIE 1</em>
+    <li><em>Partie 1</em>
   <b>Apport théorique transmis en intelligence collective</b>Objectifs pédagogiques :
   <ul>
     <li style="list-style-type: none;">
@@ -76,7 +81,7 @@ text_image--description: |
   &nbsp;</li>
   </ul>
   </li>
-    <li><em>PARTIE 2</em>
+    <li><em>Partie 2</em>
   <b>Expérimentation sur un cas concret</b>Cette formation peut être adaptée en fonction de vos besoins.</li>
   </ul>
 
@@ -96,6 +101,7 @@ text_insights--image: <img src="https://picsum.photos/750/322" alt="" loading="l
 text_insights--title: Ateliers thématiques
 text_insights--subtitle: Innover dans nos façons de faire ensemble pour une performance durable
 text_insights--text: Nous avons construit tous nos ateliers en intelligence collective pour permettre aux participants d’en faire l’expérience. L’objectif est de favoriser une compréhension profonde des notions abordées et la production d’idées concrètes.
+text_insights--punchline: true
 
 
 
@@ -113,7 +119,7 @@ insight--content: |
 push--title: Vous avez un <em>besoin</em> ?
 push--description: Accompagnement sur mesure, ateliers thématiques, conférences,formation innovation, signaux faibles, coaching...
 push--image: <img src="https://picsum.photos/630/393" alt="" loading="lazy">
-push--wysiwyg: Le but de la Théorie U est d'inventer le futur en intelligence collective.
+push--wysiwyg: <p>La musique favorise la <strong>connexion aux émotions et relie les individus</strong>. Elle crée une atmosphère différente propice à la prise de recul et à la créativité.</p>
 push--bg_primary: true
 
 
