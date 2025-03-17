@@ -10,7 +10,7 @@
 
   <section class="m-6 mt-12
                   bg-white
-                  laptop:absolute laptop:right-0 laptop:top-1/2 laptop:-translate-y-1/2 laptop:w-[65%] laptop:m-0 laptop:px-[100px] laptop:py-[64px]
+                  laptop:absolute laptop:right-0 laptop:top-1/2 laptop:-translate-y-1/2 laptop:w-[64.7%] laptop:m-0 laptop:px-[100px] laptop:py-[64px]
                   wide:w-1/2 wide:px-[120px]">
 
       <?php $back_link = carlo_get('back_link');
