@@ -6,6 +6,8 @@
   * { scrollbar-width: thin; }
   
   body { @apply font-texte font-light text-base; }
+
+  figure { @apply m-0; }
   
   p { @apply mb-6 last:mb-0 hyphens-auto [hyphenate-limit-chars:10]; }
   button { @apply cursor-pointer; }
