@@ -10,6 +10,10 @@ ancre:
   _label: Ancre
   _type: text_short
   _help: Identifiant de l'ancre. Par exemple "mon_identifiant". Attention, l'ancre doit être unique sur la page. Si vous utilisez plusieurs blocs de ce type sur la même page, vous devez utiliser des identifiants différents pour chaque bloc.
+punchline:
+  _type: boolean
+  _label: Type "punchline"
+  _help: Le type punchline est destiné à une phrase courte par insight, qio s'affichera avec une typo plus grande
 insights:
   _type: repeater
   _repeat:

@@ -4,6 +4,7 @@
 <?php
 
   $insights = carlo_get('insights');
+  $punchline = carlo_get(('punchline'));
 
 ?>
 
@@ -48,7 +49,8 @@
     <ul class="flex flex-col gap-6
               laptop:col-span-6 laptop:col-start-7">
     <?php foreach ($insights as $insight): ?>
-      <li class="group/insight">
+      <li class="<?php if($punchline): ?>[ h5 ] group/punchline <?php endif ?>
+                group/insight">
         <?= carlo_render('components/insight', $insight) ?>
       </li>
     <?php endforeach; ?>
