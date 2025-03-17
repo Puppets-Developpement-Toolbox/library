@@ -7,7 +7,7 @@
                 text-white
                 laptop:py-16.25">
   <div class="flex flex-col gap-6 pl-6 max-w-156 mx-auto
-              border-l-1 border-l-white">
+              border-l-1 border-l-white/50">
     <h1 class="[ h1 ] text-white">
         <?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("title"))); ?>
     </h1>
