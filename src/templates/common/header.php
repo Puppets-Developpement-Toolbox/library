@@ -3,7 +3,7 @@
 
 <?php $rub = carlo_get('current_page') ?>
 
-<header class="flex justify-between items-center sticky z-20 top-0 py-5 px-6 h-18
+<header class="flex justify-between items-center sticky z-20 top-0 py-5 pl-6 pr-4 h-18
               bg-white
               laptop:px-10 laptop:py-0 laptop:h-auto">
 
@@ -45,7 +45,6 @@
 
 
 
-<?php // TODO: carlo_get('menu'); ?>
       <ul class="flex flex-col gap-4
                 text-center
                 laptop:flex-row laptop:items-center laptop:gap-8">
@@ -93,7 +92,6 @@
 
 
 
-<?php // TODO: carlo_get('linkedin'); ?>
       <div class="px-6 py-13.5
                   bg-secondary
                   text-base
@@ -129,7 +127,6 @@
       <div class="hidden
                   laptop:flex laptop:items-center">
         <?php
-          // TODO: dynamic URL
           carlo_render("components/cta", [
               "link" => "#",
               "label" => "Contact",
@@ -148,7 +145,7 @@
   <button type="button"
           class="[ hamburger ]
                 group/btn
-                relative z-30 size-10 p-2
+                relative z-30 size-10
                 laptop:hidden"
           aria-controls="primary-navigation"
           aria-expanded="false">
