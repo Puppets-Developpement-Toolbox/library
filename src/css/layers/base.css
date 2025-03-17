@@ -63,6 +63,7 @@
 
     > ul {
       @apply flex flex-col gap-2 my-6;
+      @apply group-[&]/card__insight:mt-0;
       > li {
         @apply relative ml-12;
         @apply before:block before:absolute before:top-3 before:left-0 before:-translate-x-12 before:w-8 before:h-0.25 before:bg-primary-light;
