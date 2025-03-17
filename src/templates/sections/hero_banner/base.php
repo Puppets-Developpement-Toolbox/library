@@ -52,7 +52,7 @@
             <p class="[ large ]
                         mt-6 mb-0 !text-black"><?= carlo_get("description") ?></p>
             <?php endif; ?>
-            <?php if (carlo_get("cta") || carlo_get("cta_contact")): ?>
+            <?php if (!empty(carlo_get("cta")['link']) || !empty(carlo_get("cta_contact")['link'])): ?>
             <ul class="flex flex-col gap-3 mt-6
                     laptop:flex-row">
             <?php if (carlo_get("cta")): ?>
