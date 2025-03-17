@@ -19,7 +19,7 @@
     <header class="text-white
                   laptop:col-span-5">
         <div class="flex flex-col gap-4
-                    laptop:sticky laptop:top-34">
+                    laptop:gap-8 laptop:sticky laptop:top-34">
 
             <figure class="[ img__cover ]
                         aspect-[100/43]">
@@ -27,7 +27,8 @@
             </figure>
 
             <div class="flex flex-col gap-4 pb-6
-                        border-b-1 border-b-white">
+                        border-b-1 border-b-white
+                        laptop:pb-8">
             <h2 class="[ h2 ] text-white">
                 <?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("title"))); ?>
             </h2>
