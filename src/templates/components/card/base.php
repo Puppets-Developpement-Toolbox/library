@@ -23,7 +23,9 @@
                   after:block after:origin-left after:w-full after:h-[1px] after:mt-4 after:bg-black
                   group-hover/card:after:scale-x-85">
       <h3 class="[ h3 ]"><?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("title"))); ?></h3>
-      <?php if (carlo_get('subtitle')): ?><span class="[ kicker-subtitle ]"><?= carlo_get('subtitle') ?></span><?php endif ?>
+      <?php if(carlo_get('subtitle')): ?>
+        <span class="[ kicker-subtitle ]"><?= carlo_get('subtitle') ?></span>
+      <?php endif; ?>
     </header>
     <div class="[ text ]
                 flex-1
@@ -32,7 +34,7 @@
         <?= carlo_get('content') ?>
     </div>
     <?php if(carlo_get('cta')):?>
-    <?php carlo_render('components/cta:tertiary', carlo_get('cta')) ?>
+    <?php carlo_render('components/cta:tertiary', array_merge(carlo_get('cta'), ['icon' => carlo_get('icon')])) ?>
     <?php endif; ?>
   </div>
 </div>

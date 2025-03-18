@@ -9,8 +9,10 @@
                 hover:text-black">
     <span class="shrink-0 size-6 text-accent
                 transition-transform duration-300
-                group-hover/btn:rotate-180">
-      <svg viewBox="0 0 24 24"><use href="#svg__more"></use></svg>
+                <?= carlo_get('icon')? '' : 'group-hover/btn:rotate-180' ?>">
+                    <svg viewBox="0 0 24 24">
+                        <use href="#svg__<?= carlo_get('icon')? 'link' : 'more' ?>"></use>
+                    </svg>
     </span>
     <span><?= carlo_get('label') ?></span>
   </button>

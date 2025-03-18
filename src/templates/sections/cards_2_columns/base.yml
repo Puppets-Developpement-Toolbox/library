@@ -9,4 +9,8 @@ cards:
     image: image
     title: text_short
     content: wysiwyg
+    icon:
+      _type: boolean
+      _label: Picto
+      _help: Choix de l'icône à afficher devant le CTA. Si désactivé, l'icône affichée devant le texte du CTA sera une croix.
     cta: !load components/cta

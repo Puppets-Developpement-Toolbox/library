@@ -11,7 +11,7 @@
 
   <a href="/"
     class="laptop:hidden">
-    <figure class="w-43 h-8">
+    <figure class="w-43 h-8 !m-0">
       <svg viewBox="0 0 224 42"
           class="size-full object-contain"><use href="#svg__logo"></use></svg>
     </figure>

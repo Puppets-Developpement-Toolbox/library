@@ -7,4 +7,8 @@ title:
   _help: Encadrer du texte entre &lt; et &gt; pour le mettre en forme, par exemple &lt; mon texte en italique &gt;. Pour faire des sauts de ligne faire shift+entrer.
 subtitle: text_short
 content: wysiwyg
+icon:
+  _type: boolean
+  _label: Picto
+  _help: Choix de l'icône à afficher devant le CTA. Si désactivé, l'icône affichée devant le texte du CTA sera une croix.
 cta: !components cta
