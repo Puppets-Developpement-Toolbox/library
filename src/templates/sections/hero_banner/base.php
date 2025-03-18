@@ -15,7 +15,7 @@
 
       <?php $back_link = carlo_get('back_link');
       if(isset($back_link) && is_array($back_link)):  ?>
-      <aside class="my-6
+      <aside class="mb-6
                     border-b-[1px] border-b-black">
         <a href="<?=$back_link['href'] ?>" title="<?=$back_link['label'] ?>" class="group/btn
               flex items-center gap-2 relative p-3
