@@ -2,7 +2,7 @@
 
 
 const padd = 16;
-const speed = 0.5;
+const speed = 1.5;
 
 
 

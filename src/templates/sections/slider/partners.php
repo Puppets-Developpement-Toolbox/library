@@ -48,16 +48,20 @@
           <?php foreach ($partners as $partner): ?>
           <li class="[ partner ]
                       !w-47.5 absolute top-0">
-            <figure class="flex justify-center items-center aspect-[19/10] px-7.5 py-6
+            <figure class="[ img__contain ]
+                          flex justify-center items-center aspect-[19/10] px-7.5 py-6
                           border-1 border-black">
               <?php
                 if (is_int($partner['logo'])) {
                     echo carlo_img($partner['logo'], 'size-full', 'object-contain');
                 } else {
-                    // echo '<img src="' . $partner['logo'] . '"
-                    //     alt="' . $partner['brand'] . '"
-                    //     class="size-full object-contain">';
-                    echo '<svg viewBox="0 0 224 42"><use href="#svg__logo"></use></svg>';
+                    echo '<img src="' . $partner['logo'] . '"
+                        alt="' . $partner['brand'] . '"
+                        class="size-full object-contain">';
+                    // ----- TEST
+                    // echo '<svg viewBox="0 0 224 42"><use href="#svg__logo"></use></svg>';
+                    // echo '<img src="/_GAB_images/logo-hec-alumni-2.png">';
+                    // echo '<img src="/_GAB_images/Credit-Agricole.png">';
                 }
               ?>
             </figure>
