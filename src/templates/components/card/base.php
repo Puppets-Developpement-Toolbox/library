@@ -30,7 +30,8 @@
     <div class="[ text ]
                 flex-1
                 group-[&]/on-primary:text-primary">
-        <div class="group-[&]/cards-limit-lines:line-clamp-4 group-[&]/cards-limit-lines:overflow-y-clip group-[&]/cards-limit-lines:max-h-24">
+        <div class="flex flex-col gap-6
+                    group-[&]/cards-limit-lines:line-clamp-4 group-[&]/cards-limit-lines:overflow-y-clip group-[&]/cards-limit-lines:max-h-24">
           <?= carlo_get('content') ?>
         </div>
     </div>

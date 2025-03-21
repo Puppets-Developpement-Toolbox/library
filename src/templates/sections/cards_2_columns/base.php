@@ -32,7 +32,7 @@
               laptop:col-span-10 laptop:col-start-2 laptop:grid laptop:grid-cols-2">
       <?php foreach ($cards as $card):
         if(!empty($card['title'])): $card['border'] = true; ?>
-      <li>
+      <li class="group/2cols">
         <?php carlo_render('components/card', $card); ?>
       </li>
       <?php endif;

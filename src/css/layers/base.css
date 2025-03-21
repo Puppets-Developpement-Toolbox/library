@@ -57,26 +57,33 @@
   .button { @apply font-normal text-base; }
 
   .text {
-    @apply flex flex-col gap-6;
-
     h2, h3, h4, h5 { @apply m-0; }
     h2 { @apply font-semibold text-[34px] leading-[1.1] text-primary laptop:text-[48px] group-[&]/on-primary:text-white; }
     h3 { @apply font-bold text-[28px] leading-[1.1] text-primary laptop:text-[32px] group-[&]/on-primary:text-white; }
     h4 { @apply font-bold text-[20px] leading-[1.2] text-primary laptop:text-[24px] group-[&]/on-primary:text-white; }
     h5 { @apply font-light text-[18px] leading-[1.3] text-primary laptop:text-[20px] group-[&]/on-primary:text-white; }
     p { @apply m-0; }
-    > ul {
-      @apply flex flex-col gap-2 m-0;
+    p:has(strong) + ul { @apply -mt-4; }
+    ul {
+      @apply flex flex-col gap-2 my-4;
+      @apply group-[&]/2cols:gap-4 group-[&]/2cols:my-0;
+
       > li {
         @apply relative ml-12;
         @apply before:block before:absolute before:top-3 before:left-0 before:-translate-x-12 before:w-8 before:h-0.25 before:bg-primary-light;
         em { @apply font-bold text-primary-light; }
-        > strong, > b { @apply block group-[&]/on-primary:text-white; }
+        > strong, > b {
+          @apply block font-semibold;
+          @apply group-[&]/on-primary:text-white;
+        }
         p { @apply mb-4; }
         ul {
           @apply list-disc;
           @apply flex flex-col gap-2 mt-2 ml-5;
-          li { @apply pl-1; }
+          li {
+            @apply before:content-none;
+            @apply ml-0 pl-1;
+          }
         }
       }
     }
