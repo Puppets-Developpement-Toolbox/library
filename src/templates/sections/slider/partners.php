@@ -22,7 +22,7 @@
 
           <div class="flex flex-col gap-6">
             <h2 class="[ h2 ]"><?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("title"))); ?></h2>
-            <div><?= carlo_get('subtitle') ?></div>
+            <div class="[ large ] text-black"><?= carlo_get('subtitle') ?></div>
           </div>
 
         </div>
