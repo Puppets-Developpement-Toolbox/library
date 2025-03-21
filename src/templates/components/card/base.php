@@ -29,9 +29,10 @@
     </header>
     <div class="[ text ]
                 flex-1
-                group-[&]/cards-limit-lines:line-clamp-4
                 group-[&]/on-primary:text-primary">
-        <?= carlo_get('content') ?>
+        <div class="group-[&]/cards-limit-lines:line-clamp-4 group-[&]/cards-limit-lines:overflow-y-clip group-[&]/cards-limit-lines:max-h-24">
+          <?= carlo_get('content') ?>
+        </div>
     </div>
     <?php if(carlo_get('cta')):?>
     <?php carlo_render('components/cta:tertiary', array_merge(carlo_get('cta'), ['icon' => carlo_get('icon')])) ?>
