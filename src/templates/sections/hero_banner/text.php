@@ -12,7 +12,7 @@
         <?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("title"))); ?>
     </h1>
     <div class="[ large ] text-white">
-      <?= carlo_get('subtitle') ?>
+        <?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("subtitle"))); ?>
     </div>
   </div>
 </section>

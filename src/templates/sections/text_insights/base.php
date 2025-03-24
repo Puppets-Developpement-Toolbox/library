@@ -34,7 +34,7 @@
                 <?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("title"))); ?>
             </h2>
             <p class="[ kicker-subtitle ] text-white">
-                <?= carlo_get('subtitle') ?>
+                <?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("subtitle"))); ?>
             </p>
         </div>
         <div class="[ texte ]">

@@ -24,7 +24,7 @@
                   group-hover/card:after:scale-x-85">
       <h3 class="[ h3 ]"><?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("title"))); ?></h3>
       <?php if(carlo_get('subtitle')): ?>
-        <span class="[ kicker-subtitle ]"><?= carlo_get('subtitle') ?></span>
+        <span class="[ kicker-subtitle ]"><?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("subtitle"))); ?></span>
       <?php endif; ?>
     </header>
     <div class="[ text ]

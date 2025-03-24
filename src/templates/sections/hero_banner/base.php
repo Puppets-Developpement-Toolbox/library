@@ -35,7 +35,7 @@
               mb-6
               laptop:mb-8">
       <span class="[ kicker-subtitle ]
-                  mb-2"><?= carlo_get("surtitle") ?></span>
+                  mb-2"><?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("surtitle"))); ?></span>
       <?php if(carlo_get("title")): ?>
       <?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("title"))); ?>
       <?php endif; ?>

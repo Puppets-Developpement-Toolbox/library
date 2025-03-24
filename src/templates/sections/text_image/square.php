@@ -89,7 +89,7 @@ $slides = array_filter($slides, function($slide){
                       border-b-[1px] border-b-white
                       text-white">
           <?php if (carlo_get("surtitle")): ?>
-          <p class="[ kicker-subtitle ] text-white mb-2"><?= carlo_get("surtitle") ?></p>
+          <p class="[ kicker-subtitle ] text-white mb-2"><?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("surtitle"))); ?></p>
           <?php endif; ?>
           <h2 class="[ h2 ]
                     text-white">

@@ -2,12 +2,18 @@ revert:
   _type: boolean
   _label: Inverser la disposition du block
   _help: Par défaut le texte est à droite et l'image est à gauche
-surtitle: text_short
+surtitle:
+  _type: text
+  _label: Sur-titre
+  _help: Encadrer du texte entre &lt; et &gt; pour le mettre en forme, par exemple &lt; mon texte en italique &gt;. Pour faire des sauts de ligne faire shift+entrer.
 title:
   _type: text
   _label: Titre
   _help: Encadrer du texte entre &lt; et &gt; pour le mettre en forme, par exemple &lt; mon texte en italique &gt;. Pour faire des sauts de ligne faire shift+entrer.
-subtitle: text_short
+subtitle:
+  _type: text
+  _label: Sous-Titre
+  _help: Encadrer du texte entre &lt; et &gt; pour le mettre en forme, par exemple &lt; mon texte en italique &gt;. Pour faire des sauts de ligne faire shift+entrer.
 description: wysiwyg
 highlight: wysiwyg
 ancre:

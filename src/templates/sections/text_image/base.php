@@ -86,13 +86,13 @@ $slides = array_filter($slides, function($slide){
       <div class="flex flex-col gap-6 laptop:gap-8">
         <header>
           <?php if (carlo_get("surtitle")): ?>
-            <span class="[ kicker-subtitle ] mb-2"><?= carlo_get("surtitle") ?></span>
+            <span class="[ kicker-subtitle ] mb-2"><?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("surtitle"))); ?></span>
           <?php endif; ?>
           <h2 class="[ h2 ]">
             <?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("title"))); ?>
           </h2>
           <?php if (carlo_get("subtitle")): ?>
-            <span class="[ kicker-subtitle ] mt-4"><?= carlo_get('subtitle'); ?></span>
+            <span class="[ kicker-subtitle ] mt-4"><?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("subtitle"))); ?></span>
           <?php endif; ?>
         </header>
         <div class="[ text ]"><?= carlo_get("description") ?></div>
@@ -104,7 +104,7 @@ $slides = array_filter($slides, function($slide){
         </div>
         <?php endif ?>
         <?php if (carlo_get("cta")) : ?>
-            <div ><?=carlo_render("components/cta", array_merge(array('icon' => carlo_get('icon')), carlo_get("cta"))); ?></div>
+            <div ><?=carlo_render("components/cta", array_merge(carlo_get("cta"), array('icon' => carlo_get('icon')))); ?></div>
         <?php endif; ?>
       </div>
     </section>

@@ -1,5 +1,8 @@
 title: wysiwyg
-subtitle: text_short
+subtitle:
+  _type: text
+  _label: Sous-titre
+  _help: Encadrer du texte entre &lt; et &gt; pour le mettre en forme, par exemple &lt; mon texte en italique &gt;. Pour faire des sauts de ligne faire shift+entrer.
 quote: text_short
 author: text_short
 charge: text_short
