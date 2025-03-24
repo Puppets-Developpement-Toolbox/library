@@ -96,11 +96,12 @@ $slides = array_filter($slides, function($slide){
             <?= str_replace(' >', '</em>', str_replace('< ', '<em>', carlo_get("title"))); ?>
           </h2>
         </header>
-        <div class="[ text ]"><?= carlo_get("description") ?>
-        <?php if (carlo_get("cta")) {
-            carlo_render("components/cta", carlo_get("cta"));
-        } ?>
-        </div>
+        <?php if (carlo_get("description")): ?>
+            <div class="[ text ]"><?= carlo_get("description") ?></div>
+        <?php endif; ?>
+        <?php if (carlo_get("cta")) : ?>
+            <?php carlo_render("components/cta", carlo_get("cta")); ?>
+        <?php endif; ?>
       </div>
     </section>
 
