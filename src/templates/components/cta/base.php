@@ -7,7 +7,7 @@
           class="group/btn
                 flex justify-center items-center gap-1.5 w-auto px-6 py-3 w-fit
                 rounded-full bg-gradient-to-r from-white from-50% to-primary to-50% bg-right bg-[size:202%] bg-no-repeat border-[1px] border-primary
-                text-white
+                text-white font-normal
                 transition-all duration-300
                 hover:bg-left hover:text-primary
                 group-[.bg-primary]/section:border-white

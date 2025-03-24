@@ -7,7 +7,7 @@
                 flex justify-center items-center gap-1 w-auto px-6 py-3
                 group-[&]/hero:w-full
                 rounded-full bg-gradient-to-r from-primary from-50% to-white to-50% border-[1px] bg-right bg-[size:_200%] border-primary
-                text-primary
+                text-primary font-normal
                 transition-all duration-300
                 group-[&]/hero:laptop:w-auto
                 group-[&]/on-primary:border-white
