@@ -14,6 +14,10 @@ ancre:
   _label: Ancre
   _type: text_short
   _help: Identifiant de l'ancre. Par exemple \"mon_identifiant\". Attention, l'ancre doit être unique sur la page. Si vous utilisez plusieurs blocs de ce type sur la même page, vous devez utiliser des identifiants différents pour chaque bloc.
+icon:
+  _type: boolean
+  _label: Picto
+  _help: Choix de l'icône à afficher devant le CTA. Si désactivé, l'icône affichée devant le texte du CTA sera une croix.
 cta: !load components/cta
 slides:
   _type: repeater

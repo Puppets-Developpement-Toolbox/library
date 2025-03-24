@@ -104,7 +104,7 @@ $slides = array_filter($slides, function($slide){
         </div>
         <?php endif ?>
         <?php if (carlo_get("cta")) : ?>
-            <div ><?=carlo_render("components/cta", carlo_get("cta")); ?></div>
+            <div ><?=carlo_render("components/cta", array_merge(array('icon' => carlo_get('icon')), carlo_get("cta"))); ?></div>
         <?php endif; ?>
       </div>
     </section>
