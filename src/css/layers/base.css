@@ -21,6 +21,8 @@
     strong { @apply font-bold; }
   }
 
+  :where(figure) { @apply m-0; }
+
   
   
 
