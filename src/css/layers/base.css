@@ -9,7 +9,7 @@
 
   figure { @apply m-0; }
   
-  p { @apply mb-6 last:mb-0 hyphens-auto [hyphenate-limit-chars:10]; }
+  p { @apply mb-6 last:mb-0 text-pretty; }
   button { @apply cursor-pointer; }
   
   strong {
