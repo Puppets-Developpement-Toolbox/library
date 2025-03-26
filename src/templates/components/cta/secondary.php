@@ -1,7 +1,7 @@
 
 
 <?php if(carlo_get('link') || carlo_get('label')): ?>
-<a href="<?= carlo_get('link') ?>">
+<a href="<?= carlo_get('link') ?><?= !empty(carlo_get('ancre')) ? '#' . carlo_get('ancre') : '' ?>">
   <button type="button"
           class="group/btn
                 flex justify-center items-center gap-1 w-auto px-6 py-3
