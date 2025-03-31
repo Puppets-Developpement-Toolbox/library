@@ -15,7 +15,7 @@
   /* ---------- TailWind vars */
   
   --breakpoint-*: initial;/* Suppression des breakpoints standards de TW */
-  --breakpoint-laptop: 1280px;
+  --breakpoint-laptop: 1024px;/* 1280px; */
   --breakpoint-desktop: 1440px;
   --breakpoint-wide: 1920px;
 
