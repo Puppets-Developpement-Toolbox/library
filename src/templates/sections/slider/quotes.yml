@@ -1,0 +1,13 @@
+_help: Slider Quotes défilement automatique
+title: wysiwyg
+subtitle:
+  _type: text
+  _label: Sous-titre
+  _help: Encadrer du texte entre &lt; et &gt; pour le mettre en forme, par exemple &lt; mon texte en italique &gt;. Pour faire des sauts de ligne faire shift+entrer.
+partners: !load components/partners
+slides:
+  _type: repeater
+  _repeat:
+    quote: text_short
+    author: text_short
+    charge: text_short
