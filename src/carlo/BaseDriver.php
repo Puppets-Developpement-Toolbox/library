@@ -23,11 +23,16 @@ abstract class BaseDriver implements DriverInterface
             $template_variant,
         ) = carlo_explode_id($tpl);
 
-        $structure = $this->structure(
-            $template_type ?: "templates",
-            $template_name,
-            $template_variant
-        );
+        if($template_type !== 'menus') {
+          $structure = $this->structure(
+              $template_type ?: "templates",
+              $template_name,
+              $template_variant
+          );
+        } else {
+          // menus doesn't have structure
+          $structure = null;
+        }
 
         $this->tplPaths[] = $template_name;
         $this->context[] = [];
@@ -87,6 +92,7 @@ abstract class BaseDriver implements DriverInterface
 
         if (!empty($name) && !isset($this->loaded[$type][$name][$variant])) {
             $this->loaded[$type][$name][$variant] = true;
+
             try {
                 $file = carlo_get_file(
                     "structure",
@@ -97,9 +103,12 @@ abstract class BaseDriver implements DriverInterface
                 $this->structure[$type][$name][$variant] = $no_tag(
                     Yaml::parseFile($file, Yaml::PARSE_CUSTOM_TAGS)
                 );
-                $this->structure[$type][$name][$variant]["_id"] = "{$type}/{$name}:{$variant}";
-            } catch (Exception $e) {
+            } catch (FileNotFoundException $e) {
+                // structure file is not required
+                $label = str_replace('_', ' ', $variant ?: $name);
+                $this->structure[$type][$name][$variant]["_label"] = ucfirst($label);
             }
+            $this->structure[$type][$name][$variant]["_id"] = "{$type}/{$name}:{$variant}";
         }
 
         if (empty($name) && isset($this->structure[$type])) {
