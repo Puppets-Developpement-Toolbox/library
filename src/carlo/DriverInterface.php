@@ -8,13 +8,13 @@ interface DriverInterface
 
     public function loadData(array $structure, array $args);
 
-    public function structure(string $type, string $name = null);
+    public function structure(string $type, ?string $name = null);
 
     public function register(string $file);
 
     public function getFile(string $type, string $element, string $variant = 'base' );
 
-    public function get(string $key = null);
+    public function get(?string $key = null);
 
     public function img(
         string $key,

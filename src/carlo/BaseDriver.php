@@ -57,7 +57,7 @@ abstract class BaseDriver implements DriverInterface
         array_pop($this->context);
     }
 
-    public function structure(string $type, string $name = null, string $variant = "base")
+    public function structure(string $type, ?string $name = null, string $variant = "base")
     {
         $no_tag = null;
         $no_tag = function ($definition) use (&$no_tag) {
@@ -124,7 +124,7 @@ abstract class BaseDriver implements DriverInterface
         $this->projectStructure = $file;
     }
 
-    public function get(string $key = null)
+    public function get(?string $key = null)
     {
         $tpl_args = end($this->tplArgs);
 
