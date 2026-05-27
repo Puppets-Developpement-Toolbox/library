@@ -1,22 +1,29 @@
 <?php
 
-
 use Symfony\Component\Yaml\Tag\TaggedValue;
 use Symfony\Component\Yaml\Yaml;
 use carlo\DriverInterface;
 use carlo\FileNotFoundException;
 
-// une pile stockant les variables contextuelles ajoutées
-// par un parent et accessible à dans les enfants
 global $CARLO_CONTEXT;
 $CARLO_CONTEXT = [];
 
-//const WP_BASEPATH = "/web/app/themes/";
 const CARLO_BASEPATH = __DIR__ . "/../";
 
 function carlo_register($structure_path)
 {
     carlo_driver()->register($structure_path);
+}
+
+/**
+ * Enregistrer un namespace avec son chemin
+ *
+ * @param string $namespace Nom du namespace (ex: 'restaurant')
+ * @param string $path Chemin absolu vers le dossier du namespace
+ */
+function carlo_register_namespace(string $namespace, string $path)
+{
+    carlo_driver()->registerNamespace($namespace, $path);
 }
 
 function carlo_driver(DriverInterface $driver = null)
@@ -33,16 +40,29 @@ function carlo_driver(DriverInterface $driver = null)
     return $_driver;
 }
 
-/**
- * load structure definition from structure.yml
- */
-function carlo_structure($type, $name = null)
+function carlo_structure($type, $name = null, $variant = "base", $namespace = 'default')
 {
-    return carlo_driver()->structure($type, $name);
+    return carlo_driver()->structure($type, $name, $variant, $namespace);
 }
 
+/**
+ * Décompose un ID de template en ses parties
+ * Exemples :
+ * - "sections/image:base" → ["sections", "image", "base", "default"]
+ * - "@restaurant:sections/image" → ["sections", "image", "base", "restaurant"]
+ * - "@restaurant:sections/image:variant" → ["sections", "image", "variant", "restaurant"]
+ */
 function carlo_explode_id($element_id)
 {
+    $namespace = 'default';
+
+    // 1. Extraction du namespace si présent (@restaurant:...)
+    if (strpos($element_id, '@') === 0) {
+        list($namespace_raw, $element_id) = explode(':', $element_id, 2);
+        $namespace = substr($namespace_raw, 1); // Enlever le @
+    }
+
+    // 2. Extraction du type et du nom (sections/image)
     list($template_type, $template_name) = explode("/", "{$element_id}/");
 
     if (empty($template_name)) {
@@ -50,47 +70,32 @@ function carlo_explode_id($element_id)
         $template_type = "";
     }
 
-    list($template_name, $template_variant) = explode(
-        ":",
-        $template_name . ":base"
-    );
-    return [$template_type, $template_name, $template_variant];
+    // 3. Extraction de la variante (:base, :text, etc.)
+    list($template_name, $template_variant) = explode(":", $template_name . ":base");
+
+    return [$template_type, $template_name, $template_variant, $namespace];
 }
-/**
- * load and return the template and inject args
- */
+
 function carlo_render($tpl, $args = [])
 {
     return carlo_driver()->render($tpl, $args);
 }
 
-/**
- * return the value of key from local args or context
- */
 function carlo_get($key = null)
 {
     return carlo_driver()->get($key);
 }
 
-/**
- * load data for the current template
- */
 function carlo_load_data($structure, $args)
 {
     carlo_driver()->loadData($structure, $args);
 }
 
-/**
- * include the given file
- */
-function carlo_get_file($type, $element, $variant = "base")
+function carlo_get_file($type, $element, $variant = "base", $namespace = 'default')
 {
-    return carlo_driver()->getFile($type, $element, $variant);
+    return carlo_driver()->getFile($type, $element, $variant, $namespace);
 }
 
-/**
- * add a contextual entry
- */
 function carlo_context_add($key, $value)
 {
     global $CARLO_CONTEXT;
@@ -99,9 +104,6 @@ function carlo_context_add($key, $value)
     $CARLO_CONTEXT[$contextLastKey][$key] = $value;
 }
 
-/**
- * return the value of key fron current context
- */
 function carlo_context($key)
 {
     global $CARLO_CONTEXT;
@@ -117,28 +119,16 @@ function carlo_get_value($key, $values)
     return $values;
 }
 
-/**
- * returns html image
- *
- * exemple :
- * - carlo_img(1) => return img tag for img with id 1 in its original format
- * - carlo_img(1, '70x70') => return same img in 70x70 format
- * - carlo_img(1, ['70x70', '(min-width: 1024px)' => '1600x900']) => return same image with an other dimension for big screen
- * - carlo_img(1, ['70x70', '(min-width: 1024px)' => '1600x900'], 2, [(min-width: 2024px)' => '1600x900']) => return same image and image with id 2 for really big screen
- * - carlo_img(1, ['class' => 'mr-16']) => in any case, if the last argument is an array with class key this is added as img attributes
- */
 function carlo_img($key)
 {
     $source_sizes = [];
     $args = func_get_args();
 
-    // remove first arg, it's the id
     array_shift($args);
 
     $imgAttrs = [];
     $lastArg = end($args);
     if (is_array($lastArg) && array_key_exists("class", $lastArg)) {
-        // last arg is img attrs
         $imgAttrs = $lastArg;
         array_pop($args);
     }
@@ -174,10 +164,79 @@ function carlo_component($component)
         $component = carlo_get($component);
     }
 
-    //Règle le problème de super_section
     if(isset($component['acf_fc_layout'])){
         $component["_id"] = $component['acf_fc_layout'];
     }
 
     return carlo_render($component["_id"], $component);
+}
+
+// --- Introspection API ---
+
+/**
+ * Get all available sections with optional metadata
+ *
+ * @param bool $includeMetadata Include full metadata for each section
+ * @return array
+ */
+function carlo_get_available_sections(bool $includeMetadata = false): array
+{
+    return carlo_driver()->introspect()->getAllElements('sections', $includeMetadata);
+}
+
+/**
+ * Get all available components with optional metadata
+ *
+ * @param bool $includeMetadata Include full metadata for each component
+ * @return array
+ */
+function carlo_get_available_components(bool $includeMetadata = false): array
+{
+    return carlo_driver()->introspect()->getAllElements('components', $includeMetadata);
+}
+
+/**
+ * Get metadata for a specific element
+ *
+ * @param string $id Element ID (e.g., 'sections/text:simple')
+ * @return array|null
+ */
+function carlo_get_element_info(string $id): ?array
+{
+    return carlo_driver()->introspect()->getElementMetadata($id);
+}
+
+/**
+ * List all registered namespaces
+ *
+ * @return array ['default' => '/path', 'custom' => '/path', ...]
+ */
+function carlo_list_namespaces(): array
+{
+    return carlo_driver()->introspect()->getRegisteredNamespaces();
+}
+
+/**
+ * Scan available elements of a specific type in a namespace
+ *
+ * @param string $type Type (sections, components, etc.)
+ * @param string $namespace Namespace to scan
+ * @return array List of element IDs
+ */
+function carlo_scan_elements(string $type, string $namespace = 'default'): array
+{
+    return carlo_driver()->introspect()->scanAvailableElements($type, $namespace);
+}
+
+/**
+ * Get all variants for a specific element
+ *
+ * @param string $type Type (sections, components)
+ * @param string $name Element name
+ * @param string $namespace Namespace
+ * @return array List of variant names
+ */
+function carlo_get_element_variants(string $type, string $name, string $namespace = 'default'): array
+{
+    return carlo_driver()->introspect()->getElementVariants($type, $name, $namespace);
 }

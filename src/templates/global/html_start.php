@@ -38,8 +38,8 @@
 
 
 	<body class="flex flex-col">
-		
-		<?php carlo_render("global/svg"); ?>
+
+		<!-- <?php //carlo_render("global/svg"); ?> -->
 		<?php carlo_render("common/header"); ?>
 
 		<main class="flex-1">
