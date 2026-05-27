@@ -170,3 +170,73 @@ function carlo_component($component)
 
     return carlo_render($component["_id"], $component);
 }
+
+// --- Introspection API ---
+
+/**
+ * Get all available sections with optional metadata
+ *
+ * @param bool $includeMetadata Include full metadata for each section
+ * @return array
+ */
+function carlo_get_available_sections(bool $includeMetadata = false): array
+{
+    return carlo_driver()->introspect()->getAllElements('sections', $includeMetadata);
+}
+
+/**
+ * Get all available components with optional metadata
+ *
+ * @param bool $includeMetadata Include full metadata for each component
+ * @return array
+ */
+function carlo_get_available_components(bool $includeMetadata = false): array
+{
+    return carlo_driver()->introspect()->getAllElements('components', $includeMetadata);
+}
+
+/**
+ * Get metadata for a specific element
+ *
+ * @param string $id Element ID (e.g., 'sections/text:simple')
+ * @return array|null
+ */
+function carlo_get_element_info(string $id): ?array
+{
+    return carlo_driver()->introspect()->getElementMetadata($id);
+}
+
+/**
+ * List all registered namespaces
+ *
+ * @return array ['default' => '/path', 'custom' => '/path', ...]
+ */
+function carlo_list_namespaces(): array
+{
+    return carlo_driver()->introspect()->getRegisteredNamespaces();
+}
+
+/**
+ * Scan available elements of a specific type in a namespace
+ *
+ * @param string $type Type (sections, components, etc.)
+ * @param string $namespace Namespace to scan
+ * @return array List of element IDs
+ */
+function carlo_scan_elements(string $type, string $namespace = 'default'): array
+{
+    return carlo_driver()->introspect()->scanAvailableElements($type, $namespace);
+}
+
+/**
+ * Get all variants for a specific element
+ *
+ * @param string $type Type (sections, components)
+ * @param string $name Element name
+ * @param string $namespace Namespace
+ * @return array List of variant names
+ */
+function carlo_get_element_variants(string $type, string $name, string $namespace = 'default'): array
+{
+    return carlo_driver()->introspect()->getElementVariants($type, $name, $namespace);
+}

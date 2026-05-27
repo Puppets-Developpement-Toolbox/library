@@ -15,11 +15,32 @@ abstract class BaseDriver implements DriverInterface
     protected $structure;
     protected $loaded = [];
     protected $namespaces = [];
+    protected ?Introspection $introspection = null;
 
     public function __construct()
     {
         // Namespace par défaut : library puppets
         $this->namespaces['default'] = CARLO_BASEPATH . 'templates';
+    }
+
+    /**
+     * Get introspection instance for discovering available elements
+     */
+    public function introspect(): Introspection
+    {
+        if ($this->introspection === null) {
+            $this->introspection = new Introspection($this);
+        }
+
+        return $this->introspection;
+    }
+
+    /**
+     * Get all registered namespaces
+     */
+    public function getNamespaces(): array
+    {
+        return $this->namespaces;
     }
 
     /**
