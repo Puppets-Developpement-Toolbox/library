@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace carlo;
 
-use Symfony\Component\Yaml\Yaml;
 
 class Introspection
 {
@@ -19,34 +18,10 @@ class Introspection
      */
     public function scanAvailableElements(string $type, string $namespace = 'default'): array
     {
-        $cacheKey = "scan:{$namespace}:{$type}";
-
-        if (isset($this->cache[$cacheKey])) {
-            return $this->cache[$cacheKey];
-        }
-
-        $basePath = $this->getNamespacePath($namespace);
-
-        if (!$basePath || !is_dir($basePath)) {
-            return [];
-        }
-
-        $typePath = "{$basePath}/{$type}";
-
-        if (!is_dir($typePath)) {
-            return [];
-        }
-
         $elements = [];
-        $dirs = glob($typePath . '/*', GLOB_ONLYDIR) ?: [];
 
-        foreach ($dirs as $dir) {
-            $elementName = basename($dir);
-            $ymlFiles = glob("{$dir}/*.yml") ?: [];
-
-            foreach ($ymlFiles as $ymlFile) {
-                $variant = basename($ymlFile, '.yml');
-
+        foreach ($this->variantsByElement($type, $namespace) as $elementName => $variants) {
+            foreach ($variants as $variant) {
                 $id = match ($variant) {
                     'base' => "{$type}/{$elementName}",
                     default => "{$type}/{$elementName}:{$variant}"
@@ -60,12 +35,11 @@ class Introspection
             }
         }
 
-        $this->cache[$cacheKey] = $elements;
         return $elements;
     }
 
     /**
-     * Get full metadata for an element (from .yml file)
+     * Get full metadata for an element (from its .yml, resolved by the driver)
      */
     public function getElementMetadata(string $id): ?array
     {
@@ -80,38 +54,27 @@ class Introspection
 
         ['namespace' => $namespace, 'type' => $type, 'name' => $name, 'variant' => $variant] = $parts;
 
-        $basePath = $this->getNamespacePath($namespace);
-        if (!$basePath) {
+        if (!in_array($variant, $this->variantsByElement($type, $namespace)[$name] ?? [], true)) {
             return null;
         }
 
-        $ymlPath = "{$basePath}/{$type}/{$name}/{$variant}.yml";
+        // Le driver applique les surcharges (thème…) et résout les tags !load.
+        $metadata = $this->driver->structure($type, $name, $variant, $namespace);
 
-        if (!file_exists($ymlPath)) {
-            return null;
+        if (!is_array($metadata)) {
+            $metadata = [];
         }
 
-        try {
-            $metadata = Yaml::parseFile($ymlPath);
+        // Add computed fields
+        $metadata['_id'] = $id;
+        $metadata['_type'] = $type;
+        $metadata['_name'] = $name;
+        $metadata['_variant'] = $variant;
+        $metadata['_namespace'] = $namespace;
+        $metadata['_fields'] = $this->extractFields($metadata);
 
-            if (!is_array($metadata)) {
-                $metadata = [];
-            }
-
-            // Add computed fields
-            $metadata['_id'] = $id;
-            $metadata['_type'] = $type;
-            $metadata['_name'] = $name;
-            $metadata['_variant'] = $variant;
-            $metadata['_namespace'] = $namespace;
-            $metadata['_fields'] = $this->extractFields($metadata);
-
-            $this->cache["meta:{$id}"] = $metadata;
-            return $metadata;
-
-        } catch (\Exception $e) {
-            return null;
-        }
+        $this->cache["meta:{$id}"] = $metadata;
+        return $metadata;
     }
 
     /**
@@ -119,23 +82,7 @@ class Introspection
      */
     public function getElementVariants(string $type, string $name, string $namespace = 'default'): array
     {
-        $basePath = $this->getNamespacePath($namespace);
-        if (!$basePath) {
-            return [];
-        }
-
-        $elementPath = "{$basePath}/{$type}/{$name}";
-
-        if (!is_dir($elementPath)) {
-            return [];
-        }
-
-        $ymlFiles = glob("{$elementPath}/*.yml") ?: [];
-
-        return array_map(
-            fn(string $file) => basename($file, '.yml'),
-            $ymlFiles
-        );
+        return $this->variantsByElement($type, $namespace)[$name] ?? [];
     }
 
     /**
@@ -172,6 +119,50 @@ class Introspection
     // --- Private helper methods ---
 
     /**
+     * Variantes de chaque élément d'un type, dans tous les dossiers de recherche du driver :
+     * type/nom/variante.php ou .yml (une variante peut n'avoir que l'un des deux), et type/nom.php
+     * (variante base). Mêmes emplacements que BaseDriver::getPathsToTest().
+     */
+    private function variantsByElement(string $type, string $namespace): array
+    {
+        $cacheKey = "scan:{$namespace}:{$type}";
+
+        if (isset($this->cache[$cacheKey])) {
+            return $this->cache[$cacheKey];
+        }
+
+        $variants = [];
+
+        foreach ($this->driver->getSearchPaths($namespace) as $basePath) {
+            $typePath = "{$basePath}/{$type}";
+
+            // Pas de GLOB_BRACE : absent de certaines libc (Alpine).
+            $files = [...(glob("{$typePath}/*/*.php") ?: []), ...(glob("{$typePath}/*/*.yml") ?: [])];
+            foreach ($files as $file) {
+                $variant = pathinfo($file, PATHINFO_FILENAME);
+                // Écarte les fichiers annexes (base.stories.yml…).
+                if (preg_match('/^[\w-]+$/', $variant)) {
+                    $variants[basename(dirname($file))][$variant] = $variant;
+                }
+            }
+
+            foreach (glob("{$typePath}/*.php") ?: [] as $file) {
+                $variants[basename($file, '.php')]['base'] = 'base';
+            }
+        }
+
+        ksort($variants);
+        $variants = array_map(function (array $names) {
+            // base d'abord, puis les autres variantes par ordre alphabétique.
+            sort($names);
+            return in_array('base', $names, true) ? ['base', ...array_diff($names, ['base'])] : $names;
+        }, $variants);
+
+        $this->cache[$cacheKey] = $variants;
+        return $variants;
+    }
+
+    /**
      * Parse element ID into components
      * Format: [@namespace:]type/name[:variant]
      */
@@ -205,14 +196,6 @@ class Introspection
         return compact('namespace', 'type', 'name', 'variant');
     }
 
-    /**
-     * Get namespace path
-     */
-    private function getNamespacePath(string $namespace): ?string
-    {
-        $namespaces = $this->getRegisteredNamespaces();
-        return $namespaces[$namespace] ?? null;
-    }
 
     /**
      * Extract field definitions from metadata
@@ -254,7 +237,8 @@ class Introspection
 
         // Extract metadata from array
         $normalized = [
-            'type' => $value['_type'] ?? 'text',
+            // Même règle que les drivers : avec _id, un composant (groupe) ; sinon une liste de blocs.
+            'type' => $value['_type'] ?? (isset($value['_id']) ? 'group' : 'container'),
             'label' => $value['_label'] ?? ucfirst($key),
             'required' => $value['_required'] ?? false
         ];

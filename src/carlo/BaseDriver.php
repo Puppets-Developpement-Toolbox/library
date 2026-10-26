@@ -44,6 +44,15 @@ abstract class BaseDriver implements DriverInterface
     }
 
     /**
+     * Dossiers où chercher les templates d'un namespace, du plus prioritaire au moins prioritaire.
+     * Un driver qui surcharge getFile() (thème WordPress…) doit renvoyer les mêmes dossiers.
+     */
+    public function getSearchPaths(string $namespace = 'default'): array
+    {
+        return isset($this->namespaces[$namespace]) ? [$this->namespaces[$namespace]] : [];
+    }
+
+    /**
      * Enregistrer un namespace avec son chemin
      */
     public function registerNamespace(string $namespace, string $path)
