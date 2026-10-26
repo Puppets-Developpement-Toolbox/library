@@ -8,11 +8,23 @@ interface DriverInterface
 
     public function loadData(array $structure, array $args);
 
-    public function structure(string $type, ?string $name = null);
+    public function structure(
+        string $type,
+        ?string $name = null,
+        string $variant = "base",
+        string $namespace = 'default'
+    );
 
     public function register(string $file);
 
-    public function getFile(string $type, string $element, string $variant = 'base' );
+    public function registerNamespace(string $namespace, string $path);
+
+    public function getFile(
+        string $type,
+        string $element,
+        string $variant = 'base',
+        string $namespace = 'default'
+    );
 
     public function get(?string $key = null);
 
@@ -20,7 +32,7 @@ interface DriverInterface
         string $key,
         string $default_size,
         array $source_sizes,
-        $mobile_key, // string|null
+        $mobile_key,
         array $mobile_source_sizes,
         array $attrs
     );
