@@ -106,15 +106,6 @@ function carlo_stories_load($id)
 }
 
 /**
- * Données d'un exemple : mêmes mises en forme que sur le site (carlo_field_values).
- */
-function carlo_stories_data($fields, $values)
-{
-    // Les valeurs hors structure (composant sans .yml, arguments passés par un parent) sont transmises telles quelles.
-    return carlo_field_values($fields, $values) + array_diff_key($values, ['_label' => true]);
-}
-
-/**
  * Champs à plat pour le tableau du catalogue : chemin (quote.author, cards.*.title) => champ.
  */
 function carlo_stories_field_rows($fields, $path = '')

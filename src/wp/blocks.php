@@ -15,7 +15,7 @@ function carlo_structure_fields($definition)
     return $fields;
 }
 
-// Champs saisis directement dans l'aperçu de l'éditeur (cf. carlo_field_values).
+// Champs saisis directement dans l'aperçu de l'éditeur (cf. CarloWpDriver::loadValue()).
 const CARLO_INLINE_TYPES = ['text_short', 'text', 'wysiwyg'];
 
 /**
@@ -34,56 +34,6 @@ function carlo_block_attributes($fields)
         // Types pas encore pris en charge par l'éditeur : valeur libre.
         default => ['string', 'number', 'boolean', 'array', 'object', 'null'],
     }], $fields);
-}
-
-/**
- * Données passées au template : chaque champ est présent (la library ne tolère pas les données
- * absentes) et mis en forme comme le faisait ACF.
- *
- * Avec $path (aperçu de l'éditeur), les textes sont remplacés par un marqueur {{carlo:chemin}}
- * que l'éditeur rend saisissable : le rendu ne dépend pas des textes, il n'est pas recalculé
- * pendant la frappe.
- */
-function carlo_field_values($fields, $values, $path = null)
-{
-    $data = [];
-    foreach ($fields as $key => $field) {
-        $value = $values[$key] ?? null;
-        $marker = $path === null ? null : "{$path}{$key}";
-
-        if ($marker !== null && in_array($field['type'], CARLO_INLINE_TYPES, true)) {
-            $data[$key] = "{{carlo:{$marker}}}";
-            continue;
-        }
-
-        $data[$key] = match ($field['type']) {
-            'group' => carlo_field_values($field['fields'], (array) $value, $marker === null ? null : "{$marker}."),
-            'repeater' => array_map(
-                fn($i) => carlo_field_values($field['fields'], (array) ($value[$i] ?? []), $marker === null ? null : "{$marker}.{$i}."),
-                // Aperçu : les éléments obligatoires (_min, _times) sont affichés, pour être remplis.
-                $marker === null || count((array) $value) >= $field['min'] ? array_keys((array) $value) : range(0, $field['min'] - 1)
-            ),
-            'reference' => array_values(array_filter(
-                array_map('get_post', (array) $value),
-                fn($post) => $post && $post->post_status === 'publish'
-            )),
-            'gallery' => (array) $value,
-            'boolean' => (bool) $value,
-            'text' => nl2br($value ?? ''),
-            'wysiwyg' => wpautop($value ?? ''),
-            default => $value ?? '',
-        };
-    }
-    return $data;
-}
-
-/**
- * Données d'une section à partir des attributs de son bloc.
- */
-function carlo_section_data($id, $attributes, $preview = false)
-{
-    $fields = carlo\Fields::of(carlo_sections()[$id]);
-    return carlo_field_values($fields, $attributes, $preview ? '' : null);
 }
 
 /**
@@ -171,7 +121,7 @@ function carlo_register_section_blocks()
                     return '';
                 }
                 ob_start();
-                carlo_render($id, carlo_section_data($id, $attributes, $preview));
+                carlo_render($id, carlo_load($id, $attributes, ['preview' => $preview]));
                 return ob_get_clean();
             },
         ]);

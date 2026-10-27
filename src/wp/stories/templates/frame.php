@@ -20,7 +20,8 @@
     <?php
     ob_start();
     try {
-        carlo_render($element['id'], carlo_stories_data($element['fields'], $story));
+        // Mêmes mises en forme que sur le site : l'exemple a le format des attributs du bloc.
+        carlo_render($element['id'], carlo_load($element['id'], array_diff_key($story, ['_label' => true])));
         ob_end_flush();
     } catch (Throwable $e) {
         ob_end_clean();

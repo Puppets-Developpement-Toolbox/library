@@ -1,6 +1,6 @@
 /**
  * Sections dans l'éditeur. L'aperçu est le template Carlo rendu par le serveur, où les textes
- * sont des marqueurs {{carlo:chemin}} (cf. carlo_field_values) : on les remplace ici par des champs
+ * sont des marqueurs {{carlo:chemin}} (cf. CarloWpDriver::loadValue) : on les remplace ici par des champs
  * saisissables. Les autres champs (images, choix, références…) sont dans le panneau Réglages,
  * généré depuis structure.yml
  * (window.carloSections, cf. inc/blocks.php). Écrit sans JSX pour se passer d'étape de build.

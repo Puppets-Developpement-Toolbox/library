@@ -49,6 +49,40 @@ class CarloWpDriver extends carlo\BaseDriver implements carlo\DriverInterface
         return array_values(array_unique([...$dirs, ...parent::getSearchPaths($namespace)]));
     }
 
+    /**
+     * Valeurs des champs mises en forme comme le faisait ACF. Dans l'aperçu de l'éditeur
+     * (option preview), les textes sont des marqueurs {{carlo:chemin}} que l'éditeur rend
+     * saisissables : le rendu ne dépend pas des textes, il n'est pas recalculé pendant la frappe.
+     */
+    protected function loadValue(array $field, mixed $value, carlo\LoadContext $ctx): mixed
+    {
+        if (!empty($ctx->options['preview']) && in_array($field['type'], CARLO_INLINE_TYPES, true)) {
+            return '{{carlo:' . implode('.', $ctx->path) . '}}';
+        }
+
+        $value = parent::loadValue($field, $value, $ctx);
+        return match ($field['type']) {
+            'reference' => array_values(array_filter(
+                array_map('get_post', (array) $value),
+                fn($post) => $post && $post->post_status === 'publish'
+            )),
+            'gallery' => (array) $value,
+            'boolean' => (bool) $value,
+            'text' => nl2br($value),
+            'wysiwyg' => wpautop($value),
+            default => $value,
+        };
+    }
+
+    // Aperçu : les éléments obligatoires (_min, _times) sont affichés, pour être remplis.
+    protected function loadRepeater(array $field, mixed $value, carlo\LoadContext $ctx): array
+    {
+        if (!empty($ctx->options['preview'])) {
+            $value = array_pad(is_array($value) ? $value : [], $field['min'], []);
+        }
+        return parent::loadRepeater($field, $value, $ctx);
+    }
+
     public function img(
         string $key,
         string $default_size,
