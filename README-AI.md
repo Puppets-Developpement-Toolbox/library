@@ -1,5 +1,9 @@
 # Carlo WordPress Plugin - AI Agent Documentation
 
+> **Being rewritten.** The ACF parts of this document (field groups, ACF JSON, `carlo_acf_*` functions)
+> describe the former architecture: since sections became native blocks, Carlo no longer uses ACF.
+> This document will be rewritten at the end of the ongoing refactoring (merge into `puppets/library`).
+
 ## Overview for AI Agents
 
 Carlo is a WordPress plugin that implements a YAML-based configuration system for defining content structures, templates, and ACF (Advanced Custom Fields) integration. This documentation provides technical details for AI agents to understand, navigate, and work with the codebase.

@@ -1,5 +1,9 @@
 # Carlo WordPress Plugin
 
+> **Being rewritten.** The ACF parts of this document (field groups, ACF JSON, `carlo_acf_*` functions)
+> describe the former architecture: since sections became native blocks, Carlo no longer uses ACF.
+> This document will be rewritten at the end of the ongoing refactoring (merge into `puppets/library`).
+
 A powerful WordPress plugin that provides a YAML-based configuration system for building structured, component-driven websites with Advanced Custom Fields (ACF).
 
 ## Documentation
@@ -157,7 +161,6 @@ Carlo supports a wide range of field types that map to ACF field types:
 - `file` → file
 - `group` → group
 - `repeater` → repeater
-- `container` → flexible content
 
 ### Field Options
 
@@ -185,22 +188,6 @@ team_members:
     name: text_short
     role: text_short
     photo: image
-```
-
-#### Container (Flexible Content) Example
-
-```yaml
-content_blocks:
-  _type: container
-  _min: 1
-  _max: 20
-  _add_button: "Add Content Block"
-  _items:
-    - _id: text_block
-      content: wysiwyg
-    - _id: image_block
-      image: image
-      caption: text
 ```
 
 #### Reference Example
@@ -394,7 +381,7 @@ isolation with the theme's CSS and JS.
   Only discovered elements can be rendered.
 
 Stories are written in a `<variant>.stories.yml` file next to the template, in the theme, the plugin or the
-library (first found wins): e.g. `templates/sections/quote/base.stories.yml`. Each key is a story; values use
+library (first found wins; a variant without its own file uses the base one, marked « (base) »): e.g. `templates/sections/quote/base.stories.yml`. Each key is a story; values use
 the block attributes format and go through the same formatting as on the site:
 
 ```yaml
@@ -406,10 +393,6 @@ complete:
     author: Léonard de Vinci
 image_only:
   image: 1600x900          # placeholder image (or a media ID)
-nested:
-  elements:                # container: child sections described by their _id
-    - _id: sections/quote:base
-      titre: Dans une super section
 ```
 
 Elements without stories are listed as « aucun exemple », with their fields. Browser test:

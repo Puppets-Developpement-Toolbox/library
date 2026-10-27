@@ -288,4 +288,4 @@ Le module vite est configuré et adapté au fichier [vite.config.js](http://vite
 
 Il y a une page spécifique pour afficher les erreurs en développement.
 
-Gutemberg, les pings, les commentaires est désactivé, l’admin d’acf est masqué en prod et synchronisé entre les environnements.
+Les pings et les commentaires sont désactivés.
