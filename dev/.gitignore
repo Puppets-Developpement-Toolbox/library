@@ -10,9 +10,8 @@
 /web/app/uploads/
 /web/app/debug.log
 /web/app/themes/*/dist/
-/web/app/themes/*/acf/
 
-# Licence ACF Pro : ne jamais versionner
+# Identifiants Composer éventuels : ne jamais versionner
 /auth.json
 
 # Captures et cache Python des tests navigateur

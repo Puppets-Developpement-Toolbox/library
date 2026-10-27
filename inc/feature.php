@@ -32,22 +32,6 @@ add_action('init', function () {
     }
 });
 
-// Disable acf admin
-if (!WP_DEBUG) {
-    add_filter('acf/settings/show_admin', '__return_false');
-}
-
-add_filter('acf/settings/save_json', function ($path) {
-  $path = get_stylesheet_directory() . '/acf';
-  return $path;
-});
-
-add_filter('acf/settings/load_json', function( $paths ) {
-  unset($paths[0]);
-  $paths[] = get_stylesheet_directory() . '/acf';
-  return $paths;
-});
-
 add_action('after_setup_theme', function () {
     add_theme_support('title-tag');
     add_theme_support('post-thumbnails');

@@ -61,5 +61,5 @@ tooling:
     cmd: /opt/browser/bin/python
   install:
     service: appserver
-    description: Installe WordPress, active ACF Pro, Carlo et le thème de test, crée des pages d'exemple
+    description: Installe WordPress, active Carlo et le thème de test, crée des pages d'exemple
     cmd: bash /app/bin/install.sh

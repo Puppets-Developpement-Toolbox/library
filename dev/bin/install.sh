@@ -15,7 +15,7 @@ fi
 
 # Le thème d'abord : Carlo ne se charge que si le thème actif a un structure.yml.
 wp theme activate carlo-test
-wp plugin activate advanced-custom-fields-pro wp-carlo
+wp plugin activate wp-carlo
 wp rewrite structure '/%postname%/'
 
 # Crée le contenu s'il n'existe pas, et affiche son ID.
