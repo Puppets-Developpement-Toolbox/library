@@ -20,7 +20,6 @@ templates:
     - !load sections/quote
     - !load sections/push:triptych
     - !load sections/text_image:square
-    - !load sections/super_section
     - !load sections/slider:quotes
     - !load sections/slider:partners
     - !load sections/slider:images

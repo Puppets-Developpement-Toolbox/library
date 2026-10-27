@@ -9,7 +9,6 @@
 
 <section class="[ section section__push ]
                 flex flex-col gap-8
-                group-[&]/super-section:bg-transparent
                 laptop:grid laptop:grid-cols-12">
 <?php if(carlo_get("title") || carlo_get('description')): ?>
     <header class="laptop:col-span-8 laptop:col-start-2">

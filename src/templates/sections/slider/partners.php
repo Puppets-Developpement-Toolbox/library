@@ -7,8 +7,7 @@
 
 ?>
 <div class="overflow-x-clip laptop:relative">
-  <section class="[ section has-partners ]
-                  group-[&]/super-section:bg-gray-light">
+  <section class="[ section has-partners ]">
     <div class="laptop:grid laptop:grid-cols-12">
 
 
@@ -16,8 +15,7 @@
 
 
       <header class="relative z-10 mb-10
-                    laptop:col-span-6 laptop:mb-0 laptop:bg-white
-                    group-[&]/super-section:bg-gray-light group-[&]/super-section:laptop:bg-gray-light">
+                    laptop:col-span-6 laptop:mb-0 laptop:bg-white">
         <div class="laptop:flex laptop:justify-between laptop:gap-6 laptop:w-2/3 laptop:mx-auto laptop:pt-10 laptop:border-t-1 laptop:border-t-black">
 
           <div class="flex flex-col gap-6">

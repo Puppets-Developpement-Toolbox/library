@@ -12,8 +12,7 @@ $slides = array_filter($slides, function($slide){
 });
 ?>
 
-<section <?= !empty(carlo_get('ancre')) ? 'id="' . carlo_get('ancre') . '"' : '' ?> class="[ section has-slider ]
-                group-[&]/super-section:bg-transparent">
+<section <?= !empty(carlo_get('ancre')) ? 'id="' . carlo_get('ancre') . '"' : '' ?> class="[ section has-slider ]">
   <div class="group/section
               laptop:grid laptop:grid-cols-12 laptop:items-center">
 
@@ -75,8 +74,7 @@ $slides = array_filter($slides, function($slide){
 
     </div>
 
-    <section class="group-[&]/super-section:px-8 group-[&]/super-section:py-10
-                    pt-12
+    <section class="pt-12
                     laptop:col-span-6 laptop:flex laptop:gap-5 laptop:items-center laptop:p-0
                     <?php if (!$revert): ?>
                       laptop:col-start-8 laptop:order-2
@@ -98,8 +96,7 @@ $slides = array_filter($slides, function($slide){
         <div class="[ text ]"><?= carlo_get("description") ?></div>
         <?php if (carlo_get('highlight')): ?>
         <div class="p-10
-                    bg-gray-light
-                    group-[&]/super-section:bg-white">
+                    bg-gray-light">
           <?= carlo_get('highlight') ?>
         </div>
         <?php endif ?>
