@@ -8,9 +8,10 @@ use Symfony\Component\Yaml\Yaml;
 
 abstract class BaseDriver implements DriverInterface
 {
-    protected $tplArgs = [];
-    protected $tplPaths = [];
-    protected $context = [];
+    // Données des templates en cours de rendu ; le niveau racine sert à carlo_get() et à
+    // carlo_load_data() hors de tout rendu.
+    protected $tplArgs = [[]];
+    protected $fields = [];
     protected $projectStructure;
     protected $structure;
     protected $loaded = [];
@@ -77,28 +78,15 @@ abstract class BaseDriver implements DriverInterface
             $namespace,
         ) = carlo_explode_id($tpl);
 
-        if($template_type !== 'menus') {
-            $structure = $this->structure(
-                $template_type ?: "templates",
-                $template_name,
-                $template_variant,
-                $namespace
-            );
-        } else {
-            $structure = null;
+        if ($template_type !== 'menus') {
+            $args = $this->complete($this->fields($tpl), $args);
         }
 
-        $this->tplPaths[] = $template_name;
-        $this->context[] = [];
         $this->tplArgs[] = $args;
 
-        // Les piles sont dépilées même si le template lève une exception : sinon carlo_get()
-        // lirait ensuite les données d'un rendu terminé.
+        // Les données sont dépilées même si le template lève une exception : sinon carlo_get()
+        // lirait ensuite celles d'un rendu terminé.
         try {
-            if ($structure && $template_type === "sections") {
-                $this->tplArgs[array_key_last($this->tplArgs)] = $this->loadData($structure, $args);
-            }
-
             $file = $this->getFile(
                 "template",
                 "{$template_type}/{$template_name}",
@@ -111,9 +99,91 @@ abstract class BaseDriver implements DriverInterface
             echo "<!-- end {$file} -->\n";
         } finally {
             array_pop($this->tplArgs);
-            array_pop($this->tplPaths);
-            array_pop($this->context);
         }
+    }
+
+    /**
+     * Champs d'un élément (sections/text, components/cta:secondary…), d'après sa structure.
+     */
+    public function fields(string $id): array
+    {
+        [$type, $name, $variant, $namespace] = carlo_explode_id($id);
+        return $this->fields[$id] ??= Fields::of($this->structure($type ?: 'templates', $name, $variant, $namespace));
+    }
+
+    /**
+     * Données d'un template à partir de leur source (attributs d'un bloc, exemple du catalogue,
+     * données de démo). La mise en forme n'est pas idempotente (nl2br…) : load() est appelé une
+     * seule fois, là où les données entrent ; render() ne fait que les compléter (cf. complete()).
+     */
+    public function load(string $id, array $raw = [], array $options = []): array
+    {
+        return $this->loadFields($this->fields($id), $raw, new LoadContext([], carlo_explode_id($id)[1], $options));
+    }
+
+    /**
+     * Ajoute des données au template en cours (ou au niveau racine), pour carlo_get().
+     */
+    public function assign(array $data): void
+    {
+        $level = array_key_last($this->tplArgs);
+        $this->tplArgs[$level] = array_merge($this->tplArgs[$level], $data);
+    }
+
+    /**
+     * Seul parcours des champs. Les valeurs hors structure (arguments passés par un parent,
+     * composant sans .yml) passent telles quelles ; un groupe prend l'_id de sa structure.
+     */
+    private function loadFields(array $fields, array $raw, LoadContext $ctx): array
+    {
+        $data = $raw;
+        foreach ($fields as $key => $field) {
+            $value = $raw[$key] ?? null;
+            $data[$key] = match ($field['type']) {
+                'group' => ['_id' => $field['id']] + $this->loadFields($field['fields'], is_array($value) ? $value : [], $ctx->child($key)),
+                'repeater' => $this->loadRepeater($field, $value, $ctx->child($key)),
+                default => $this->loadValue($field, $value, $ctx->child($key)),
+            };
+        }
+        return $data;
+    }
+
+    /**
+     * Valeur d'un champ simple ; les drivers y ajoutent leur mise en forme ou leur source.
+     */
+    protected function loadValue(array $field, mixed $value, LoadContext $ctx): mixed
+    {
+        return $value ?? $field['default'];
+    }
+
+    /**
+     * Éléments d'un répéteur ; les drivers peuvent en ajouter (données de démo, aperçu).
+     */
+    protected function loadRepeater(array $field, mixed $value, LoadContext $ctx): array
+    {
+        $items = [];
+        foreach (is_array($value) ? $value : [] as $i => $item) {
+            $items[$i] = $this->loadFields($field['fields'], is_array($item) ? $item : [], $ctx->child($i));
+        }
+        return $items;
+    }
+
+    /**
+     * Données sûres pour un template : chaque champ déclaré est présent (valeur par défaut de son
+     * type) et chaque groupe a l'_id de sa structure. Sans mise en forme et idempotent : un
+     * template peut rendre à nouveau un composant avec des données déjà complétées.
+     */
+    private function complete(array $fields, array $data): array
+    {
+        foreach ($fields as $key => $field) {
+            $value = $data[$key] ?? $field['default'];
+            $data[$key] = match ($field['type']) {
+                'group' => ['_id' => $field['id']] + $this->complete($field['fields'], is_array($value) ? $value : []),
+                'repeater' => array_map(fn($item) => $this->complete($field['fields'], is_array($item) ? $item : []), is_array($value) ? $value : []),
+                default => $value,
+            };
+        }
+        return $data;
     }
 
     public function structure(string $type, ?string $name = null, string $variant = "base", string $namespace = 'default')
@@ -259,30 +329,6 @@ abstract class BaseDriver implements DriverInterface
         }
 
         return $values;
-    }
-
-    public function loadData(array $structure, array $args)
-    {
-        foreach($structure as $key => $substruct) {
-            if(str_starts_with($key, '_')) continue;
-            if(is_string($substruct)) continue;
-
-            if (is_array($args[$key]) && isset($substruct['_type']) && $substruct['_type'] == "repeater" ) {
-                foreach($args[$key] as $arg_key => $arg_value){
-                    $args[$key][$arg_key] = $this->loadData($substruct['_repeat'], $arg_value);
-                }
-            } else {
-                if(is_array($args[$key]) && !empty($substruct['_id'])){
-                    $args[$key] = $this->loadData($substruct, $args[$key]);
-                }
-            }
-        }
-
-        if(!isset($args['_id']) && isset($structure['_id'])) {
-            $args['_id'] = $structure['_id'];
-        }
-
-        return $args;
     }
 
     public function getFile(string $type, string $element, string $variant = 'base', string $namespace = 'default')

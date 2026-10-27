@@ -15,62 +15,37 @@ class YmlDriver extends BaseDriver implements DriverInterface
         $this->data = Yaml::parseFile($file);
     }
 
-    public function loadData(array $structure, array $args)
+    // Données de démo : une valeur absente est cherchée dans le fichier de données.
+    protected function loadValue(array $field, mixed $value, LoadContext $ctx): mixed
     {
-        $fields = array_filter(
-            array_keys($structure),
-            fn($key) => substr($key, 0, 1) !== "_"
-        );
+        return parent::loadValue($field, $value ?? $this->mock($field, $ctx), $ctx);
+    }
 
-        $structure_data = array_map(function ($fieldname) use ($structure) {
-            $field = $structure[$fieldname];
-            if (is_array($field) && !isset($field["_type"])) {
-                return $this->loadData($field, []);
-            }
+    // Répéteur sans valeur : (_min ou 2) + 3 éléments, ou _times.
+    protected function loadRepeater(array $field, mixed $value, LoadContext $ctx): array
+    {
+        $value ??= array_fill(0, min($field['max'] ?? PHP_INT_MAX, ($field['min'] ?: 2) + 3), []);
+        return parent::loadRepeater($field, $value, $ctx);
+    }
 
-            if (is_string($field)) {
-                $type = $field;
-            } elseif (is_array($field)) {
-                $type = $field["_type"];
-            }
-
-            if ($type == "repeater") {
-                $n_times = $field["_times"] ?? ($field["_min"] ?? 2) + 3;
-                return array_fill(
-                    0,
-                    $n_times,
-                    $this->loadData($field["_repeat"], [])
-                );
-            }
-
-            $try = $this->tplPaths;
-            do {
-                $prefix = implode("--", $try);
-                if ($prefix) {
-                    $prefix .= "--";
+    /**
+     * Valeur de démo d'un champ : <élément>--<champ>, <élément>--<type>, puis <champ> et <type>.
+     */
+    private function mock(array $field, LoadContext $ctx): mixed
+    {
+        $key = $ctx->path[array_key_last($ctx->path)];
+        foreach (["{$ctx->element}--", ''] as $prefix) {
+            foreach (["{$prefix}{$key}", "{$prefix}{$field['type']}"] as $candidate) {
+                if (isset($this->data[$candidate])) {
+                    return $this->data[$candidate];
                 }
-
-                if (isset($this->data["{$prefix}{$fieldname}"])) {
-                    return $this->data["{$prefix}{$fieldname}"];
-                }
-                if (isset($this->data["{$prefix}{$type}"])) {
-                    return $this->data["{$prefix}{$type}"];
-                }
-            } while (array_shift($try));
-            $context = $this->tplPaths;
-            $context[] = $fieldname;
-            $fieldpath = implode(" > ", $context);
-
-            throw new InvalidArgumentException(
-                "Impossible de trouver du contenu pour le champ {$fieldpath} de type {$type}"
-            );
-        }, array_combine($fields, $fields));
-
-        if (isset($structure["_id"])) {
-            $structure_data["_id"] = $structure["_id"];
+            }
         }
 
-        return array_merge($structure_data, $args);
+        $fieldpath = implode(" > ", [$ctx->element, ...$ctx->path]);
+        throw new InvalidArgumentException(
+            "Impossible de trouver du contenu pour le champ {$fieldpath} de type {$field['type']}"
+        );
     }
 
     public function img(

@@ -27,7 +27,10 @@ carlo_render("global/html_start");
 if (!empty($template) && isset($templates[$template])) {
     ob_start();
     try {
-        array_map("carlo_render", array_column($templates[$template], "_id"));
+        // Données de démo chargées une fois par section (cf. carlo_load()).
+        foreach (array_column($templates[$template], "_id") as $id) {
+            carlo_render($id, carlo_load($id));
+        }
     } catch (Throwable $e) {
         ob_end_clean();
         throw $e;

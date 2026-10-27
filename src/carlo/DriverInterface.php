@@ -6,7 +6,9 @@ interface DriverInterface
 {
     public function render(string $tpl, array $args = []);
 
-    public function loadData(array $structure, array $args);
+    public function load(string $id, array $raw = [], array $options = []): array;
+
+    public function assign(array $data): void;
 
     public function structure(
         string $type,

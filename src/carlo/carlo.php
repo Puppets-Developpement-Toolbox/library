@@ -86,9 +86,23 @@ function carlo_get($key = null)
     return carlo_driver()->get($key);
 }
 
-function carlo_load_data($structure, $args)
+/**
+ * Données d'un élément (sections/text…) à partir de leur source : attributs d'un bloc, exemple du
+ * catalogue, données de démo. Une seule fois, là où les données entrent (cf. BaseDriver::load()).
+ */
+function carlo_load($id, $raw = [], $options = [])
 {
-    carlo_driver()->loadData($structure, $args);
+    return carlo_driver()->load($id, $raw, $options);
+}
+
+/**
+ * Comme carlo_load(), et rend les données disponibles pour carlo_get() dans le template en cours.
+ */
+function carlo_load_data($id, $raw = [], $options = [])
+{
+    $data = carlo_load($id, $raw, $options);
+    carlo_driver()->assign($data);
+    return $data;
 }
 
 function carlo_get_file($type, $element, $variant = "base", $namespace = 'default')
