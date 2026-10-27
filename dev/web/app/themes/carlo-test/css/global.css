@@ -1,0 +1,6 @@
+/*
+ * Styles de la library Carlo (Tailwind 4 : couleurs, polices, breakpoints laptop/desktop/wide),
+ * comme sur un projet réel : les sections s'affichent avec leur design, sur le site comme
+ * dans l'aperçu de l'éditeur de blocs.
+ */
+@import "../../../plugins/carlo/library.css";

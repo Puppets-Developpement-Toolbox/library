@@ -1,0 +1,19 @@
+# Dépendances (Composer, pnpm)
+/vendor/
+/node_modules/
+/.pnpm-store/
+
+# Cœur WordPress, plugins installés par Composer, fichiers générés
+/web/wp/
+/web/app/plugins/
+/web/app/mu-plugins/
+/web/app/uploads/
+/web/app/debug.log
+/web/app/themes/*/dist/
+
+# Identifiants Composer éventuels : ne jamais versionner
+/auth.json
+
+# Captures et cache Python des tests navigateur
+/tests/browser/shots/
+/tests/browser/__pycache__/

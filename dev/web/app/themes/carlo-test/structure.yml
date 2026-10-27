@@ -1,0 +1,39 @@
+# Structure du thème de test : deux modèles de page et un type de contenu.
+# Chaque région est un bloc Gutenberg qui n'accepte que les sections qu'elle cite.
+# Les sections viennent de puppets/library (templates/sections) : le thème n'en
+# définit aucune. Pour tester une section à soi, créer
+# templates/sections/<section>/base.php + base.yml dans ce thème.
+# Les champs des sections deviennent les attributs de leur bloc : après toute modification,
+# il suffit de recharger l'éditeur.
+
+menus:
+  main: Menu principal
+
+regions:
+  header: En-tête
+  content: Contenu
+
+templates:
+  # Le contributeur choisit et ordonne les blocs, 6 au maximum. « Pages liées » (référence) est
+  # définie dans ce thème.
+  default:
+    _label: Page éditoriale
+    content:
+      - _blocs: [!load sections/text, !load sections/image, !load sections/quote, !load sections/related]
+        _max: 6
+
+  # Deux régions, chacune limitée à une seule section possible.
+  landing:
+    _label: Page templatisée
+    header:
+      - !load sections/image
+    content: [!load sections/text, !load sections/quote]
+
+types:
+  project:
+    wp_args:
+      label: Projets
+      supports: [title, thumbnail]
+    template:
+      _label: Fiche projet
+      content: [!load sections/text]
