@@ -90,41 +90,44 @@ abstract class BaseDriver implements DriverInterface
 
         $this->tplPaths[] = $template_name;
         $this->context[] = [];
-
-        if($structure){
-            $args = $template_type === "sections" ? $this->loadData($structure, $args) : $args;
-        }
-
         $this->tplArgs[] = $args;
 
-        $file = $this->getFile(
-            "template",
-            "{$template_type}/{$template_name}",
-            $template_variant,
-            $namespace
-        );
+        // Les piles sont dépilées même si le template lève une exception : sinon carlo_get()
+        // lirait ensuite les données d'un rendu terminé.
+        try {
+            if ($structure && $template_type === "sections") {
+                $this->tplArgs[array_key_last($this->tplArgs)] = $this->loadData($structure, $args);
+            }
 
+            $file = $this->getFile(
+                "template",
+                "{$template_type}/{$template_name}",
+                $template_variant,
+                $namespace
+            );
 
-        echo "<!-- begin {$file} -->\n";
-        include $file;
-        echo "<!-- end {$file} -->\n";
-
-        array_pop($this->tplArgs);
-        array_pop($this->tplPaths);
-        array_pop($this->context);
+            echo "<!-- begin {$file} -->\n";
+            include $file;
+            echo "<!-- end {$file} -->\n";
+        } finally {
+            array_pop($this->tplArgs);
+            array_pop($this->tplPaths);
+            array_pop($this->context);
+        }
     }
 
     public function structure(string $type, ?string $name = null, string $variant = "base", string $namespace = 'default')
     {
+        $source = null; // fichier en cours de lecture, pour les messages d'erreur
         $no_tag = null;
-        $no_tag = function ($definition) use (&$no_tag) {
+        $no_tag = function ($definition) use (&$no_tag, &$source) {
             if (is_array($definition)) {
                 return array_map($no_tag, $definition);
             }
-            if (
-                $definition instanceof TaggedValue &&
-                $definition->getTag() === "load"
-            ) {
+            if ($definition instanceof TaggedValue && $definition->getTag() !== "load") {
+                throw new Exception("Tag YAML inconnu « !{$definition->getTag()} » dans {$source} : seul !load est reconnu.");
+            }
+            if ($definition instanceof TaggedValue) {
                 list($template_type, $template_name, $template_variant, $def_namespace) = carlo_explode_id(
                     $definition->getValue()
                 );
@@ -137,6 +140,7 @@ abstract class BaseDriver implements DriverInterface
         };
 
         if (!isset($this->structure)) {
+            $source = $this->projectStructure;
             $this->structure = Yaml::parseFile(
                 $this->projectStructure,
                 Yaml::PARSE_CUSTOM_TAGS
@@ -154,6 +158,7 @@ abstract class BaseDriver implements DriverInterface
 
                 try {
                     $file = $this->getFile("structure", "{$type}/{$name}", $variant, $namespace);
+                    $source = $file;
                     $parsed = $no_tag(Yaml::parseFile($file, Yaml::PARSE_CUSTOM_TAGS));
 
                     // Stockage dans la structure selon le namespace
@@ -289,12 +294,8 @@ abstract class BaseDriver implements DriverInterface
             throw new Exception("Le namespace '{$namespace}' n'est pas enregistré. Utilisez carlo_register_namespace() pour l'ajouter.");
         }
 
-        $ext = $type === "structure" ? "yml" : "php";
-
-        $paths = [];
-
         // Utiliser la fonction getPaths
-        $local_paths = $this->getPathsToTest($ext, $element, $variant, $namespace);
+        $local_paths = $this->getPathsToTest($this->extension($type), $element, $variant, $namespace);
 
 
         // Ajouter namespace ou carlo aux chemins
@@ -308,6 +309,15 @@ abstract class BaseDriver implements DriverInterface
         throw new FileNotFoundException(
             "Aucun fichier ne correspond : {$type} - {$element} - {$variant}{$namespace_info}\nCherché dans : " . implode(", ", $local_paths)
         );
+    }
+
+    /**
+     * Extension des fichiers d'un élément selon leur rôle : structure, exemples du catalogue
+     * (stories) ou template.
+     */
+    protected function extension(string $type): string
+    {
+        return ["structure" => "yml", "stories" => "stories.yml"][$type] ?? "php";
     }
 
     public function getPathsToTest(string $type, string $element, string $variant = 'base', string $namespace = 'default')

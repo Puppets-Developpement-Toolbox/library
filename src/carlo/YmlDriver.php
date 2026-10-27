@@ -11,6 +11,7 @@ class YmlDriver extends BaseDriver implements DriverInterface
 
     public function __construct(string $file)
     {
+        parent::__construct();
         $this->data = Yaml::parseFile($file);
     }
 

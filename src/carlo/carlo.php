@@ -107,7 +107,8 @@ function carlo_context_add($key, $value)
 function carlo_context($key)
 {
     global $CARLO_CONTEXT;
-    $values = call_user_func_array("array_merge", $CARLO_CONTEXT);
+    // array_values : avec des clés texte, array_merge(...) les prendrait pour des arguments nommés.
+    $values = array_merge(...array_values($CARLO_CONTEXT));
     return carlo_get_value($key, $values);
 }
 

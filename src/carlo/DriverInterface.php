@@ -28,6 +28,15 @@ interface DriverInterface
 
     public function get(?string $key = null);
 
+    /**
+     * Dossiers où chercher les templates d'un namespace, du plus prioritaire au moins prioritaire.
+     */
+    public function getSearchPaths(string $namespace = 'default'): array;
+
+    public function getNamespaces(): array;
+
+    public function introspect(): Introspection;
+
     public function img(
         string $key,
         string $default_size,
