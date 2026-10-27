@@ -71,7 +71,6 @@ class Introspection
         $metadata['_name'] = $name;
         $metadata['_variant'] = $variant;
         $metadata['_namespace'] = $namespace;
-        $metadata['_fields'] = $this->extractFields($metadata);
 
         $this->cache["meta:{$id}"] = $metadata;
         return $metadata;
@@ -194,76 +193,5 @@ class Introspection
         [$type, $name] = explode('/', $remaining, 2);
 
         return compact('namespace', 'type', 'name', 'variant');
-    }
-
-
-    /**
-     * Extract field definitions from metadata
-     */
-    private function extractFields(array $metadata): array
-    {
-        $fields = [];
-
-        foreach ($metadata as $key => $value) {
-            // Skip metadata keys (starting with _)
-            if (str_starts_with($key, '_')) {
-                continue;
-            }
-
-            $fields[$key] = $this->normalizeFieldDefinition($key, $value);
-        }
-
-        return $fields;
-    }
-
-    /**
-     * Normalize field definition to consistent format
-     */
-    private function normalizeFieldDefinition(string $key, mixed $value): array
-    {
-        // If simple type (string)
-        if (is_string($value)) {
-            return [
-                'type' => $value,
-                'label' => ucfirst($key),
-                'required' => false
-            ];
-        }
-
-        // If not array, return unknown type
-        if (!is_array($value)) {
-            return ['type' => 'unknown', 'label' => $key];
-        }
-
-        // Extract metadata from array
-        $normalized = [
-            // Même règle que les drivers : avec _id, un composant (groupe) ; sinon une liste de blocs.
-            'type' => $value['_type'] ?? (isset($value['_id']) ? 'group' : 'container'),
-            'label' => $value['_label'] ?? ucfirst($key),
-            'required' => $value['_required'] ?? false
-        ];
-
-        // Optional metadata keys to extract
-        $optionalKeys = [
-            '_help' => 'help',
-            '_multi' => 'multi',
-            '_choices' => 'choices',
-            '_min' => 'min',
-            '_max' => 'max',
-            '_times' => 'times',
-            '_repeat' => 'repeat',
-            '_items' => 'items',
-            '_ref_type' => 'ref_type',
-            '_taxo' => 'taxonomy',
-            '_add_button' => 'add_button',
-        ];
-
-        foreach ($optionalKeys as $sourceKey => $targetKey) {
-            if (isset($value[$sourceKey])) {
-                $normalized[$targetKey] = $value[$sourceKey];
-            }
-        }
-
-        return $normalized;
     }
 }

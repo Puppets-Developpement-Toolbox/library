@@ -64,7 +64,7 @@ function carlo_stories_elements()
             ];
             // Une définition invalide ne doit pas empêcher d'afficher le reste du catalogue.
             try {
-                $element['fields'] = carlo_fields(carlo_structure_fields($metadata));
+                $element['fields'] = carlo\Fields::of($metadata);
             } catch (Throwable $e) {
                 $element['errors'][] = "Champs : {$e->getMessage()}";
             }

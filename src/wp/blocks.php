@@ -19,69 +19,6 @@ function carlo_structure_fields($definition)
 const CARLO_INLINE_TYPES = ['text_short', 'text', 'wysiwyg'];
 
 /**
- * Champ d'une section, sous une forme commune au PHP (attributs, rendu) et à l'éditeur
- * (window.carloSections) : type, label, aide, options, sous-champs.
- */
-function carlo_field($key, $definition)
-{
-    if (empty($definition)) {
-        throw new Exception("le champ {$key} n'a pas de définition");
-    }
-
-    $type = is_string($definition)
-        ? $definition
-        : $definition['_type'] ?? (isset($definition['_id']) ? 'group' : throw new Exception("le champ {$key} n'a pas de type (_type)"));
-    $definition = (array) $definition;
-
-    $type = match (true) {
-        $type === 'select' => 'choices', // @deprecated
-        $type === 'image' && !empty($definition['_multi']) => 'gallery',
-        default => $type,
-    };
-
-    $field = [
-        'type' => $type,
-        'label' => html_entity_decode($definition['_label'] ?? str_replace('_', ' ', ucfirst($key))),
-    ];
-
-    if (isset($definition['_help'])) {
-        $field['help'] = html_entity_decode($definition['_help']);
-    }
-
-    if ($type === 'group') {
-        $field['fields'] = carlo_fields(carlo_structure_fields($definition));
-    }
-
-    if ($type === 'repeater') {
-        $field['fields'] = carlo_fields($definition['_repeat']);
-        $field['min'] = $definition['_min'] ?? $definition['_times'] ?? 0;
-        $field['max'] = $definition['_max'] ?? $definition['_times'] ?? null;
-        $field['add_button'] = $definition['_add_button'] ?? 'Ajouter un élément';
-    }
-
-    if ($type === 'choices') {
-        $field['choices'] = $definition['_choices'];
-        $field['multi'] = !empty($definition['_multi']);
-    }
-
-    if ($type === 'reference') {
-        $field['post_types'] = (array) $definition['_ref_type'];
-        $field['max'] = $definition['_max'] ?? null;
-    }
-
-    return $field;
-}
-
-function carlo_fields($definitions)
-{
-    $fields = [];
-    foreach ($definitions as $key => $definition) {
-        $fields[$key] = carlo_field($key, $definition);
-    }
-    return $fields;
-}
-
-/**
  * Schéma des attributs du bloc : un attribut par champ de premier niveau.
  */
 function carlo_block_attributes($fields)
@@ -145,7 +82,7 @@ function carlo_field_values($fields, $values, $path = null)
  */
 function carlo_section_data($id, $attributes, $preview = false)
 {
-    $fields = carlo_fields(carlo_structure_fields(carlo_sections()[$id]));
+    $fields = carlo\Fields::of(carlo_sections()[$id]);
     return carlo_field_values($fields, $attributes, $preview ? '' : null);
 }
 
@@ -210,7 +147,7 @@ function carlo_register_section_blocks()
     carlo_editor_asset('carlo-sections', 'sections.css');
 
     foreach (carlo_sections() as $id => $definition) {
-        $fields = carlo_fields(carlo_structure_fields($definition));
+        $fields = carlo\Fields::of($definition);
 
         register_block_type(carlo_block_name($id), [
             'api_version' => 3,
@@ -246,7 +183,7 @@ add_action('enqueue_block_editor_assets', function () {
     foreach (carlo_sections() as $id => $definition) {
         $sections[carlo_block_name($id)] = [
             'title' => carlo_section_title($id, $definition),
-            'fields' => (object) carlo_fields(carlo_structure_fields($definition)),
+            'fields' => (object) carlo\Fields::of($definition),
         ];
     }
     wp_add_inline_script('carlo-sections', 'window.carloSections = ' . wp_json_encode((object) $sections) . ';', 'before');
