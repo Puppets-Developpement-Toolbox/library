@@ -57,7 +57,7 @@ $story_label = fn($key, $story) => $story['_label'] ?? ucfirst(str_replace('_', 
                   <?php foreach ($variants as $item): ?>
                     <li>
                       <a href="<?= esc_url(carlo_stories_url(['id' => $item['id']])) ?>" <?= $element && $element['id'] === $item['id'] ? 'aria-current="page"' : '' ?>>
-                        <?= esc_html($item['variant']) ?><?php if (!$item['stories']): ?> <span class="badge">aucun exemple</span><?php endif; ?>
+                        <?= esc_html($item['variant']) ?><?php if ($item['stories_from_base']): ?> (base)<?php endif; ?><?php if (!$item['stories']): ?> <span class="badge">aucun exemple</span><?php endif; ?>
                       </a>
                     </li>
                   <?php endforeach; ?>
@@ -97,6 +97,12 @@ $story_label = fn($key, $story) => $story['_label'] ?? ucfirst(str_replace('_', 
 
       <?php if ($element['stories']): ?>
         <?php $frame_url = carlo_stories_url(['carlo-stories' => 'frame', 'id' => $element['id'], 'story' => $story_key]); ?>
+        <?php if ($element['stories_from_base']): ?>
+          <p class="notice">
+            Exemples hérités de la variante base. Pour des exemples propres à cette variante, créez
+            <code><?= esc_html($element['stories_file']) ?></code>.
+          </p>
+        <?php endif; ?>
         <nav class="stories" aria-label="Exemples">
           <ul>
             <?php foreach ($element['stories'] as $key => $story): ?>

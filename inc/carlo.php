@@ -21,7 +21,7 @@ class CarloWpDriver extends carlo\BaseDriver implements carlo\DriverInterface
             throw new Exception("Le namespace '{$namespace}' n'est pas enregistré.");
         }
 
-        $ext = $type === "structure" ? "yml" : "php";
+        $ext = ["structure" => "yml", "stories" => "stories.yml"][$type] ?? "php";
 
         //  Utiliser la fonction get paths
         $paths = $this->getPathsToTest($ext, $element, $variant, $namespace);
@@ -32,16 +32,19 @@ class CarloWpDriver extends carlo\BaseDriver implements carlo\DriverInterface
             return $wp_path;
         }
 
-        // Fallback sur les templates du plugin wp-carlo
-        $plugin_templates = __DIR__ . '/../templates/';
-        foreach ($paths as $path) {
-            if (file_exists($plugin_templates . $path)) {
-                return $plugin_templates . $path;
+        // Fallback sur les templates du plugin wp-carlo, puis sur le package (namespace enregistré via
+        // BaseDriver). Pas de parent::getFile() : la library ne connaît que les extensions yml et php.
+        foreach ([__DIR__ . '/../templates', $this->namespaces[$namespace]] as $dir) {
+            foreach ($paths as $path) {
+                if (file_exists("{$dir}/{$path}")) {
+                    return "{$dir}/{$path}";
+                }
             }
         }
 
-        // Fallback sur le package (namespace enregistré via BaseDriver)
-        return parent::getFile($type, $element, $variant, $namespace);
+        throw new carlo\FileNotFoundException(
+            "Aucun fichier ne correspond : {$type} - {$element} - {$variant}\nCherché dans : " . implode(", ", $paths)
+        );
     }
 
 

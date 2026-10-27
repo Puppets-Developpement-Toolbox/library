@@ -58,6 +58,7 @@ function carlo_stories_elements()
                 'title' => carlo_section_title($id, $metadata),
                 'fields' => [],
                 'stories' => [],
+                'stories_from_base' => false,
                 'stories_file' => "templates/{$type}/{$name}/{$variant}.stories.yml",
                 'errors' => [],
             ];
@@ -68,7 +69,7 @@ function carlo_stories_elements()
                 $element['errors'][] = "Champs : {$e->getMessage()}";
             }
             try {
-                $element['stories'] = carlo_stories_load($id);
+                [$element['stories'], $element['stories_from_base']] = carlo_stories_load($id);
             } catch (Throwable $e) {
                 $element['errors'][] = "Exemples : {$e->getMessage()}";
             }
@@ -89,24 +90,19 @@ function carlo_stories_find($id)
 }
 
 /**
- * Exemples d'un élément : le premier <variante>.stories.yml trouvé dans les dossiers de recherche.
- * Pas de repli sur base.stories.yml pour une variante : ce seraient les exemples d'un autre rendu.
+ * Exemples d'un élément, résolus par getFile() comme la structure et le template : <variante>, puis base.
+ * Renvoie les exemples et si ceux-ci sont hérités de base (variante sans .stories.yml propre).
  */
 function carlo_stories_load($id)
 {
     [$type, $name, $variant, $namespace] = carlo_explode_id($id);
-    $paths = ["{$type}/{$name}/{$variant}.stories.yml"];
-    if ($variant === 'base') {
-        $paths[] = "{$type}/{$name}.stories.yml";
+    try {
+        $file = carlo_driver()->getFile('stories', "{$type}/{$name}", $variant, $namespace);
+    } catch (carlo\FileNotFoundException $e) {
+        return [[], false];
     }
-    foreach (carlo_driver()->getSearchPaths($namespace) as $dir) {
-        foreach ($paths as $path) {
-            if (file_exists("{$dir}/{$path}")) {
-                return array_filter((array) Yaml::parseFile("{$dir}/{$path}"), 'is_array');
-            }
-        }
-    }
-    return [];
+    $stories = array_filter((array) Yaml::parseFile($file), 'is_array');
+    return [$stories, $variant !== 'base' && basename($file) !== "{$variant}.stories.yml"];
 }
 
 /**
