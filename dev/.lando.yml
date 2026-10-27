@@ -1,4 +1,4 @@
-# Environnement de développement du plugin wp-carlo (Bedrock + Lando).
+# Environnement de développement du plugin Carlo (Bedrock + Lando).
 # Mode d'emploi : dev/README.md
 name: carlo-dev
 recipe: wordpress
@@ -31,7 +31,7 @@ services:
       volumes:
         # Le plugin est le dépôt parent, monté en direct : une modification du code
         # est visible au rechargement de la page, sans réinstaller quoi que ce soit.
-        - ..:/app/web/app/plugins/wp-carlo
+        - ..:/app/web/app/plugins/carlo
 
   # Serveur Vite : sert js/main.js et css/global.css du thème de test, comme le ferait
   # un projet réel en développement (voir vite.config.js).
@@ -47,6 +47,10 @@ services:
     build:
       - pnpm install
     command: pnpm dev
+    overrides:
+      volumes:
+        # Le thème importe library.css depuis le paquet : Vite doit le voir au même endroit.
+        - ..:/app/web/app/plugins/carlo
 
 proxy:
   front:

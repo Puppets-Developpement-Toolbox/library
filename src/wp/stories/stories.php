@@ -8,7 +8,7 @@
  *
  * Les éléments sont découverts par l'introspection de la library (carlo_get_available_sections() /
  * carlo_get_available_components()). Les exemples sont rédigés dans <variante>.stories.yml, à côté du
- * template, dans un des dossiers de recherche du driver (thème, wp-carlo, library).
+ * template, dans un des dossiers de recherche du driver (thème, plugin, library).
  */
 
 use Symfony\Component\Yaml\Yaml;

@@ -1,6 +1,6 @@
 <?php
 /**
- * Configuration Bedrock de l'environnement de développement de wp-carlo.
+ * Configuration Bedrock de l'environnement de développement de Carlo.
  *
  * Pas de fichier .env : les valeurs (base de données, URLs, ASSET_BASE_URL)
  * viennent des variables d'environnement définies dans .lando.yml.

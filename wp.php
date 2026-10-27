@@ -25,12 +25,18 @@ if(!file_exists($theme_structure)) {
 }
 
 
-// Charge tous les fichiers PHP du dossier /inc du PLUGIN
-foreach ( glob( __DIR__ . '/inc/*.php' ) as $file ) {
+// Dépendances du paquet : chargées par l'autoload Composer du site (Bedrock), sinon par celui du
+// paquet (dépôt monté en développement, WordPress sans Composer).
+if ( ! function_exists( 'carlo_driver' ) ) {
+    require_once __DIR__ . '/vendor/autoload.php';
+}
+
+// Charge tous les fichiers PHP de l'intégration WordPress (src/wp)
+foreach ( glob( __DIR__ . '/src/wp/*.php' ) as $file ) {
     include_once $file;
 }
 
 // Catalogue des composants (/?carlo-stories) : public, donc jamais chargé en production.
 if ( ( defined( 'WP_ENV' ) ? WP_ENV : wp_get_environment_type() ) !== 'production' ) {
-    include_once __DIR__ . '/stories/stories.php';
+    include_once __DIR__ . '/src/wp/stories/stories.php';
 }

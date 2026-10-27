@@ -20,8 +20,8 @@ class CarloWpDriver extends carlo\BaseDriver implements carlo\DriverInterface
             return $wp_path;
         }
 
-        // Fallback sur les templates du plugin wp-carlo
-        $plugin_templates = __DIR__ . '/../templates/';
+        // Fallback sur les templates du plugin (src/wp/templates)
+        $plugin_templates = __DIR__ . '/templates/';
         foreach ($paths as $path) {
             if (file_exists($plugin_templates . $path)) {
                 return $plugin_templates . $path;
@@ -44,7 +44,7 @@ class CarloWpDriver extends carlo\BaseDriver implements carlo\DriverInterface
         $dirs = array_filter([
             get_stylesheet_directory() . "/templates{$prefix}",
             get_template_directory() . "/templates{$prefix}",
-            dirname(__DIR__) . "/templates{$prefix}",
+            __DIR__ . "/templates{$prefix}",
         ], 'is_dir');
         return array_values(array_unique([...$dirs, ...parent::getSearchPaths($namespace)]));
     }
@@ -219,5 +219,5 @@ function carlo_render_region($template, $region)
 }
 
 function carlo_bootstrap() {
-    include __DIR__ . './../templates/layout.php';
+    include __DIR__ . '/templates/layout.php';
 }

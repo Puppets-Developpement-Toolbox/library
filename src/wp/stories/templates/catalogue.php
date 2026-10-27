@@ -22,7 +22,7 @@ $story_label = fn($key, $story) => $story['_label'] ?? ucfirst(str_replace('_', 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
   <title><?= esc_html(($element ? "{$element['title']} · " : '') . 'Catalogue · ' . get_bloginfo('name')) ?></title>
-  <link rel="stylesheet" href="<?= esc_url(plugins_url('stories/catalogue.css', dirname(__DIR__, 2) . '/carlo.php')) ?>">
+  <link rel="stylesheet" href="<?= esc_url(plugins_url('src/wp/stories/catalogue.css', dirname(__DIR__, 4) . '/wp.php')) ?>">
 </head>
 <body>
   <a class="skip-link" href="#contenu">Aller au contenu</a>

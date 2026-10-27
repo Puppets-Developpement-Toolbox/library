@@ -1,21 +1,14 @@
 {
-  "name": "puppets/wp-carlo-dev",
+  "name": "puppets/carlo-dev",
   "type": "project",
   "license": "proprietary",
-  "description": "Environnement de développement du plugin wp-carlo (Bedrock + Lando)",
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/Puppets-Developpement-Toolbox/library.git"
-    }
-  ],
+  "description": "Environnement de développement du plugin Carlo (Bedrock + Lando)",
   "require": {
     "php": ">=8.3",
     "composer/installers": "^2.3",
     "oscarotero/env": "^2.1",
     "roots/wordpress": "^7.0",
     "roots/wp-config": "^1.0",
-    "puppets/library": "1.x-dev",
     "idleberg/wordpress-vite-assets": "^0.9"
   },
   "config": {

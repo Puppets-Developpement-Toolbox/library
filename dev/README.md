@@ -1,4 +1,4 @@
-# Environnement de développement de wp-carlo
+# Environnement de développement de Carlo
 
 Un site WordPress Bedrock jetable (Lando), où le plugin est monté **en direct** depuis ce dépôt : on modifie le code du plugin, on recharge la page, on voit le résultat.
 
@@ -18,8 +18,8 @@ lando install
 | Commande | Rôle |
 | --- | --- |
 | `lando start` | Démarre WordPress (PHP 8.3, MySQL 8), le serveur Vite et le proxy HTTPS. |
-| `lando composer install` | Installe WordPress, `puppets/library` et `idleberg/wordpress-vite-assets` (Bedrock). |
-| `lando install` | Installe WordPress, active le thème `carlo-test` et Carlo, crée des pages d'exemple. Relançable sans risque. |
+| `lando composer install` | Installe WordPress et `idleberg/wordpress-vite-assets` (Bedrock). |
+| `lando install` | Installe WordPress et les dépendances du paquet Carlo (`composer install` dans le dépôt monté), active le thème `carlo-test` et Carlo, crée des pages d'exemple. Relançable sans risque. |
 | `lando browser <script>` | Lance un scénario de test dans Chromium headless (Playwright), ex. `lando browser tests/browser/editor.py`. |
 
 Puis :
@@ -33,13 +33,13 @@ Puis :
 ```
 dev/
 ├── .lando.yml              # services, variables d'environnement, montage du plugin
-├── composer.json           # Bedrock : WordPress, puppets/library
+├── composer.json           # Bedrock : WordPress (Carlo est le dépôt parent, monté)
 ├── config/                 # config Bedrock (application.php, environments/)
 ├── bin/install.sh          # `lando install`
 ├── package.json, vite.config.js   # serveur Vite + Tailwind 4 (dev) et build (prod)
 ├── tests/browser/         # scénarios de test dans un navigateur (`lando browser`)
 └── web/app/
-    ├── plugins/wp-carlo/   # = le dépôt parent, monté en direct (rien à copier)
+    ├── plugins/carlo/      # = le dépôt parent, monté en direct (rien à copier)
     └── themes/carlo-test/  # thème de test : structure.yml + styles de la library
 ```
 

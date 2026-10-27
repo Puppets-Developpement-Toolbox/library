@@ -5,8 +5,8 @@
  */
 function carlo_editor_asset($handle, $file, $deps = [])
 {
-    $src = plugins_url("assets/{$file}", dirname(__DIR__) . '/carlo.php');
-    $version = filemtime(dirname(__DIR__) . "/assets/{$file}");
+    $src = plugins_url("assets/{$file}", dirname(__DIR__, 2) . '/wp.php');
+    $version = filemtime(dirname(__DIR__, 2) . "/assets/{$file}");
     str_ends_with($file, '.js')
         ? wp_register_script($handle, $src, $deps, $version, true)
         : wp_register_style($handle, $src, $deps, $version);
