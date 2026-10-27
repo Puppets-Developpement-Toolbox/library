@@ -164,10 +164,6 @@ function carlo_component($component)
         $component = carlo_get($component);
     }
 
-    if(isset($component['acf_fc_layout'])){
-        $component["_id"] = $component['acf_fc_layout'];
-    }
-
     return carlo_render($component["_id"], $component);
 }
 

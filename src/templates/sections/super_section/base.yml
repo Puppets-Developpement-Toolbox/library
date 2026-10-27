@@ -1,5 +1,0 @@
-elements:
-  - !load sections/text_image
-  - !load sections/slider:partners
-  - !load sections/quote
-  - !load sections/cards_2_columns
