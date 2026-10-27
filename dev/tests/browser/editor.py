@@ -39,6 +39,9 @@ def can_insert(page, block, root):
 created = []
 with admin_page() as page:
     nonce = None
+    # Toute ressource en échec compte, sauf les polices du thème (problème connu, cf. stories.py).
+    failed = []
+    page.on("response", lambda r: r.status >= 400 and "woff" not in r.url and failed.append(f"{r.status} {r.url}"))
     try:
         # 1. Modèle à plusieurs régions, choisi à la création puis figé
         canvas, post_id = open_new_page(page, "landing")
@@ -88,6 +91,8 @@ with admin_page() as page:
         text_block = canvas.locator("[data-type='carlo/sections-text']").first
         if text_block.count():
             text_block.click()
+            # Le panneau Réglages reste fermé si l'utilisateur l'a fermé (préférence enregistrée).
+            page.evaluate("wp.data.dispatch('core/edit-post').openGeneralSidebar('edit-post/block')")
             inspector = page.locator(".block-editor-block-inspector")
             text_block.locator("[data-carlo-wysiwyg]").click()  # texte saisi dans le bloc, via la modale
             page.frame_locator(".components-modal__frame iframe").locator("body").click()
@@ -114,7 +119,9 @@ with admin_page() as page:
             print("- pas de section Text dans la région : saisie et rendu front non testés")
 
         # Une ressource en 502 signale le plus souvent un serveur Vite arrêté (lando logs -s front).
-        check("aucune erreur JS ni ressource en échec", not page.errors, page.errors)
+        errors = [e for e in page.errors if "404" not in e]
+        check("aucune erreur JS", not errors, errors)
+        check("aucune ressource en échec (hors polices)", not failed, failed)
     finally:
         for post_id in created:
             response = nonce and page.request.delete(
