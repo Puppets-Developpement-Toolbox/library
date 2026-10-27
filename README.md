@@ -1,398 +1,212 @@
-# Carlo WordPress Plugin
+# Carlo
 
-> **Being rewritten.** The ACF parts of this document (field groups, ACF JSON, `carlo_acf_*` functions)
-> describe the former architecture: since sections became native blocks, Carlo no longer uses ACF.
-> This document will be rewritten at the end of the ongoing refactoring.
-
-This repository (Composer package `puppets/carlo`) holds both the Carlo templating engine and its WordPress plugin:
+Carlo is a PHP templating engine whose content structures are described in YAML, and the WordPress plugin built
+on it, developed by [Puppets](https://puppets.fr). A theme declares its page templates, regions and sections in a
+`structure.yml` file; every section becomes a native block in the WordPress block editor, and is rendered by a
+plain PHP template on the site.
 
 | Path | Content |
 | --- | --- |
-| `src/carlo`, `src/templates` | the engine (no WordPress) and the generic sections and components |
-| `wp.php`, `src/wp`, `assets` | the WordPress plugin: driver, native blocks, regions, component catalogue |
-| `library.css`, `src/css`, `src/js` | front-end styles and scripts (Tailwind 4); themes import `library.css` from the plugin folder, e.g. `@import "../../../plugins/carlo/library.css";` with Bedrock |
-| `demo` | standalone demo of the templates (`YmlDriver` + `data.yml`), run from a clone after `composer install` |
-| `dev` | WordPress development environment (Bedrock + Lando) and browser tests |
+| `src/carlo` | the engine, without WordPress: drivers, structure loading, fields, data loading, introspection |
+| `src/templates` | generic sections and components (PHP template + YAML structure), see [these mockups](https://www.figma.com/design/YAGncUCOUdVUay7mKLAH2x/-LIB--Diapsodie?node-id=2-4&p=f&t=QDyYKzHqjUoKvxHK-0) |
+| `wp.php`, `src/wp`, `assets` | the WordPress plugin: driver, blocks, regions, page templates, component catalogue, editor scripts |
+| `library.css`, `src/css`, `src/js` | front-end styles and scripts (Tailwind 4) |
+| `demo` | standalone demo of the templates, without WordPress |
+| `dev` | WordPress development environment (Bedrock + Lando) and browser tests, see [dev/README.md](./dev/README.md) |
 
-A powerful WordPress plugin that provides a YAML-based configuration system for building structured, component-driven websites with Advanced Custom Fields (ACF).
-
-## Documentation
-
-- **[Carlo.md](./Carlo.md)** - Documentation complète en français sur le moteur Carlo et le driver WordPress
-- **[README-AI.md](./README-AI.md)** - Technical documentation for AI agents and developers
-- **[docs/](./docs/)** - Additional technical documentation and analysis
-
-## Overview
-
-Carlo is a WordPress plugin developed by [Puppets](https://puppets.fr) that transforms how you build WordPress sites by introducing a declarative, YAML-based approach to defining post types, templates, components, and sections. It heavily integrates with ACF to provide a flexible content builder system based on regions that can contain multiple sections.
-
-Carlo is built on top of the Carlo templating engine, which is part of the [Puppets Library](https://github.com/Puppets-Developpement-Toolbox/library).
-
-## Key Features
-
-- **YAML-driven configuration**: Define your entire site structure in a single `structure.yml` file
-- **ACF Integration**: Automatic ACF field group generation from YAML definitions
-- **Region-based layout system**: Organize content into regions that contain sections
-- **Component architecture**: Build reusable components and sections
-- **Template flexibility**: Support for page templates and custom post type templates
-- **Built-in rendering engine**: Template rendering system with namespacing support
-- **Vite integration**: Modern asset pipeline for development and production
-- **WordPress features**: Disables Gutenberg for pages, removes comments, and provides opinionated WordPress defaults
+Further reading: [Carlo.md](./Carlo.md) (concepts, in French) and [README-AI.md](./README-AI.md) (code
+architecture, for developers and AI agents changing the code).
 
 ## Requirements
 
-- WordPress 6.1+
-- PHP 8.0+
-- Advanced Custom Fields Pro
-- A Carlo-compatible theme with `structure.yml` file
+- PHP 8.1+ and WordPress 6.5+ (block API v3, `wp_is_serving_rest_request()`).
+- A theme with a `structure.yml` file at its root: without it, the plugin does nothing.
+- Composer, through which the package and its dependency (`symfony/yaml`) are installed.
+- `idleberg/wordpress-vite-assets` in the site's dependencies: it loads the theme's assets in production and is
+  not declared by the package yet.
 
-## Installation
+## Installation (Bedrock)
 
-1. Install the plugin in your WordPress plugins directory
-2. Ensure ACF Pro is installed and activated
-3. Create a `structure.yml` file in your theme's root directory
-4. Activate the plugin
+```json
+{
+  "repositories": [
+    { "type": "vcs", "url": "https://github.com/Puppets-Developpement-Toolbox/library.git" }
+  ],
+  "require": { "puppets/carlo": "<branch or version>" }
+}
+```
 
-The plugin will automatically detect if your theme is Carlo-compatible by checking for the `structure.yml` file. If the file doesn't exist, the plugin will not initialize.
+The package type is `wordpress-plugin`: it is installed in `web/app/plugins/carlo`. Then:
 
-## Structure Definition
+1. Activate the **Carlo** plugin.
+2. In the theme, call `carlo_bootstrap()` from `index.php`: the plugin picks the template and renders the page.
+3. Import the library styles in the theme's CSS: `@import "../../../plugins/carlo/library.css";`.
 
-### Basic Structure
+The theme's assets are loaded with Vite (see [Assets](#assets)).
 
-Your theme's `structure.yml` file defines the entire content structure:
+## Elements
+
+Sections (`sections/…`) and components (`components/…`) are **elements**. An element is identified by
+`type/name:variant`, e.g. `sections/push:pictos`; the variant defaults to `base` (`sections/text` =
+`sections/text:base`). Each element is made of files in a `templates/` folder:
+
+```
+templates/sections/quote/
+├── base.php           # the template
+├── base.yml           # its structure: the fields (optional for an element without data)
+├── base.stories.yml   # examples for the component catalogue (optional)
+└── dark.php           # a variant: dark.yml and dark.stories.yml fall back to base.* when absent
+```
+
+A missing file of a variant falls back to the `base` file, for the template, the structure and the stories
+alike. A flat file (`templates/sections/quote.php`) is also accepted for the `base` variant.
+
+Files are looked up, first found wins, in: the child theme, the parent theme, the plugin (`src/wp/templates`),
+then the library (`src/templates`). A theme overrides any element of the library by providing the same file.
+Elements of another library can be registered as a namespace:
+`carlo_register_namespace('restaurant', $path)`, then `@restaurant:sections/menu`.
+
+## structure.yml
 
 ```yaml
-regions:
-  header: "En-tête"
-  content: "Contenu"
-  footer: "Pied de page"
+menus:
+  main: Menu principal              # registered as a WordPress menu location
 
-templates:
+regions:                            # labels shown in the editor
+  header: En-tête
+  content: Contenu
+
+templates:                          # page templates; `default` is used when none is chosen
   default:
-    _label: "Page par défaut"
-    content:
-      - _id: hero
-        # ... hero section definition
-      - _blocs:
-          - _id: text_section
-            # ... section definition
-          - _id: image_gallery
-            # ... section definition
+    _label: Page éditoriale
+    content:                        # a region and the sections it accepts
+      - _blocs: [!load sections/text, !load sections/image, !load sections/quote]
+        _max: 6                     # at most 6 sections in this region
+  landing:
+    _label: Page templatisée
+    header: [!load sections/image]
+    content: [!load sections/text, !load sections/quote]
 
-types:
+types:                              # custom post types
   project:
-    wp_args:
-      public: true
-      label: "Projets"
-    template:
-      _label: "Projet"
-      content:
-        - _id: project_details
-          # ... project fields
+    wp_args:                        # arguments of register_post_type()
+      label: Projets
+      supports: [title, thumbnail]
+    template:                       # its template (or `templates:` with several, `default` first)
+      _label: Fiche projet
+      content: [!load sections/text]
 ```
 
-### Regions
+- `!load sections/text` inserts the structure of an element. It is the only YAML tag: any other tag
+  (e.g. a typo such as `!components`) raises an error naming the file.
+- A region proposes every section it lists, in any order and number (up to `_max`).
+- The template of a content is chosen when it is created (« Pages > Ajouter : Page templatisée ») and cannot
+  change afterwards. The posts page uses the `archive` template.
 
-Regions are high-level content areas defined in the YAML structure. They act as containers for sections:
+## Fields
 
-```yaml
-regions:
-  header: "Header Region"
-  main: "Main Content"
-  sidebar: "Sidebar"
-  footer: "Footer Region"
-```
-
-Regions are referenced in templates and rendered using `carlo_render_region($template, $region)`.
-
-### Templates
-
-Templates define the layout structure for pages and custom post types:
+A field is declared in the element's `.yml`, by its type alone or with options:
 
 ```yaml
-templates:
-  homepage:
-    _label: "Page d'accueil"
-    hero:
-      - _id: hero_section
-        title: text_short
-        subtitle: text
-        image: image
-    content:
-      - _blocs:
-          - _id: text_block
-          - _id: gallery_block
-```
-
-### Custom Post Types
-
-Define custom post types with their own templates:
-
-```yaml
-types:
-  project:
-    wp_args:
-      public: true
-      label: "Projets"
-      supports: ['title', 'thumbnail']
-    template:
-      _label: "Projet"
-      details:
-        - _id: project_info
-          client: text_short
-          year: number
-          description: wysiwyg
-    templates:
-      portfolio:
-        _label: "Portfolio View"
-        gallery:
-          - _id: image_gallery
-```
-
-### Field Types
-
-Carlo supports a wide range of field types that map to ACF field types:
-
-- `text_short` → text
-- `text` → textarea
-- `wysiwyg` → wysiwyg editor
-- `image` → image (returns ID)
-- `url` → url
-- `color` → color picker
-- `number` → number
-- `choices` → select/checkbox
-- `reference` → relationship
-- `boolean` → true/false
-- `taxonomy` → taxonomy
-- `date` → date picker
-- `datetime` → datetime picker
-- `link` → link
-- `embed` → oembed
-- `file` → file
-- `group` → group
-- `repeater` → repeater
-
-### Field Options
-
-Fields support various options prefixed with `_`:
-
-```yaml
-field_name:
-  _type: text_short
-  _label: "Field Label"
-  _help: "Help text shown below field"
-  _required: true
-  _multi: true  # For images (creates gallery) or choices (creates checkbox)
-```
-
-#### Repeater Example
-
-```yaml
-team_members:
+titre: text_short
+content:
+  _type: wysiwyg
+  _label: Contenu
+  _help: Texte affiché sous le titre.
+quote: !load components/quote       # a component: a group of fields with its own template
+items:
   _type: repeater
-  _label: "Team Members"
-  _min: 1
-  _max: 10
-  _add_button: "Add Team Member"
+  _min: 1                           # or _times for an exact number
+  _max: 6
+  _add_button: Ajouter une carte
   _repeat:
-    name: text_short
-    role: text_short
-    photo: image
-```
-
-#### Reference Example
-
-```yaml
-related_projects:
+    title: text_short
+    image: image
+pages:
   _type: reference
-  _label: "Related Projects"
-  _ref_type: project  # or ['project', 'page']
+  _ref_type: [page, project]
   _max: 3
+style:
+  _type: choices
+  _choices: { light: Clair, dark: Sombre }
 ```
 
-## Usage
+| Type | Editor | Value in the template |
+| --- | --- | --- |
+| `text_short` | typed in the block | string |
+| `text` | typed in the block | string, line breaks as `<br />` |
+| `wysiwyg` | typed in the block (TinyMCE dialog) | HTML, paragraphs added (`wpautop`) |
+| `url`, `number` | Settings panel | string, number |
+| `boolean` | Settings panel | `bool` |
+| `image` | Settings panel (media library) | attachment ID, for `carlo_img()` |
+| `choices` | Settings panel (`_multi` for several) | the chosen key(s) |
+| `reference` | Settings panel (search, ordered list) | published `WP_Post` objects |
+| `group` | its fields, in the block or the panel | array, with the component's `_id` |
+| `repeater` | Settings panel, items added and ordered | list of arrays |
 
-### Rendering Regions
+A text field used inside an HTML attribute (e.g. `id="<?= carlo_get('ancre') ?>"`) is typed in the
+Settings panel instead of the block. `select` is a deprecated name of `choices`; `image` with `_multi` is a `gallery`. Other types (`gallery`,
+`color`, `date`, `datetime`, `embed`, `file`, `link`, `taxonomy`) are stored but not editable yet: the editor
+shows a notice in their place.
 
-In your theme templates, render regions using:
+Every declared field reaches the template, with a default value when it is empty (`''`, `false` for a
+boolean, `[]` for a group, repeater, gallery or reference): templates do not need `isset()`.
+
+## The block editor
+
+- Each region of the content's template is a locked block, which only accepts the sections it lists, up to
+  its `_max` (a counter shows it).
+- Each section is a block (`carlo/sections-text`, `carlo/sections-push-pictos`…). Its preview is the real
+  template rendered by the server, with the theme's CSS; text fields are typed directly in it, the other
+  fields are in the Settings panel. Change `structure.yml`, reload the editor: the blocks follow.
+- A section left empty is not rendered on the site; the editor shows a message in its place.
+
+## Templates
 
 ```php
-carlo_render_region($template, $region);
+<?= carlo_get('titre') ?>                              // a value; 'quote.author' for a nested one
+<?php carlo_component('quote') ?>                      // a group field, rendered by its own template
+<?php carlo_render('components/cta', carlo_get('cta')) ?>
+<?= carlo_img('image', '630x394') ?>                   // responsive image (see below)
+<?php carlo_menu('main') ?>                            // renders templates/menus/main.php with `items`
 ```
 
-Example in `layout.php`:
+Values arrive formatted (see the table above). Data that does not come from a block, such as a query in a
+custom template, is loaded with `carlo_load_data($id, $values)`: it is formatted like block data and becomes
+readable with `carlo_get()`.
+
+`carlo_bootstrap()` picks the template: `templates/<template>.php` of the theme when it exists (`archive` for
+the posts page, `error` for a 404, the page template slug or `default`, `type_<post_type>` for a single post),
+otherwise the regions of the content's template, in their order. The `carlo_prerender` action runs first,
+with the template name.
+
+### Images
 
 ```php
-carlo_render("global/html_start");
-?>
-<header>
-  <?php carlo_render_region('default', 'header'); ?>
-</header>
-<main>
-  <?php carlo_render_region('default', 'content'); ?>
-</main>
-<footer>
-  <?php carlo_render_region('default', 'footer'); ?>
-</footer>
-<?php
-carlo_render('global/html_end');
+carlo_img('image', '630x394');                                          // one size
+carlo_img('image', ['1200x800', '(max-width: 767px)' => '600x400']);    // default size + <source> per media
+carlo_img('image', '630x394', ['class' => 'cover']);                    // attributes (with a `class` key)
 ```
 
-### Rendering Components
+Sizes are WordPress image sizes, registered in the theme with `carlo_register_img_size('630x394')` (cropped)
+or `carlo_register_img_size('630x394:0')` (not cropped; the size is then named `630x394:0`), several at once
+with an array.
 
-Render individual components or sections:
+### Assets
 
-```php
-carlo_render('components/button', [
-  'text' => 'Click me',
-  'url' => '#'
-]);
-```
+The plugin loads the theme's `js/main.js` and `css/global.css`: from the Vite server in development
+(`WP_ENV=development`, `ASSET_BASE_URL`), from the theme's `dist/.vite/manifest.json` otherwise. The same CSS is
+loaded in the editor's canvas, so that previews look like the site.
 
-### Template Files
+## Component catalogue
 
-Create template files in your theme's `templates/` directory:
+A catalogue of every section and component (library, plugin and theme), each rendered in isolation with the
+theme's CSS and JS: `/?carlo-stories`, or Appearance > Catalogue.
 
-```
-templates/
-├── global/
-│   ├── html_start.php
-│   └── html_end.php
-├── sections/
-│   ├── hero.php
-│   └── text_block.php
-├── components/
-│   ├── button.php
-│   └── card.php
-└── menus/
-    └── main.php
-```
-
-### Menu Rendering
-
-Carlo provides a custom menu rendering system:
-
-```php
-carlo_menu('primary');
-```
-
-This extracts menu structure and renders it using your custom template in `templates/menus/{menu-location}.php`.
-
-### Image Handling
-
-Generate responsive images with sources:
-
-```php
-$driver->img(
-    key: 'hero_image',
-    default_size: 'large',
-    source_sizes: [
-        '(min-width: 1024px)' => 'full',
-        '(min-width: 768px)' => 'large'
-    ],
-    mobile_key: 'hero_image_mobile',
-    mobile_source_sizes: [
-        '(max-width: 767px)' => 'medium'
-    ],
-    imgAttrs: ['class' => 'hero-img']
-);
-```
-
-## File Structure
-
-```
-carlo/
-├── carlo.php              # Main plugin file
-├── inc/
-│   ├── carlo.php         # Core driver and ACF integration
-│   ├── templates.php     # Template registration
-│   ├── blocks.php        # ACF field generation
-│   ├── assets.php        # Vite asset handling
-│   ├── feature.php       # WordPress feature configuration
-│   ├── menus.php         # Menu registration
-│   ├── media.php         # Media handling
-│   ├── archive.php       # Archive AJAX handlers
-│   └── errors.php        # Error handling
-├── templates/
-│   ├── layout.php        # Main layout controller
-│   ├── archive.php       # Archive template
-│   ├── error.php         # 404 template
-│   └── global/
-│       ├── html_start.php
-│       └── html_end.php
-└── composer.json         # Dependencies (puppets/library)
-```
-
-## Dependencies
-
-Carlo depends on the **[puppets/library](https://github.com/Puppets-Developpement-Toolbox/library)** package which provides:
-- The core Carlo templating engine (`carlo_render`, `carlo_get`, `carlo_img`)
-- The BaseDriver class that CarloWpDriver extends
-- YAML structure parsing and validation
-- Namespace-based template resolution
-- Component rendering system
-
-The library also includes a collection of reusable, generic components based on Carlo, as defined in [these mockups](https://www.figma.com/design/YAGncUCOUdVUay7mKLAH2x/-LIB--Diapsodie?node-id=2-4&p=f&t=QDyYKzHqjUoKvxHK-0).
-
-## ACF Field Groups
-
-Carlo automatically generates ACF field groups based on your YAML structure. Field groups are:
-
-- Saved as JSON in your theme's `/acf` directory
-- Registered programmatically on `acf/init` action
-- Hidden from the admin interface in production (when `WP_DEBUG` is false)
-- Associated with templates using ACF location rules
-
-## WordPress Modifications
-
-Carlo makes several opinionated modifications to WordPress:
-
-- Disables Gutenberg editor for pages
-- Completely removes comment functionality
-- Removes emoji scripts
-- Adds theme support for title-tag and post-thumbnails
-- Adds custom TinyMCE style formats
-- Adds template column to page list in admin
-
-## Development
-
-A ready-to-use local environment (Bedrock + Lando, with a test theme) lives in **[dev/](./dev/README.md)**: the plugin is mounted live, so code changes show up on reload.
-
-### Vite Integration
-
-In development mode (`WP_DEBUG = true`):
-- Assets are loaded from Vite dev server
-- Hot module replacement is enabled
-- Assets are served from `$_ENV["ASSET_BASE_URL"]`
-
-In production:
-- Assets are loaded from `dist/.vite/manifest.json`
-- Automatic integrity checking
-- Optimized bundles
-
-### Template Lookup
-
-Template files are resolved in this order:
-1. Child theme `templates/` directory
-2. Parent theme `templates/` directory
-3. Plugin namespaced directories (via `puppets/library`)
-
-### Component Catalogue
-
-A Storybook-like catalogue of every section and component (library, plugin and theme), each rendered in
-isolation with the theme's CSS and JS.
-
-- **Catalogue**: `/?carlo-stories`. **Single story** (used by the catalogue's iframe):
-  `/?carlo-stories=frame&id=sections/quote&story=complete`.
-- **Not loaded in production** (`WP_ENV`): it is public, without login, everywhere else (development,
-  staging) and sends `X-Robots-Tag: noindex`.
-- Elements are discovered by the library's introspection (`carlo_get_available_sections()`,
-  `carlo_get_available_components()`), in the driver's search paths (`CarloWpDriver::getSearchPaths()`).
-  Only discovered elements can be rendered.
-
-Stories are written in a `<variant>.stories.yml` file next to the template, in the theme, the plugin or the
-library (first found wins; a variant without its own file uses the base one, marked « (base) »): e.g. `templates/sections/quote/base.stories.yml`. Each key is a story; values use
-the block attributes format and go through the same formatting as on the site:
+- Not loaded in production (`WP_ENV`). Elsewhere (development, staging) it is public, without login, and sends
+  `X-Robots-Tag: noindex`. Only discovered elements can be rendered.
+- Examples are written in `<variant>.stories.yml`, next to the template. Each key is an example; values use
+  the block attributes format and get the same formatting as on the site:
 
 ```yaml
 complete:
@@ -402,85 +216,38 @@ complete:
     quote: <p>La simplicité est la sophistication suprême.</p>
     author: Léonard de Vinci
 image_only:
-  image: 1600x900          # placeholder image (or a media ID)
+  image: 1600x900          # a placeholder image (or a media ID)
 ```
 
-Elements without stories are listed as « aucun exemple », with their fields. Browser test:
-`lando browser tests/browser/stories.py`.
+A variant without its own examples uses those of `base`, marked « (base) »; an element without any is listed
+as « aucun exemple », with its fields.
 
-## API Reference
+## Standalone demo
 
-### Core Functions (from puppets/library)
+`demo/` renders the library's sections without WordPress (`YmlDriver`), with sample data from
+`demo/data.yml` (looked up by `<section>--<field>`, then by field name, then by type). From a clone:
+`composer install`, then `composer start` (http://localhost:8001) or `lando start` at the repository root.
+Installed as a plugin, the package has no `vendor/` of its own and the demo answers 404; `demo/` and `dev/` are
+not part of the Composer archive.
 
-The following functions are provided by the Carlo templating engine in `puppets/library`:
+## WordPress defaults
 
-- `carlo_render($template, $data)` - Render a template with data
-- `carlo_get($key)` - Get value from current rendering context
-- `carlo_img($key, $sizes)` - Generate responsive image HTML with WordPress optimization
-- `carlo_structure($key)` - Get structure definition from YAML
-- `carlo_driver($driver)` - Set the driver instance
-- `carlo_register($structure_path)` - Register a structure YAML file
+The plugin also: disables comments and pings; adds `title-tag`, `post-thumbnails` and `editor-styles` theme
+support; adds a « Large paragraphe » style to TinyMCE; removes the emoji scripts; adds a Template column to the
+pages list; redirects `/app/uploads` requests to `SFP_URL` when that variable is set; enables the Symfony
+error handler when `WP_DEBUG_DISPLAY` is on and the package is available.
 
-### WordPress Plugin Functions
+## Development
 
-Functions added by the wp-carlo plugin:
+The development environment (Bedrock + Lando, test theme `carlo-test`, browser tests) is documented in
+[dev/README.md](./dev/README.md). The repository is mounted live in it as `plugins/carlo`.
 
-- `carlo_render_region($template, $region)` - Render a region from structure
-- `carlo_menu($location)` - Render a navigation menu
-- `carlo_bootstrap()` - Initialize layout rendering
-- `carlo_acf_init()` - Initialize ACF field groups
-- `carlo_register_templates($post_type, $templates)` - Register templates for post type
+## Known issues
 
-### Filters
-
-- `carlo_prerender` - Action before template rendering starts
-- `theme_{$post_type}_templates` - Filter available templates for post type
-
-## Advanced Usage
-
-### Custom Post Types with Custom Templates
-
-You can create custom single and archive templates for your custom post types. See [Carlo.md](./Carlo.md) lines 158-277 for detailed examples of creating:
-- `single-[my-cpt].php` - Single post template for custom post type
-- `archive-[my-cpt].php` - Archive template for custom post type
-
-These allow you to bypass the default page-based approach and create dedicated templates for your custom post types.
-
-## Best Practices
-
-1. **Keep structure.yml organized**: Use consistent naming and group related definitions
-2. **Use components**: Break down complex sections into reusable components
-3. **Leverage regions**: Organize content logically using regions
-4. **Field naming**: Use descriptive field names without prefixes
-5. **Version control ACF JSON**: Commit the `/acf` directory to version control
-6. **Component definitions**: Create both `.php` and `.yml` files for components (see Carlo.md:132-152)
-7. **Register image formats**: Pre-register all image sizes you'll use with `carlo_register_img_size()` (see Carlo.md:154-156)
-
-## Troubleshooting
-
-### Plugin doesn't activate
-- Ensure `structure.yml` exists in your theme root
-- Check PHP version is 8.0+
-- Verify ACF Pro is installed
-
-### Fields not appearing
-- Check ACF field groups in admin (enable `WP_DEBUG`)
-- Verify YAML syntax is correct
-- Clear ACF cache
-
-### Templates not rendering
-- Check template file exists in `templates/` directory
-- Verify region names match between YAML and template calls
-- Enable WordPress debug logging
+- `src/wp/templates/archive.php` and the `archive_content` AJAX action call templates that do not exist.
+- `src/css/config/webfonts.css` points to `src/css/webfonts/` instead of `src/webfonts/`: Poppins is not loaded.
+- `wp.php` still declares `Requires at least: 6.1` and `Requires PHP: 8.0`.
 
 ## License
 
 Proprietary - Puppets Development
-
-## Credits
-
-Developed by [Puppets](https://puppets.fr)
-
-## Support
-
-For support and questions, contact Puppets at https://puppets.fr
