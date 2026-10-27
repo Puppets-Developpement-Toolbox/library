@@ -95,14 +95,20 @@ $story_label = fn($key, $story) => $story['_label'] ?? ucfirst(str_replace('_', 
         <p class="notice notice--error"><?= esc_html($error) ?></p>
       <?php endforeach; ?>
 
+      <?php $frame_url = carlo_stories_url(['carlo-stories' => 'frame', 'id' => $element['id'], 'story' => $story_key]); ?>
+      <?php if ($element['stories_from_base']): ?>
+        <p class="notice">
+          Exemples hérités de la variante base. Pour des exemples propres à cette variante, créez
+          <code><?= esc_html($element['stories_file']) ?></code>.
+        </p>
+      <?php elseif (!$element['stories']): ?>
+        <p class="notice">
+          Aucun exemple : l'aperçu est un contenu généré d'après les champs. Pour des exemples réalistes,
+          créez <code><?= esc_html($element['stories_file']) ?></code> dans le thème (ou dans la library pour un
+          composant partagé).
+        </p>
+      <?php endif; ?>
       <?php if ($element['stories']): ?>
-        <?php $frame_url = carlo_stories_url(['carlo-stories' => 'frame', 'id' => $element['id'], 'story' => $story_key]); ?>
-        <?php if ($element['stories_from_base']): ?>
-          <p class="notice">
-            Exemples hérités de la variante base. Pour des exemples propres à cette variante, créez
-            <code><?= esc_html($element['stories_file']) ?></code>.
-          </p>
-        <?php endif; ?>
         <nav class="stories" aria-label="Exemples">
           <ul>
             <?php foreach ($element['stories'] as $key => $story): ?>
@@ -114,26 +120,21 @@ $story_label = fn($key, $story) => $story['_label'] ?? ucfirst(str_replace('_', 
             <?php endforeach; ?>
           </ul>
         </nav>
-
-        <div class="toolbar">
-          <div class="viewports" role="group" aria-label="Largeur de l'aperçu">
-            <button type="button" data-viewport="375px" aria-pressed="false">Mobile</button>
-            <button type="button" data-viewport="768px" aria-pressed="false">Tablette</button>
-            <button type="button" data-viewport="100%" aria-pressed="true">Bureau</button>
-          </div>
-          <a href="<?= esc_url($frame_url) ?>" target="_blank" rel="noopener">Ouvrir seul<span class="visually-hidden"> (nouvel onglet)</span></a>
-        </div>
-
-        <div class="frame">
-          <iframe id="apercu" src="<?= esc_url($frame_url) ?>"
-                  title="<?= esc_attr("Aperçu : {$element['title']}, {$story_label($story_key, $element['stories'][$story_key])}") ?>"></iframe>
-        </div>
-      <?php else: ?>
-        <p class="notice">
-          Aucun exemple pour cet élément. Pour en ajouter, créez <code><?= esc_html($element['stories_file']) ?></code>
-          dans le thème (ou dans la library pour un composant partagé).
-        </p>
       <?php endif; ?>
+
+      <div class="toolbar">
+        <div class="viewports" role="group" aria-label="Largeur de l'aperçu">
+          <button type="button" data-viewport="375px" aria-pressed="false">Mobile</button>
+          <button type="button" data-viewport="768px" aria-pressed="false">Tablette</button>
+          <button type="button" data-viewport="100%" aria-pressed="true">Bureau</button>
+        </div>
+        <a href="<?= esc_url($frame_url) ?>" target="_blank" rel="noopener">Ouvrir seul<span class="visually-hidden"> (nouvel onglet)</span></a>
+      </div>
+
+      <div class="frame">
+        <iframe id="apercu" src="<?= esc_url($frame_url) ?>"
+                title="<?= esc_attr("Aperçu : {$element['title']}, " . ($element['stories'] ? $story_label($story_key, $element['stories'][$story_key]) : 'contenu généré')) ?>"></iframe>
+      </div>
 
       <h2>Champs</h2>
       <?php $rows = carlo_stories_field_rows($element['fields']); ?>

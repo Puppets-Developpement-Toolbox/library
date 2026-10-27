@@ -61,7 +61,8 @@ markers, which the script turns into editable fields; repeaters show their `_min
 edited in the Settings panel, generated from `window.carloSections`.
 
 **Catalogue frame.** `/?carlo-stories=frame&id=…&story=…` (`src/wp/stories/stories.php`) swaps the global driver
-for a `CarloStoriesDriver` (placeholder images for `WxH` values), then `frame.php` renders
+for a `CarloStoriesDriver` (placeholder images for `WxH` values; for an element without stories, empty fields
+get generated content from their type: `$placeholders`), then `frame.php` renders
 `carlo_render($id, carlo_load($id, $story without _label))`.
 
 **Standalone demo.** `demo/index.php` uses `YmlDriver` and renders each section of a template with

@@ -8,7 +8,8 @@
  *
  * Les éléments sont découverts par l'introspection de la library (carlo_get_available_sections() /
  * carlo_get_available_components()). Les exemples sont rédigés dans <variante>.stories.yml, à côté du
- * template, dans un des dossiers de recherche du driver (thème, plugin, library).
+ * template, dans un des dossiers de recherche du driver (thème, plugin, library). Un élément sans
+ * exemple est affiché avec un contenu généré d'après ses champs.
  */
 
 use Symfony\Component\Yaml\Yaml;
@@ -16,9 +17,59 @@ use Symfony\Component\Yaml\Yaml;
 /**
  * Driver des exemples : une image peut y être une dimension (1200x800), rendue par une image de
  * remplacement locale.
+ *
+ * Avec $placeholders (élément sans exemple), les champs non renseignés reçoivent un contenu généré
+ * d'après leur type. Sans, ils restent vides : un exemple qui omet un champ le veut vide.
  */
 class CarloStoriesDriver extends CarloWpDriver
 {
+    // Court pour les champs texte (souvent des titres), long pour les champs riches.
+    private const LOREM_SHORT = 'Lorem ipsum dolor sit amet';
+    private const LOREM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
+
+    public bool $placeholders = false;
+
+    protected function loadValue(array $field, mixed $value, carlo\LoadContext $ctx): mixed
+    {
+        if ($this->placeholders && $value === null) {
+            $value = $this->placeholder($field);
+        }
+        return parent::loadValue($field, $value, $ctx);
+    }
+
+    // Les éléments obligatoires (min), complétés jusqu'à trois pour voir la mise en page se répéter, dans la limite de max.
+    protected function loadRepeater(array $field, mixed $value, carlo\LoadContext $ctx): array
+    {
+        if ($this->placeholders && $value === null) {
+            $count = max($field['min'], 3);
+            $value = array_fill(0, $field['max'] ? min($count, $field['max']) : $count, []);
+        }
+        return parent::loadRepeater($field, $value, $ctx);
+    }
+
+    /**
+     * Contenu généré d'un champ ; null laisse la valeur par défaut du type (booléen, types non
+     * éditables, groupes et répéteurs, dont les sous-champs sont générés à leur tour).
+     */
+    private function placeholder(array $field): mixed
+    {
+        return match ($field['type']) {
+            'text_short' => $field['label'],
+            'text' => self::LOREM_SHORT,
+            'wysiwyg' => self::LOREM,
+            'url' => '#',
+            'number' => 1,
+            'image' => '1200x800',
+            'choices' => $field['multi'] ? [(string) array_key_first($field['choices'])] : (string) array_key_first($field['choices']),
+            'reference' => get_posts([
+                'post_type' => $field['post_types'],
+                'numberposts' => min($field['max'] ?: 3, 3),
+                'fields' => 'ids',
+            ]),
+            default => null,
+        };
+    }
+
     public function img(string $key, string $default_size, array $source_sizes, $mobile_key, array $mobile_source_sizes, array $imgAttrs)
     {
         $value = is_numeric($key) ? $key : $this->get($key);
@@ -132,6 +183,7 @@ function carlo_stories_frame($element, $story)
 {
     // Driver des exemples, avec les namespaces enregistrés par le thème.
     $driver = new CarloStoriesDriver();
+    $driver->placeholders = !$element['stories'];
     foreach (carlo_driver()->getNamespaces() as $namespace => $path) {
         $driver->registerNamespace($namespace, $path);
     }
