@@ -1,2 +1,5 @@
-# Le dossier dev/ (environnement de développement) n'est pas livré avec le plugin installé par Composer.
+# Non livrés avec le paquet installé par Composer : environnements de développement et démo autonome.
 /dev export-ignore
+/demo export-ignore
+/_GAB_images export-ignore
+/.lando.yml export-ignore

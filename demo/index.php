@@ -1,7 +1,11 @@
-
-
 <?php
-include_once __DIR__ . "/vendor/autoload.php";
+// Démo autonome des templates : seulement depuis un clone du dépôt, après `composer install`.
+// Installé comme plugin, le paquet n'a pas son propre vendor/ : la page n'existe pas.
+if (!is_file(__DIR__ . "/../vendor/autoload.php")) {
+    http_response_code(404);
+    exit;
+}
+include_once __DIR__ . "/../vendor/autoload.php";
 
 use Symfony\Component\ErrorHandler\Debug;
 use carlo\YmlDriver;

@@ -1,5 +1,7 @@
 {
-  "name": "puppets/library",
+  "name": "puppets/carlo",
+  "description": "Carlo : moteur de templates PHP décrits en YAML, et son plugin WordPress (blocs natifs).",
+  "type": "wordpress-plugin",
   "autoload": {
     "files": [
       "src/carlo/carlo.php"
@@ -12,7 +14,7 @@
     "symfony/yaml": "^5.4"
   },
   "scripts": {
-    "start": "php -S 0.0.0.0:8001 -t ."
+    "start": "php -S 0.0.0.0:8001 -t demo"
   },
   "require-dev": {
     "symfony/var-dumper": "^5.4",

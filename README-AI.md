@@ -2,7 +2,7 @@
 
 > **Being rewritten.** The ACF parts of this document (field groups, ACF JSON, `carlo_acf_*` functions)
 > describe the former architecture: since sections became native blocks, Carlo no longer uses ACF.
-> This document will be rewritten at the end of the ongoing refactoring (merge into `puppets/library`).
+> This document will be rewritten at the end of the ongoing refactoring.
 
 ## Overview for AI Agents
 

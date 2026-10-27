@@ -1,7 +1,7 @@
 name: library
 recipe: lamp
 config:
-  webroot: .
+  webroot: demo
 
 services:
   front:

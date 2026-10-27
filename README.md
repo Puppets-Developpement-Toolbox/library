@@ -2,7 +2,17 @@
 
 > **Being rewritten.** The ACF parts of this document (field groups, ACF JSON, `carlo_acf_*` functions)
 > describe the former architecture: since sections became native blocks, Carlo no longer uses ACF.
-> This document will be rewritten at the end of the ongoing refactoring (merge into `puppets/library`).
+> This document will be rewritten at the end of the ongoing refactoring.
+
+This repository (Composer package `puppets/carlo`) holds both the Carlo templating engine and its WordPress plugin:
+
+| Path | Content |
+| --- | --- |
+| `src/carlo`, `src/templates` | the engine (no WordPress) and the generic sections and components |
+| `wp.php`, `src/wp`, `assets` | the WordPress plugin: driver, native blocks, regions, component catalogue |
+| `library.css`, `src/css`, `src/js` | front-end styles and scripts (Tailwind 4); themes import `library.css` from the plugin folder, e.g. `@import "../../../plugins/carlo/library.css";` with Bedrock |
+| `demo` | standalone demo of the templates (`YmlDriver` + `data.yml`), run from a clone after `composer install` |
+| `dev` | WordPress development environment (Bedrock + Lando) and browser tests |
 
 A powerful WordPress plugin that provides a YAML-based configuration system for building structured, component-driven websites with Advanced Custom Fields (ACF).
 
