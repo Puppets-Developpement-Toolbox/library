@@ -68,7 +68,7 @@ with admin_page() as page:
         canvas, post_id = open_new_page(page)
         created.append(post_id)
         region = regions(page)[0]
-        # Bouton d'ajout de la région, et non celui d'une section à blocs enfants (Super section).
+        # Bouton d'ajout de la région.
         appender = canvas.locator(".carlo-region__blocks > .block-list-appender .block-editor-button-block-appender")
         appender.first.click()
         titles = page.locator(".block-editor-block-types-list__item-title").all_text_contents()

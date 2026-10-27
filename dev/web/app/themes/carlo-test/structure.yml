@@ -15,11 +15,11 @@ regions:
 
 templates:
   # Le contributeur choisit et ordonne les blocs, 6 au maximum. « Pages liées » (référence) est
-  # définie dans ce thème ; « Super section » contient d'autres sections (blocs imbriqués).
+  # définie dans ce thème.
   default:
     _label: Page éditoriale
     content:
-      - _blocs: [!load sections/text, !load sections/image, !load sections/quote, !load sections/related, !load sections/super_section]
+      - _blocs: [!load sections/text, !load sections/image, !load sections/quote, !load sections/related]
         _max: 6
 
   # Deux régions, chacune limitée à une seule section possible.

@@ -49,8 +49,3 @@
 .carlo-inline-placeholder {
   opacity: 0.62;
 }
-
-/* Blocs enfants d'un conteneur : zone visible même vide. */
-.carlo-inner {
-  min-height: 3rem;
-}

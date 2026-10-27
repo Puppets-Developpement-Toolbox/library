@@ -1,15 +1,14 @@
 /**
  * Sections dans l'éditeur. L'aperçu est le template Carlo rendu par le serveur, où les textes
  * sont des marqueurs {{carlo:chemin}} (cf. carlo_field_values) : on les remplace ici par des champs
- * saisissables, et l'emplacement du conteneur par les blocs enfants. Les autres champs (images,
- * choix, références…) sont dans le panneau Réglages, généré depuis structure.yml
+ * saisissables. Les autres champs (images, choix, références…) sont dans le panneau Réglages,
+ * généré depuis structure.yml
  * (window.carloSections, cf. inc/blocks.php). Écrit sans JSX pour se passer d'étape de build.
  */
 (function (wp, sections) {
   const el = wp.element.createElement;
   const { createContext, createPortal, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } = wp.element;
-  const { useBlockProps, useInnerBlocksProps, InnerBlocks, InspectorControls, RichText, MediaUpload, MediaUploadCheck } =
-    wp.blockEditor;
+  const { useBlockProps, InspectorControls, RichText, MediaUpload, MediaUploadCheck } = wp.blockEditor;
   const { useInstanceId } = wp.compose;
   const {
     PanelBody,
@@ -97,7 +96,7 @@
   // Le champ a-t-il sa place dans le panneau ? Non s'il est saisi dans l'aperçu, ni pour un
   // groupe dont tous les champs le sont.
   function inPanel(field, path, inline) {
-    if (field.type === 'container' || inline.has(path)) return false;
+    if (inline.has(path)) return false;
     if (field.type === 'group') return Object.entries(field.fields).some(([key, sub]) => inPanel(sub, `${path}.${key}`, inline));
     return true;
   }
@@ -471,19 +470,9 @@
     });
   }
 
-  // Blocs enfants d'un conteneur, à leur place dans le template.
-  function Inner({ node, field }) {
-    const innerBlocksProps = useInnerBlocksProps(
-      { className: 'carlo-inner' },
-      { allowedBlocks: field.items, templateLock: false, renderAppender: InnerBlocks.ButtonBlockAppender }
-    );
-    return createPortal(el('div', innerBlocksProps), node);
-  }
-
   function SectionEdit({ name, section, attributes, setAttributes }) {
     const { fields } = section;
-    const keys = Object.keys(fields).filter((key) => fields[key].type !== 'container');
-    const container = Object.values(fields).find((field) => field.type === 'container');
+    const keys = Object.keys(fields);
     const values = Object.fromEntries(keys.filter((key) => attributes[key] !== undefined).map((key) => [key, attributes[key]]));
     const update = (path, value) => {
       const [key, ...rest] = path.split('.');
@@ -493,7 +482,7 @@
     const html = usePreview(name, fields, values);
     const markup = useMemo(() => html && prepare(html, fields), [html]);
     const ref = useRef();
-    const [slots, setSlots] = useState({ texts: [], wysiwygs: [], inner: null });
+    const [slots, setSlots] = useState({ texts: [], wysiwygs: [] });
     const [editing, setEditing] = useState(null); // chemin du wysiwyg ouvert dans la modale
 
     useLayoutEffect(() => {
@@ -501,7 +490,6 @@
       setSlots({
         texts: root ? [...root.querySelectorAll('[data-carlo-field]')] : [],
         wysiwygs: root ? [...root.querySelectorAll('[data-carlo-wysiwyg]')] : [],
-        inner: root?.querySelector('[data-carlo-inner]'),
       });
     }, [markup]);
 
@@ -526,7 +514,7 @@
       () => new Set([...slots.texts.map((n) => n.dataset.carloField), ...slots.wysiwygs.map((n) => n.dataset.carloWysiwyg)]),
       [slots]
     );
-    const hasInline = Boolean(markup && /data-carlo-(field|wysiwyg|inner)/.test(markup));
+    const hasInline = Boolean(markup && /data-carlo-(field|wysiwyg)/.test(markup));
 
     const openWysiwyg = (event) => {
       const node = event.target.closest('[data-carlo-wysiwyg]');
@@ -581,7 +569,6 @@
           path
         );
       }),
-      container && slots.inner && el(Inner, { node: slots.inner, field: container }),
       editing &&
         el(
           Modal,
@@ -600,8 +587,7 @@
   Object.entries(sections).forEach(([name, section]) => {
     wp.blocks.registerBlockType(name, {
       edit: (props) => el(SectionEdit, { ...props, name, section }),
-      // Conteneur : les blocs enfants sont enregistrés dans le contenu.
-      save: () => (Object.values(section.fields).some((field) => field.type === 'container') ? el(InnerBlocks.Content) : null),
+      save: () => null,
     });
   });
 })(window.wp, window.carloSections || {});

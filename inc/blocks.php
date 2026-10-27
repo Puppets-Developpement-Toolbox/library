@@ -30,7 +30,7 @@ function carlo_field($key, $definition)
 
     $type = is_string($definition)
         ? $definition
-        : $definition['_type'] ?? (isset($definition['_id']) ? 'group' : 'container');
+        : $definition['_type'] ?? (isset($definition['_id']) ? 'group' : throw new Exception("le champ {$key} n'a pas de type (_type)"));
     $definition = (array) $definition;
 
     $type = match (true) {
@@ -69,10 +69,6 @@ function carlo_field($key, $definition)
         $field['max'] = $definition['_max'] ?? null;
     }
 
-    if ($type === 'container') {
-        $field['items'] = array_values(array_map(fn($item) => carlo_block_name($item['_id']), carlo_container_items($definition)));
-    }
-
     return $field;
 }
 
@@ -86,23 +82,10 @@ function carlo_fields($definitions)
 }
 
 /**
- * Sections que peut contenir un champ conteneur (liste de définitions ayant un _id).
- */
-function carlo_container_items($definition)
-{
-    if (!is_array($definition) || isset($definition['_id']) || ($definition['_type'] ?? 'container') !== 'container') {
-        return [];
-    }
-    return array_filter($definition['_items'] ?? $definition, fn($item) => is_array($item) && isset($item['_id']));
-}
-
-/**
- * Schéma des attributs du bloc : un attribut par champ de premier niveau. Le conteneur n'en est
- * pas un : ses sections sont les blocs enfants.
+ * Schéma des attributs du bloc : un attribut par champ de premier niveau.
  */
 function carlo_block_attributes($fields)
 {
-    $fields = array_filter($fields, fn($field) => $field['type'] !== 'container');
     return array_map(fn($field) => ['type' => match ($field['type']) {
         'text_short', 'text', 'wysiwyg', 'url', 'color', 'date', 'datetime', 'embed' => 'string',
         'boolean' => 'boolean',
@@ -121,8 +104,8 @@ function carlo_block_attributes($fields)
  * absentes) et mis en forme comme le faisait ACF.
  *
  * Avec $path (aperçu de l'éditeur), les textes sont remplacés par un marqueur {{carlo:chemin}}
- * que l'éditeur rend saisissable, et le conteneur par l'emplacement des blocs enfants : le rendu
- * ne dépend pas des textes, il n'est pas recalculé pendant la frappe.
+ * que l'éditeur rend saisissable : le rendu ne dépend pas des textes, il n'est pas recalculé
+ * pendant la frappe.
  */
 function carlo_field_values($fields, $values, $path = null)
 {
@@ -143,7 +126,6 @@ function carlo_field_values($fields, $values, $path = null)
                 // Aperçu : les éléments obligatoires (_min, _times) sont affichés, pour être remplis.
                 $marker === null || count((array) $value) >= $field['min'] ? array_keys((array) $value) : range(0, $field['min'] - 1)
             ),
-            'container' => $marker === null ? (array) $value : [['_id' => 'carlo:inner']],
             'reference' => array_values(array_filter(
                 array_map('get_post', (array) $value),
                 fn($post) => $post && $post->post_status === 'publish'
@@ -159,20 +141,11 @@ function carlo_field_values($fields, $values, $path = null)
 }
 
 /**
- * Données d'une section à partir de son bloc : attributs, et blocs enfants pour le conteneur.
+ * Données d'une section à partir des attributs de son bloc.
  */
-function carlo_section_data($id, $attributes, $inner_blocks = [], $preview = false)
+function carlo_section_data($id, $attributes, $preview = false)
 {
     $fields = carlo_fields(carlo_structure_fields(carlo_sections()[$id]));
-    foreach ($fields as $key => $field) {
-        if ($field['type'] === 'container' && !$preview) {
-            $attributes[$key] = [];
-            foreach ($inner_blocks as $inner) {
-                $inner_id = carlo_section_id($inner->name);
-                $attributes[$key][] = ['_id' => $inner_id] + carlo_section_data($inner_id, $inner->attributes, $inner->inner_blocks);
-            }
-        }
-    }
     return carlo_field_values($fields, $attributes, $preview ? '' : null);
 }
 
@@ -190,17 +163,7 @@ function carlo_block_slug($id)
 }
 
 /**
- * _id de la section d'un bloc : carlo/sections-text → sections/text:base.
- */
-function carlo_section_id($block_name)
-{
-    static $ids;
-    $ids ??= array_combine(array_map('carlo_block_name', array_keys(carlo_sections())), array_keys(carlo_sections()));
-    return $ids[$block_name] ?? null;
-}
-
-/**
- * Sections proposées par une région ou par le conteneur d'une autre section, indexées par _id.
+ * Sections proposées par les régions, indexées par _id.
  */
 function carlo_sections()
 {
@@ -210,19 +173,10 @@ function carlo_sections()
     }
 
     $sections = [];
-    $add = function ($section) use (&$add, &$sections) {
-        if (isset($sections[$section['_id']])) {
-            return;
-        }
-        $sections[$section['_id']] = $section;
-        foreach (carlo_structure_fields($section) as $definition) {
-            array_map($add, carlo_container_items($definition));
-        }
-    };
     foreach (['page', ...array_keys(carlo_structure('types') ?? [])] as $post_type) {
         foreach (carlo_templates($post_type) as $template) {
             foreach (carlo_structure_fields($template) as $region) {
-                array_map($add, carlo_region($region)['sections']);
+                $sections += carlo_region($region)['sections'];
             }
         }
     }
@@ -269,9 +223,9 @@ function carlo_register_section_blocks()
             // Les templates Carlo n'appliquent pas de classe CSS saisie dans l'éditeur.
             'supports' => ['html' => false, 'className' => false, 'customClassName' => false],
             'editor_script_handles' => ['carlo-sections'],
-            'render_callback' => function ($attributes, $content, $block) use ($id, $fields) {
+            'render_callback' => function ($attributes) use ($id, $fields) {
                 $preview = carlo_is_editor_preview();
-                $filled = count($block->inner_blocks) > 0;
+                $filled = false;
                 array_walk_recursive($attributes, function ($value) use (&$filled) {
                     $filled = $filled || !empty($value);
                 });
@@ -280,7 +234,7 @@ function carlo_register_section_blocks()
                     return '';
                 }
                 ob_start();
-                carlo_render($id, carlo_section_data($id, $attributes, $block->inner_blocks, $preview));
+                carlo_render($id, carlo_section_data($id, $attributes, $preview));
                 return ob_get_clean();
             },
         ]);

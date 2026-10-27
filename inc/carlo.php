@@ -2,16 +2,6 @@
 
 class CarloWpDriver extends carlo\BaseDriver implements carlo\DriverInterface
 {
-    public function render(string $tpl, array $args = [])
-    {
-        // Emplacement des blocs enfants d'un conteneur dans l'aperçu de l'éditeur (cf. inc/blocks.php).
-        if ($tpl === 'carlo:inner') {
-            echo '<div data-carlo-inner></div>';
-            return;
-        }
-        return parent::render($tpl, $args);
-    }
-
     public function getFile(string $type, string $element, string $variant = 'base', string $namespace = 'default')
     {
         $variant = $variant ?: "base";

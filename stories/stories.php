@@ -106,20 +106,10 @@ function carlo_stories_load($id)
 }
 
 /**
- * Données d'un exemple : mêmes mises en forme que sur le site (carlo_field_values), et sections d'un
- * conteneur décrites par leur _id, comme les blocs enfants (cf. carlo_section_data).
+ * Données d'un exemple : mêmes mises en forme que sur le site (carlo_field_values).
  */
 function carlo_stories_data($fields, $values)
 {
-    foreach ($fields as $key => $field) {
-        if ($field['type'] === 'container') {
-            $values[$key] = array_map(function ($item) {
-                [$type, $name, $variant, $namespace] = carlo_explode_id($item['_id']);
-                $fields = carlo_fields(carlo_structure_fields(carlo_structure($type, $name, $variant, $namespace) ?? []));
-                return ['_id' => $item['_id']] + carlo_stories_data($fields, $item);
-            }, (array) ($values[$key] ?? []));
-        }
-    }
     // Les valeurs hors structure (composant sans .yml, arguments passés par un parent) sont transmises telles quelles.
     return carlo_field_values($fields, $values) + array_diff_key($values, ['_label' => true]);
 }
