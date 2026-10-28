@@ -37,3 +37,24 @@ types:
     template:
       _label: Fiche projet
       content: [!load sections/text]
+
+  # Champs propres au type (meta:) et données exposées (_expose) : cf. tests/php/exposed.php.
+  restaurant:
+    wp_args:
+      label: Restaurants
+      supports: [title, thumbnail]
+    template:
+      _label: Fiche restaurant
+      content: [!load sections/text, !load sections/horaires]
+    meta:
+      _label: Informations du restaurant
+      google_place_id:
+        _type: text_short
+        _label: Identifiant Google My Business
+        _help: Identifiant du lieu, utilisé pour les appels API.
+      reservation_url:
+        _type: url
+        _label: Lien de réservation
+      accepts_reservations:
+        _type: boolean
+        _label: Accepte les réservations

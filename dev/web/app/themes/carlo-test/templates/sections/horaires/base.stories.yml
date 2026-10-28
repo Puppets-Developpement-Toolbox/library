@@ -1,0 +1,6 @@
+lundi_samedi:
+  _label: Lundi et samedi
+  hours:
+    - { day: Lundi, time: 9h-18h }
+    - { day: Samedi, time: 10h-13h }
+  note: Fermé les jours fériés

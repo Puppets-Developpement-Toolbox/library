@@ -1,0 +1,18 @@
+# Section de test des données exposées (_expose) : horaires d'ouverture, relus hors de la section.
+_label: Horaires d'ouverture
+_expose: opening_hours
+hours:
+  _type: repeater
+  _label: Horaires
+  _expose: hours_list
+  _repeat:
+    day:
+      _type: text_short
+      _label: Jour
+    time:
+      _type: text_short
+      _label: Horaire
+note:
+  _type: text_short
+  _label: Remarque
+  _expose: opening_note
