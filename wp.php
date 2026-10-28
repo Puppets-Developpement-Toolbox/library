@@ -35,8 +35,3 @@ if ( ! function_exists( 'carlo_driver' ) ) {
 foreach ( glob( __DIR__ . '/src/wp/*.php' ) as $file ) {
     include_once $file;
 }
-
-// Catalogue des composants (/?carlo-stories) : public, donc jamais chargé en production.
-if ( ( defined( 'WP_ENV' ) ? WP_ENV : wp_get_environment_type() ) !== 'production' ) {
-    include_once __DIR__ . '/src/wp/stories/stories.php';
-}

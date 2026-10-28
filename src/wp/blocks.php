@@ -70,12 +70,6 @@ function carlo_sections()
     return $sections;
 }
 
-function carlo_section_title($id, $definition)
-{
-    [, $name, $variant] = carlo_explode_id($id);
-    return $definition['_label'] ?? ucfirst(str_replace('_', ' ', $variant === 'base' ? $name : "{$name} {$variant}"));
-}
-
 /**
  * Aperçu d'une section dans l'éditeur (cf. assets/sections.js), et non rendu du site.
  */

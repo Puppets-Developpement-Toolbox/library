@@ -3,7 +3,7 @@
  * Rendu seul d'un exemple, dans l'iframe du catalogue : CSS et JS du thème (wp_head, wp_footer),
  * sans l'en-tête ni le pied de page du site (global/html_start affiche common/header).
  *
- * @var array $element élément du catalogue (cf. carlo_stories_elements)
+ * @var array $element élément du catalogue (cf. carlo\Stories::elements)
  * @var array $story   valeurs de l'exemple
  */
 ?><!DOCTYPE html>

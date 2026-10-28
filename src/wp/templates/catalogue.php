@@ -2,12 +2,12 @@
 /**
  * Catalogue : navigation des sections et composants, aperçu d'un exemple dans une iframe, champs.
  *
- * @var array|null $element   élément sélectionné (cf. carlo_stories_elements)
+ * @var array|null $element   élément sélectionné (cf. carlo\Stories::elements)
  * @var string     $story_key exemple demandé
  */
 
 $groups = ['sections' => 'Sections', 'components' => 'Composants'];
-$elements = carlo_stories_elements();
+$elements = carlo\Stories::elements();
 $all = array_merge(...array_values($elements));
 $documented = count(array_filter($all, fn($item) => $item['stories']));
 
@@ -22,7 +22,7 @@ $story_label = fn($key, $story) => $story['_label'] ?? ucfirst(str_replace('_', 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
   <title><?= esc_html(($element ? "{$element['title']} · " : '') . 'Catalogue · ' . get_bloginfo('name')) ?></title>
-  <link rel="stylesheet" href="<?= esc_url(plugins_url('src/wp/stories/catalogue.css', dirname(__DIR__, 4) . '/wp.php')) ?>">
+  <link rel="stylesheet" href="<?= esc_url(plugins_url('assets/catalogue.css', dirname(__DIR__, 3) . '/wp.php')) ?>">
 </head>
 <body>
   <a class="skip-link" href="#contenu">Aller au contenu</a>
@@ -137,7 +137,7 @@ $story_label = fn($key, $story) => $story['_label'] ?? ucfirst(str_replace('_', 
       </div>
 
       <h2>Champs</h2>
-      <?php $rows = carlo_stories_field_rows($element['fields']); ?>
+      <?php $rows = carlo\Stories::fieldRows($element['fields']); ?>
       <?php if ($rows): ?>
         <div class="table">
           <table>

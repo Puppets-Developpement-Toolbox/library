@@ -1,4 +1,4 @@
-/* Catalogue des composants (cf. stories/templates/catalogue.php). Indépendant du CSS du thème, qui ne
+/* Catalogue des composants (cf. src/wp/templates/catalogue.php). Indépendant du CSS du thème, qui ne
    s'applique qu'aux aperçus, dans l'iframe. */
 
 :root {

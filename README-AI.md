@@ -27,8 +27,10 @@ usage (structure.yml, fields, templates), read [README.md](./README.md) first.
 | `src/carlo/LoadContext.php` | context of a value during `load()`: field path, element, options |
 | `src/carlo/YmlDriver.php` | standalone driver: demo data from a YAML file, picsum images |
 | `src/carlo/Introspection.php` | discovery of elements and variants in the driver's search paths |
+| `src/carlo/Stories.php` | component catalogue model: elements, their `*.stories.yml` examples, fields table (no WordPress) |
+| `src/carlo/Placeholders.php` | trait for a catalogue driver: generated content for empty fields, `WxH` placeholder images |
 | `src/templates/**` | generic sections and components (`.php`, `.yml`, `.stories.yml`) |
-| `wp.php` | plugin entry: loads the package autoload if needed, `src/wp/*.php`, and the catalogue outside production |
+| `wp.php` | plugin entry: loads the package autoload if needed, then `src/wp/*.php` |
 | `src/wp/carlo.php` | `CarloWpDriver` (file lookup, WordPress formatting, images), driver instance, post types, `carlo_menu`, `carlo_render_region`, `carlo_bootstrap` |
 | `src/wp/blocks.php` | one dynamic block per section: names, attribute schema, render callback, editor data |
 | `src/wp/meta.php` | `meta:` of a type: post meta registration, panel definition for the editor (`carloMeta` in the editor settings) |
@@ -36,10 +38,11 @@ usage (structure.yml, fields, templates), read [README.md](./README.md) first.
 | `src/wp/templates.php` | page/post templates: choice at creation, regions kept in the content, editor lock, admin column |
 | `src/wp/assets.php` | theme assets through Vite (dev server or manifest), theme CSS in the editor canvas |
 | `src/wp/feature.php`, `media.php`, `menus.php`, `errors.php`, `archive.php` | WordPress defaults, image sizes, menu locations, error handler, archive AJAX |
-| `src/wp/templates/` | WordPress versions of `global/html_start`, `global/html_end`; `layout.php`, `error.php`, `archive.php` |
-| `src/wp/stories/` | component catalogue: route, `CarloStoriesDriver`, `catalogue.php`, `frame.php`, CSS |
+| `src/wp/templates/` | WordPress versions of `global/html_start`, `global/html_end`; `layout.php`, `error.php`, `archive.php`, `catalogue.php`, `frame.php` |
+| `src/wp/stories.php` | component catalogue in WordPress (not loaded in production): route, admin menu, `CarloStoriesDriver` |
 | `assets/sections.js`, `sections.css` | section block editor (no build step, no JSX) |
 | `assets/region.js`, `region.css` | region block editor |
+| `assets/catalogue.css` | catalogue page style |
 | `demo/` | standalone demo (`index.php`, `data.yml`, `structure.yml`) |
 | `dev/` | Bedrock + Lando environment, test theme `carlo-test`, browser tests (`dev/tests/browser`) |
 
@@ -61,9 +64,9 @@ A section without any filled attribute renders nothing on the site.
 markers, which the script turns into editable fields; repeaters show their `_min` items. Other fields are
 edited in the Settings panel, generated from `window.carloSections`.
 
-**Catalogue frame.** `/?carlo-stories=frame&id=…&story=…` (`src/wp/stories/stories.php`) swaps the global driver
-for a `CarloStoriesDriver` (placeholder images for `WxH` values; for an element without stories, empty fields
-get generated content from their type: `$placeholders`), then `frame.php` renders
+**Catalogue frame.** `/?carlo-stories=frame&id=…&story=…` (`src/wp/stories.php`) swaps the global driver
+for a `CarloStoriesDriver` (`carlo\Placeholders` over `CarloWpDriver`: placeholder images for `WxH` values; for an element
+without stories, empty fields get generated content from their type: `$placeholders`), then `frame.php` renders
 `carlo_render($id, carlo_load($id, $story without _label))`.
 
 **Standalone demo.** `demo/index.php` uses `YmlDriver` and renders each section of a template with

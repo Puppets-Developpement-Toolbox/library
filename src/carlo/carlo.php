@@ -195,6 +195,15 @@ function carlo_component($component)
 // --- Introspection API ---
 
 /**
+ * Titre d'un élément : son _label, sinon son nom (et sa variante).
+ */
+function carlo_section_title($id, $definition)
+{
+    [, $name, $variant] = carlo_explode_id($id);
+    return $definition['_label'] ?? ucfirst(str_replace('_', ' ', $variant === 'base' ? $name : "{$name} {$variant}"));
+}
+
+/**
  * Get all available sections with optional metadata
  *
  * @param bool $includeMetadata Include full metadata for each section
