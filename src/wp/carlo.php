@@ -74,6 +74,53 @@ class CarloWpDriver extends carlo\BaseDriver implements carlo\DriverInterface
         };
     }
 
+    // Données exposées : les attributs du bloc de la section dans le contenu demandé (par défaut, le contenu affiché).
+    protected function exposedSource(string $id, mixed $source): ?array
+    {
+        $post = $this->exposedPost($source);
+        if (!$post) {
+            return null;
+        }
+
+        // Les sections sont dans les blocs enfants d'une région.
+        $find = function (array $blocks) use (&$find, $id) {
+            foreach ($blocks as $block) {
+                if ($block['blockName'] === carlo_block_name($id)) {
+                    return $block['attrs'];
+                }
+                if (($attrs = $find($block['innerBlocks'])) !== null) {
+                    return $attrs;
+                }
+            }
+            return null;
+        };
+
+        // Un contenu est lu plusieurs fois par page (cartes, en-tête) : ses blocs ne sont analysés qu'une fois.
+        static $blocks = [];
+        return $find($blocks[$post->ID . md5($post->post_content)] ??= parse_blocks($post->post_content));
+    }
+
+    // Données exposées : les post meta des champs meta: du type, tels que saisis (les autres prennent leur valeur par défaut).
+    protected function exposedMeta(string $type, mixed $source): array
+    {
+        $post = $this->exposedPost($source);
+        $values = [];
+        if ($post && $post->post_type === $type) {
+            foreach (array_keys(carlo_meta_fields($type)) as $key) {
+                if (metadata_exists('post', $post->ID, $key)) {
+                    $values[$key] = get_post_meta($post->ID, $key, true);
+                }
+            }
+        }
+        return $values;
+    }
+
+    private function exposedPost(mixed $source): ?WP_Post
+    {
+        $id = $source instanceof WP_Post ? $source->ID : ($source ?: get_queried_object_id());
+        return $id ? get_post((int) $id) : null;
+    }
+
     // Aperçu : les éléments obligatoires (_min, _times) sont affichés, pour être remplis.
     protected function loadRepeater(array $field, mixed $value, carlo\LoadContext $ctx): array
     {
@@ -163,6 +210,10 @@ function carlo_init()
                 $wp_args = array_merge(['public' => true, 'show_in_rest' => true], $definition['wp_args']);
                 if (isset($wp_args['supports'])) {
                     $wp_args['supports'][] = 'editor';
+                }
+                // custom-fields : sans lui, l'API REST n'expose pas les post meta de la clé `meta:`.
+                if (!empty($definition['meta'])) {
+                    $wp_args['supports'] = [...($wp_args['supports'] ?? ['title', 'editor']), 'custom-fields'];
                 }
                 register_post_type($type, $wp_args);
             }

@@ -31,6 +31,7 @@ usage (structure.yml, fields, templates), read [README.md](./README.md) first.
 | `wp.php` | plugin entry: loads the package autoload if needed, `src/wp/*.php`, and the catalogue outside production |
 | `src/wp/carlo.php` | `CarloWpDriver` (file lookup, WordPress formatting, images), driver instance, post types, `carlo_menu`, `carlo_render_region`, `carlo_bootstrap` |
 | `src/wp/blocks.php` | one dynamic block per section: names, attribute schema, render callback, editor data |
+| `src/wp/meta.php` | `meta:` of a type: post meta registration, panel definition for the editor (`carloMeta` in the editor settings) |
 | `src/wp/regions.php` | the `carlo/region` block and its editor data (`window.carloRegions`) |
 | `src/wp/templates.php` | page/post templates: choice at creation, regions kept in the content, editor lock, admin column |
 | `src/wp/assets.php` | theme assets through Vite (dev server or manifest), theme CSS in the editor canvas |
@@ -96,6 +97,14 @@ items. No formatting, safe to run on already completed data: templates re-render
 Public functions: `carlo_load($id, $raw, $options)` (pure) and `carlo_load_data($id, $raw, $options)` (loads,
 merges the data into the current level for `carlo_get()`, returns it). `BaseDriver::$tplArgs` starts with a root
 level, so both work outside any render. `render()` pops its level in a `finally`.
+
+**Exposed data.** `carlo_get_exposed($name, $source)` → `BaseDriver::getExposed()`: `exposed()` indexes once the
+names declared by `_expose` (on a section, read from its structure, or on a field, kept by `Fields::field()` as
+`expose`) and by the `meta:` keys of the types; a name is unique, except between the variants of one section; a
+field inside a repeater cannot be exposed. The raw values come from the driver (`exposedSource()`: attributes of
+the section's block in the content `$source`, `exposedMeta()`: post meta; `[]` by default, so the demo and
+catalogue drivers get their usual mock or placeholder values), then `load()` formats them: same data as the
+section's template, never loaded twice.
 
 `carlo_get($key)` reads the current level (`a.b` for nested values) and falls back to the global context
 (`carlo_context_add()`) when the value is `""`.

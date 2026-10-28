@@ -51,6 +51,11 @@ final class Fields
             $field['help'] = html_entity_decode($definition['_help']);
         }
 
+        // Nom sous lequel le champ se relit ailleurs (cf. BaseDriver::getExposed()).
+        if (isset($definition['_expose'])) {
+            $field['expose'] = $definition['_expose'];
+        }
+
         if ($type === 'group') {
             // Composant chargé par !load : son _id vient de sa structure.
             $field['id'] = $definition['_id'];
