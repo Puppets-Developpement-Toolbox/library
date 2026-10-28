@@ -105,6 +105,16 @@ function carlo_load_data($id, $raw = [], $options = [])
     return $data;
 }
 
+/**
+ * Donnée exposée sous un nom : une section ou un champ déclaré avec _expose, ou un champ de la clé meta:
+ * d'un type. Où qu'elle soit saisie, elle se relit de la même façon. $source : le contenu où la lire (en
+ * WordPress, un ID ou un WP_Post ; par défaut le contenu affiché).
+ */
+function carlo_get_exposed($name, $source = null)
+{
+    return carlo_driver()->getExposed($name, $source);
+}
+
 function carlo_get_file($type, $element, $variant = "base", $namespace = 'default')
 {
     return carlo_driver()->getFile($type, $element, $variant, $namespace);

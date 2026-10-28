@@ -4,7 +4,7 @@ from contextlib import contextmanager
 
 from playwright.sync_api import sync_playwright
 
-SITE = "https://carlo-dev.lndo.site"
+SITE = os.environ.get("CARLO_SITE", "https://carlo-dev.lndo.site")
 ADMIN = f"{SITE}/wp/wp-admin"
 SHOTS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "shots")
 
@@ -13,7 +13,7 @@ SHOTS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "shots")
 def public_page(width=1440, height=1000):
     """Page d'un visiteur non connecté. page.errors liste les erreurs JS."""
     with sync_playwright() as p:
-        browser = p.chromium.launch(executable_path="/usr/bin/chromium", args=["--no-sandbox"])
+        browser = p.chromium.launch(executable_path=os.environ.get("CARLO_CHROMIUM", "/usr/bin/chromium"), args=["--no-sandbox"])
         context = browser.new_context(ignore_https_errors=True, viewport={"width": width, "height": height})
         page = context.new_page()
         page.errors = []

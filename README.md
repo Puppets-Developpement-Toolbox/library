@@ -152,6 +152,55 @@ shows a notice in their place.
 Every declared field reaches the template, with a default value when it is empty (`''`, `false` for a
 boolean, `[]` for a group, repeater, gallery or reference): templates do not need `isset()`.
 
+### Reading data elsewhere: `_expose` and `carlo_get_exposed()`
+
+A field is typed in its section, but a template may need it elsewhere (the opening hours of a restaurant in
+a card, in the header…). Name it with `_expose`, on a section (all its data) or on a field:
+
+```yaml
+# templates/sections/opening_hours/base.yml
+_label: Horaires d'ouverture
+_expose: opening_hours          # the whole section
+hours:
+  _type: repeater
+  _expose: hours_list           # or one field
+```
+
+```php
+carlo_get_exposed('opening_hours');            // the displayed content
+carlo_get_exposed('opening_hours', $post);     // another one: an ID or a WP_Post
+```
+
+The value is loaded like in the section's own template (same formatting), with default values when the
+section is not in the content. Rules, checked when the structure is read:
+
+- a name designates one piece of data, the same name is accepted only for the variants of one section
+  (`hero:slider` and `hero:pic`);
+- `_expose` is not allowed on a field inside a repeater (which item?);
+- a section present several times in a content: the first one is read.
+
+### Fields of a content type: `meta:`
+
+Data that belongs to no section (an identifier used for API calls…) is declared on the type, with the same
+syntax as a section's fields:
+
+```yaml
+types:
+  restaurant:
+    wp_args: { label: Restaurants, supports: [title, thumbnail] }
+    template: { _label: Fiche restaurant, content: [!load sections/text] }
+    meta:
+      _label: Informations du restaurant   # title of the panel (default: Informations)
+      google_place_id:
+        _type: text_short
+        _label: Identifiant Google My Business
+```
+
+Each field is a post meta (`register_post_meta`, exposed to the REST API: **never put a secret in it**), edited
+in a panel of the document sidebar of the block editor and read with `carlo_get_exposed('google_place_id')`,
+like any exposed data. Supported types: `text_short`, `text`, `number`, `boolean`, `choices` (single), `url`.
+The key is the exposed name: it must be unique among all exposed names.
+
 ## The block editor
 
 - Each region of the content's template is a locked block, which only accepts the sections it lists, up to

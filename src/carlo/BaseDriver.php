@@ -17,6 +17,7 @@ abstract class BaseDriver implements DriverInterface
     protected $loaded = [];
     protected $namespaces = [];
     protected ?Introspection $introspection = null;
+    protected ?array $exposed = null;
 
     public function __construct()
     {
@@ -119,6 +120,109 @@ abstract class BaseDriver implements DriverInterface
     public function load(string $id, array $raw = [], array $options = []): array
     {
         return $this->loadFields($this->fields($id), $raw, new LoadContext([], carlo_explode_id($id)[1], $options));
+    }
+
+    /**
+     * Donnée exposée sous un nom : une section ou un champ déclaré avec _expose, ou un champ de la clé
+     * meta: d'un type. Formatée par load(), comme celle d'un template ; sans valeur saisie, ce sont les
+     * valeurs par défaut (ou les données de démo, selon le driver).
+     */
+    public function getExposed(string $name, mixed $source = null): mixed
+    {
+        $target = $this->exposed()[$name] ?? throw new Exception("Aucune donnée n'est exposée sous le nom « {$name} ».");
+
+        if (isset($target['type'])) {
+            $fields = Fields::of($this->structure('types')[$target['type']]['meta']);
+            $data = $this->loadFields($fields, $this->exposedMeta($target['type'], $source), new LoadContext([], $target['type'], []));
+        } else {
+            // Plusieurs variantes d'une section peuvent exposer le même nom : la première présente l'emporte.
+            $id = $target['sections'][0];
+            $raw = null;
+            foreach ($target['sections'] as $candidate) {
+                if (($raw = $this->exposedSource($candidate, $source)) !== null) {
+                    $id = $candidate;
+                    break;
+                }
+            }
+            $data = $this->load($id, $raw ?? []);
+        }
+
+        return array_reduce($target['path'], fn($value, $key) => $value[$key], $data);
+    }
+
+    /**
+     * Valeurs saisies d'une section dans le contenu $source, ou null si elle n'y figure pas. Chaque driver
+     * sait où elles sont stockées (blocs, données de démo) ; sans source, load() fournit les valeurs par défaut.
+     */
+    protected function exposedSource(string $id, mixed $source): ?array
+    {
+        return [];
+    }
+
+    /**
+     * Valeurs saisies des champs meta: d'un type dans le contenu $source, indexées par clé de champ.
+     */
+    protected function exposedMeta(string $type, mixed $source): array
+    {
+        return [];
+    }
+
+    /**
+     * Noms exposés : chemin du champ (vide pour une section entière) dans une ou plusieurs sections
+     * (variantes d'une même section) ou dans la clé meta: d'un type. Un nom ne désigne qu'une donnée.
+     */
+    private function exposed(): array
+    {
+        if ($this->exposed !== null) {
+            return $this->exposed;
+        }
+
+        $index = [];
+        // Section sans sa variante : nom et namespace.
+        $element = fn(string $id) => array_values(array_intersect_key(carlo_explode_id($id), [1 => 0, 3 => 0]));
+        $add = function (string $name, array $target) use (&$index, $element) {
+            $known = $index[$name] ?? null;
+            if ($known) {
+                $variant = isset($known['sections'], $target['sections'])
+                    && $known['path'] === $target['path']
+                    && $element($known['sections'][0]) === $element($target['sections'][0]);
+                if (!$variant) {
+                    throw new Exception("Le nom exposé « {$name} » est déclaré plusieurs fois.");
+                }
+                $target['sections'] = [...$known['sections'], ...$target['sections']];
+            }
+            $index[$name] = $target;
+        };
+
+        foreach ($this->introspect()->getAllElements('sections', true) as $id => $definition) {
+            if (isset($definition['_expose'])) {
+                $add($definition['_expose'], ['sections' => [$id], 'path' => []]);
+            }
+
+            $walk = function (array $fields, array $path, bool $inRepeater) use (&$walk, $add, $id) {
+                foreach ($fields as $key => $field) {
+                    $at = [...$path, $key];
+                    if (isset($field['expose'])) {
+                        if ($inRepeater) {
+                            throw new Exception("« {$field['expose']} » ({$id}) : _expose est impossible dans un répéteur.");
+                        }
+                        $add($field['expose'], ['sections' => [$id], 'path' => $at]);
+                    }
+                    if (isset($field['fields'])) {
+                        $walk($field['fields'], $at, $inRepeater || $field['type'] === 'repeater');
+                    }
+                }
+            };
+            $walk(Fields::of($definition), [], false);
+        }
+
+        foreach ($this->structure('types') ?? [] as $type => $definition) {
+            foreach (array_keys(Fields::of($definition['meta'] ?? null)) as $key) {
+                $add($key, ['type' => $type, 'path' => [$key]]);
+            }
+        }
+
+        return $this->exposed = $index;
     }
 
     /**

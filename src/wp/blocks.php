@@ -92,7 +92,7 @@ function carlo_register_section_blocks()
 {
     carlo_editor_asset('carlo-sections', 'sections.js', [
         'wp-blocks', 'wp-block-editor', 'wp-components', 'wp-compose', 'wp-element', 'wp-data', 'wp-core-data',
-        'wp-api-fetch', 'wp-url', 'wp-escape-html', 'wp-html-entities',
+        'wp-api-fetch', 'wp-url', 'wp-escape-html', 'wp-html-entities', 'wp-editor', 'wp-plugins',
     ]);
     carlo_editor_asset('carlo-sections', 'sections.css');
 

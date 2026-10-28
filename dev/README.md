@@ -59,6 +59,7 @@ Dans l'éditeur de blocs, chaque région est un bloc verrouillé qui n'accepte q
 - **Assets en développement** (`WP_ENV=development`) : le plugin charge `js/main.js` et `css/global.css` depuis le serveur Vite, y compris dans l'aperçu de l'éditeur de blocs. Dans l'inspecteur, `<html data-vite="dev">` confirme que ça passe par Vite.
 - **Assets en production** : passer `WP_ENV` à `production` dans `.lando.yml`, puis `lando pnpm build` et `lando rebuild -y`. Le plugin lit alors `dist/.vite/manifest.json` (`<html data-vite="build">`).
 - **Tester dans un navigateur** : `lando browser tests/browser/editor.py` parcourt l'éditeur de blocs (régions, sections autorisées, `_max`, saisie, rendu front), affiche ✓/✗ et range ses captures dans `tests/browser/shots/`. Les pages qu'il crée sont supprimées à la fin. Pour écrire un autre scénario, partir de `tests/browser/wp.py` (connexion à l'admin, captures).
+- **Tester les données exposées** : `lando wp eval-file tests/php/exposed.php` vérifie `_expose`, `meta:` et `carlo_get_exposed()` (section, champ, meta, valeurs par défaut, règles de la structure) sur le type `restaurant` et la section `horaires` du thème de test ; `lando browser tests/browser/exposed.py` vérifie dans l'éditeur le répéteur de `horaires` et le panneau des champs `meta:`. Les contenus créés sont supprimés à la fin.
 - **Logs PHP** : `web/app/debug.log`.
 - **Autre version de WordPress** : `lando composer require roots/wordpress:6.8.*`.
 - **Repartir de zéro** : `lando destroy -y` (supprime la base), puis `lando start`, `lando install`.

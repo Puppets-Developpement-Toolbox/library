@@ -386,8 +386,9 @@
   /* ---------------------------------------------------------------------------------------- */
 
   // Rendu serveur de la section, recalculé seulement quand un champ autre qu'un texte change.
+  // Renvoie { html, values } (les valeurs rendues), null tant que le premier rendu n'est pas arrivé.
   function usePreview(name, fields, values) {
-    const [html, setHtml] = useState(null);
+    const [preview, setPreview] = useState(null);
     const postId = useSelect((select) => select('core/editor')?.getCurrentPostId(), []);
     const key = JSON.stringify(withoutText(fields, values));
     const last = useRef(0);
@@ -402,18 +403,33 @@
               method: 'POST',
               data: { attributes: values },
             })
-            .then((response) => request === last.current && setHtml(response.rendered))
+            .then((response) => request === last.current && setPreview({ html: response.rendered, values }))
             .catch(
               (error) =>
                 request === last.current &&
-                setHtml(`<p class="carlo-placeholder">Aperçu indisponible : ${escapeHTML(error.message || '')}</p>`)
+                setPreview({ html: `<p class="carlo-placeholder">Aperçu indisponible : ${escapeHTML(error.message || '')}</p>`, values })
             ),
-        html === null ? 0 : 400
+        preview === null ? 0 : 400
       );
       return () => clearTimeout(timer);
     }, [key]);
 
-    return html;
+    return preview;
+  }
+
+  // Textes que l'aperçu rendu ne montre pas encore (élément de répéteur ajouté, premier rendu) :
+  // ils seront saisis dans l'aperçu, le panneau ne doit pas les proposer le temps du rendu,
+  // sous peine de les voir disparaître en pleine frappe. `rendered` : valeurs de l'aperçu, ou undefined.
+  function unrendered(fields, values, rendered, prefix = '') {
+    return Object.entries(fields).flatMap(([key, field]) => {
+      const path = prefix + key;
+      if (INLINE_TYPES.includes(field.type)) return rendered ? [] : [path];
+      if (field.type === 'group') return unrendered(field.fields, values?.[key], rendered && (rendered[key] ?? {}), `${path}.`);
+      if (field.type === 'repeater') {
+        return (values?.[key] || []).flatMap((item, i) => unrendered(field.fields, item, rendered?.[key]?.[i], `${path}.${i}.`));
+      }
+      return [];
+    });
   }
 
   // Prépare le HTML de l'aperçu : marqueurs de texte → emplacements des champs, marqueurs dans
@@ -479,7 +495,8 @@
       setAttributes({ [key]: rest.length ? setAt(attributes[key], rest, value) : value });
     };
 
-    const html = usePreview(name, fields, values);
+    const rendered = usePreview(name, fields, values);
+    const html = rendered && rendered.html;
     const markup = useMemo(() => html && prepare(html, fields), [html]);
     const ref = useRef();
     const [slots, setSlots] = useState({ texts: [], wysiwygs: [] });
@@ -510,10 +527,11 @@
       });
     }, [slots, values]);
 
-    const inlinePaths = useMemo(
-      () => new Set([...slots.texts.map((n) => n.dataset.carloField), ...slots.wysiwygs.map((n) => n.dataset.carloWysiwyg)]),
-      [slots]
-    );
+    const inlinePaths = new Set([
+      ...slots.texts.map((n) => n.dataset.carloField),
+      ...slots.wysiwygs.map((n) => n.dataset.carloWysiwyg),
+      ...unrendered(fields, values, rendered && rendered.values),
+    ]);
     const hasInline = Boolean(markup && /data-carlo-(field|wysiwyg)/.test(markup));
 
     const openWysiwyg = (event) => {
@@ -583,6 +601,27 @@
         )
     );
   }
+
+  /* ---------------------------------------------------------------------------------------- */
+  /* Champs propres au type de contenu (clé meta: de structure.yml)                            */
+  /* ---------------------------------------------------------------------------------------- */
+
+  function MetaFields({ config }) {
+    const [meta, setMeta] = wp.coreData.useEntityProp('postType', config.postType, 'meta');
+    return el(
+      wp.editor.PluginDocumentSettingPanel,
+      { name: 'carlo-meta', title: config.title, className: 'carlo-meta' },
+      el(Fields, { fields: config.fields, values: meta, onChange: (key, value) => setMeta({ ...meta, [key]: value }) })
+    );
+  }
+
+  // Panneau Document : défini par PHP dans les réglages de l'éditeur (cf. src/wp/meta.php).
+  function MetaPanel() {
+    const config = useSelect((select) => select('core/editor').getEditorSettings().carloMeta, []);
+    return config ? el(MetaFields, { config }) : null;
+  }
+
+  wp.plugins.registerPlugin('carlo-meta', { render: MetaPanel });
 
   Object.entries(sections).forEach(([name, section]) => {
     wp.blocks.registerBlockType(name, {

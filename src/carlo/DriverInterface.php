@@ -10,6 +10,12 @@ interface DriverInterface
 
     public function assign(array $data): void;
 
+    /**
+     * Donnée exposée sous un nom (_expose d'une section ou d'un champ, clé meta: d'un type), formatée
+     * comme celle d'un template. $source désigne le contenu où la lire (selon le driver).
+     */
+    public function getExposed(string $name, mixed $source = null): mixed;
+
     public function structure(
         string $type,
         ?string $name = null,
